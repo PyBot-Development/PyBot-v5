@@ -1,0 +1,96 @@
+@import ../palette
+
+.Header
+    position: relative
+    background-color: $base-header-color
+    color: #ffffff
+    min-height: 50px
+    padding: 0px
+    margin: 0px
+    margin-top: 0px
+    padding-top: 0px
+    top: 0
+    display: flex
+    justify-content: center
+    align-content: stretch
+    flex-wrap: wrap
+    flex-direction: row
+
+
+    & .main-text
+        display: block
+        align-items: center
+        justify-content: center
+        text-align: center
+        position: relative
+        font-size: calc(10px + 4vmin)
+        margin: 0
+        padding: 25px
+
+.headerdiv
+    position: relative
+    margin-top: 0
+
+.menu-content
+    text-align: left
+    margin-top: 50px
+    background-size: contain
+    line-height: 35px
+
+
+    &-links
+        margin-left: 15px
+        line-height: calc(5vmin + 1.2em)
+
+
+    & a
+        background-color: $base-color
+        border-radius: 5px
+        color: #ffffff
+        padding: 5px
+        transition-duration: 250ms
+        transition-delay: 100ms
+        text-decoration: none
+        margin: 5px
+        font-size: calc(10px + 2vmin)
+
+
+    & a:hover
+        color: #ffffff
+        background-color: #ffffff
+        transition-duration: 250ms
+        transition-delay: 10ms
+
+
+    & a.selected
+        color: #ffffff
+
+.cheeseburger-menu-inner
+    background-color: $base-color
+
+.cheeseburgir
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    padding: 25px
+    float: right
+
+.exit-button
+    margin: 05px
+    background-color: white
+    color: #282c34
+    border-radius: 5px
+    cursor: pointer
+    padding: 5px
+    transition: background .5s
+    line-height: 20px
+    position: absolute
+    top: 15px
+    left: 82%
+
+
+    &:hover
+        background-color: #ffffff
+.menu
+    &:hover
+        cursor: pointer
