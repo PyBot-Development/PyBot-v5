@@ -25,7 +25,7 @@ class Header extends react.Component {
     return (
       <div className="Header">
         <header className="Header header">
-          <p className="main-text">{this.props.text}</p>
+          <p className="main-text"><Twemoji text={this.props.text} /></p>
           <div className="cheeseburgir">
             <HamburgerMenu
               isOpen={this.state.menuOpen}
@@ -41,18 +41,34 @@ class Header extends react.Component {
             />
             <CheeseburgerMenu isOpen={this.state.menuOpen} closeCallback={this.closeMenu.bind(this)}>
               <div className="menu-content">
-                <div className="exit-button" style={{ display: "flex", float: "right" }} onClick={this.closeMenu.bind(this)}>
-                  <Twemoji svg text="❌" />
-                </div>
                 <div className="menu-content-links">
                   <p style={{ textAlign: "center", fontSize: "calc(10px + 3vmin)" }}>Pages</p>
                   <ul>
+
                     <li key="Home">
                       <NavLink to="/home" onClick={this.closeMenu.bind(this)} activeClassName="selected">
-                        <Twemoji svg text="🏠 Home" />
+                        <Twemoji svg text="🏡 Home" />
                       </NavLink>
-                      <br />
                     </li>
+
+                    <li key="about">
+                      <NavLink to="/about" onClick={this.closeMenu.bind(this)} activeClassName="selected">
+                        <Twemoji svg text="🤔 About" />
+                      </NavLink>
+                    </li>
+
+                    <li key="changelog">
+                      <NavLink to="/changelog" onClick={this.closeMenu.bind(this)} activeClassName="selected">
+                        <Twemoji svg text="🖨️ Changelog" />
+                      </NavLink>
+                    </li>
+
+                    <li key="commands">
+                      <NavLink to="/commands" onClick={this.closeMenu.bind(this)} activeClassName="selected">
+                        <Twemoji svg text="💾 Commands" />
+                      </NavLink>
+                    </li>
+
                   </ul>
                 </div>
               </div>

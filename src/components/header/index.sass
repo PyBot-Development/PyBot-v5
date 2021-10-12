@@ -16,7 +16,6 @@
     flex-wrap: wrap
     flex-direction: row
 
-
     & .main-text
         display: block
         align-items: center
@@ -26,6 +25,13 @@
         font-size: calc(10px + 4vmin)
         margin: 0
         padding: 25px
+
+    .cheeseburgir
+        display: flex
+        justify-content: flex-end
+        align-items: center
+        padding: 25px
+        float: right
 
 .headerdiv
     position: relative
@@ -37,16 +43,14 @@
     background-size: contain
     line-height: 35px
 
-
     &-links
         margin-left: 15px
         line-height: calc(5vmin + 1.2em)
 
-
     & a
-        background-color: $base-color
+        background-color: $link-background
         border-radius: 5px
-        color: #ffffff
+        color: $base-text-color
         padding: 5px
         transition-duration: 250ms
         transition-delay: 100ms
@@ -54,26 +58,18 @@
         margin: 5px
         font-size: calc(10px + 2vmin)
 
-
     & a:hover
-        color: #ffffff
-        background-color: #ffffff
+        color: $hover-color
+        background-color: $hover-background
         transition-duration: 250ms
         transition-delay: 10ms
 
-
     & a.selected
-        color: #ffffff
+        color: #353535
+        background-color: #ffffff
 
 .cheeseburger-menu-inner
     background-color: $base-color
-
-.cheeseburgir
-    display: flex
-    justify-content: flex-end
-    align-items: center
-    padding: 25px
-    float: right
 
 .exit-button
     margin: 05px
@@ -87,7 +83,6 @@
     position: absolute
     top: 15px
     left: 82%
-
 
     &:hover
         background-color: #ffffff

@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <div className="container">
+    <div className="container" style={{minHeight: "80vh"}}>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
@@ -14,7 +14,9 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
+          
         </a>
+
     </div>
   );
 }
