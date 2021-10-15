@@ -1,15 +1,15 @@
-name: Deploy
+name: Push And Deploy
 
-on: 
+on:
   push:
     branches: [ bot ]
     
 jobs:
-  job_one:
-    name: Deploy
+  deploy:
+    name: deploy
     runs-on: ubuntu-latest
     steps:
-      name: Testing Connection
+    - name: Deploys
       uses: appleboy/ssh-action@master
       with:
         host: 129.159.201.52
@@ -17,6 +17,6 @@ jobs:
         key: ${{ secrets.CONSOLE_KEY }}
         port: 22
         script: |
-          cd PyBot-v5/
-          git pull
+          cd PyBot-v5
+          git pull origin bot
           git status
