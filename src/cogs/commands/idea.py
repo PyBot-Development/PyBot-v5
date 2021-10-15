@@ -18,7 +18,7 @@ class idea(commands.Cog):
                     self.channel = i
 
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command()
+    @commands.command(description="Sends bot idea giv ideas plz")
     async def idea(self, ctx, *, Text):
         await self.get_channel()
         await self.channel.send(content="<@846298981797724161>" ,embed=nextcord.Embed(

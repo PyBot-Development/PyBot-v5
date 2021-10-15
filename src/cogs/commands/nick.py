@@ -9,7 +9,7 @@ class command(commands.Cog, name="nick"):
     
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.guild_only()
-    @commands.command()
+    @commands.command(description="Changes bot Nickname")
     async def nick(self, ctx, *, nick=None):
         await ctx.message.guild.me.edit(nick=nick)
         await ctx.send(embed=nextcord.Embed(description=f"Changed nick to `{nick}`", color=support.colours.default), delete_after=10)

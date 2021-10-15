@@ -9,7 +9,7 @@ class tts(commands.Cog):
         self.client = client
 
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command()
+    @commands.command(description="Text to speech")
     async def tts(self, ctx, *, text):
         async with ctx.typing():
             max = 1000
