@@ -20,5 +20,6 @@ jobs:
           whoami
           cd PyBot-v5
           git pull origin bot
-          screen
-          python3 run.py
+          screen -S "pybot-v5" -X quit
+          screen -S "pybot-v5" -d -m
+          screen -r "pybot-v5" -X stuff $'python3 run.py\n'
