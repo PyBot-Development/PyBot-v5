@@ -33,6 +33,7 @@ class HelpMenu(menus.ButtonMenu):
             description=f"""
 [Website](https://py-bot.cf/)
 [Commands](https://py-bot.cf/commands)
+[PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
 
 {self.commands[self.page]}""",
             color=support.colours.default
@@ -46,6 +47,7 @@ class HelpMenu(menus.ButtonMenu):
             description=f"""
 [Website](https://py-bot.cf/)
 [Commands](https://py-bot.cf/commands)
+[PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
 
 {self.commands[self.page]}""",
             color=support.colours.default
@@ -58,6 +60,7 @@ class HelpMenu(menus.ButtonMenu):
             description=f"""
 [Website](https://py-bot.cf/)
 [Commands](https://py-bot.cf/commands)
+[PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
 
 {self.commands[self.page]}""",
             color=support.colours.default
@@ -75,6 +78,7 @@ class HelpMenu(menus.ButtonMenu):
             description=f"""
 [Website](https://py-bot.cf/)
 [Commands](https://py-bot.cf/commands)
+[PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
 
 {self.commands[self.page]}""",
             color=support.colours.default
@@ -87,6 +91,7 @@ class HelpMenu(menus.ButtonMenu):
             description=f"""
 [Website](https://py-bot.cf/)
 [Commands](https://py-bot.cf/commands)
+[PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
 
 {self.commands[self.page]}""",
             color=support.colours.default
