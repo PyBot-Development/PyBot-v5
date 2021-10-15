@@ -22,4 +22,4 @@ jobs:
           git pull origin bot
           screen -S "pybot-v5" -X quit
           screen -S "pybot-v5" -d -m
-          screen -r "pybot-v5" -X stuff $'python3 run.py\n'
+          screen -r "pybot-v5" -X stuff $'pip3 install -r requirements.txt\npython3 run.py\n'
