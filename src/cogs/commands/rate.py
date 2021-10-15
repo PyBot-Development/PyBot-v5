@@ -37,7 +37,6 @@ class rate(commands.Cog):
                     msg = f"You're {picked_random}% {user} {rest_of_the_text}."
             colour = int(colour_hex, 16)
             embed=nextcord.Embed(title=msg, color=colour)
-            embed.set_footer(text=f"""Requested by: {ctx.message.author} • Today at: {datetime.utcnow().strftime("%X")} UTC""")
             await ctx.send(embed=embed)
 
 def setup(bot):
