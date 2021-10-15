@@ -7,7 +7,7 @@ class say(commands.Cog):
     def __init__(self, client):
         self.client = client
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(aliases=["tell", "sudo"])
+    @commands.command(aliases=["tell", "sudo"], description="Sends text message as bot")
     async def say(self, ctx, *, arg):
         await ctx.send(f"​{arg}".replace("@everyone", "@​everyone").replace("@here", "@​here"))
 

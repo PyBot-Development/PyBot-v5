@@ -10,7 +10,7 @@ class yt(commands.Cog):
         self.client = client
 
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(aliases=["youtube", "video"])
+    @commands.command(aliases=["youtube", "video"], description="Searches YouTube")
     async def yt(self, ctx, *, search):
         async with ctx.typing():
             query_string = urllib.parse.urlencode({'search_query': search})

@@ -21,7 +21,7 @@ class meme(commands.Cog):
                      )
 
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command()
+    @commands.command(description="Sends random meme")
     async def meme(self, ctx, *, subredd=None):
         msg = await ctx.send("Please wait.. It may take a while. Because reddit api shit.")
         async with ctx.typing():

@@ -10,7 +10,7 @@ class rate(commands.Cog):
         self.client = client
 
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(aliases=['r', 'meter'])
+    @commands.command(aliases=['r', 'meter'], description="rates stuff")
     async def rate(self, ctx, user, *, rest_of_the_text=""):
         async with ctx.typing():
             picked_random=random.randint(0, 100)
