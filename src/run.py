@@ -17,6 +17,7 @@ __copyright__ = 'Copyright 2021-2021 mariyt10'
 __version__ = '1.0.0'
 
 from nextcord.ext import commands
+import nextcord
 import os
 from colorama import *
 import support
