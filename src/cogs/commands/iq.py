@@ -2,7 +2,7 @@ from nextcord.ext import commands
 import nextcord
 import support
 from nextcord.ext.commands import cooldown, BucketType
-from numpy import random, pi, sqrt, cos
+from numpy import random
 
 class iq(commands.Cog):
     def __init__(self, client):
@@ -14,7 +14,7 @@ class iq(commands.Cog):
         else:
             return random.uniform(0.00, 420.00)
 
-    #@cooldown(1, support.cooldown, BucketType.user)
+    @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="Calculates your IQ")
     async def iq(self, ctx, *,user: nextcord.User=None):
 
