@@ -5,7 +5,6 @@ from nextcord.ext.commands import cooldown, BucketType
 import random
 import aiohttp
 import io
-from datetime import datetime
 
 class hex(commands.Cog):
     def __init__(self, client):
