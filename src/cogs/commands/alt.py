@@ -12,7 +12,7 @@ class alt(commands.Cog):
     @commands.command(description="Gives you random minecraft alt")
     async def alt(self, ctx):
         async with ctx.typing():
-            alt = await support.get_alt()
+            alt = await support.getAlt()
             channel = await ctx.message.author.create_dm()
             await channel.send(embed=nextcord.Embed(description=f"||{alt}||", color=support.colours.default))
             
