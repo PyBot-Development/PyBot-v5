@@ -17,6 +17,8 @@ jobs:
         key: ${{ secrets.CONSOLE_KEY }}
         port: 22
         script: |
+          whoami
           cd PyBot-v5
           git pull origin bot
-          git status
+          screen
+          python3 run.py
