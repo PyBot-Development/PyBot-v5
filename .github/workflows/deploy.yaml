@@ -1,0 +1,25 @@
+name: Push And Deploy
+
+on:
+  push:
+    branches: [ bot ]
+    
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploys
+      uses: appleboy/ssh-action@master
+      with:
+        host: 129.159.201.52
+        username: ubuntu
+        key: ${{ secrets.CONSOLE_KEY }}
+        port: 22
+        script: |
+          whoami
+          cd PyBot-v5/src
+          git pull origin bot
+          screen -S "pybot-v5" -X quit
+          screen -S "pybot-v5" -d -m
+          screen -r "pybot-v5" -X stuff $'pip3 install -r requirements.txt\npython3 run.py\n'
