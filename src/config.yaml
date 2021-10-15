@@ -3,3 +3,8 @@ token: ODg1NjMxMDEzODQ0MjkxNjc0.YTp2Jw.07PBVwN7y_-Yio3uF593J10J-cs
 prefix: "b!"
 cooldown: 2
 debug: False
+
+# REDDIT
+Client_Secret: cTwvO_kcTn0_ODvk25LjhPNjNI18GA
+Client_Id: yXZQtks0llJc6YdPdxsrDA
+User_Agent: M2rsho

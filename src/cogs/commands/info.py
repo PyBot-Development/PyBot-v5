@@ -28,6 +28,8 @@ class info(commands.Cog):
         await ctx.send(embed=nextcord.Embed(
             title=f"{__title__} Info",
             description=f"""
+[PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
+
 Current Version: {__version__}
 V5 Creation Date: <t:1633946400:D>
 

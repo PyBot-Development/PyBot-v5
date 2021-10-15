@@ -1,11 +1,11 @@
 if __name__ == "__main__":
     print("Huh?")
-    exit
+    #exit
 
 from datetime import datetime
 from colorama import *
 import yaml
-
+from random import choice
 time = datetime.utcnow()
 startup_date = f"{time.day}_{time.month}_{time.year}-{time.hour:02d}-{time.minute:02d}.{time.second:02d}.{time.microsecond:03d}"
 startup_timestamp = time.timestamp()
@@ -17,6 +17,11 @@ config=open(f"{path}/config.yaml")
 config=yaml.load(config, Loader=yaml.FullLoader)
 prefix=config.get("prefix")
 cooldown=config.get("cooldown")
+
+with open("data/alts.txt") as file:
+    alts = file.readlines()
+async def getAlt():
+    return choice(alts)
 
 def log(date, type, arg1, arg2):
     time = f"{date.hour:02d}:{date.minute:02d}:{date.second:02d}"
@@ -31,3 +36,4 @@ def log(date, type, arg1, arg2):
 
 class colours:
     default = 0x7842ff
+    red = 0xffc7c7
