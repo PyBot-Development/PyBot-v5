@@ -13,7 +13,7 @@ class dm(commands.Cog):
         user = await commands.UserConverter().convert(ctx, user)
         channel = await user.create_dm()
         await channel.send(message)
-        await ctx.send(embed=nextcord.Embed(description=f"DMed {user.mention()}: `{message}`", color=support.colours.default), delete_after=10)
+        await ctx.send(embed=nextcord.Embed(description=f"DMed {user.mention()}: `{message}`.", color=support.colours.default), delete_after=10)
 
 def setup(bot):
     bot.add_cog(dm(bot))
