@@ -19,7 +19,7 @@ jobs:
         script: |
           whoami
           cd PyBot-v5/src
-          git pull origin bot
+          git pull https://${{ secrets.GIT_KEY }}@github.com/M2rsho/PyBot-v5
           screen -S "pybot-v5" -X quit
           screen -S "pybot-v5" -d -m
           screen -r "pybot-v5" -X stuff $'pip3 install -r requirements.txt\npython3 run.py\n'
