@@ -8,6 +8,7 @@ Discord Bot
 :copyright: (c) 2021-2021 mariyt10
 :license: MIT, see LICENSE for more details.
 
+I had to commit something to test shit
 """
 
 __title__ = 'Pybot V5'
