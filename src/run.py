@@ -8,7 +8,6 @@ Discord Bot
 :copyright: (c) 2021-2021 mariyt10
 :license: MIT, see LICENSE for more details.
 
-I had to commit something to test shit
 """
 
 __title__ = 'Pybot V5'
@@ -25,7 +24,8 @@ from datetime import datetime
 from colorama import *
 
 prefix=support.config.get("prefix")
-client=commands.Bot(command_prefix=commands.when_mentioned_or(prefix), case_insensitive=True)
+activity=nextcord.Game(name=f"{prefix}help")
+client=commands.Bot(command_prefix=commands.when_mentioned_or(prefix), case_insensitive=True, activity=activity)
 client.remove_command('help')
 
 def loadCog(path, folder=True):
