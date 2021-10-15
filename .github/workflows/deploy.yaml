@@ -18,7 +18,7 @@ jobs:
         port: 22
         script: |
           whoami
-          cd PyBot-v5
+          cd PyBot-v5/src
           git pull origin bot
           screen -S "pybot-v5" -X quit
           screen -S "pybot-v5" -d -m
