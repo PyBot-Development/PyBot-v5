@@ -5,16 +5,16 @@ Discord Pybot
 
 Discord Bot
 
-:copyright: (c) 2021-2021 mariyt10
+:copyright: (c) 2021-2021 M2rsho
 :license: MIT, see LICENSE for more details.
 
 """
 
 __title__ = 'Pybot V5'
-__author__ = 'mariyt10'
+__author__ = 'M2rsho'
 __license__ = 'MIT'
-__copyright__ = 'Copyright 2021-2021 mariyt10'
-__version__ = '1.0.0'
+__copyright__ = 'Copyright 2021-2021 M2rsho'
+__version__ = '1.0.1'
 
 from nextcord.ext import commands
 import nextcord
@@ -24,19 +24,23 @@ import support
 from datetime import datetime
 from colorama import *
 
-prefix=support.config.get("prefix")
-activity=nextcord.Game(name=f"{prefix}help")
-client=commands.Bot(command_prefix=commands.when_mentioned_or(prefix), case_insensitive=True, activity=activity)
+prefix = support.config.get("prefix")
+activity = nextcord.Game(name=f"{prefix}help, Version: {__version__}")
+client = commands.Bot(command_prefix=commands.when_mentioned_or(
+    prefix), case_insensitive=True, activity=activity)
 client.remove_command('help')
+
 
 def loadCog(path, folder=True):
     if folder:
         for filename in os.listdir(f'{support.path}/cogs/{path}'):
             if filename.endswith('.py'):
                 client.load_extension(f'cogs.{path}.{filename[:-3]}')
-                support.log(datetime.utcnow(), "INFO", "Cog loaded", f"{filename[:-3]}")
+                support.log(datetime.utcnow(), "INFO",
+                            "Cog loaded", f"{filename[:-3]}")
     else:
         client.load_extension(f'cogs.{path}')
+
 
 if __name__ == "__main__":
 
