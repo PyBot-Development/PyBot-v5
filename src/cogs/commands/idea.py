@@ -1,13 +1,23 @@
-from re import I
+"""
+Idea Command
+~~~~~~~~~~~~~~~~~
+Allows users to send ideas for bot
+
+:copyright: (c) 2021-2021 M2rsho
+:license: MIT, see LICENSE for more details.
+
+"""
+
 from nextcord.ext import commands
 import nextcord
 import support
 from nextcord.ext.commands import cooldown, BucketType
-import asyncio
+
 
 class idea(commands.Cog):
     def __init__(self, client):
         self.client = client
+
     async def get_channel(self):
         try:
             self.channel.id
@@ -21,7 +31,7 @@ class idea(commands.Cog):
     @commands.command(description="Sends bot idea giv ideas plz")
     async def idea(self, ctx, *, Text):
         await self.get_channel()
-        await self.channel.send(content="<@846298981797724161>" ,embed=nextcord.Embed(
+        await self.channel.send(content="<@846298981797724161>", embed=nextcord.Embed(
             title=ctx.message.author.id,
             description=Text,
             color=support.colours.default
@@ -29,8 +39,8 @@ class idea(commands.Cog):
         await ctx.send(embed=nextcord.Embed(
             description="Your idea was sent.",
             color=support.colours.default
-            ))
-    
+        ))
+
 
 def setup(bot):
     bot.add_cog(idea(bot))

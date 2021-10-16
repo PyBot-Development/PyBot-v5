@@ -10,6 +10,7 @@ This is a template for loops
 
 from nextcord.ext import commands, tasks
 
+
 class loop_test(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -24,6 +25,7 @@ class loop_test(commands.Cog):
     async def before_loop_test(self):
         await self.client.wait_until_ready()
 
+
 def setup(client):
-    #client.add_cog(loop_test(client))
+    # client.add_cog(loop_test(client))
     pass
