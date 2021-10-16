@@ -18,6 +18,8 @@ jobs:
         port: 22
         script: |
           screen -S "temp screen so it wont fuck up" -d -m
+          screen -S "temp screen so it wont fuck up" -d -m
+          screen -S "temp screen so it wont fuck up" -d -m
           pkill screen
           screen -S "pybot-v5" -d -m
           screen -r "pybot-v5" -X stuff $'cd PyBot-v5/src\ngit pull https://${{ secrets.GIT_KEY }}@github.com/M2rsho/PyBot-v5\npip3 install -r requirements.txt\npython3 run.py\n'
