@@ -104,19 +104,20 @@ class processing:
 
     async def overlay(background_url, foreground, user_id):
         response=requests.get(background_url)
-        background = Image.open(BytesIO(response.content)).resize((1024, 1024), Image.ANTIALIAS)
+        background = Image.open(BytesIO(response.content)).resize((1024, 1024), Image.ANTIALIAS).convert("RGBA")
 
-        foreground = Image.open(foreground).resize((1024, 1024), Image.ANTIALIAS)
+        foreground = Image.open(foreground).resize((1024, 1024), Image.ANTIALIAS).convert("RGBA")
         background.paste(foreground, (0, 0), foreground)
         background.save(f"{path}/data/temp/{user_id}.png")
         return(f"{path}/data/temp/{user_id}.png")
+
     async def overlay_position(background_url, foreground, xy, xsys, user_id, image_size):
         img = Image.new('RGBA', image_size, (255, 0, 0, 0))
 
         response=requests.get(background_url)
-        background = Image.open(BytesIO(response.content)).resize(xsys, Image.ANTIALIAS)
+        background = Image.open(BytesIO(response.content)).resize(xsys, Image.ANTIALIAS).convert("RGBA")
 
-        foreground = Image.open(foreground)
+        foreground = Image.open(foreground).convert("RGBA")
 
         img.paste(background, xy, background)
         img.paste(foreground, (0, 0), foreground)
