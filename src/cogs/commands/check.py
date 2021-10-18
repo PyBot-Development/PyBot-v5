@@ -7,7 +7,7 @@ class command(commands.Cog, name="check"):
         self.client = client
 
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command()
+    @commands.command(description="Checks minecraft alt")
     async def check(self, ctx, *, combo):
         await ctx.send(embed=nextcord.Embed(description=support.check(combo).result, color=support.colours.default))
 
