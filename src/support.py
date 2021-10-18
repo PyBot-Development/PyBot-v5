@@ -59,7 +59,7 @@ def log(date, type, arg1, arg2):
 
 class colours:
     default = 0x7842ff
-    red = 0xffc7c7
+    red = 0xff7777
 
 
 class processing:
