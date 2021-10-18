@@ -20,6 +20,8 @@ from random import choice
 from PIL import Image, ImageFont, ImageDraw
 from gtts import gTTS
 from datetime import datetime
+import requests
+from io import BytesIO
 
 time = datetime.utcnow()
 startup_date = f"{time.day}_{time.month}_{time.year}-{time.hour:02d}-{time.minute:02d}.{time.second:02d}.{time.microsecond:03d}"
@@ -100,6 +102,28 @@ class processing:
         speech.save(f"{path}/data/temp/{date}.mp3")
         return(f"{path}/data/temp/{date}.mp3")
 
+    async def overlay(background_url, foreground, user_id):
+        response=requests.get(background_url)
+        background = Image.open(BytesIO(response.content)).resize((1024, 1024), Image.ANTIALIAS)
+
+        foreground = Image.open(foreground).resize((1024, 1024), Image.ANTIALIAS)
+        background.paste(foreground, (0, 0), foreground)
+        background.save(f"{path}/data/temp/{user_id}.png")
+        return(f"{path}/data/temp/{user_id}.png")
+    async def overlay_position(background_url, foreground, xy, xsys, user_id, image_size):
+        img = Image.new('RGBA', image_size, (255, 0, 0, 0))
+
+        response=requests.get(background_url)
+        background = Image.open(BytesIO(response.content)).resize(xsys, Image.ANTIALIAS)
+
+        foreground = Image.open(foreground)
+
+        img.paste(background, xy, background)
+        img.paste(foreground, (0, 0), foreground)
+
+        img.save(f"{path}/data/temp/{user_id}.png")
+        return(f"{path}/data/temp/{user_id}.png")
+        
 from requests import Session
 import json
 

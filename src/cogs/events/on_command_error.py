@@ -60,8 +60,8 @@ class on_command_error(commands.Cog):
                 color=support.colours.red
             ),
                 delete_after=10)
-
-            if support.config.get("Debug"):
+            
+            if support.config.get("debug"):
                 raise error
         support.log(datetime.utcnow(), "ERROR", ctx.message.author, error)
         return

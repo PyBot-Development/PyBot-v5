@@ -36,6 +36,7 @@ class pp(commands.Cog):
             ppsize_inch = ppsize/2.54
             colour_hex = '%02x%02x%02x' % (
                 int((ppsize/2)*2.31), int((ppsize/2)*1.45), int((ppsize/2)*2.55))
+
         colour = int(colour_hex, 16)
         try:
             embed = nextcord.Embed(
