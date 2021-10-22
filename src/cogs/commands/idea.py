@@ -35,7 +35,7 @@ class idea(commands.Cog):
             title=ctx.message.author.id,
             description=Text,
             color=support.colours.default
-        ).set_author(name=ctx.message.author, icon_url=ctx.message.author.avatar_url))
+        ).set_author(name=ctx.message.author, icon_url=ctx.message.author.avatar))
         await ctx.send(embed=nextcord.Embed(
             description="Your idea was sent.",
             color=support.colours.default
