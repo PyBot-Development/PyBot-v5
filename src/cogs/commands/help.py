@@ -18,7 +18,7 @@ from discord.ext.commands import cooldown, BucketType, CommandNotFound
 
 class HelpButtons(discord.ui.View):
     def __init__(self, maxPages, commands, author):
-        super().__init__(timeout=1)
+        super().__init__(timeout=20)
         self.page = 0
         self.maxPages = maxPages
         self.commands = commands
