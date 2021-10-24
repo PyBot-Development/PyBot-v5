@@ -8,10 +8,10 @@ Calculates PP size
 
 """
 
-from nextcord.ext import commands
-import nextcord
+from discord.ext import commands
+import discord
 import support
-from nextcord.ext.commands import cooldown, BucketType
+from discord.ext.commands import cooldown, BucketType
 import random
 from datetime import datetime
 
@@ -22,7 +22,7 @@ class pp(commands.Cog):
 
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(aliases=["dick", "penis", "cock"], description="Calculates pp size")
-    async def pp(self, ctx, *, user: nextcord.User = None):
+    async def pp(self, ctx, *, user: discord.User = None):
         if user is None:
             user = ctx.message.author
         ids = [609551301730369547, 818236132578820126, 484170415720235009,
@@ -39,10 +39,10 @@ class pp(commands.Cog):
 
         colour = int(colour_hex, 16)
         try:
-            embed = nextcord.Embed(
+            embed = discord.Embed(
                 description=f"{user} pp size is {ppsize:.2f}cm/{ppsize_inch:.2f}inch.", color=colour)
         except:
-            embed = nextcord.Embed(
+            embed = discord.Embed(
                 description=f"{user} pp size is {ppsize}cm/{ppsize_inch}inch.", color=colour)
         await ctx.send(embed=embed)
 

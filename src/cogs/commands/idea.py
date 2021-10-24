@@ -8,10 +8,10 @@ Allows users to send ideas for bot
 
 """
 
-from nextcord.ext import commands
-import nextcord
+from discord.ext import commands
+import discord
 import support
-from nextcord.ext.commands import cooldown, BucketType
+from discord.ext.commands import cooldown, BucketType
 
 
 class idea(commands.Cog):
@@ -31,12 +31,12 @@ class idea(commands.Cog):
     @commands.command(description="Sends bot idea giv ideas plz")
     async def idea(self, ctx, *, Text):
         await self.get_channel()
-        await self.channel.send(content="<@846298981797724161>", embed=nextcord.Embed(
+        await self.channel.send(content="<@846298981797724161>", embed=discord.Embed(
             title=ctx.message.author.id,
             description=Text,
             color=support.colours.default
         ).set_author(name=ctx.message.author, icon_url=ctx.message.author.avatar))
-        await ctx.send(embed=nextcord.Embed(
+        await ctx.send(embed=discord.Embed(
             description="Your idea was sent.",
             color=support.colours.default
         ))

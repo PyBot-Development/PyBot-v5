@@ -14,20 +14,24 @@ __title__ = 'Pybot V5'
 __author__ = 'M2rsho'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2021-2021 M2rsho'
-__version__ = '1.0.2'
+__version__ = '1.1.0'
 
-from nextcord.ext import commands
-import nextcord
+from discord.ext import commands
+import discord
 import os
 from colorama import *
 import support
 from datetime import datetime
 from colorama import *
 
+
 prefix = support.config.get("prefix")
-activity = nextcord.Game(name=f"{prefix}help, Version: {__version__}")
+activity = discord.Game(name=f"{prefix}help, Version: {__version__}")
+
 client = commands.Bot(command_prefix=commands.when_mentioned_or(
     prefix), case_insensitive=True, activity=activity)
+
+
 client.remove_command('help')
 
 
@@ -41,7 +45,6 @@ def loadCog(path, folder=True):
     else:
         client.load_extension(f'cogs.{path}')
 
-
 if __name__ == "__main__":
 
     @client.before_invoke
@@ -51,5 +54,6 @@ if __name__ == "__main__":
     loadCog("events")
     loadCog("commands")
     loadCog("loops")
+    
     print("")
     client.run(support.config.get("token"))

@@ -9,11 +9,11 @@ Does Stuff on Error
 
 """
 
-from nextcord.ext import commands
+from discord.ext import commands
 from datetime import datetime
-import nextcord
+import discord
 import support
-from nextcord.ext.commands import CommandNotFound
+from discord.ext.commands import CommandNotFound
 from colorama import *
 
 
@@ -28,7 +28,7 @@ class on_command_error(commands.Cog):
         time = f"{time.hour:02d}:{time.minute:02d}:{time.second:02d}.{time.microsecond:02d}"
 
         if isinstance(error, commands.CommandOnCooldown):
-            await ctx.send(embed=nextcord.Embed(
+            await ctx.send(embed=discord.Embed(
                 description=f"🕰️ That command is ratelimited, try again in {error.retry_after:.2f}s.",
                 color=support.colours.red
             ),
@@ -36,7 +36,7 @@ class on_command_error(commands.Cog):
 
         elif isinstance(error, CommandNotFound):
             cmd = str(ctx.message.content).split(" ")[0]
-            await ctx.send(embed=nextcord.Embed(
+            await ctx.send(embed=discord.Embed(
                 description=f"<:QuestionMark:885978535670464533> Command `{cmd}` not found.",
                 color=support.colours.red
             ),
@@ -46,7 +46,7 @@ class on_command_error(commands.Cog):
             error, (commands.MissingRequiredArgument,
                     commands.MissingPermissions)
         ):
-            await ctx.send(embed=nextcord.Embed(
+            await ctx.send(embed=discord.Embed(
                 description=f"<:QuestionMark:885978535670464533> {error}".capitalize(
                 ),
                 color=support.colours.red
@@ -55,7 +55,7 @@ class on_command_error(commands.Cog):
         else:
             error_ = str(error)[29:] if str(error).lower().startswith(
                 "command") else str(error)  # Removes: "Command Invoked Error"
-            await ctx.send(embed=nextcord.Embed(
+            await ctx.send(embed=discord.Embed(
                 description=f"<:QuestionMark:885978535670464533> {str(error_).capitalize()}",
                 color=support.colours.red
             ),

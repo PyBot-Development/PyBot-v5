@@ -8,10 +8,10 @@ Sends logs
 
 """
 
-from nextcord.ext import commands
-import nextcord
+from discord.ext import commands
+import discord
 import support
-from nextcord.ext.commands import cooldown, BucketType
+from discord.ext.commands import cooldown, BucketType
 
 
 class logs(commands.Cog):
@@ -21,7 +21,7 @@ class logs(commands.Cog):
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(aliases=["log"], description="Sends bot logs")
     async def logs(self, ctx):
-        await ctx.send(file=nextcord.File(f"{support.path}/logs/{support.startup_date}.log"))
+        await ctx.send(file=discord.File(f"{support.path}/logs/{support.startup_date}.log"))
 
 
 def setup(bot):

@@ -8,10 +8,10 @@ Changes Nickname
 
 """
 
-from nextcord.ext import commands
-import nextcord
+from discord.ext import commands
+import discord
 import support
-from nextcord.ext.commands import cooldown, BucketType
+from discord.ext.commands import cooldown, BucketType
 
 
 class command(commands.Cog, name="nick"):
@@ -23,7 +23,7 @@ class command(commands.Cog, name="nick"):
     @commands.command(description="Changes bot Nickname")
     async def nick(self, ctx, *, nick=None):
         await ctx.message.guild.me.edit(nick=nick)
-        await ctx.send(embed=nextcord.Embed(description=f"Changed nick to `{nick}`", color=support.colours.default), delete_after=10)
+        await ctx.send(embed=discord.Embed(description=f"Changed nick to `{nick}`", color=support.colours.default), delete_after=10)
 
 
 def setup(bot):

@@ -8,9 +8,9 @@ Sends meme
 
 """
 
-from nextcord.ext import commands
-import nextcord
-from nextcord.ext.commands import cooldown, BucketType
+from discord.ext import commands
+import discord
+from discord.ext.commands import cooldown, BucketType
 import support
 import random
 import requests
@@ -37,10 +37,10 @@ class meme(commands.Cog):
                 f"https://meme-api.herokuapp.com/gimme/{topic}").text)
 
             if meme["nsfw"]:
-                await ctx.send(embed=nextcord.Embed(description="🔞 Subreddit is 18+", color=support.colours.red), delete_after=10)
+                await ctx.send(embed=discord.Embed(description="🔞 Subreddit is 18+", color=support.colours.red), delete_after=10)
                 return
 
-            await ctx.send(embed=nextcord.Embed(
+            await ctx.send(embed=discord.Embed(
                 title=f'''{meme["title"]}''',
                 url=meme["postLink"],
                 description=f"""

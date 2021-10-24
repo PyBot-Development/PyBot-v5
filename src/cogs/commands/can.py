@@ -8,9 +8,9 @@ Can generator 😳
 
 """
 
-from nextcord.ext import commands
-import nextcord
-from nextcord.ext.commands import cooldown, BucketType
+from discord.ext import commands
+import discord
+from discord.ext.commands import cooldown, BucketType
 import support
 import os
 
@@ -27,8 +27,8 @@ class can(commands.Cog):
             if not img:
                 raise commands.BadArgument(
                     "Text and Bottom Text max lenght is 20.")
-            file = nextcord.File(img)
-            await ctx.send(embed=nextcord.Embed(description="Can.", color=support.colours.default).set_image(url=f"attachment://{ctx.message.author.id}.png"), file=file)
+            file = discord.File(img)
+            await ctx.send(embed=discord.Embed(description="Can.", color=support.colours.default).set_image(url=f"attachment://{ctx.message.author.id}.png"), file=file)
             os.remove(img)
 
 

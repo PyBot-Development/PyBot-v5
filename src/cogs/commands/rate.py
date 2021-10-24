@@ -8,9 +8,9 @@ Rates Things
 
 """
 
-from nextcord.ext import commands
-import nextcord
-from nextcord.ext.commands import cooldown, BucketType
+from discord.ext import commands
+import discord
+from discord.ext.commands import cooldown, BucketType
 import support
 import random
 
@@ -53,7 +53,7 @@ class rate(commands.Cog):
                         int(picked_random*1.55), int(picked_random*2.55), int(picked_random*1.33)))
                     msg = f"You're {picked_random}% {user} {rest_of_the_text}."
             colour = int(colour_hex, 16)
-            embed = nextcord.Embed(title=msg, color=colour)
+            embed = discord.Embed(title=msg, color=colour)
             await ctx.send(embed=embed)
 
 

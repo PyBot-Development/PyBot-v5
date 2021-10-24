@@ -8,10 +8,10 @@ Gives random minecraft alt
 
 """
 
-from nextcord.ext import commands
-import nextcord
+from discord.ext import commands
+import discord
 import support
-from nextcord.ext.commands import cooldown, BucketType
+from discord.ext.commands import cooldown, BucketType
 
 
 class alt(commands.Cog):
@@ -24,7 +24,7 @@ class alt(commands.Cog):
         async with ctx.typing():
             alt = await support.getAlt()
             channel = await ctx.message.author.create_dm()
-            await channel.send(embed=nextcord.Embed(description=f"||{alt}||", color=support.colours.default))
+            await channel.send(embed=discord.Embed(description=f"||{alt}||", color=support.colours.default))
 
 
 def setup(bot):

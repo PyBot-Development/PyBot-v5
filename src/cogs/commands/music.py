@@ -9,12 +9,12 @@ Plays Music
 """
 
 import asyncio
-import nextcord
+import discord
 import youtube_dl
 from async_timeout import timeout
-from nextcord.ext import commands
+from discord.ext import commands
 import support
-from nextcord.ext.commands import cooldown, BucketType
+from discord.ext.commands import cooldown, BucketType
 youtube_dl.utils.bug_reports_message = lambda: ''
 
 ytdl_format_options = {
@@ -48,7 +48,7 @@ class InvalidVoiceChannel(VoiceConnectionError):
     """Exception for cases of invalid Voice Channels."""
 
 
-class YTDLSource(nextcord.PCMVolumeTransformer):
+class YTDLSource(discord.PCMVolumeTransformer):
     def __init__(self, source, *, data, volume=.5):
         super().__init__(source, volume)
         self.data = data
@@ -63,10 +63,10 @@ class YTDLSource(nextcord.PCMVolumeTransformer):
             # take first item from a playlist
             data = data['entries'][0]
         filename = data['url'] if stream else ytdl.prepare_filename(data)
-        await ctx.send(embed=nextcord.Embed(
+        await ctx.send(embed=discord.Embed(
             description=f'Added `{data["title"]}` to queue.', color=support.colours.default
         ), delete_after=10)
-        return cls(nextcord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
+        return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
 
 
 class MusicPlayer:
@@ -96,7 +96,7 @@ class MusicPlayer:
                     source = await YTDLSource.regather_stream(source, loop=self.bot.loop)
                 except Exception as e:
                     await self._channel.send(
-                        embed=nextcord.Embed(
+                        embed=discord.Embed(
                             description='There was an error processing your song. Try Again',
                             color=support.colours.default,
                         )
@@ -108,7 +108,7 @@ class MusicPlayer:
             self.current = source
             self._guild.voice_client.play(
                 source, after=lambda _: self.bot.loop.call_soon_threadsafe(self.next.set))
-            self.np = await self._channel.send(embed=nextcord.Embed(
+            self.np = await self._channel.send(embed=discord.Embed(
                 description=f'Now Playing: `{source.title}`', color=support.colours.default
             ))
             await self.next.wait()
@@ -116,7 +116,7 @@ class MusicPlayer:
             self.current = None
             try:
                 await self.np.delete()
-            except nextcord.HTTPException:
+            except discord.HTTPException:
                 pass
 
     def destroy(self, guild):
@@ -163,23 +163,23 @@ class Music(commands.Cog):
         vc = ctx.voice_client
         if not vc or not vc.is_connected():
             return await ctx.send(
-                embed=nextcord.Embed(
+                embed=discord.Embed(
                     description='Im Not Playing Anything!.', color=support.colours.default
                 ), delete_after=10, )
 
         player = self.get_player(ctx)
         if not player.current:
             return await ctx.send(
-                embed=nextcord.Embed(
+                embed=discord.Embed(
                     description='Im Not Playing Anything!', color=support.colours.default
                 ), delete_after=10, )
 
         try:
             await player.np.delete()
-        except nextcord.HTTPException:
+        except discord.HTTPException:
             pass
 
-        player.np = await ctx.send(embed=nextcord.Embed(
+        player.np = await ctx.send(embed=discord.Embed(
             description=f"Now Playing: {vc.source.title}",
             color=support.colours.default
         ))
@@ -190,7 +190,7 @@ class Music(commands.Cog):
         vc = ctx.voice_client
         if not vc or not vc.is_connected():
             return await ctx.send(
-                embed=nextcord.Embed(
+                embed=discord.Embed(
                     description='Im Not Playing Anything!', color=support.colours.default
                 ), delete_after=10, )
         if vc.is_paused():
@@ -198,7 +198,7 @@ class Music(commands.Cog):
         elif not vc.is_playing():
             return
         vc.stop()
-        await ctx.send(embed=nextcord.Embed(
+        await ctx.send(embed=discord.Embed(
             description=f'{ctx.author} Skipped Current Song!', color=support.colours.default
         ))
 
@@ -208,13 +208,13 @@ class Music(commands.Cog):
         vc = ctx.voice_client
         if not vc or not vc.is_connected():
             return await ctx.send(
-                embed=nextcord.Embed(
+                embed=discord.Embed(
                     description='Im Not Playing Anything!', color=support.colours.default
                 ), delete_after=10, )
 
         if not 0 < vol < 101:
             return await ctx.send(
-                embed=nextcord.Embed(
+                embed=discord.Embed(
                     description='Choose Value between 0.00/100.00',
                     color=support.colours.default,
                 ), delete_after=10, )
@@ -223,7 +223,7 @@ class Music(commands.Cog):
         if vc.source:
             vc.source.volume = vol / 100
         player.volume = vol / 100
-        await ctx.send(embed=nextcord.Embed(
+        await ctx.send(embed=discord.Embed(
             description=f'{ctx.author} Changed Volume to `{vol}%`', color=support.colours.default
         ))
 
@@ -234,14 +234,14 @@ class Music(commands.Cog):
 
         if not vc or not vc.is_connected():
             return await ctx.send(
-                embed=nextcord.Embed(
+                embed=discord.Embed(
                     description='Im Not Playing Anything!', color=support.colours.default
                 ), delete_after=10, )
         await self.cleanup(ctx.guild)
 
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(aliases=['join'], description="Connects to current voice channel")
-    async def connect(self, ctx, *, channel: nextcord.VoiceChannel = None):
+    async def connect(self, ctx, *, channel: discord.VoiceChannel = None):
         if not channel:
             try:
                 channel = ctx.author.voice.channel
@@ -263,7 +263,7 @@ class Music(commands.Cog):
             except asyncio.TimeoutError:
                 raise VoiceConnectionError(
                     f'Connecting to channel: <{channel}> timed out.')
-        await ctx.send(embed=nextcord.Embed(
+        await ctx.send(embed=discord.Embed(
             description=f'Connected to `{channel}`.', color=support.colours.default
         ), delete_after=10)
 
