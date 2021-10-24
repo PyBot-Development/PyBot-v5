@@ -9,16 +9,119 @@ Help Command with menu
 
 """
 
-from nextcord.ext import commands
-import nextcord
+from discord.enums import InteractionType
+from discord.ext import commands
+import discord
 import support
-from nextcord.ext.commands import cooldown, BucketType, CommandNotFound
-from nextcord.ext import menus
+from discord.ext.commands import cooldown, BucketType, CommandNotFound
 
 
-class HelpMenu(menus.ButtonMenu):
+class HelpButtons(discord.ui.View):
+    def __init__(self, maxPages, commands, author):
+        super().__init__(timeout=1)
+        self.page = 0
+        self.maxPages = maxPages
+        self.commands = commands
+        self.author = author
+        self.message = None
+
+    async def on_timeout(self) -> None:
+        self.back.disabled = True
+        self.stop_button.disabled = True
+        self.forward.disabled = True
+        self.home.disabled=True
+        self.end.disabled=True
+        await self.message.edit(view=self)
+        return await super().on_timeout()
+
+    @discord.ui.button(label="<<", style=discord.ButtonStyle.grey)
+    async def home(
+        self, button: discord.ui.Button, interaction: discord.Interaction
+    ):
+        if interaction.user.id != self.author.id:
+            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            return
+
+        self.page = 0
+        await interaction.response.edit_message(embed=discord.Embed(
+            title="Help",
+            description=f"""
+[Website](https://py-bot.cf/) | [Commands](https://py-bot.cf/commands) | [PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
+
+{self.commands[self.page]}""",
+            color=support.colours.default
+        ).set_footer(text=f"Page: {self.page+1}/{self.maxPages+1}"))
+
+    @discord.ui.button(label="<", style=discord.ButtonStyle.grey)
+    async def back(
+        self, button: discord.ui.Button, interaction: discord.Interaction
+    ):
+        if interaction.user.id != self.author.id:
+            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            return
+        self.page -= 1 if self.page > 0 else 0
+        await interaction.response.edit_message(embed=discord.Embed(
+            title="Help",
+            description=f"""
+[Website](https://py-bot.cf/) | [Commands](https://py-bot.cf/commands) | [PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
+
+{self.commands[self.page]}""",
+            color=support.colours.default
+        ).set_footer(text=f"Page: {self.page+1}/{self.maxPages+1}"))
+
+    @discord.ui.button(label="⬜", style=discord.ButtonStyle.grey)
+    async def stop_button(self, button: discord.ui.Button, interaction: discord.Interaction):
+        if interaction.user.id != self.author.id:
+            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            return
+        self.back.disabled = True
+        self.stop_button.disabled = True
+        self.forward.disabled = True
+        self.home.disabled=True
+        self.end.disabled=True
+        await interaction.response.edit_message(view=self)
+
+        self.stop()
+
+    @discord.ui.button(label=">", style=discord.ButtonStyle.grey)
+    async def forward(
+        self, button: discord.ui.Button, interaction: discord.Interaction
+    ):
+        if interaction.user.id != self.author.id:
+            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            return
+        if self.page < self.maxPages:
+            self.page += 1
+        await interaction.response.edit_message(embed=discord.Embed(
+            title="Help",
+            description=f"""
+[Website](https://py-bot.cf/) | [Commands](https://py-bot.cf/commands) | [PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
+
+{self.commands[self.page]}""",
+            color=support.colours.default
+        ).set_footer(text=f"Page: {self.page+1}/{self.maxPages+1}"))
+
+    @discord.ui.button(label=">>", style=discord.ButtonStyle.grey)
+    async def end(
+        self, button: discord.ui.Button, interaction: discord.Interaction
+    ):
+        if interaction.user.id != self.author.id:
+            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            return
+        self.page = self.maxPages
+        await interaction.response.edit_message(embed=discord.Embed(
+            title="Help",
+            description=f"""
+[Website](https://py-bot.cf/) | [Commands](https://py-bot.cf/commands) | [PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
+
+{self.commands[self.page]}""",
+            color=support.colours.default
+        ).set_footer(text=f"Page: {self.page+1}/{self.maxPages+1}"))
+
+
+
+class help(commands.Cog):
     def __init__(self, client):
-        super().__init__(disable_buttons_after=True)
         self.client = client
         commands = ''.join(
             f"{support.prefix}{command}\n​   `{command.description}`\n" for command in self.client.commands).splitlines()
@@ -27,89 +130,22 @@ class HelpMenu(menus.ButtonMenu):
         for index in range(0, len(commands), n):
             page = ''.join(f"{item}\n" for item in commands[index: index + n])
             self.commands.append(page)
+
         self.maxPages = int(len(self.commands)) - 1
-        self.page = 0
-
-    async def send_initial_message(self, ctx, channel):
-        return await channel.send(embed=nextcord.Embed(
-            title="Help",
-            description=f"""
-[Website](https://py-bot.cf/)
-[Commands](https://py-bot.cf/commands)
-[PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
-
-{self.commands[self.page]}""",
-            color=support.colours.default
-        ).set_footer(text=f"Page: {self.page+1}/{self.maxPages+1}"), view=self)
-
-    @nextcord.ui.button(label="<")
-    async def backwards(self, button, interaction):
-        if self.page == 0:
-            await self.message.edit(embed=nextcord.Embed(
-                title="Help",
-                description=f"""
-[Website](https://py-bot.cf/)
-[Commands](https://py-bot.cf/commands)
-[PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
-
-{self.commands[self.page]}""",
-                color=support.colours.default
-            ).set_footer(text=f"Page: {self.page+1}/{self.maxPages+1} **Page Limit Reached**"))
-            return
-
-        self.page -= 1
-        await self.message.edit(embed=nextcord.Embed(
-            title="Help",
-            description=f"""
-[Website](https://py-bot.cf/)
-[Commands](https://py-bot.cf/commands)
-[PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
-
-{self.commands[self.page]}""",
-            color=support.colours.default
-        ).set_footer(text=f"Page: {self.page+1}/{self.maxPages+1}"))
-
-    @nextcord.ui.button(emoji="\N{BLACK SQUARE FOR STOP}\ufe0f")
-    async def on_stop(self, button, interaction):
-        self.stop()
-
-    @nextcord.ui.button(label=">")
-    async def forwards(self, button, interaction):
-        if self.page == self.maxPages:
-            await self.message.edit(embed=nextcord.Embed(
-                title="Help",
-                description=f"""
-[Website](https://py-bot.cf/)
-[Commands](https://py-bot.cf/commands)
-[PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
-
-{self.commands[self.page]}""",
-                color=support.colours.default
-            ).set_footer(text=f"Page: {self.page+1}/{self.maxPages+1} **Page Limit Reached**"))
-            return
-
-        self.page += 1
-        await self.message.edit(embed=nextcord.Embed(
-            title="Help",
-            description=f"""
-[Website](https://py-bot.cf/)
-[Commands](https://py-bot.cf/commands)
-[PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
-
-{self.commands[self.page]}""",
-            color=support.colours.default
-        ).set_footer(text=f"Page: {self.page+1}/{self.maxPages+1}"))
-
-
-class help(commands.Cog):
-    def __init__(self, client):
-        self.client = client
 
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(aliases=["?"], description="Help Command")
     async def help(self, ctx, *, command=None):
-        await HelpMenu(self.client).start(ctx)
+        view = HelpButtons(self.maxPages, self.commands, ctx.message.author)
+        message = await ctx.send(embed=discord.Embed(
+            title="Help",
+            description=f"""
+[Website](https://py-bot.cf/) | [Commands](https://py-bot.cf/commands) | [PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
 
+{self.commands[0]}""",
+            color=support.colours.default
+        ).set_footer(text=f"Page: 1/{self.maxPages+1}"), view=view)
+        view.message = message
 
 def setup(client):
     client.add_cog(help(client))

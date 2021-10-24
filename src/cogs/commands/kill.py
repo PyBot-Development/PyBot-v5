@@ -8,9 +8,9 @@ Sussy Baka Impostor Amogus
 
 """
 
-from nextcord.ext import commands
-import nextcord
-from nextcord.ext.commands import cooldown, BucketType
+from discord.ext import commands
+import discord
+from discord.ext.commands import cooldown, BucketType
 import support
 import os
 
@@ -21,13 +21,13 @@ class kill(commands.Cog):
 
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="Kills Someone", aliases=["murder", "blood"])
-    async def kill(self, ctx, user: nextcord.User=None):
+    async def kill(self, ctx, user: discord.User=None):
         async with ctx.typing():
             if user is None:
                 user = ctx.message.author
             img = await support.processing.overlay(user.display_avatar, f"{support.path}/data/resources/templates/blood_template.png", ctx.message.author.id)
-            file = nextcord.File(img)
-            await ctx.send(embed=nextcord.Embed(description="🔪", color=support.colours.red).set_image(url=f"attachment://{ctx.message.author.id}.png"), file=file)
+            file = discord.File(img)
+            await ctx.send(embed=discord.Embed(description="🔪", color=support.colours.red).set_image(url=f"attachment://{ctx.message.author.id}.png"), file=file)
             os.remove(img)
 
 

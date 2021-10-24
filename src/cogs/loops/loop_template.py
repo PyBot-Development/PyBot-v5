@@ -8,7 +8,7 @@ This is a template for loops
 :license: MIT, see LICENSE for more details.
 """
 
-from nextcord.ext import commands, tasks
+from discord.ext import commands, tasks
 
 
 class loop_test(commands.Cog):

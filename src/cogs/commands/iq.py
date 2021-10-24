@@ -8,10 +8,10 @@ Calculates IQ
 
 """
 
-from nextcord.ext import commands
-import nextcord
+from discord.ext import commands
+import discord
 import support
-from nextcord.ext.commands import cooldown, BucketType
+from discord.ext.commands import cooldown, BucketType
 from numpy import random
 
 
@@ -27,7 +27,7 @@ class iq(commands.Cog):
 
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="Calculates your IQ")
-    async def iq(self, ctx, *, user: nextcord.User = None):
+    async def iq(self, ctx, *, user: discord.User = None):
 
         iq_size = self.get_number()
         if user is None:
@@ -37,7 +37,7 @@ class iq(commands.Cog):
         colour_hex = '%02x%02x%02x' % (
             int((iq_size/4.2)*2.55), int((iq_size/4.2)*2.51), int((iq_size/4.2)*1.91))
         colour = int(colour_hex, 16)
-        embed = nextcord.Embed(
+        embed = discord.Embed(
             description=f"{user.mention} IQ is {iq_size:.2f}.", color=colour)
         await ctx.send(embed=embed)
 

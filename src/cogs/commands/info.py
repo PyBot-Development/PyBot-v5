@@ -9,10 +9,10 @@ Gives info about bot
 
 """
 
-from nextcord.ext import commands
-import nextcord
+from discord.ext import commands
+import discord
 import support
-from nextcord.ext.commands import cooldown, BucketType
+from discord.ext.commands import cooldown, BucketType
 from datetime import timedelta, datetime
 import math
 from run import __version__, __title__, __copyright__, __license__
@@ -28,7 +28,7 @@ class info(commands.Cog):
         author = await self.client.fetch_user(846298981797724161)
         onlineFor = int(datetime.utcnow().timestamp()) - \
             support.startup_timestamp
-        await ctx.send(embed=nextcord.Embed(
+        await ctx.send(embed=discord.Embed(
             title=f"{__title__} Info",
             description=f"""
 [PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)

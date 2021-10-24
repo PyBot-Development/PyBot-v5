@@ -8,10 +8,10 @@ Shows hex colour
 
 """
 
-from nextcord.ext import commands
-import nextcord
+from discord.ext import commands
+import discord
 import support
-from nextcord.ext.commands import cooldown, BucketType
+from discord.ext.commands import cooldown, BucketType
 import random
 import aiohttp
 import io
@@ -45,9 +45,9 @@ class hex(commands.Cog):
             ) as af:
                 if 300 > af.status >= 200:
                     fp = io.BytesIO(await af.read())
-                    file = nextcord.File(fp, "colour.png")
+                    file = discord.File(fp, "colour.png")
                     colour = colour.replace("#", "")
-                    embed = nextcord.Embed(
+                    embed = discord.Embed(
                         title=f"Colour: #{colour}", description=f"RGB: {rgb}", color=colour_int)
                     embed.set_thumbnail(url="attachment://colour.png")
                     await ctx.send(embed=embed, file=file)

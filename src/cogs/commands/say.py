@@ -8,9 +8,9 @@ Says something using bot
 
 """
 
-from nextcord.ext import commands
-import nextcord
-from nextcord.ext.commands import cooldown, BucketType
+from discord.ext import commands
+import discord
+from discord.ext.commands import cooldown, BucketType
 import support
 
 

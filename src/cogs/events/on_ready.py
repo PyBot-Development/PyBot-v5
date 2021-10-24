@@ -9,10 +9,9 @@ Runs code when bot is ready
 
 """
 
-from nextcord.ext import commands
+from discord.ext import commands
 import support
-from datetime import datetime
-
+from datetime import datetime   
 
 class on_ready(commands.Cog):
     def __init__(self, client):

@@ -8,10 +8,10 @@ Sends Embeded message
 
 """
 
-from nextcord.ext import commands
-import nextcord
+from discord.ext import commands
+import discord
 import support
-from nextcord.ext.commands import cooldown, BucketType
+from discord.ext.commands import cooldown, BucketType
 
 
 class embed(commands.Cog):
@@ -22,7 +22,7 @@ class embed(commands.Cog):
     @commands.command(description="Creates Embed Message")
     async def embed(self, ctx, description=None, color=None, title=None,):
         colour = int(color.replace("#", ""), 16)
-        await ctx.send(embed=nextcord.Embed(title=title, description=description, color=colour))
+        await ctx.send(embed=discord.Embed(title=title, description=description, color=colour))
 
 
 def setup(bot):

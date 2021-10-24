@@ -8,10 +8,10 @@ Shows user info
 
 """
 
-from nextcord.ext import commands
-import nextcord
+from discord.ext import commands
+import discord
 import support
-from nextcord.ext.commands import cooldown, BucketType
+from discord.ext.commands import cooldown, BucketType
 
 
 class whois(commands.Cog):
@@ -21,14 +21,14 @@ class whois(commands.Cog):
     @commands.guild_only()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="Shows user info")
-    async def whois(self, ctx, *, user: nextcord.Member = None):
+    async def whois(self, ctx, *, user: discord.Member = None):
         if user is None:
             user = ctx.message.author
         roles = "None"
         if len(user.roles) > 1:
             roles = "".join(f"{i.mention} " for i in user.roles[1:])
         fetched = await self.client.fetch_user(user.id)
-        embed = nextcord.Embed(title=f"{user}",
+        embed = discord.Embed(title=f"{user}",
                                description=f"""
 User: {user.mention}
 ID: `{user.id}`

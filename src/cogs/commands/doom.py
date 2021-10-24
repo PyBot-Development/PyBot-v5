@@ -8,9 +8,9 @@ Sussy Baka
 
 """
 
-from nextcord.ext import commands
-import nextcord
-from nextcord.ext.commands import cooldown, BucketType
+from discord.ext import commands
+import discord
+from discord.ext.commands import cooldown, BucketType
 import support
 import os
 
@@ -21,14 +21,14 @@ class doom(commands.Cog):
 
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="Makes Doom slayer", aliases=["doom_slayer"])
-    async def doom(self, ctx, user: nextcord.User=None):
+    async def doom(self, ctx, user: discord.User=None):
         async with ctx.typing():
             if user is None:
                 user = ctx.message.author
 
             img = await support.processing.overlay_position(user.display_avatar, f"{support.path}/data/resources/templates/doom_slayer.png", (90, 35), (50, 50), ctx.message.author.id, (236, 423))
-            file = nextcord.File(img)
-            await ctx.send(embed=nextcord.Embed(description=f"{user.display_name} The Doom slayer.", color=support.colours.default).set_image(url=f"attachment://{ctx.message.author.id}.png"), file=file)
+            file = discord.File(img)
+            await ctx.send(embed=discord.Embed(description=f"{user.display_name} The Doom slayer.", color=support.colours.default).set_image(url=f"attachment://{ctx.message.author.id}.png"), file=file)
             os.remove(img)
 
 

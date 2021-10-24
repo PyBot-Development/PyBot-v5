@@ -8,10 +8,10 @@ DM's user
 
 """
 
-from nextcord.ext import commands
-import nextcord
+from discord.ext import commands
+import discord
 import support
-from nextcord.ext.commands import cooldown, BucketType
+from discord.ext.commands import cooldown, BucketType
 
 
 class dm(commands.Cog):
@@ -24,7 +24,7 @@ class dm(commands.Cog):
         user = await commands.UserConverter().convert(ctx, user)
         channel = await user.create_dm()
         await channel.send(message)
-        await ctx.send(embed=nextcord.Embed(description=f"DMed {user.mention()}: `{message}`.", color=support.colours.default), delete_after=10)
+        await ctx.send(embed=discord.Embed(description=f"DMed {user.mention()}: `{message}`.", color=support.colours.default), delete_after=10)
 
 
 def setup(bot):
