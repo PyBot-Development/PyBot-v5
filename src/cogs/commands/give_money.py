@@ -20,12 +20,10 @@ class give_money(commands.Cog):
         self.client = client
 
     @is_owner()
-    @commands.command(description="Gives Money")
+    @commands.command(description="Gives Money", aliases=["give"])
     async def give_money(self, ctx, user: discord.User, value: int):
-        current = await support.globalData.getBalance(user)
-        current += value
-        await support.globalData.setBalance(user, value)
-        await ctx.send(await support.globalData.getBalance(user))
+        await support.globalData.addBalance(user, value)
+        await ctx.send(embed=discord.Embed(description=f"Added `{value}`$ to {user.mention} balance. Now their balance is `{await support.globalData.getBalance(user)}`$"))
 
 def setup(bot):
     bot.add_cog(give_money(bot))

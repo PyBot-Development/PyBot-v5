@@ -193,6 +193,8 @@ class database:
         return self.cur.execute(f'''SELECT * FROM users WHERE id="{user.id}"''').fetchone()
     async def getAllUsers(self):
         return self.cur.execute(f'''SELECT * FROM users''').fetchall()
+    def getAllUsers_sync(self):
+        return self.cur.execute(f'''SELECT * FROM users''').fetchall()
         
     async def setBalance(self, user, balance: int):
         await self.getUser(user)
