@@ -160,6 +160,9 @@ class blackjack(commands.Cog):
 
         if current < bet:
             raise ValueError("You don't have enough money")
+        elif bet <= 0:
+            raise ValueError("Minimum bet value is `1`$.")
+
         await support.globalData.removebalance(ctx.message.author, bet)
         view = createButtons(self.client, ctx.message.author, bet)
 
