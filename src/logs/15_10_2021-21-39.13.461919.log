@@ -1,0 +1,28 @@
+21:39:13 [INFO] Cog loaded: on_ready
+21:39:13 [INFO] Cog loaded: on_command_error
+21:39:13 [INFO] Cog loaded: dm
+21:39:13 [INFO] Cog loaded: idea
+21:39:13 [INFO] Cog loaded: embed
+21:39:13 [INFO] Cog loaded: help
+21:39:13 [INFO] Cog loaded: say
+21:39:13 [INFO] Cog loaded: hex
+21:39:13 [INFO] Cog loaded: ascii
+21:39:13 [INFO] Cog loaded: info
+21:39:13 [INFO] Cog loaded: meme
+21:39:13 [INFO] Cog loaded: yt
+21:39:13 [INFO] Cog loaded: iq
+21:39:13 [INFO] Cog loaded: tts
+21:39:13 [INFO] Cog loaded: logs
+21:39:13 [INFO] Cog loaded: alt
+21:39:14 [INFO] Cog loaded: music
+21:39:14 [INFO] Cog loaded: whois
+21:39:14 [INFO] Cog loaded: pp
+21:39:14 [INFO] Cog loaded: nick
+21:39:14 [INFO] Cog loaded: rate
+21:39:14 [INFO] Cog loaded: can
+21:39:14 [INFO] Cog loaded: loop_template
+21:39:16 [INFO] Startup: Pybot#9863 is online!
+21:40:36 [ERROR] amazinf#6247: Command "al" is not found
+21:40:38 [INFO] amazinf#6247: alt
+21:40:38 [ERROR] amazinf#6247: Command raised an exception: AttributeError: module 'support' has no attribute 'get_alt'
+21:40:44 [ERROR] amazinf#6247: You are on cooldown. Try again in 293.95s

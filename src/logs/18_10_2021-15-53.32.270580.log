@@ -1,0 +1,39 @@
+15:53:32 [INFO] Cog loaded: on_ready
+15:53:32 [INFO] Cog loaded: on_command_error
+15:53:32 [INFO] Cog loaded: dm
+15:53:32 [INFO] Cog loaded: cum
+15:53:32 [INFO] Cog loaded: idea
+15:53:32 [INFO] Cog loaded: embed
+15:53:32 [INFO] Cog loaded: help
+15:53:32 [INFO] Cog loaded: pirate
+15:53:32 [INFO] Cog loaded: say
+15:53:32 [INFO] Cog loaded: hex
+15:53:32 [INFO] Cog loaded: ascii
+15:53:32 [INFO] Cog loaded: info
+15:53:32 [INFO] Cog loaded: meme
+15:53:32 [INFO] Cog loaded: yt
+15:53:32 [INFO] Cog loaded: iq
+15:53:32 [INFO] Cog loaded: tts
+15:53:32 [INFO] Cog loaded: logs
+15:53:32 [INFO] Cog loaded: alt
+15:53:33 [INFO] Cog loaded: music
+15:53:33 [INFO] Cog loaded: whois
+15:53:33 [INFO] Cog loaded: pp
+15:53:33 [INFO] Cog loaded: nick
+15:53:33 [INFO] Cog loaded: doom
+15:53:33 [INFO] Cog loaded: rate
+15:53:33 [INFO] Cog loaded: can
+15:53:33 [INFO] Cog loaded: check
+15:53:33 [INFO] Cog loaded: loop_template
+15:53:35 [INFO] Startup: Pybot#9863 is online!
+15:53:46 [INFO] mariyt#6595: help
+15:59:53 [INFO] mariyt#5376: pirate
+16:00:20 [INFO] mariyt#5376: doom
+16:00:40 [INFO] mariyt#5376: doom
+16:00:40 [ERROR] mariyt#5376: Command raised an exception: ValueError: bad transparency mask
+16:01:07 [INFO] mariyt#5376: doom
+16:06:53 [INFO] mariyt#6595: doom
+16:06:54 [ERROR] mariyt#6595: Command raised an exception: ValueError: bad transparency mask
+16:06:58 [INFO] Dom.#3312: alt
+16:07:14 [INFO] The Yeehaw-Meister#7478: doom
+16:07:15 [ERROR] The Yeehaw-Meister#7478: Command raised an exception: ValueError: bad transparency mask

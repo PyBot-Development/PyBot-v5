@@ -1,0 +1,58 @@
+13:49:07 [INFO] Cog loaded: on_ready
+13:49:07 [INFO] Cog loaded: on_command_error
+13:49:07 [INFO] Cog loaded: dm
+13:49:07 [INFO] Cog loaded: idea
+13:49:07 [INFO] Cog loaded: embed
+13:49:07 [INFO] Cog loaded: help
+13:49:07 [INFO] Cog loaded: say
+13:49:07 [INFO] Cog loaded: hex
+13:49:07 [INFO] Cog loaded: ascii
+13:49:07 [INFO] Cog loaded: info
+13:49:07 [INFO] Cog loaded: meme
+13:49:07 [INFO] Cog loaded: yt
+13:49:08 [INFO] Cog loaded: iq
+13:49:08 [INFO] Cog loaded: tts
+13:49:08 [INFO] Cog loaded: logs
+13:49:08 [INFO] Cog loaded: alt
+13:49:09 [INFO] Cog loaded: music
+13:49:09 [INFO] Cog loaded: whois
+13:49:09 [INFO] Cog loaded: pp
+13:49:09 [INFO] Cog loaded: nick
+13:49:09 [INFO] Cog loaded: rate
+13:49:09 [INFO] Cog loaded: can
+13:49:09 [INFO] Cog loaded: check
+13:49:09 [INFO] Cog loaded: loop_template
+13:49:11 [INFO] Startup: Pybot#9863 is online!
+13:49:13 [INFO] mariyt#6595: check
+13:49:37 [INFO] mariyt#6595: help
+13:56:58 [INFO] Nero#8652: ascii
+14:06:37 [INFO] (שמוליק המלך (נטוהטאבטב#3288: logs
+14:06:44 [ERROR] maxbrew#7725: Command "asciii" is not found
+14:06:45 [INFO] (שמוליק המלך (נטוהטאבטב#3288: check
+14:06:51 [INFO] (שמוליק המלך (נטוהטאבטב#3288: check
+14:06:54 [INFO] maxbrew#7725: ascii
+14:06:56 [INFO] (שמוליק המלך (נטוהטאבטב#3288: check
+14:07:02 [INFO] (שמוליק המלך (נטוהטאבטב#3288: check
+14:07:05 [INFO] maxbrew#7725: ascii
+14:07:10 [INFO] (שמוליק המלך (נטוהטאבטב#3288: check
+14:07:17 [INFO] (שמוליק המלך (נטוהטאבטב#3288: check
+14:07:24 [INFO] (שמוליק המלך (נטוהטאבטב#3288: check
+14:07:32 [INFO] (שמוליק המלך (נטוהטאבטב#3288: check
+14:07:41 [INFO] (שמוליק המלך (נטוהטאבטב#3288: check
+14:07:44 [ERROR] maxbrew#7725: arg is a required argument that is missing.
+14:07:57 [INFO] (שמוליק המלך (נטוהטאבטב#3288: check
+14:08:00 [INFO] maxbrew#7725: ascii
+14:08:17 [ERROR] maxbrew#7725: Command "ascii______" is not found
+14:08:29 [INFO] (שמוליק המלך (נטוהטאבטב#3288: alt
+14:08:37 [INFO] (שמוליק המלך (נטוהטאבטב#3288: check
+14:09:11 [INFO] maxbrew#7725: ascii
+14:09:11 [ERROR] maxbrew#7725: Command raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In content: Must be 4000 or fewer in length.
+14:09:40 [INFO] maxbrew#7725: ascii
+14:09:40 [ERROR] maxbrew#7725: Command raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In content: Must be 4000 or fewer in length.
+14:13:53 [INFO] (שמוליק המלך (נטוהטאבטב#3288: alt
+14:13:59 [INFO] (שמוליק המלך (נטוהטאבטב#3288: check
+14:14:07 [INFO] (שמוליק המלך (נטוהטאבטב#3288: logs
+14:48:37 [ERROR] Frostyyyt☘#1195: Command "amogus" is not found
+14:50:35 [ERROR] Frostyyyt☘#1195: Command "!amogus" is not found

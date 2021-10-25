@@ -1,0 +1,155 @@
+15:41:40 [INFO] Cog loaded: on_ready
+15:41:40 [INFO] Cog loaded: on_command_error
+15:41:40 [INFO] Cog loaded: dm
+15:41:40 [INFO] Cog loaded: leaderboard
+15:41:40 [INFO] Cog loaded: cum
+15:41:40 [INFO] Cog loaded: idea
+15:41:40 [INFO] Cog loaded: embed
+15:41:40 [INFO] Cog loaded: help
+15:41:40 [INFO] Cog loaded: pirate
+15:41:40 [INFO] Cog loaded: balance
+15:41:40 [INFO] Cog loaded: say
+15:41:40 [INFO] Cog loaded: hex
+15:41:40 [INFO] Cog loaded: check_slash
+15:41:41 [INFO] Cog loaded: ascii
+15:41:41 [INFO] Cog loaded: info
+15:41:41 [INFO] Cog loaded: meme
+15:41:41 [INFO] Cog loaded: bj
+15:41:41 [INFO] Cog loaded: yt
+15:41:41 [INFO] Cog loaded: iq
+15:41:41 [INFO] Cog loaded: tts
+15:41:41 [INFO] Cog loaded: logs
+15:41:41 [INFO] Cog loaded: alt
+15:41:41 [INFO] Cog loaded: music
+15:41:41 [INFO] Cog loaded: work
+15:41:41 [INFO] Cog loaded: whois
+15:41:41 [INFO] Cog loaded: give_money
+15:41:41 [INFO] Cog loaded: pp
+15:41:41 [INFO] Cog loaded: kill
+15:41:41 [INFO] Cog loaded: nick
+15:41:41 [INFO] Cog loaded: doom
+15:41:41 [INFO] Cog loaded: rate
+15:41:41 [INFO] Cog loaded: can
+15:41:41 [INFO] Cog loaded: check
+15:41:41 [INFO] Cog loaded: rate_slash
+15:41:41 [INFO] Cog loaded: loop_template
+15:41:44 [INFO] Startup: Pybot#9863 is online!
+15:41:49 [INFO] M2rsh#6595: balance
+15:41:54 [INFO] M2rsh#6595: blackjack
+15:42:06 [INFO] M2rsh#6595: blackjack
+15:42:17 [INFO] M2rsh#6595: blackjack
+15:42:34 [INFO] M2rsh#6595: work
+15:42:51 [INFO] M2rsh#6595: blackjack
+15:44:41 [INFO] M2rsh#6595: give_money
+15:44:46 [INFO] M2rsh#6595: blackjack
+15:52:01 [INFO] joe swanson#1234: blackjack
+15:52:11 [INFO] joe swanson#1234: blackjack
+15:52:11 [ERROR] joe swanson#1234: Command raised an exception: ValueError: could not convert string to float: '25k'
+15:52:26 [INFO] joe swanson#1234: blackjack
+15:52:27 [ERROR] joe swanson#1234: Command raised an exception: ValueError: You don't have enough money
+16:00:20 [INFO] M2rsh#6595: give_money
+16:04:56 [INFO] M2rsh#6595: leaderboard
+16:19:35 [INFO] joe swanson#1234: blackjack
+16:28:03 [INFO] M2rsh#6595: blackjack
+16:28:08 [INFO] M2rsh#6595: balance
+16:28:14 [INFO] M2rsh#6595: blackjack
+16:28:18 [INFO] M2rsh#6595: balance
+16:29:19 [INFO] M2rsh#6595: blackjack
+16:29:25 [INFO] M2rsh#6595: balance
+16:29:29 [INFO] M2rsh#6595: leaderboard
+16:29:40 [INFO] notYAKOalt#0842: blackjack
+16:29:41 [ERROR] notYAKOalt#0842: Command raised an exception: ValueError: could not convert string to float: '-'
+16:29:45 [INFO] M2rsh#6595: blackjack
+16:29:52 [INFO] notYAKOalt#0842: blackjack
+16:29:59 [INFO] notYAKOalt#0842: balance
+16:30:03 [INFO] M2rsh#6595: leaderboard
+16:30:06 [INFO] notYAKOalt#0842: blackjack
+16:30:11 [INFO] notYAKOalt#0842: balance
+16:30:25 [INFO] M2rsh#6595: blackjack
+16:30:31 [INFO] M2rsh#6595: balance
+16:30:37 [INFO] notYAKOalt#0842: blackjack
+16:30:37 [ERROR] notYAKOalt#0842: Command raised an exception: OperationalError: no such column: inf
+16:30:52 [INFO] notYAKOalt#0842: blackjack
+16:31:01 [INFO] notYAKOalt#0842: blackjack
+16:31:02 [ERROR] notYAKOalt#0842: Command raised an exception: OperationalError: no such column: inf
+16:31:20 [INFO] M2rsh#6595: blackjack
+16:31:20 [ERROR] M2rsh#6595: Command raised an exception: OperationalError: no such column: inf
+16:31:27 [INFO] M2rsh#6595: blackjack
+16:31:33 [INFO] M2rsh#6595: balance
+16:31:40 [INFO] notYAKOalt#0842: blackjack
+16:31:42 [INFO] notYAKOalt#0842: blackjack
+16:31:44 [INFO] notYAKOalt#0842: blackjack
+16:31:45 [INFO] notYAKOalt#0842: blackjack
+16:31:46 [INFO] notYAKOalt#0842: blackjack
+16:31:48 [INFO] notYAKOalt#0842: blackjack
+16:31:49 [INFO] notYAKOalt#0842: blackjack
+16:31:50 [INFO] notYAKOalt#0842: blackjack
+16:31:52 [INFO] M2rsh#6595: blackjack
+16:31:55 [INFO] notYAKOalt#0842: blackjack
+16:31:57 [INFO] M2rsh#6595: leaderboard
+16:31:58 [INFO] notYAKOalt#0842: blackjack
+16:32:02 [INFO] notYAKOalt#0842: blackjack
+16:32:03 [INFO] notYAKOalt#0842: blackjack
+16:32:04 [INFO] notYAKOalt#0842: blackjack
+16:32:05 [INFO] notYAKOalt#0842: blackjack
+16:32:08 [INFO] notYAKOalt#0842: blackjack
+16:32:09 [INFO] notYAKOalt#0842: blackjack
+16:32:14 [INFO] notYAKOalt#0842: blackjack
+16:32:15 [INFO] notYAKOalt#0842: blackjack
+16:32:18 [ERROR] notYAKOalt#0842: Command "al" is not found
+16:32:20 [INFO] notYAKOalt#0842: balance
+16:32:30 [INFO] M2rsh#6595: give_money
+16:32:32 [INFO] M2rsh#6595: give_money
+16:32:32 [INFO] M2rsh#6595: give_money
+16:32:33 [INFO] M2rsh#6595: give_money
+16:32:33 [INFO] M2rsh#6595: give_money
+16:32:34 [INFO] M2rsh#6595: give_money
+16:32:37 [INFO] M2rsh#6595: balance
+16:32:40 [INFO] M2rsh#6595: leaderboard
+16:32:54 [ERROR] notYAKOalt#0842: You do not own this bot.
+16:33:03 [ERROR] M2rsh#6595: Command "give" is not found
+16:33:09 [ERROR] Dom.#3312: You do not own this bot.
+16:33:12 [ERROR] M2rsh#6595: Converting to "int" failed for parameter "value".
+16:33:33 [INFO] notYAKOalt#0842: blackjack
+16:33:34 [INFO] notYAKOalt#0842: blackjack
+16:33:34 [INFO] notYAKOalt#0842: blackjack
+16:33:34 [INFO] notYAKOalt#0842: blackjack
+16:33:39 [INFO] notYAKOalt#0842: blackjack
+16:33:41 [INFO] M2rsh#6595: give_money
+16:33:41 [ERROR] M2rsh#6595: Command raised an exception: OverflowError: int too large to convert to float
+16:33:41 [INFO] notYAKOalt#0842: blackjack
+16:33:42 [INFO] notYAKOalt#0842: blackjack
+16:33:44 [INFO] notYAKOalt#0842: blackjack
+16:33:46 [INFO] M2rsh#6595: give_money
+16:33:47 [INFO] notYAKOalt#0842: blackjack
+16:33:47 [INFO] M2rsh#6595: give_money
+16:33:48 [INFO] notYAKOalt#0842: blackjack
+16:33:48 [INFO] M2rsh#6595: give_money
+16:33:49 [INFO] M2rsh#6595: give_money
+16:33:49 [INFO] M2rsh#6595: give_money
+16:33:49 [INFO] notYAKOalt#0842: blackjack
+16:33:50 [INFO] M2rsh#6595: give_money
+16:33:50 [INFO] M2rsh#6595: give_money
+16:33:51 [INFO] M2rsh#6595: give_money
+16:33:51 [INFO] M2rsh#6595: give_money
+16:33:51 [INFO] M2rsh#6595: give_money
+16:33:54 [INFO] M2rsh#6595: leaderboard
+16:33:56 [INFO] notYAKOalt#0842: blackjack
+16:34:00 [INFO] notYAKOalt#0842: blackjack
+16:34:03 [INFO] notYAKOalt#0842: blackjack
+16:34:05 [INFO] notYAKOalt#0842: blackjack
+16:34:06 [INFO] notYAKOalt#0842: blackjack
+16:34:09 [INFO] notYAKOalt#0842: blackjack
+16:34:11 [INFO] notYAKOalt#0842: blackjack
+16:34:14 [INFO] notYAKOalt#0842: blackjack
+16:34:15 [INFO] M2rsh#6595: give_money
+16:34:18 [INFO] notYAKOalt#0842: blackjack
+16:34:19 [INFO] notYAKOalt#0842: blackjack
+16:34:21 [INFO] notYAKOalt#0842: blackjack
+16:34:22 [INFO] Dom.#3312: balance
+16:34:24 [INFO] notYAKOalt#0842: blackjack
+16:34:26 [INFO] notYAKOalt#0842: blackjack
+16:34:28 [INFO] notYAKOalt#0842: blackjack
+16:34:30 [INFO] notYAKOalt#0842: blackjack
+16:34:31 [INFO] notYAKOalt#0842: blackjack
+16:34:34 [INFO] notYAKOalt#0842: balance
