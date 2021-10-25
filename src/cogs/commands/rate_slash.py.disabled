@@ -16,7 +16,6 @@ import support
 from run import client
 import random
 
-
 class rate_slash(commands.Cog):
     def __init__(self, client):
         self.client = client
