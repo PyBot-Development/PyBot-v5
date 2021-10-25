@@ -9,7 +9,6 @@ Help Command with menu
 
 """
 
-from discord.enums import InteractionType
 from discord.ext import commands
 import discord
 import support

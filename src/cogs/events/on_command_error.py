@@ -15,7 +15,7 @@ import discord
 import support
 from discord.ext.commands import CommandNotFound
 from colorama import *
-
+import datetime
 
 class on_command_error(commands.Cog):
     def __init__(self, bot):
@@ -24,12 +24,12 @@ class on_command_error(commands.Cog):
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
-        time = datetime.utcnow()
+        time = datetime.datetime.utcnow()
         time = f"{time.hour:02d}:{time.minute:02d}:{time.second:02d}.{time.microsecond:02d}"
 
         if isinstance(error, commands.CommandOnCooldown):
             await ctx.send(embed=discord.Embed(
-                description=f"🕰️ That command is ratelimited, try again in {error.retry_after:.2f}s.",
+                description=f"🕰️ That command is ratelimited, try again in {datetime.timedelta(seconds=error.retry_after)}.",
                 color=support.colours.red
             ),
                 delete_after=10)
@@ -63,7 +63,7 @@ class on_command_error(commands.Cog):
             
             if support.config.get("debug"):
                 raise error
-        support.log(datetime.utcnow(), "ERROR", ctx.message.author, error)
+        support.log(datetime.datetime.utcnow(), "ERROR", ctx.message.author, error)
         return
 
 
