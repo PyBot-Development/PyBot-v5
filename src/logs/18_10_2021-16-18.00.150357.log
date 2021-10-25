@@ -1,0 +1,52 @@
+16:18:00 [INFO] Cog loaded: on_ready
+16:18:00 [INFO] Cog loaded: on_command_error
+16:18:00 [INFO] Cog loaded: dm
+16:18:00 [INFO] Cog loaded: cum
+16:18:00 [INFO] Cog loaded: idea
+16:18:00 [INFO] Cog loaded: embed
+16:18:00 [INFO] Cog loaded: help
+16:18:00 [INFO] Cog loaded: pirate
+16:18:00 [INFO] Cog loaded: say
+16:18:00 [INFO] Cog loaded: hex
+16:18:00 [INFO] Cog loaded: ascii
+16:18:00 [INFO] Cog loaded: info
+16:18:00 [INFO] Cog loaded: meme
+16:18:00 [INFO] Cog loaded: yt
+16:18:00 [INFO] Cog loaded: iq
+16:18:00 [INFO] Cog loaded: tts
+16:18:00 [INFO] Cog loaded: logs
+16:18:00 [INFO] Cog loaded: alt
+16:18:00 [INFO] Cog loaded: music
+16:18:00 [INFO] Cog loaded: whois
+16:18:00 [INFO] Cog loaded: pp
+16:18:00 [INFO] Cog loaded: nick
+16:18:00 [INFO] Cog loaded: doom
+16:18:00 [INFO] Cog loaded: rate
+16:18:00 [INFO] Cog loaded: can
+16:18:00 [INFO] Cog loaded: check
+16:18:00 [INFO] Cog loaded: loop_template
+16:18:03 [INFO] Startup: Pybot#9863 is online!
+16:18:22 [INFO] mariyt#6595: pirate
+16:18:38 [INFO] mariyt#6595: pirate
+16:31:23 [INFO] cone#2826: pirate
+16:31:40 [INFO] cone#2826: help
+16:31:47 [INFO] cone#2826: cum
+16:32:18 [INFO] cone#2826: nick
+16:32:56 [ERROR] cone#2826: user is a required argument that is missing.
+16:33:07 [ERROR] cone#2826: message is a required argument that is missing.
+16:33:18 [INFO] cone#2826: dm
+16:33:18 [ERROR] cone#2826: Command raised an exception: HTTPException: 400 Bad Request (error code: 50007): Cannot send messages to this user
+16:33:32 [INFO] cone#2826: dm
+16:33:32 [ERROR] cone#2826: Command raised an exception: TypeError: 'str' object is not callable
+16:33:45 [INFO] cone#2826: doom
+16:37:29 [INFO] Cireciao#8843: cum
+17:54:32 [INFO] DMCPACKS#9619: help
+17:54:52 [INFO] DMCPACKS#9619: yt
+17:55:17 [INFO] mariyt#6595: logs
+18:04:14 [INFO] mariyt#6595: cum
+18:10:39 [INFO] (שמוליק המלך (נטוהטאבטב#3288: alt
+18:10:57 [INFO] mariyt#6595: cum
+18:10:58 [INFO] (שמוליק המלך (נטוהטאבטב#3288: check
+18:12:26 [INFO] The Yeehaw-Meister#7478: cum
+18:12:42 [ERROR] The Yeehaw-Meister#7478: Command "kill" is not found
+18:26:35 [ERROR] The Yeehaw-Meister#7478: Command "kill" is not found

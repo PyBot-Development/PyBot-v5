@@ -1,0 +1,47 @@
+15:05:41 [INFO] Cog loaded: on_ready
+15:05:41 [INFO] Cog loaded: on_command_error
+15:05:41 [INFO] Cog loaded: dm
+15:05:41 [INFO] Cog loaded: cum
+15:05:41 [INFO] Cog loaded: idea
+15:05:41 [INFO] Cog loaded: embed
+15:05:41 [INFO] Cog loaded: help
+15:05:41 [INFO] Cog loaded: pirate
+15:05:41 [INFO] Cog loaded: say
+15:05:41 [INFO] Cog loaded: hex
+15:05:41 [INFO] Cog loaded: ascii
+15:05:41 [INFO] Cog loaded: info
+15:05:41 [INFO] Cog loaded: meme
+15:05:41 [INFO] Cog loaded: yt
+15:05:42 [INFO] Cog loaded: iq
+15:05:42 [INFO] Cog loaded: tts
+15:05:42 [INFO] Cog loaded: logs
+15:05:42 [INFO] Cog loaded: alt
+15:05:43 [INFO] Cog loaded: music
+15:05:43 [INFO] Cog loaded: whois
+15:05:43 [INFO] Cog loaded: pp
+15:05:43 [INFO] Cog loaded: kill
+15:05:43 [INFO] Cog loaded: nick
+15:05:43 [INFO] Cog loaded: doom
+15:05:43 [INFO] Cog loaded: rate
+15:05:43 [INFO] Cog loaded: can
+15:05:43 [INFO] Cog loaded: check
+15:05:43 [INFO] Cog loaded: loop_template
+15:05:45 [INFO] Startup: Pybot#9863 is online!
+15:59:00 [INFO] (שמוליק המלך (נטוהטאבטב#3288: alt
+15:59:13 [INFO] (שמוליק המלך (נטוהטאבטב#3288: check
+15:59:20 [INFO] (שמוליק המלך (נטוהטאבטב#3288: logs
+16:24:05 [ERROR] M2rsh#6595: Command "bood" is not found
+16:25:38 [INFO] M2rsh#6595: kill
+16:29:49 [INFO] (שמוליק המלך (נטוהטאבטב#3288: alt
+16:30:00 [INFO] (שמוליק המלך (נטוהטאבטב#3288: check
+16:30:12 [INFO] (שמוליק המלך (נטוהטאבטב#3288: say
+16:30:47 [ERROR] (שמוליק המלך (נטוהטאבטב#3288: Command "cmds" is not found
+16:30:55 [INFO] (שמוליק המלך (נטוהטאבטב#3288: help
+16:31:57 [INFO] (שמוליק המלך (נטוהטאבטב#3288: idea
+16:31:58 [ERROR] (שמוליק המלך (נטוהטאבטב#3288: Command raised an exception: AttributeError: 'Member' object has no attribute 'avatar_url'
+16:32:32 [INFO] (שמוליק המלך (נטוהטאבטב#3288: idea
+16:32:32 [ERROR] (שמוליק המלך (נטוהטאבטב#3288: Command raised an exception: AttributeError: 'User' object has no attribute 'avatar_url'
+16:32:46 [INFO] (שמוליק המלך (נטוהטאבטב#3288: idea
+16:32:46 [ERROR] (שמוליק המלך (נטוהטאבטב#3288: Command raised an exception: AttributeError: 'User' object has no attribute 'avatar_url'
+16:53:43 [INFO] M2rsh#6595: idea
+16:53:43 [ERROR] M2rsh#6595: Command raised an exception: AttributeError: 'Member' object has no attribute 'avatar_url'
