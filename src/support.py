@@ -60,7 +60,7 @@ def log(date, type, arg1, arg2):
 class colours:
     default = 0x7842ff
     red = 0xff7777
-
+    green = 0x77dd77
 
 class processing:
     async def GENERATE_CAN(name, text, bottom_text=""):
@@ -175,3 +175,42 @@ Email: `{email}`
 Password: `{password}`
 Sfa: `{securec}`
 '''
+
+import sqlite3
+
+class database:
+    def __init__(self, path):
+        self.con = sqlite3.connect(path)
+        self.cur = self.con.cursor()
+
+        self.cur.execute('''CREATE TABLE IF NOT EXISTS users (id integer, username text, balance integer)''')
+
+    async def getUser(self, user):
+        u = self.cur.execute(f'''SELECT * FROM users WHERE id={user.id}''').fetchone()
+        if u is None:
+            self.cur.execute(f'INSERT INTO users VALUES (?, ?, 10000)', (user.id, str(user), ))
+            self.con.commit()
+        return self.cur.execute(f'''SELECT * FROM users WHERE id="{user.id}"''').fetchone()
+    async def getAllUsers(self):
+        return self.cur.execute(f'''SELECT * FROM users''').fetchall()
+        
+    async def setBalance(self, user, balance: int):
+        await self.getUser(user)
+        self.cur.execute(f'''UPDATE users SET balance={balance} WHERE id={user.id}''')
+        self.con.commit()
+
+    async def addBalance(self, user, balance: int):
+        balance = await self.getBalance(user) + balance
+        self.cur.execute(f'''UPDATE users SET balance={balance} WHERE id={user.id}''')
+        self.con.commit()
+
+    async def removebalance(self, user, balance: int):
+        balance = await self.getBalance(user) - balance
+        self.cur.execute(f'''UPDATE users SET balance={balance} WHERE id={user.id}''')
+        self.con.commit()
+
+    async def getBalance(self, user):
+        _, _, balance = await self.getUser(user)
+        return balance 
+
+globalData = database(path=f"{path}/data/database.db")
