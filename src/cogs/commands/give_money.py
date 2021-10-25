@@ -23,7 +23,7 @@ class give_money(commands.Cog):
     @commands.command(description="Gives Money", aliases=["give"])
     async def give_money(self, ctx, user: discord.User, value: int):
         await support.globalData.addBalance(user, value)
-        await ctx.send(embed=discord.Embed(description=f"Added `{value}`$ to {user.mention} balance. Now their balance is `{await support.globalData.getBalance(user)}`$"))
+        await ctx.send(embed=discord.Embed(description=f"Added `{value}`$ to {user.mention} balance. Now their balance is `{await support.globalData.getBalance(user)}`$", colour=support.colours.default))
 
 def setup(bot):
     bot.add_cog(give_money(bot))
