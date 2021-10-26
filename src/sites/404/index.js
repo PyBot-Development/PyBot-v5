@@ -21,7 +21,7 @@ class NotFound extends react.Component {
     }
 
     render() {
-
+        window.document.title = "Error 404 | Py-bot.cf"
         return (
             <div className="d-flex p-2 justify-content-center" style={{ minHeight: "100vh" }}>
                 <div style={{ textAlign: "center", justifyContent: "center", margin: "auto" }}>

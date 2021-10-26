@@ -16,6 +16,7 @@ const theme = createTheme({
 });
 
 function Commands() {
+  window.document.title = "Commands | Py-bot.cf"
   const [value, setValue] = React.useState('');
   const [openValue, setOpenValue] = React.useState('');
 
