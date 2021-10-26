@@ -21,6 +21,17 @@ class Header extends react.Component {
   closeMenu() {
     this.setState({ menuOpen: false })
   }
+
+  createEntry(key, name, location){
+    return(
+      <div key={key} style={{borderTop: "solid 1px #E0C097", borderWidth: "100%"}}>
+      <NavLink to={location} onClick={this.closeMenu.bind(this)} activeClassName="selected">
+        <Twemoji svg text={name} />
+      </NavLink>
+      </div>
+    )
+  }
+
   render() {
     return (
       <div className="Header">
@@ -34,7 +45,7 @@ class Header extends react.Component {
               height={24}
               strokeWidth={3}
               rotate={0}
-              color='#b0b8c6'
+              color='#E0C097'
               borderRadius={3}
               animationDuration={0.5}
               className="menu"
@@ -43,33 +54,14 @@ class Header extends react.Component {
               <div className="menu-content">
                 <div className="menu-content-links">
                   <p style={{ textAlign: "center", fontSize: "calc(10px + 3vmin)" }}>Pages</p>
-                  <ul>
 
-                    <li key="Home">
-                      <NavLink to="/home" onClick={this.closeMenu.bind(this)} activeClassName="selected">
-                        <Twemoji svg text="🏡 Home" />
-                      </NavLink>
-                    </li>
 
-                    <li key="about">
-                      <NavLink to="/about" onClick={this.closeMenu.bind(this)} activeClassName="selected">
-                        <Twemoji svg text="🤔 About" />
-                      </NavLink>
-                    </li>
+                  {this.createEntry("home", "🏡 Home", "/home")}
+                  {this.createEntry("about", "🤔 About", "/about")}
+                  {this.createEntry("changelog", "🖨️ Changelog", "/changelog")}
+                  {this.createEntry("commands", "💾 Commands", "/commands")}
 
-                    <li key="changelog">
-                      <NavLink to="/changelog" onClick={this.closeMenu.bind(this)} activeClassName="selected">
-                        <Twemoji svg text="🖨️ Changelog" />
-                      </NavLink>
-                    </li>
 
-                    <li key="commands">
-                      <NavLink to="/commands" onClick={this.closeMenu.bind(this)} activeClassName="selected">
-                        <Twemoji svg text="💾 Commands" />
-                      </NavLink>
-                    </li>
-
-                  </ul>
                 </div>
               </div>
             </CheeseburgerMenu>

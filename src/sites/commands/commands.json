@@ -1,0 +1,210 @@
+{
+    "all": [
+        {
+            "label": "Help",
+            "description": "Help command.",
+            "usage": "help",
+            "aliases": "?."
+        },
+        {
+            "label": "Info",
+            "description": "Gives info about bot",
+            "usage": "info",
+            "aliases": "None."
+        },
+        {
+            "label": "Logs",
+            "description": "Shows commands logs.",
+            "usage": "logs",
+            "aliases": "Log."
+        },
+        {
+            "label": "Alt",
+            "description": "Gives you random minecraft alt.",
+            "usage": "alt",
+            "aliases": "None."
+        },
+        {
+            "label": "Ascii",
+            "description": "Converts Text to ASCII",
+            "usage": "ascii <Text>",
+            "aliases": "None."
+        },
+        {
+            "label": "Balance",
+            "description": "Shows you Balance",
+            "usage": "balance <User: Optional>",
+            "aliases": "Bal."
+        },
+        {
+            "label": "Blackjack",
+            "description": "Play blackjack lol",
+            "usage": "blackjack <Bet>",
+            "aliases": "Bj."
+        },
+        {
+            "label": "Leaderboard",
+            "description": "Shows money leaderboard",
+            "usage": "leaderboard",
+            "aliases": "Lb."
+        },
+        {
+            "label": "Work",
+            "description": "Works/Gets random ammount of money",
+            "usage": "work",
+            "aliases": "None."
+        },
+        {
+            "label": "Can",
+            "description": "Can Generator",
+            "usage": "can <Text>",
+            "aliases": "None."
+        },
+        {
+            "label": "Check",
+            "description": "Checks minecraft alt",
+            "usage": "check email:password",
+            "aliases": "None."
+        },
+        {
+            "label": "Cum",
+            "description": "😳😳😳😳😳😳",
+            "usage": "cum <User: Optional>",
+            "aliases": "None."
+        },
+        {
+            "label": "DM",
+            "description": "DMs User",
+            "usage": "dm <User> <Message>",
+            "aliases": "None."
+        },
+        {
+            "label": "Doom",
+            "description": "Makes user Doom Slayer",
+            "usage": "doom <User: Optional>",
+            "aliases": "Doom_slayer."
+        },
+        {
+            "label": "Embed",
+            "description": "Sends embeded message",
+            "usage": "embed <Description: Optional> <Colour: Optional> <Title: optional>",
+            "aliases": "None."
+        },
+        {
+            "label": "Hex",
+            "description": "Displays HEX as colour",
+            "usage": "hex <Colour>",
+            "aliases": "None."
+        },
+        {
+            "label": "Idea",
+            "description": "Sends idea",
+            "usage": "idea <Text>",
+            "aliases": "None."
+        },
+        {
+            "label": "IQ",
+            "description": "Measures IQ",
+            "usage": "iq <User: Optional>",
+            "aliases": "None."
+        },
+        {
+            "label": "Kill",
+            "description": "Adds blood to users avatar",
+            "usage": "kill <User: Optional>",
+            "aliases": "Murder, Blood."
+        },
+        {
+            "label": "Meme",
+            "description": "Sends random meme",
+            "usage": "meme <Subreddit: Optiona;>",
+            "aliases": "None."
+        },
+        {
+            "label": "Play",
+            "description": "Plays music in VC",
+            "usage": "play <Music>",
+            "aliases": "None."
+        },
+        {
+            "label": "Now_playing",
+            "description": "Sends currently playing song",
+            "usage": "now_playing",
+            "aliases": "Np, Current, Currentsong, Playing."
+        },
+        {
+            "label": "Skip",
+            "description": "Skips current song",
+            "usage": "skip",
+            "aliases": "None."
+        },
+        {
+            "label": "Volume",
+            "description": "Changes music volume",
+            "usage": "volume <Value>",
+            "aliases": "Vol."
+        },
+        {
+            "label": "Stop",
+            "description": "Stops current song",
+            "usage": "stop",
+            "aliases": "None."
+        },
+        {
+            "label": "Connect",
+            "description": "Connects to current VC",
+            "usage": "connect",
+            "aliases": "Join."
+        },
+        {
+            "label": "Nick",
+            "description": "Changes bot nickname",
+            "usage": "nick <Text>",
+            "aliases": "None."
+        },
+        {
+            "label": "Pirate",
+            "description": "Makes user a pirate",
+            "usage": "pirate <User: Optional>",
+            "aliases": "None."
+        },
+        {
+            "label": "PP",
+            "description": "Measures PP",
+            "usage": "pp <User: Optional>",
+            "aliases": "Dick, Penis, Cock."
+        },
+        {
+            "label": "Rate",
+            "description": "Rates Stuff",
+            "usage": "rate <User or Text starting with '@$': Optional> <Thing to Measure: Optional>",
+            "aliases": "r, meter."
+        },
+        {
+            "label": "Say",
+            "description": "Says something using bot account",
+            "usage": "say <Text>",
+            "aliases": "Tell, Sudo."
+        },
+        {
+            "label": "TTS",
+            "description": "Converts Text to Speech",
+            "usage": "tts <Text>",
+            "aliases": "None."
+        },
+        {
+            "label": "Whois",
+            "description": "Shows user data",
+            "usage": "whois <User: Optional>",
+            "aliases": "None."
+        },
+        {
+            "label": "YT",
+            "description": "Searches YouTube",
+            "usage": "yt <Text>",
+            "aliases": "Video, Youtube."
+        }
+    ],
+    "admin": [],
+    "new": []
+}

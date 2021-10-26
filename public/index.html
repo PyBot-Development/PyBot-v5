@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <!--
+<!--
 
 
 
@@ -11,28 +11,90 @@
 
   -->
 
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Cock and balls"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>React App</title>
-    <style>
-      body {
-        background-color: #251e3e;
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Cock and balls" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <title>React App</title>
+  <style>
+    body {
+      background-color: #2D2424;
+    }
+
+    .loading {
+      color: #E0C097;
+      text-align: center;
+      font-family: Tahoma, ;
+      
+    }
+
+    .loadingDiv {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      padding-top: 35vh;
+      flex-direction: column;
+    }
+
+    .svg-loader {
+      display: flex;
+      position: relative;
+      align-content: space-around;
+      justify-content: center;
+    }
+
+    .loader-svg {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      fill: none;
+      stroke-width: 5px;
+      stroke-linecap: round;
+      stroke: #E0C097;
+    }
+
+    .animate {
+      stroke-dasharray: 242.6;
+      animation: fill-animation 1s cubic-bezier(1, 1, 1, 1) 0s infinite;
+    }
+
+    @keyframes fill-animation {
+      0% {
+        stroke-dasharray: 40 242.6;
+        stroke-dashoffset: 0;
       }
-    </style>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root">
-        <p style="color:#ffffff; text-align: center; justify-content: center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Loading Please Wait...</p>
+
+      50% {
+        stroke-dasharray: 141.3;
+        stroke-dashoffset: 141.3;
+      }
+
+      100% {
+        stroke-dasharray: 40 242.6;
+        stroke-dashoffset: 282.6;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root">
+    <div class="loadingDiv">
+      <p class="loading"> <span style="font-size: 50px; font-weight: 200;">Loading</span><br />Please Wait</p> 
+      <section class="svg-loader">
+        <svg class="svg-container" height="100" width="100" viewBox="0 0 100 100">
+          <circle class="loader-svg animate" cx="50" cy="50" r="45"></circle>
+        </svg>
+      </section>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

@@ -1,16 +1,22 @@
 import React from 'react';
 import { Route, Redirect, BrowserRouter, Switch } from 'react-router-dom';
-import App from './sites/home/index'
+
+import NotFound from './sites/404/index';
+import Home from './sites/home/index'
+import About from './sites/about/index'
+import Changelog from './sites/changelog/index'
+import Commands from './sites/commands/index'
+
 import Header from './components/header/index'
 import Footer from './components/footer/index';
-import NotFound from './sites/404/index';
-function createRoute(path, component, headerAndFooter=false, headerText="Not Specified.") {
+
+function createRoute(path, component, headerAndFooter = false, headerText = "Not Specified.") {
 
   return (
     <Route exact path={path} key={path}>
       {headerAndFooter ? <Header text={headerText} /> : ''}
       {component}
-      {headerAndFooter ? <Footer/> : ''}
+      {headerAndFooter ? <Footer /> : ''}
     </Route>
   )
 }
@@ -18,14 +24,17 @@ function createRoute(path, component, headerAndFooter=false, headerText="Not Spe
 const Routes = () => {
   return (
     <>
-        <BrowserRouter>
-                <Switch>
-                    {createRoute(["/404"], <NotFound />, false)}
-                    {createRoute(["/home", "/", ""], <App />, true, "🏡 Home")}
-
-                    <Redirect to="/404" />
-                </Switch>
-        </BrowserRouter>
+      <BrowserRouter>
+        <Switch>
+          {createRoute(["/404"], <NotFound />, false)}
+          {createRoute(["/home", "/", ""], <Home />, true, "🏡 Home")}
+          {createRoute(["/about", "/", ""], <About />, true, "🤔 About")}
+          {createRoute(["/changelog", "/", ""], <Changelog />, true, "🖨️ Changelog")}
+          {createRoute(["/commands", "/", ""], <Commands />, true, "💾 Commands")}
+          
+          <Redirect to="/404" />
+        </Switch>
+      </BrowserRouter>
     </>
   );
 };

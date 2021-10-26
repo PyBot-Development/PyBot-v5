@@ -25,7 +25,7 @@ class NotFound extends react.Component {
         return (
             <div className="d-flex p-2 justify-content-center" style={{ minHeight: "100vh" }}>
                 <div style={{ textAlign: "center", justifyContent: "center", margin: "auto" }}>
-                    <h1>Error 404</h1>
+                    <h1 style={{fontWeight: "200"}}>Error <span style={{color: "$B85C38"}}>404</span></h1>
                     <p>Not Found</p>
                     <Button onClick={this.handleClick.bind(this)} variant="outlined">Go Back</Button>
                 </div>

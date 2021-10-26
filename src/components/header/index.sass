@@ -3,7 +3,7 @@
 .Header
     position: relative
     background-color: $base-header-color
-    color: #ffffff
+    color: $base-text-color
     min-height: 50px
     padding: 0px
     margin: 0px
@@ -44,29 +44,30 @@
     line-height: 35px
 
     &-links
-        margin-left: 15px
         line-height: calc(5vmin + 1.2em)
+        
 
     & a
-        background-color: $link-background
-        border-radius: 5px
+        trasnition: all 0.5s
         color: $base-text-color
         padding: 5px
-        transition-duration: 250ms
         transition-delay: 100ms
         text-decoration: none
         margin: 5px
+        margin-left: 15px
         font-size: calc(10px + 2vmin)
+        font-weight: 200
+        
+        
 
     & a:hover
         color: $hover-color
-        background-color: $hover-background
+        font-weight: 500
         transition-duration: 250ms
         transition-delay: 10ms
 
     & a.selected
-        color: #353535
-        background-color: #ffffff
+        font-weight: 500
 
 .cheeseburger-menu-inner
     background-color: $base-color
