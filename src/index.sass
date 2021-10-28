@@ -8,3 +8,47 @@ body
 code 
   font-family: monospace
 
+.discord
+  border-radius: 50%
+  transition: all 0.5s
+  
+  &:hover
+    border-radius: 25px
+
+.ad
+  margin: 10px
+  
+  background-color: $a-bit-darker-body-color
+  padding: 15px
+  border-radius: 5px
+  font-size: 25px
+
+  transition: all 0.5s
+
+  &:hover
+    border-radius: 2px
+
+  .img 
+    transition: all 0.5s
+    border-radius: 5px
+
+    &:hover
+        border-radius: 25px
+  
+  & a
+    trasnition: all 0.5s
+    color: $base-text-color
+    padding: 5px
+    transition-delay: 100ms
+    text-decoration: none
+    margin: 5px
+    margin-left: 15px
+    font-size: calc(10px + 2vmin)
+    font-weight: 200
+
+    &:hover
+        color: $hover-color
+        font-weight: 500
+        transition-duration: 250ms
+        transition-delay: 10ms
+

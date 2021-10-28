@@ -6,6 +6,8 @@ import Home from './sites/home/index'
 import About from './sites/about/index'
 import Changelog from './sites/changelog/index'
 import Commands from './sites/commands/index'
+import HowTo from './sites/add/index'
+
 
 import Header from './components/header/index'
 import Footer from './components/footer/index';
@@ -31,6 +33,7 @@ const Routes = () => {
           {createRoute(["/about", "/", ""], <About />, true, "🤔 About")}
           {createRoute(["/changelog", "/", ""], <Changelog />, true, "🖨️ Changelog")}
           {createRoute(["/commands", "/", ""], <Commands />, true, "💾 Commands")}
+          {createRoute(["/add"], <HowTo />, true, "ℹ️ How to?")}
           
           <Redirect to="/404" />
         </Switch>
