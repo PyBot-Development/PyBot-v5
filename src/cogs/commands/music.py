@@ -16,12 +16,13 @@ from discord.ext import commands
 import support
 from discord.ext.commands import cooldown, BucketType
 youtube_dl.utils.bug_reports_message = lambda: ''
-
+from run import client
+from discord.commands import Option
 ytdl_format_options = {
     'format': 'bestaudio/best',
     'outtmpl': '%(extractor)s-%(id)s-%(title)s.%(ext)s',
     'restrictfilenames': True,
-    'noplaylist': True,
+    'noplaylist': False,
     'nocheckcertificate': True,
     'ignoreerrors': False,
     'logtostderr': False,
@@ -147,8 +148,8 @@ class Music(commands.Cog):
         return player
 
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="Plays Music in current Voice Channel")
-    async def play(self, ctx, *, url):
+    @commands.command(description="Plays Music in current Voice Channel", name="play")
+    async def play_music(self, ctx, *, url):
         async with ctx.typing():
             vc = ctx.voice_client
             if not vc:
@@ -157,6 +158,31 @@ class Music(commands.Cog):
             source = await YTDLSource.from_url(ctx, url, loop=self.bot.loop, stream=True)
             await player.queue.put(source)
 
+    # @cooldown(1, support.cooldown, BucketType.user)
+    # @commands.command(description="Plays Music in current Voice Channel")
+    # async def queue(self, ctx):
+    #     async with ctx.typing():
+    #         player = self.get_player(ctx)
+    #         queue = await player.queue.get()
+    #         print(queue)
+    #         await ctx.send(queue)
+
+    @client.slash_command(description="Plays Music in current Voice Channel")
+    async def play(
+        self,
+        ctx,
+        name: Option(str, "Url/Name"),
+    ):
+        await ctx.response.send_message(embed=discord.Embed(description="Playing...", color=support.colours.default), ephemeral=True)
+        async with ctx.typing():
+            voice_channel = ctx.author.voice.channel
+            if ctx.voice_client is None:
+                vc = await voice_channel.connect()
+            player = self.get_player(ctx)
+            source = await YTDLSource.from_url(ctx, name, loop=self.bot.loop, stream=True)
+            await player.queue.put(source)
+            
+
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(aliases=['np', 'current', 'currentsong', 'playing'], description="Sends currently playing song")
     async def now_playing(self, ctx):
@@ -164,7 +190,7 @@ class Music(commands.Cog):
         if not vc or not vc.is_connected():
             return await ctx.send(
                 embed=discord.Embed(
-                    description='Im Not Playing Anything!.', color=support.colours.default
+                    description='Im Not Playing Anything!', color=support.colours.default
                 ), delete_after=10, )
 
         player = self.get_player(ctx)

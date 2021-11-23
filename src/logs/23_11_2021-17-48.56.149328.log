@@ -1,0 +1,43 @@
+17:48:56 [INFO] Cog loaded: on_command_error
+17:48:56 [INFO] Cog loaded: on_ready
+17:48:56 [INFO] Cog loaded: pirate
+17:48:56 [INFO] Cog loaded: meme
+17:48:56 [INFO] Cog loaded: iq
+17:48:56 [INFO] Cog loaded: bj
+17:48:56 [INFO] Cog loaded: doom
+17:48:56 [INFO] Cog loaded: kill
+17:48:56 [INFO] Cog loaded: cum
+17:48:56 [INFO] Cog loaded: embed
+17:48:56 [INFO] Cog loaded: music
+17:48:56 [INFO] Cog loaded: tts
+17:48:56 [INFO] Cog loaded: pp
+17:48:56 [INFO] Cog loaded: dm
+17:48:56 [INFO] Cog loaded: leaderboard
+17:48:56 [INFO] Cog loaded: rate
+17:48:56 [INFO] Cog loaded: can
+17:48:56 [INFO] Cog loaded: help
+17:48:56 [INFO] Cog loaded: rate_slash
+17:48:56 [INFO] Cog loaded: work
+17:48:56 [INFO] Cog loaded: check
+17:48:56 [INFO] Cog loaded: idea
+17:48:56 [INFO] Cog loaded: check_slash
+17:48:56 [INFO] Cog loaded: alt
+17:48:56 [INFO] Cog loaded: ascii
+17:48:56 [INFO] Cog loaded: give_money
+17:48:56 [INFO] Cog loaded: info
+17:48:56 [INFO] Cog loaded: balance
+17:48:56 [INFO] Cog loaded: nick
+17:48:56 [INFO] Cog loaded: hex
+17:48:56 [INFO] Cog loaded: whois
+17:48:56 [INFO] Cog loaded: set_money
+17:48:56 [INFO] Cog loaded: say_slash
+17:48:56 [INFO] Cog loaded: logs
+17:48:56 [INFO] Cog loaded: say
+17:48:56 [INFO] Cog loaded: yt
+17:48:56 [INFO] Cog loaded: loop_template
+17:48:59 [INFO] Startup: Pybot#9863 is online!
+17:50:30 [ERROR] M2rsh#6595: Command "play" is not found
+17:50:43 [INFO] M2rsh#6595: help
+17:51:10 [ERROR] M2rsh#6595: user is a required argument that is missing.
+17:51:15 [ERROR] M2rsh#6595: Command "play" is not found
+17:51:15 [INFO] TopDogger#8584: work
