@@ -20,7 +20,7 @@ class rate_slash(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @client.slash_command(description="Rates Stuff", guild_ids=[885976189049651200])
+    @client.slash_command(description="Rates Stuff")
     async def rate(self, ctx,
                    rate_thing: Option(str, "Rate What?"),
                    user: Option(str, "User or Thing to rate",
