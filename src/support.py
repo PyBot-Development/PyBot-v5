@@ -214,7 +214,7 @@ class database:
         self.con.commit()
 
     async def getBalance(self, user):
-        _, _, balance = await self.getUser(user)
+        balance = (await self.getUser(user))[2]
         return balance 
 
     async def banUser(self, user , reason, date, author):
