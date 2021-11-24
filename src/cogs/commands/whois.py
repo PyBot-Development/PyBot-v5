@@ -12,12 +12,12 @@ from discord.ext import commands
 import discord
 import support
 from discord.ext.commands import cooldown, BucketType
-
+from cogs import checks
 
 class whois(commands.Cog):
     def __init__(self, client):
         self.client = client
-
+    @checks.default()
     @commands.guild_only()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="Shows user info")

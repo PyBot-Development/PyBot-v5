@@ -12,6 +12,7 @@ from discord.ext import commands
 import discord
 import support
 from discord.ext.commands import cooldown, BucketType
+from cogs import checks
 
 
 class idea(commands.Cog):
@@ -27,6 +28,7 @@ class idea(commands.Cog):
                 if i.id == 885986347234508840:
                     self.channel = i
 
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="Sends bot idea giv ideas plz")
     async def idea(self, ctx, *, Text):

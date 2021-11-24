@@ -15,7 +15,7 @@ import support
 import random
 import requests
 import json
-
+from cogs import checks
 
 class meme(commands.Cog):
     def __init__(self, client):
@@ -28,6 +28,7 @@ class meme(commands.Cog):
                        "shitposting",
                        "ProgrammerHumor"]
 
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="Sends random meme")
     async def meme(self, ctx, *, subredd=None):

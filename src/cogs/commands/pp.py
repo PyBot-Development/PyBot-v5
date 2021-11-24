@@ -14,12 +14,12 @@ import support
 from discord.ext.commands import cooldown, BucketType
 import random
 from datetime import datetime
-
+from cogs import checks
 
 class pp(commands.Cog):
     def __init__(self, client):
         self.client = client
-
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(aliases=["dick", "penis", "cock"], description="Calculates pp size")
     async def pp(self, ctx, *, user: discord.User = None):

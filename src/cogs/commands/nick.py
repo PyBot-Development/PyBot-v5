@@ -12,12 +12,12 @@ from discord.ext import commands
 import discord
 import support
 from discord.ext.commands import cooldown, BucketType
-
+from cogs import checks
 
 class command(commands.Cog, name="nick"):
     def __init__(self, client):
         self.client = client
-
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.guild_only()
     @commands.command(description="Changes bot Nickname")

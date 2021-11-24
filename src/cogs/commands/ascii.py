@@ -13,12 +13,13 @@ import discord
 import support
 from discord.ext.commands import cooldown, BucketType
 import pyfiglet
-
+from cogs import checks
 
 class ascii(commands.Cog):
     def __init__(self, client):
         self.client = client
-
+        
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="Sends ASCII from Text")
     async def ascii(self, ctx, *, arg):

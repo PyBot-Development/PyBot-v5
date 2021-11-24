@@ -10,10 +10,8 @@ Shows balance
 
 from discord.ext import commands
 import discord
-from discord.ext.commands.core import is_owner
 import support
-from discord.ext.commands import cooldown, BucketType
-import asyncio
+from cogs import checks
 
 class leaderboardButtons(discord.ui.View):
     def __init__(self, client, author):
@@ -132,6 +130,7 @@ class leaderboard(commands.Cog):
     def __init__(self, client):
         self.client = client
 
+    @checks.default()
     @commands.command(description="Shows user money leaderboard", aliases=["lb"])
     async def leaderboard(self, ctx):
         users = support.globalData.getAllUsers_sync()

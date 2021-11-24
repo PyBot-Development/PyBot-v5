@@ -14,6 +14,7 @@ from discord.ext.commands.core import is_owner
 import support
 from discord.ext.commands import cooldown, BucketType
 import random
+from cogs import checks
 
 things = [
     "Your mom gave you `{ammount}`$",
@@ -36,7 +37,7 @@ things = [
 class work(commands.Cog):
     def __init__(self, client):
         self.client = client
-
+    @checks.default()
     @cooldown(1, 3600, BucketType.user)
     @commands.command(description="Gives you moni uwu")
     async def work(self, ctx):

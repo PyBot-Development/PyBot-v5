@@ -12,19 +12,20 @@ from discord.ext import commands
 import discord
 import support
 from discord.ext.commands import cooldown, BucketType
-
+from cogs import checks
 
 class dm(commands.Cog):
     def __init__(self, client):
         self.client = client
 
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="DMs user")
     async def dm(self, ctx, user, *, message):
         user = await commands.UserConverter().convert(ctx, user)
         channel = await user.create_dm()
         await channel.send(message)
-        await ctx.send(embed=discord.Embed(description=f"DMed {user.mention()}: `{message}`.", color=support.colours.default), delete_after=10)
+        await ctx.send(embed=discord.Embed(description=f"DMed {user}: `{message}`.", color=support.colours.default), delete_after=10)
 
 
 def setup(bot):

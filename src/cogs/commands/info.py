@@ -16,12 +16,13 @@ from discord.ext.commands import cooldown, BucketType
 from datetime import timedelta, datetime
 import math
 from run import __version__, __title__, __copyright__, __license__
-
+from cogs import checks
 
 class info(commands.Cog):
     def __init__(self, client):
         self.client = client
 
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="Sends Info About Bot")
     async def info(self, ctx):

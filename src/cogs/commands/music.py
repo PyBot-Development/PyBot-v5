@@ -18,6 +18,8 @@ from discord.ext.commands import cooldown, BucketType
 youtube_dl.utils.bug_reports_message = lambda: ''
 from run import client
 from discord.commands import Option
+from cogs import checks
+
 ytdl_format_options = {
     'format': 'bestaudio/best',
     'outtmpl': '%(extractor)s-%(id)s-%(title)s.%(ext)s',
@@ -147,6 +149,7 @@ class Music(commands.Cog):
             self.players[ctx.guild.id] = player
         return player
 
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="Plays Music in current Voice Channel", name="play")
     async def play_music(self, ctx, *, url):
@@ -166,7 +169,7 @@ class Music(commands.Cog):
     #         queue = await player.queue.get()
     #         print(queue)
     #         await ctx.send(queue)
-
+    @checks.default()
     @client.slash_command(description="Plays Music in current Voice Channel")
     async def play(
         self,
@@ -182,7 +185,7 @@ class Music(commands.Cog):
             source = await YTDLSource.from_url(ctx, name, loop=self.bot.loop, stream=True)
             await player.queue.put(source)
             
-
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(aliases=['np', 'current', 'currentsong', 'playing'], description="Sends currently playing song")
     async def now_playing(self, ctx):
@@ -209,7 +212,7 @@ class Music(commands.Cog):
             description=f"Now Playing: {vc.source.title}",
             color=support.colours.default
         ))
-
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="Skips current song")
     async def skip(self, ctx):
@@ -227,7 +230,7 @@ class Music(commands.Cog):
         await ctx.send(embed=discord.Embed(
             description=f'{ctx.author} Skipped Current Song!', color=support.colours.default
         ))
-
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(aliases=['vol'], description="Sets Music volume")
     async def volume(self, ctx, *, vol: float):
@@ -252,7 +255,7 @@ class Music(commands.Cog):
         await ctx.send(embed=discord.Embed(
             description=f'{ctx.author} Changed Volume to `{vol}%`', color=support.colours.default
         ))
-
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="Stops playing music")
     async def stop(self, ctx):
@@ -264,7 +267,7 @@ class Music(commands.Cog):
                     description='Im Not Playing Anything!', color=support.colours.default
                 ), delete_after=10, )
         await self.cleanup(ctx.guild)
-
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(aliases=['join'], description="Connects to current voice channel")
     async def connect(self, ctx, *, channel: discord.VoiceChannel = None):

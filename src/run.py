@@ -3,7 +3,7 @@
 Discord Pybot
 ~~~~~~~~~~~~~~~~~
 
-Discord Bot
+Discord Bot 
 
 :copyright: (c) 2021-2021 M2rsho
 :license: MIT, see LICENSE for more details.
@@ -14,7 +14,7 @@ __title__ = 'Pybot V5'
 __author__ = 'M2rsho'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2021-2021 M2rsho'
-__version__ = '1.2.0'
+__version__ = '1.3.0'
 
 from discord.ext import commands
 import discord
@@ -23,7 +23,7 @@ from colorama import *
 import support
 from datetime import datetime
 from colorama import *
-
+from cogs.checks import *
 
 prefix = support.config.get("prefix")
 activity = discord.Game(name=f"{prefix}help, Version: {__version__}")
@@ -50,7 +50,7 @@ if __name__ == "__main__":
     @client.before_invoke
     async def common(ctx):
         support.log(datetime.utcnow(), "COMMAND", f"{ctx.author}", ctx.command)
-
+        
     loadCog("events")
     loadCog("commands")
     loadCog("loops")

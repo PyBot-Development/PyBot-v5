@@ -12,12 +12,13 @@ from discord.ext import commands
 import discord
 import support
 from discord.ext.commands import cooldown, BucketType
-
+from cogs import checks
 
 class alt(commands.Cog):
     def __init__(self, client):
         self.client = client
 
+    @checks.default()
     @cooldown(1, 300, BucketType.user)
     @commands.command(description="Gives you random minecraft alt")
     async def alt(self, ctx):

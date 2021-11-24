@@ -2,7 +2,7 @@
 token: ODg1NjMxMDEzODQ0MjkxNjc0.YTp2Jw.07PBVwN7y_-Yio3uF593J10J-cs
 prefix: "!"
 cooldown: 2
-debug: False
+debug: True
 
 serverSettings:
   run: True

@@ -13,7 +13,7 @@ import discord
 import support
 from discord.ext.commands import cooldown, BucketType
 from numpy import random
-
+from cogs import checks
 
 class iq(commands.Cog):
     def __init__(self, client):
@@ -25,6 +25,7 @@ class iq(commands.Cog):
         else:
             return random.uniform(0.00, 420.00)
 
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="Calculates your IQ")
     async def iq(self, ctx, *, user: discord.User = None):

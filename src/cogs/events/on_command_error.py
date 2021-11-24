@@ -33,7 +33,9 @@ class on_command_error(commands.Cog):
                 color=support.colours.red
             ),
                 delete_after=10)
-
+        elif isinstance(error, commands.CheckFailure):
+            pass
+        
         elif isinstance(error, CommandNotFound):
             cmd = str(ctx.message.content).split(" ")[0]
             await ctx.send(embed=discord.Embed(

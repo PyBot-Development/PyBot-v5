@@ -14,12 +14,13 @@ from discord.ext.commands import cooldown, BucketType
 from discord.commands import Option
 import support
 from run import client
-
+from cogs import checks
 
 class check_slash(commands.Cog):
     def __init__(self, client):
         self.client = client
-
+        
+    @checks.default()
     @client.slash_command(description="Checks minecraft alt")
     async def check(self, ctx, combo: Option(str, "Login and Password to account")):
         await ctx.response.send_message(embed=discord.Embed(description=support.check(combo).result, color=support.colours.default), ephemeral=True)

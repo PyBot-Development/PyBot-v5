@@ -13,12 +13,13 @@ import discord
 from discord.ext.commands import cooldown, BucketType
 import support
 import os
-
+from cogs import checks
 
 class can(commands.Cog):
     def __init__(self, client):
         self.client = client
 
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="Generates Can")
     async def can(self, ctx, text, bottom_text=""):

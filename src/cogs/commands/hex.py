@@ -15,12 +15,13 @@ from discord.ext.commands import cooldown, BucketType
 import random
 import aiohttp
 import io
-
+from cogs import checks
 
 class hex(commands.Cog):
     def __init__(self, client):
         self.client = client
-
+        
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="Displays Hex Colour")
     async def hex(self, ctx, colour="random"):
