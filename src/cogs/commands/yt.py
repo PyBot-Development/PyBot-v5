@@ -14,12 +14,12 @@ from discord.ext.commands import cooldown, BucketType
 import support
 import urllib
 import re
-
+from cogs import checks
 
 class yt(commands.Cog):
     def __init__(self, client):
         self.client = client
-
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(aliases=["youtube", "video"], description="Searches YouTube")
     async def yt(self, ctx, *, search):

@@ -13,12 +13,13 @@ import discord
 from discord.ext.commands import cooldown, BucketType
 import support
 import os
-
+from cogs import checks
 
 class kill(commands.Cog):
     def __init__(self, client):
         self.client = client
 
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="Kills Someone", aliases=["murder", "blood"])
     async def kill(self, ctx, user: discord.User=None):

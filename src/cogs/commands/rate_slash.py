@@ -15,11 +15,12 @@ from discord.commands import Option
 import support
 from run import client
 import random
+from cogs import checks
 
 class rate_slash(commands.Cog):
     def __init__(self, client):
         self.client = client
-
+    @checks.default()
     @client.slash_command(description="Rates Stuff")
     async def rate(self, ctx,
                    rate_thing: Option(str, "Rate What?"),

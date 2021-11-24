@@ -61,7 +61,7 @@ class colours:
     default = 0x7842ff
     red = 0xff7777
     green = 0x77dd77
-
+    yellow = 0xeb9226
 class processing:
     async def GENERATE_CAN(name, text, bottom_text=""):
         if len(text) > 90 or len(bottom_text) > 90:
@@ -183,16 +183,18 @@ class database:
         self.con = sqlite3.connect(path)
         self.cur = self.con.cursor()
 
-        self.cur.execute('''CREATE TABLE IF NOT EXISTS users (id integer, username text, balance integer)''')
+        self.cur.execute('''CREATE TABLE IF NOT EXISTS users (id integer, username text, balance integer, banned integer, admin integer, reason text, banned_by text, date text, duration integer)''')
 
     async def getUser(self, user):
         u = self.cur.execute(f'''SELECT * FROM users WHERE id={user.id}''').fetchone()
         if u is None:
-            self.cur.execute(f'INSERT INTO users VALUES (?, ?, 10000)', (user.id, str(user), ))
+            self.cur.execute(f'INSERT INTO users VALUES (?, ?, 10000, 0, 0, "None", "None", "None", 0)', (user.id, str(user), ))
             self.con.commit()
         return self.cur.execute(f'''SELECT * FROM users WHERE id="{user.id}"''').fetchone()
+
     async def getAllUsers(self):
         return self.cur.execute(f'''SELECT * FROM users''').fetchall()
+
     def getAllUsers_sync(self):
         return self.cur.execute(f'''SELECT * FROM users''').fetchall()
         
@@ -214,5 +216,35 @@ class database:
     async def getBalance(self, user):
         _, _, balance = await self.getUser(user)
         return balance 
+
+    async def banUser(self, user , reason, date, author):
+        await self.getUser(user)
+        self.cur.execute(f'''UPDATE users SET banned=1, reason=?, date=?, banned_by=? WHERE id={user.id}''', (str(reason), str(date), str(author)))
+        self.con.commit()
+
+    async def unbanUser(self, user):
+        await self.getUser(user)
+        self.cur.execute(f'''UPDATE users SET banned=0, reason="None", date="None", banned_by="None" WHERE id={user.id}''')
+        self.con.commit()
+
+    async def opUser(self, user):
+        await self.getUser(user)
+        self.cur.execute(f'''UPDATE users SET admin=1 WHERE id={user.id}''')
+        self.con.commit()
+
+    async def deopUser(self, user):
+        await self.getUser(user)
+        self.cur.execute(f'''UPDATE users SET admin=0 WHERE id={user.id}''')
+        self.con.commit()
+
+    async def getBanned(self):
+        u = list(self.cur.execute(f'''SELECT id FROM users WHERE banned="1"''').fetchall())
+        banned = [list(item) for item in u]
+        return banned
+
+    async def getOps(self):
+        u = list(self.cur.execute(f'''SELECT id FROM users WHERE admin="1"''').fetchall())
+        ops = [list(item) for item in u]
+        return ops
 
 globalData = database(path=f"{path}/data/database.db")

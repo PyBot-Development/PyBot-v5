@@ -12,12 +12,12 @@ from discord.ext import commands
 import discord
 from discord.ext.commands import cooldown, BucketType
 import support
-
+from cogs import checks
 
 class say(commands.Cog):
     def __init__(self, client):
         self.client = client
-
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(aliases=["tell", "sudo"], description="Sends text message as bot")
     async def say(self, ctx, *, arg):

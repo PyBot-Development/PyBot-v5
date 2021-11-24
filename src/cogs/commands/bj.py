@@ -15,6 +15,7 @@ import support
 from discord.ext.commands import cooldown, BucketType
 import random
 from math import ceil
+from cogs import checks
 
 cards = list({
     "A": 1,
@@ -149,7 +150,8 @@ Dealers Deck: {self.dealerCards[0][0]}, ?.
 class blackjack(commands.Cog):
     def __init__(self, client):
         self.client = client
-
+        
+    @checks.default()
     @commands.command(description="blackjack", aliases=["bj"])
     async def blackjack(self, ctx, bet):
         current = await support.globalData.getBalance(ctx.message.author)

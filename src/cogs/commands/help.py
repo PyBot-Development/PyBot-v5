@@ -13,7 +13,7 @@ from discord.ext import commands
 import discord
 import support
 from discord.ext.commands import cooldown, BucketType, CommandNotFound
-
+from cogs import checks
 
 class HelpButtons(discord.ui.View):
     def __init__(self, client, author):
@@ -132,6 +132,7 @@ class help(commands.Cog):
     def __init__(self, client):
         self.client = client
 
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(aliases=["?"], description="Help Command")
     async def help(self, ctx, *, command=None):

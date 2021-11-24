@@ -1,0 +1,43 @@
+17:28:38 [INFO] Cog loaded: on_command_error
+17:28:38 [INFO] Cog loaded: on_ready
+17:28:38 [INFO] Cog loaded: pirate
+17:28:38 [INFO] Cog loaded: meme
+17:28:38 [INFO] Cog loaded: iq
+17:28:38 [INFO] Cog loaded: bj
+17:28:38 [INFO] Cog loaded: doom
+17:28:38 [INFO] Cog loaded: kill
+17:28:38 [INFO] Cog loaded: cum
+17:28:38 [INFO] Cog loaded: embed
+17:28:38 [INFO] Cog loaded: music
+17:28:38 [INFO] Cog loaded: tts
+17:28:38 [INFO] Cog loaded: pp
+17:28:38 [INFO] Cog loaded: dm
+17:28:38 [INFO] Cog loaded: leaderboard
+17:28:38 [INFO] Cog loaded: rate
+17:28:38 [INFO] Cog loaded: ban
+17:28:38 [INFO] Cog loaded: can
+17:28:38 [INFO] Cog loaded: help
+17:28:38 [INFO] Cog loaded: rate_slash
+17:28:38 [INFO] Cog loaded: work
+17:28:38 [INFO] Cog loaded: check
+17:28:38 [INFO] Cog loaded: idea
+17:28:38 [INFO] Cog loaded: check_slash
+17:28:38 [INFO] Cog loaded: alt
+17:28:38 [INFO] Cog loaded: ascii
+17:28:38 [INFO] Cog loaded: give_money
+17:28:38 [INFO] Cog loaded: info
+17:28:38 [INFO] Cog loaded: balance
+17:28:38 [INFO] Cog loaded: nick
+17:28:38 [INFO] Cog loaded: hex
+17:28:38 [INFO] Cog loaded: whois
+17:28:38 [INFO] Cog loaded: set_money
+17:28:38 [INFO] Cog loaded: say_slash
+17:28:38 [INFO] Cog loaded: logs
+17:28:38 [INFO] Cog loaded: say
+17:28:38 [INFO] Cog loaded: yt
+17:28:38 [INFO] Cog loaded: loop_template
+17:28:41 [INFO] Startup: Pybot#9863 is online!
+17:28:44 [ERROR] M2rsh#6595: User "x" not found.
+17:28:48 [ERROR] M2rsh#6595: reason is a required argument that is missing.
+17:28:56 [INFO] M2rsh#6595: ban
+17:28:57 [ERROR] M2rsh#6595: Command raised an exception: AttributeError: 'Context' object has no attribute 'user'

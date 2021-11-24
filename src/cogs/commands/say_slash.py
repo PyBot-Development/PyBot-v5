@@ -14,12 +14,12 @@ from discord.ext.commands import cooldown, BucketType
 from discord.commands import Option
 import support
 from run import client
-
+from cogs import checks
 
 class hello(commands.Cog):
     def __init__(self, client):
         self.client = client
-
+    @checks.default()
     @client.slash_command(description="Says something using bot")
     async def say(
         self,

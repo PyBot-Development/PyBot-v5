@@ -13,12 +13,12 @@ import discord
 from discord.ext.commands import cooldown, BucketType
 import support
 import random
-
+from cogs import checks
 
 class rate(commands.Cog):
     def __init__(self, client):
         self.client = client
-
+    @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(aliases=['r', 'meter'], description="rates stuff")
     async def rate(self, ctx, user, *, rest_of_the_text=""):
