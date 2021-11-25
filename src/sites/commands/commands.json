@@ -127,6 +127,12 @@
             "aliases": "None."
         },
         {
+            "label": "Lyrics",
+            "description": "Sends song lyrics from Genius.com",
+            "usage": "lyrics <Song>",
+            "aliases": "None."
+        },
+        {
             "label": "Now_playing",
             "description": "Sends currently playing song",
             "usage": "now_playing",
@@ -203,6 +209,30 @@
             "description": "Searches YouTube",
             "usage": "yt <Text>",
             "aliases": "Video, Youtube."
+        },
+        {
+            "label": "Ban",
+            "description": "Bans retard from using the bot",
+            "usage": "ban <User> <Reason>",
+            "aliases": "None."
+        },
+        {
+            "label": "Unban",
+            "description": "Removes ban from user",
+            "usage": "unban <User>",
+            "aliases": "None."
+        },
+        {
+            "label": "Op",
+            "description": "Allows user to use admin commands",
+            "usage": "op <User>",
+            "aliases": "None."
+        },
+        {
+            "label": "Deop",
+            "description": "Removes user admin commands perms",
+            "usage": "deop <User>",
+            "aliases": "None."
         }
     ],
     "admin": [],
