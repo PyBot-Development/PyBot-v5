@@ -21,7 +21,7 @@ genius = lyricsgenius.Genius("yGRPyGYBY3sCM_baVIGA4pBPLAg-_5EDRnOW5MqYMAjjq7rwFe
 
 class showLyrics(discord.ui.View):
     def __init__(self, song):
-        super().__init__(timeout=20)
+        super().__init__(timeout=420)
         self.message = None
         self.song = song
     async def on_timeout(self) -> None:
