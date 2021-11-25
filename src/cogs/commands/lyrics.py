@@ -33,7 +33,16 @@ class showLyrics(discord.ui.View):
     async def show(
         self, button: discord.ui.Button, interaction: discord.Interaction
     ):
-        await interaction.response.send_message(embed=discord.Embed(title=f"{self.song.title} - {self.song.artist} Lyrics", description=f"{self.song.lyrics}", color=support.colours.default), ephemeral=True)
+        result = []
+        n = 4000
+        for index in range(0, len(self.song.lyrics), n):
+            result.append(self.song.lyrics[index : index + n])
+        if len(result) > 1:
+            chat = await interaction.user.create_dm()
+            for item in result:
+                await chat.send(embed=discord.Embed(title=f"{self.song.title} - {self.song.artist} Lyrics", description=f"{item}", color=support.colours.default))
+        else:
+            await interaction.response.send_message(embed=discord.Embed(title=f"{self.song.title} - {self.song.artist} Lyrics", description=f"{result[0]}", color=support.colours.default), ephemeral=True)
 
 
 class lyrics(commands.Cog):
