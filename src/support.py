@@ -247,4 +247,11 @@ class database:
         ops = [list(item) for item in u]
         return ops
 
+
+def convertToBitcoin(amount, currency):
+    data = requests.get("http://api.bitcoincharts.com/v1/weighted_prices.json")
+    bitcoins = data.json()
+    converted = amount / float(bitcoins[currency]["24h"])
+    return converted
+
 globalData = database(path=f"{path}/data/database.db")

@@ -40,6 +40,7 @@ V5 Creation Date: <t:1633946400:D>
 Author: {author.mention}
 Prefix: {support.prefix}
 Online For: {timedelta(seconds=math.floor(onlineFor))}
+Servers: {len(self.client.guilds)}
 
 Copyright: {__copyright__}
 License: {__license__}
