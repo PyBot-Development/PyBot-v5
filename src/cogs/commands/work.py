@@ -31,7 +31,8 @@ things = [
     "You Never gave up, Never let down, Never ran around and desert you, Never made you cry, Never said goodbye, Never told a lie and hurt you! `{ammount}`$",
     "PAPIEŻ 2137 JEBAĆ BYDGOSZCZ!! UWUWUWU `{ammount}`$ <:papaj:902218558849839114><:papaj:902218558849839114><:papaj:902218558849839114><:papaj:902218558849839114>",
     "Umm.. You got `{ammount}`$ for.. ✈️🗼🗼 HOW IS THAT LEGAL?! WTF",
-    "You came and found `{ammount}`$"
+    "You came and found `{ammount}`$",
+    "You found `{bitcoin}` bitcoins! (`{ammount}$`)",
 ]
 
 class work(commands.Cog):
@@ -45,7 +46,7 @@ class work(commands.Cog):
     
         await support.globalData.addBalance(ctx.message.author, money)
         await ctx.send(embed=discord.Embed(
-            description=random.choice(things).format(ammount=money),
+            description=random.choice(things).format(ammount=money, bitcoin=support.convertToBitcoin(money, "USD")),
             colour=support.colours.default))
 
 def setup(bot):
