@@ -20,8 +20,9 @@ class whois(commands.Cog):
     @checks.default()
     @commands.guild_only()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="Shows user info")
+    @commands.command(description="commands.whois.description")
     async def whois(self, ctx, *, user: discord.Member = None):
+        lang = support.getLanguageFileG(ctx.guild)
         if user is None:
             user = ctx.message.author
         roles = "None"
@@ -29,20 +30,7 @@ class whois(commands.Cog):
             roles = "".join(f"{i.mention} " for i in user.roles[1:])
         fetched = await self.client.fetch_user(user.id)
         embed = discord.Embed(title=f"{user}",
-                               description=f"""
-User: {user.mention}
-ID: `{user.id}`
-Created at: `{user.created_at}`
-Status: `{user.status}`
-Bot: `{user.bot}`
-
-Joined at: `{user.joined_at}`
-Nick: `{user.nick}`
-Boosting since: `{user.premium_since}`
-
-Roles:
-{roles}
-""", color=user.color)
+                               description=lang["commands"]["whois"]["returnSuccess"].format(user=user.mention, id=user.id, created_at=user.created_at, status=user.status, bot=user.bot, joined_at=user.joined_at, nick=user.nick, premium_since=user.premium_since, roles=roles), color=user.color)
         embed.set_thumbnail(url=user.display_avatar)
 
         if fetched.banner != None:

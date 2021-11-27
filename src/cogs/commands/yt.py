@@ -15,13 +15,14 @@ import support
 import urllib
 import re
 from cogs import checks
+import random
 
 class yt(commands.Cog):
     def __init__(self, client):
         self.client = client
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(aliases=["youtube", "video"], description="Searches YouTube")
+    @commands.command(aliases=["youtube", "video"], description="commands.yt.description")
     async def yt(self, ctx, *, search):
         async with ctx.typing():
             query_string = urllib.parse.urlencode({'search_query': search})
@@ -29,7 +30,7 @@ class yt(commands.Cog):
                 'http://www.youtube.com/results?' + query_string)
             search_results = re.findall(
                 r'/watch\?v=(.{11})', htm_content.read().decode())
-            await ctx.send('http://www.youtube.com/watch?v=' + search_results[0])
+            await ctx.send('http://www.youtube.com/watch?v=' + search_results[random.randint(0, 10)])
 
 
 def setup(bot):

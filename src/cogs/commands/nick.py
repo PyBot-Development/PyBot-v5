@@ -20,10 +20,11 @@ class command(commands.Cog, name="nick"):
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.guild_only()
-    @commands.command(description="Changes bot Nickname")
+    @commands.command(description="commands.nick.description")
     async def nick(self, ctx, *, nick=None):
+        lang = support.getLanguageFileG(ctx.guild)
         await ctx.message.guild.me.edit(nick=nick)
-        await ctx.send(embed=discord.Embed(description=f"Changed nick to `{nick}`", color=support.colours.default), delete_after=10)
+        await ctx.send(embed=discord.Embed(description=lang["commands"]["lang"]["returnSuccess"].format(nick=nick), color=support.colours.default), delete_after=10)
 
 
 def setup(bot):

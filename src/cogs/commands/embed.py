@@ -20,7 +20,7 @@ class embed(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="Creates Embed Message")
+    @commands.command(description="commands.embed.description")
     async def embed(self, ctx, description=None, color=None, title=None,):
         colour = int(color.replace("#", ""), 16)
         await ctx.send(embed=discord.Embed(title=title, description=description, color=colour))

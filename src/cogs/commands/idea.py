@@ -30,8 +30,9 @@ class idea(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="Sends bot idea giv ideas plz")
+    @commands.command(description="commands.idea.description")
     async def idea(self, ctx, *, Text):
+        lang = support.getLanguageFileG(ctx.guild)
         await self.get_channel()
         await self.channel.send(content="<@846298981797724161>", embed=discord.Embed(
             title=ctx.message.author.id,
@@ -39,7 +40,7 @@ class idea(commands.Cog):
             color=support.colours.default
         ).set_author(name=ctx.message.author, icon_url=ctx.message.author.avatar))
         await ctx.send(embed=discord.Embed(
-            description="Your idea was sent.",
+            description=lang["commands"]["idea"]["returnSuccess"],
             color=support.colours.default
         ))
 

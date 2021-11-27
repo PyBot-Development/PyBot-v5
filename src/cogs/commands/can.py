@@ -21,15 +21,15 @@ class can(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="Generates Can")
+    @commands.command(description="commands.can.description")
     async def can(self, ctx, text, bottom_text=""):
         async with ctx.typing():
+            lang = support.getLanguageFileG(ctx.guild)
             img = await support.processing.GENERATE_CAN(ctx.message.author.id, text, bottom_text)
             if not img:
-                raise commands.BadArgument(
-                    "Text and Bottom Text max lenght is 20.")
+                raise commands.BadArgument(lang["commands"]["can"]["maxLenght"])
             file = discord.File(img)
-            await ctx.send(embed=discord.Embed(description="Can.", color=support.colours.default).set_image(url=f"attachment://{ctx.message.author.id}.png"), file=file)
+            await ctx.send(embed=discord.Embed(description=lang["commands"]["can"]["returnSuccess"], color=support.colours.default).set_image(url=f"attachment://{ctx.message.author.id}.png"), file=file)
             os.remove(img)
 
 

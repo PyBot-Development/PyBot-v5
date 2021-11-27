@@ -22,6 +22,7 @@ from gtts import gTTS
 from datetime import datetime
 import requests
 from io import BytesIO
+import os
 
 time = datetime.utcnow()
 startup_date = f"{time.day}_{time.month}_{time.year}-{time.hour:02d}-{time.minute:02d}.{time.second:02d}.{time.microsecond:03d}"
@@ -184,6 +185,7 @@ class database:
         self.cur = self.con.cursor()
 
         self.cur.execute('''CREATE TABLE IF NOT EXISTS users (id integer, username text, balance integer, banned integer, admin integer, reason text, banned_by text, date text, duration integer)''')
+        self.cur.execute('''CREATE TABLE IF NOT EXISTS guilds (id integer, name text, language text, prefix text)''')
 
     async def getUser(self, user):
         u = self.cur.execute(f'''SELECT * FROM users WHERE id={user.id}''').fetchone()
@@ -247,6 +249,31 @@ class database:
         ops = [list(item) for item in u]
         return ops
 
+    async def getGuild(self, guild):
+        u = self.cur.execute(f'''SELECT * FROM guilds WHERE id={guild.id}''').fetchone()
+        if u is None:
+            self.cur.execute(f'INSERT INTO guilds VALUES (?, ?, "en.json", "!")', (guild.id, str(guild), ))
+            self.con.commit()
+        return self.cur.execute(f'''SELECT * FROM guilds WHERE id="{guild.id}"''').fetchone()
+    
+    def getGuildSync(self, guild):
+        u = self.cur.execute(f'''SELECT * FROM guilds WHERE id={guild.id}''').fetchone()
+        if u is None:
+            self.cur.execute(f'INSERT INTO guilds VALUES (?, ?, "en.json", "!")', (guild.id, str(guild), ))
+            self.con.commit()
+        return self.cur.execute(f'''SELECT * FROM guilds WHERE id="{guild.id}"''').fetchone()
+
+    def getLanguage(self, guild):
+        guild = self.getGuildSync(guild)
+        return guild[2]
+
+    async def setLanguage(self, guild, language):
+        await self.getGuild(guild)
+        self.cur.execute(f'''UPDATE guilds SET language=? WHERE id={guild.id}''', (language, ))
+        self.con.commit()
+
+globalData = database(path=f"{path}/data/database.db")
+languages = [item for item in os.listdir(f"{path}/data/languages/")]
 
 def convertToBitcoin(amount, currency):
     data = requests.get("http://api.bitcoincharts.com/v1/weighted_prices.json")
@@ -257,4 +284,26 @@ def convertToBitcoin(amount, currency):
 def getPrefix(ctx):
     return "!"
 
-globalData = database(path=f"{path}/data/database.db")
+
+def getLanguage(guild):
+    return globalData.getLanguage(guild)
+
+def getLanguageFile(language):
+    with open(f"{path}/data/languages/{language}") as lang:
+        data = json.load(lang)
+    return data
+
+def getLanguageFileG(guild):
+    if guild is not None:
+        language = getLanguage(guild)
+    else:
+        language = "en.json"
+
+    return getLanguageFile(language)
+
+
+def getDescription(language, command):
+    with open(f"{path}/data/languages/{language}") as lang:
+        data = json.load(lang)
+    return data["commands"][command]["description"]
+    

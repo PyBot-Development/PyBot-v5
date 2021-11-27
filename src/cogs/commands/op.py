@@ -19,11 +19,12 @@ class op(commands.Cog):
         self.client = client
 
     @checks.admin()
-    @commands.command(description="Ops user")
+    @commands.command(description="commands.op.description")
     async def op(self, ctx, user: discord.User):
         async with ctx.typing():
+            lang = support.getLanguageFileG(ctx.guild)
             await support.globalData.opUser(user)
-            await ctx.reply(embed=discord.Embed(description=f"🔨 Opped {user.mention}.", colour=support.colours.default))
+            await ctx.reply(embed=discord.Embed(description=lang["commands"]["op"]["returnSuccess"].format(user=user.mention), colour=support.colours.default))
 
 def setup(bot):
     bot.add_cog(op(bot))

@@ -35,7 +35,7 @@ cards = list({
 
 
 class createButtons(discord.ui.View):
-    def __init__(self, client, author, bet):
+    def __init__(self, client, author, bet, language):
         super().__init__(timeout=30)
         self.client = client
         self.author = author
@@ -50,6 +50,8 @@ class createButtons(discord.ui.View):
         self.userDeck = None
         self.userCards = []
 
+        self.lang = language
+
     async def on_timeout(self) -> None:
         self.hit.disabled = True
         self.stand.disabled = True
@@ -60,7 +62,7 @@ class createButtons(discord.ui.View):
     @discord.ui.button(label="Hit", style=discord.ButtonStyle.grey)
     async def hit(self, button: discord.ui.Button, interaction: discord.Interaction):
         if interaction.user.id != self.author.id:
-            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            await interaction.response.send_message(self.lang["notYourMenu"], ephemeral=True)
             return
         card = random.choice(cards)
         self.userCards.append(card)
@@ -69,54 +71,58 @@ class createButtons(discord.ui.View):
     @discord.ui.button(label="Stand", style=discord.ButtonStyle.grey)
     async def stand(self, button: discord.ui.Button, interaction: discord.Interaction):
         if interaction.user.id != self.author.id:
-            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            await interaction.response.send_message(self.lang["notYourMenu"], ephemeral=True)
             return
         while self.dealerValue <= 16:
             self.dealerCards.append(random.choice(cards))
             self.dealerDeck, self.dealerValue = await self.renderCards(self.dealerCards)
 
         if self.dealerValue > 21:
-            await interaction.response.edit_message(embed=discord.Embed(
-                description=f"""Black Jack
-You won `{ceil(self.bet/2)}`$
-
-Your Deck: {self.userDeck}
-`(Value: {self.userValue})`
-
-Dealers Deck: {self.dealerDeck}
-`(Value: {self.dealerValue})`""", colour=support.colours.green))
+            await interaction.response.edit_message(
+                content=self.lang["commands"]["blackjack"]["won"].format(value=str(ceil(self.bet/2))),
+                embed=discord.Embed(
+                description=self.lang["commands"]["blackjack"]["menu"].format(
+                userDeck=str(self.userDeck),
+                userValue=str(self.userValue),
+                dealerCards=str(self.dealerDeck),
+                dealerValue=str(self.dealerValue)
+            ),
+            colour=support.colours.green))
             await support.globalData.addBalance(self.author, self.bet+ceil(self.bet/2))
         elif self.dealerValue == self.userValue:
-            await interaction.response.edit_message(embed=discord.Embed(
-                description=f"""Black Jack
-Tie. Your money was pushed back
-
-Your Deck: {self.userDeck}
-`(Value: {self.userValue})`
-
-Dealers Deck: {self.dealerDeck}
-`(Value: {self.dealerValue})`""", colour=support.colours.default))
+            await interaction.response.edit_message(
+                content=self.lang["commands"]["blackjack"]["tie"],
+                embed=discord.Embed(
+                description=self.lang["commands"]["blackjack"]["menu"].format(
+                userDeck=str(self.userDeck),
+                userValue=str(self.userValue),
+                dealerCards=str(self.dealerDeck),
+                dealerValue=str(self.dealerValue)
+            ),
+            colour=support.colours.default))
             await support.globalData.addBalance(self.author, self.bet)
         elif self.dealerValue > self.userValue:
-            await interaction.response.edit_message(embed=discord.Embed(
-                description=f"""Black Jack
-You lost `{self.bet}`$
-
-Your Deck: {self.userDeck}
-`(Value: {self.userValue})`
-
-Dealers Deck: {self.dealerDeck}
-`(Value: {self.dealerValue})`""", colour=support.colours.red))
+            await interaction.response.edit_message(
+                content=self.lang["commands"]["blackjack"]["lost"].format(value=str(self.bet)),
+                embed=discord.Embed(
+                description=self.lang["commands"]["blackjack"]["menu"].format(
+                userDeck=str(self.userDeck),
+                userValue=str(self.userValue),
+                dealerCards=str(self.dealerDeck), 
+                dealerValue=str(self.dealerValue)
+            ),
+            colour=support.colours.red))
         elif self.dealerValue < self.userValue:
-            await interaction.response.edit_message(embed=discord.Embed(
-                description=f"""Black Jack
-You won `{ceil(self.bet/2)}`$
-
-Your Deck: {self.userDeck}
-`(Value: {self.userValue})`
-
-Dealers Deck: {self.dealerDeck}
-`(Value: {self.dealerValue})`""", colour=support.colours.green))
+            await interaction.response.edit_message(
+                content=self.lang["commands"]["blackjack"]["won"].format(value=str(ceil(self.bet/2))),
+                embed=discord.Embed(
+                description=self.lang["commands"]["blackjack"]["menu"].format(
+                userDeck=str(self.userDeck),
+                userValue=str(self.userValue),
+                dealerCards=str(self.dealerDeck),
+                dealerValue=str(self.dealerValue)
+            ),
+            colour=support.colours.green))
             await support.globalData.addBalance(self.author, self.bet+ceil(self.bet/2))
         await self.on_timeout()
         self.stop()
@@ -124,7 +130,7 @@ Dealers Deck: {self.dealerDeck}
     @discord.ui.button(label="Resign", style=discord.ButtonStyle.red)
     async def resign(self, button: discord.ui.Button, interaction: discord.Interaction):
         if interaction.user.id != self.author.id:
-            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            await interaction.response.send_message(self.lang["notYourMenu"], ephemeral=True)
             return
         await self.on_timeout()
         self.stop()
@@ -132,25 +138,27 @@ Dealers Deck: {self.dealerDeck}
     async def updateCards(self, interaction):
         self.userDeck, self.userValue = await self.renderCards(self.userCards)
         if self.userValue > 21:
-            await interaction.response.edit_message(embed=discord.Embed(
-                description=f"""Black Jack
-You lost `{self.bet}`$
-
-Your Deck: {self.userDeck}
-`(Value: {self.userValue})`
-
-Dealers Deck: {self.dealerDeck}
-`(Value: {self.dealerValue})`""", colour=support.colours.red))
+            await interaction.response.edit_message(
+                content=self.lang["commands"]["blackjack"]["lost"].format(value=str(self.bet)),
+                embed=discord.Embed(
+                description=self.lang["commands"]["blackjack"]["menu"].format(
+                userDeck=str(self.userDeck),
+                userValue=str(self.userValue),
+                dealerCards=str(self.dealerCards[0][0]), 
+                dealerValue=str(self.dealerCards[0][1])
+            ),
+            colour=support.colours.red))
             await self.on_timeout()
             self.stop()
         else:
             await interaction.response.edit_message(embed=discord.Embed(
-                description=f"""Black Jack
-Your Deck: {self.userDeck}
-`(Value: {self.userValue})`
-
-Dealers Deck: {self.dealerCards[0][0]}, ?.
-`(Value: {self.dealerCards[0][1]})`""", colour=support.colours.default))
+                description=self.lang["commands"]["blackjack"]["menu"].format(
+                userDeck=str(self.userDeck),
+                userValue=str(self.userValue),
+                dealerCards=str(self.dealerCards[0][0]), 
+                dealerValue=str(self.dealerCards[0][1])
+            ),
+            colour=support.colours.default))
 
     async def renderCards(self, cards):
         return ''.join(f"{card[0]}, " for card in cards)[:-2] + '.', sum([int(card[1]) for card in cards])
@@ -161,21 +169,23 @@ class blackjack(commands.Cog):
         self.client = client
         
     @checks.default()
-    @commands.command(description="blackjack", aliases=["bj"])
+    @commands.command(description="commands.blackjack.description", aliases=["bj"])
     async def blackjack(self, ctx, bet):
         current = await support.globalData.getBalance(ctx.message.author)
+        lang = support.getLanguageFileG(ctx.guild)
+
         if bet.lower() == "max" or bet.lower() == "all":
             bet = current
         else:
             bet = float(bet)
 
         if current < bet:
-            raise ValueError("You don't have enough money")
+            raise ValueError(lang["commands"]["blackjack"]["notEnoughMoney"])
         elif bet <= 0:
-            raise ValueError("Minimum bet value is `1`$.")
+            raise ValueError(lang["commands"]["blackjack"]["tooLowBet"])
 
         await support.globalData.removebalance(ctx.message.author, bet)
-        view = createButtons(self.client, ctx.message.author, bet)
+        view = createButtons(self.client, ctx.message.author, bet, lang)
 
         dealerCards = random.choices(cards, k=2)
         userCards = random.choices(cards, k=2)
@@ -187,12 +197,12 @@ class blackjack(commands.Cog):
         view.dealerDeck, view.dealerValue = await view.renderCards(dealerCards)
 
         message = await ctx.send(embed=discord.Embed(
-            description=f"""Black Jack
-Your Deck: {view.userDeck}
-`(Value: {view.userValue})`
-
-Dealers Deck: {dealerCards[0][0]}, ?.
-`(Value: {dealerCards[0][1]})`""",
+                description=lang["commands"]["blackjack"]["menu"].format(
+                userDeck=str(view.userDeck),
+                userValue=str(view.userValue),
+                dealerCards=str(view.dealerCards[0][0]), 
+                dealerValue=str(view.dealerCards[0][1])
+            ),
             colour=support.colours.default
         ), view=view)
         view.message = message

@@ -16,37 +16,22 @@ from discord.ext.commands import cooldown, BucketType
 import random
 from cogs import checks
 
-things = [
-    "Your mom gave you `{ammount}`$",
-    "You work very hard and you get `{ammount}`$",
-    "You sold your virginity and got `{ammount}`$",
-    "You fucked your mom `{ammount}`$",
-    "You got your unemployment benefit +`{ammount}`$",
-    "Stonks `{ammount}`$",
-    "Your mom's girlfriend gave you `{ammount}`$",
-    "Virginity reward `{ammount}`$",
-    "You sold you cock and balls for `{ammount}`$",
-    "Hot milfs in your area gave you `{ammount}`$",
-    "You're 10M user visiting this site! Congratulations on your `{ammount}`$!",
-    "You Never gave up, Never let down, Never ran around and desert you, Never made you cry, Never said goodbye, Never told a lie and hurt you! `{ammount}`$",
-    "PAPIEŻ 2137 JEBAĆ BYDGOSZCZ!! UWUWUWU `{ammount}`$ <:papaj:902218558849839114><:papaj:902218558849839114><:papaj:902218558849839114><:papaj:902218558849839114>",
-    "Umm.. You got `{ammount}`$ for.. ✈️🗼🗼 HOW IS THAT LEGAL?! WTF",
-    "You came and found `{ammount}`$",
-    "You found `{bitcoin}` bitcoins! (`{ammount}$`)",
-]
+
 
 class work(commands.Cog):
     def __init__(self, client):
         self.client = client
     @checks.default()
     @cooldown(1, 3600, BucketType.user)
-    @commands.command(description="Gives you moni uwu")
+    @commands.command(description="commands.work.description")
     async def work(self, ctx):
+        lang = support.getLanguageFileG(ctx.guild)
         money = random.randint(2000, 20000)
-    
+        texts = support.getLanguageFile(support.getLanguage(ctx.guild))
+        texts = texts["commands"]["work"]["messages"]
         await support.globalData.addBalance(ctx.message.author, money)
         await ctx.send(embed=discord.Embed(
-            description=random.choice(things).format(ammount=money, bitcoin=support.convertToBitcoin(money, "USD")),
+            description=random.choice(texts).format(ammount=money, bitcoin=support.convertToBitcoin(money, "USD")),
             colour=support.colours.default))
 
 def setup(bot):

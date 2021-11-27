@@ -20,11 +20,12 @@ class deop(commands.Cog):
         self.client = client
 
     @checks.admin()
-    @commands.command(description="Bans a fucking retard")
+    @commands.command(description="commands.deop.description")
     async def deop(self, ctx, user: discord.User):
         async with ctx.typing():
+            lang = support.getLanguageFileG(ctx.guild)
             await support.globalData.deopUser(user)
-            await ctx.reply(embed=discord.Embed(description=f"🔨 Deopped {user.mention}.", colour=support.colours.default))
+            await ctx.reply(embed=discord.Embed(description=lang["commands"]["deop"]["returnSuccess"].format(user=user.mention), colour=support.colours.default))
 
 def setup(bot):
     bot.add_cog(deop(bot))

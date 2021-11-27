@@ -21,7 +21,7 @@ class kill(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="Kills Someone", aliases=["murder", "blood"])
+    @commands.command(description="commands.kill.description", aliases=["murder", "blood"])
     async def kill(self, ctx, user: discord.User=None):
         async with ctx.typing():
             if user is None:

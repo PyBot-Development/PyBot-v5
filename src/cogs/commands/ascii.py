@@ -21,7 +21,7 @@ class ascii(commands.Cog):
         
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="Sends ASCII from Text")
+    @commands.command(description="commands.ascii.description")
     async def ascii(self, ctx, *, arg):
         arg = arg.split("--font ")
         arg.append("big")

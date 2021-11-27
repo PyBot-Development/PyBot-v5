@@ -20,7 +20,7 @@ class alt(commands.Cog):
 
     @checks.default()
     @cooldown(1, 300, BucketType.user)
-    @commands.command(description="Gives you random minecraft alt")
+    @commands.command(description="commands.alt.description")
     async def alt(self, ctx):
         async with ctx.typing():
             alt = await support.getAlt()

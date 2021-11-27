@@ -19,7 +19,7 @@ class say(commands.Cog):
         self.client = client
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(aliases=["tell", "sudo"], description="Sends text message as bot")
+    @commands.command(aliases=["tell", "sudo"], description="commands.say.description")
     async def say(self, ctx, *, arg):
         await ctx.send(f"​{arg}".replace("@everyone", "@​everyone").replace("@here", "@​here"))
 

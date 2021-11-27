@@ -14,13 +14,14 @@ import support
 from cogs import checks
 
 class leaderboardButtons(discord.ui.View):
-    def __init__(self, client, author):
+    def __init__(self, client, author, guild):
         super().__init__(timeout=20)
         self.client = client
         self.page = 0
         self.author = author
         self.message = None
 
+        self.lang = support.getLanguageFileG(guild)
         users = support.globalData.getAllUsers_sync()
         users = sorted(users, key=lambda user: user[2], reverse=True)
         lboard = [f"{users.index(user)+1}. <@{user[0]}>: {user[2]}$" for user in users]
@@ -47,40 +48,40 @@ class leaderboardButtons(discord.ui.View):
         self, button: discord.ui.Button, interaction: discord.Interaction
     ):
         if interaction.user.id != self.author.id:
-            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            await interaction.response.send_message(self.lang["notYourMenu"], ephemeral=True)
             return
 
         self.page = 0
         await interaction.response.edit_message(embed=discord.Embed(
-            title="Leaderboard",
+            title=self.lang["leaderboard"],
             description=f"""
-[Website](https://py-bot.cf/) | [Commands](https://py-bot.cf/commands) | [PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
+[{self.lang['website']}](https://py-bot.cf/) | [{self.lang['commands']}](https://py-bot.cf/commands) | [{self.lang['discord']}](https://discord.gg/dfKMTx9Eea)
 
 {self.commands[self.page]}""",
             color=support.colours.default
-        ).set_footer(text=f"Page: {self.page+1}/{self.maxPages+1}"))
+        ).set_footer(text=f"{self.lang['page']}: {self.page+1}/{self.maxPages+1}"))
 
     @discord.ui.button(label="<", style=discord.ButtonStyle.grey)
     async def back(
         self, button: discord.ui.Button, interaction: discord.Interaction
     ):
         if interaction.user.id != self.author.id:
-            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            await interaction.response.send_message(self.lang["notYourMenu"], ephemeral=True)
             return
         self.page -= 1 if self.page > 0 else 0
         await interaction.response.edit_message(embed=discord.Embed(
-            title="Leaderboard",
+            title=self.lang["leaderboard"],
             description=f"""
-[Website](https://py-bot.cf/) | [Commands](https://py-bot.cf/commands) | [PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
+[{self.lang['website']}](https://py-bot.cf/) | [{self.lang['commands']}](https://py-bot.cf/commands) | [{self.lang['discord']}](https://discord.gg/dfKMTx9Eea)
 
 {self.commands[self.page]}""",
             color=support.colours.default
-        ).set_footer(text=f"Page: {self.page+1}/{self.maxPages+1}"))
+        ).set_footer(text=f"{self.lang['page']}: {self.page+1}/{self.maxPages+1}"))
 
     @discord.ui.button(label="⬜", style=discord.ButtonStyle.grey)
     async def stop_button(self, button: discord.ui.Button, interaction: discord.Interaction):
         if interaction.user.id != self.author.id:
-            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            await interaction.response.send_message(self.lang["notYourMenu"], ephemeral=True)
             return
         self.back.disabled = True
         self.stop_button.disabled = True
@@ -96,43 +97,44 @@ class leaderboardButtons(discord.ui.View):
         self, button: discord.ui.Button, interaction: discord.Interaction
     ):
         if interaction.user.id != self.author.id:
-            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            await interaction.response.send_message(self.lang["notYourMenu"], ephemeral=True)
             return
         if self.page < self.maxPages:
             self.page += 1
         await interaction.response.edit_message(embed=discord.Embed(
-            title="Leaderboard",
+            title=self.lang["leaderboard"],
             description=f"""
-[Website](https://py-bot.cf/) | [Commands](https://py-bot.cf/commands) | [PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
+[{self.lang['website']}](https://py-bot.cf/) | [{self.lang['commands']}](https://py-bot.cf/commands) | [{self.lang['discord']}](https://discord.gg/dfKMTx9Eea)
 
 {self.commands[self.page]}""",
             color=support.colours.default
-        ).set_footer(text=f"Page: {self.page+1}/{self.maxPages+1}"))
+        ).set_footer(text=f"{self.lang['page']}: {self.page+1}/{self.maxPages+1}"))
 
     @discord.ui.button(label=">>", style=discord.ButtonStyle.grey)
     async def end(
         self, button: discord.ui.Button, interaction: discord.Interaction
     ):
         if interaction.user.id != self.author.id:
-            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            await interaction.response.send_message(self.lang["notYourMenu"], ephemeral=True)
             return
         self.page = self.maxPages
         await interaction.response.edit_message(embed=discord.Embed(
-            title="Leaderboard",
+            title=self.lang["leaderboard"],
             description=f"""
-[Website](https://py-bot.cf/) | [Commands](https://py-bot.cf/commands) | [PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
+[{self.lang['website']}](https://py-bot.cf/) | [{self.lang['commands']}](https://py-bot.cf/commands) | [{self.lang['discord']}](https://discord.gg/dfKMTx9Eea)
 
 {self.commands[self.page]}""",
             color=support.colours.default
-        ).set_footer(text=f"Page: {self.page+1}/{self.maxPages+1}"))
+        ).set_footer(text=f"{self.lang['page']}: {self.page+1}/{self.maxPages+1}"))
 
 class leaderboard(commands.Cog):
     def __init__(self, client):
         self.client = client
 
     @checks.default()
-    @commands.command(description="Shows user money leaderboard", aliases=["lb"])
+    @commands.command(description="commands.leaderboard.descriptions", aliases=["lb"])
     async def leaderboard(self, ctx):
+
         users = support.globalData.getAllUsers_sync()
         users = sorted(users, key=lambda user: user[2], reverse=True)
         lboard = [f"{users.index(user)+1}. <@{user[0]}>: {user[2]}$" for user in users]
@@ -146,15 +148,18 @@ class leaderboard(commands.Cog):
         self.maxPages = int(len(self.commands)) - 1
         self.page = 0
 
-        view = leaderboardButtons(self.client, ctx.message.author)
+        view = leaderboardButtons(self.client, ctx.message.author, ctx.guild)
+
+        lang = view.lang
+    
         message=await ctx.send(embed=discord.Embed(
-            title="Leaderboard",
+            title=self.lang["leaderboard"],
             description=f"""
-[Website](https://py-bot.cf/) | [Commands](https://py-bot.cf/commands) | [PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
+[{lang["website"]}](https://py-bot.cf/) | [{lang["commands"]}](https://py-bot.cf/commands) | [{lang["discord"]}](https://discord.gg/dfKMTx9Eea)
 
 {self.commands[self.page]}""",
             color=support.colours.default
-        ).set_footer(text=f"Page: {self.page+1}/{self.maxPages+1}"), view=view)
+        ).set_footer(text=f'{lang["page"]}: {self.page+1}/{self.maxPages+1}'), view=view)
         view.message=message
 
 

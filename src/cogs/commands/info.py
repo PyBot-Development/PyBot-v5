@@ -24,29 +24,23 @@ class info(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="Sends Info About Bot")
+    @commands.command(description="commands.info.description")
     async def info(self, ctx):
+        lang = support.getLanguageFileG(ctx.guild)
         author = await self.client.fetch_user(846298981797724161)
         onlineFor = int(datetime.utcnow().timestamp()) - \
             support.startup_timestamp
         await ctx.send(embed=discord.Embed(
-            title=f"{__title__} Info",
-            description=f"""
-[PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
-
-Current Version: {__version__}
-V5 Creation Date: <t:1633946400:D>
-
-Author: {author.mention}
-Prefix: {support.prefix}
-Online For: {timedelta(seconds=math.floor(onlineFor))}
-Servers: {len(self.client.guilds)}
-
-Copyright: {__copyright__}
-License: {__license__}
-
-Commands Count: {len(self.client.commands)}
-""", colour=support.colours.default))
+            title=f'{__title__} {lang["info"]}',
+            description='[{lang["discord"]}](https://discord.gg/dfKMTx9Eea)\n\n' + lang["commands"]["info"]["returnSuccess"].format(
+                version=__version__,
+                author=author.mention,
+                prefix=support.prefix,
+                onlineFor=onlineFor,
+                servers=len(self.client.guilds),
+                license=__license__,
+                commandsCount=len(self.client.commands)
+            ), colour=support.colours.default))
 
 
 def setup(bot):

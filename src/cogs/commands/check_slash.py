@@ -21,7 +21,7 @@ class check_slash(commands.Cog):
         self.client = client
         
     @checks.default()
-    @client.slash_command(description="Checks minecraft alt")
+    @client.slash_command(description="commands.check.description")
     async def check(self, ctx, combo: Option(str, "Login and Password to account")):
         await ctx.response.send_message(embed=discord.Embed(description=support.check(combo).result, color=support.colours.default), ephemeral=True)
 

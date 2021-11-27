@@ -30,9 +30,10 @@ class meme(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="Sends random meme")
+    @commands.command(description="commands.meme.description")
     async def meme(self, ctx, *, subredd=None):
         async with ctx.typing():
+            lang = support.getLanguageFileG(ctx.guild)
             topic = random.choice(self.topics) if subredd is None else subredd
             meme = json.loads(requests.get(
                 f"https://meme-api.herokuapp.com/gimme/{topic}").text)

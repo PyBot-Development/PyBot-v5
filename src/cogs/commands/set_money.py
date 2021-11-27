@@ -20,7 +20,7 @@ class set_money(commands.Cog):
         self.client = client
 
     @is_owner()
-    @commands.command(description="Sets Money", aliases=["set"])
+    @commands.command(description="commands.set_money.description", aliases=["set"])
     async def set_money(self, ctx, user: discord.User, value: int):
         await support.globalData.setBalance(user, value)
         await ctx.send(embed=discord.Embed(description=f"Updated {user.mention} balance to `{await support.globalData.getBalance(user)}`$", colour=support.colours.default))

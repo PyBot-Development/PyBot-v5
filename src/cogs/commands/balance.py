@@ -20,12 +20,13 @@ class balance(commands.Cog):
         self.client = client
 
     @checks.default()
-    @commands.command(description="Shows user money", aliases=["bal"])
+    @commands.command(description="commands.balance.description", aliases=["bal"])
     async def balance(self, ctx, user: discord.User = None):
+        lang = support.getLanguageFileG(ctx.guild)
         if user is None:
             user = ctx.message.author
         current = await support.globalData.getBalance(user)
-        await ctx.send(embed=discord.Embed(description=f"{user.mention} balance is `{current}`$", colour=support.colours.default))
+        await ctx.send(embed=discord.Embed(description=lang["commands"]["balance"]["returnSuccess"].format(user=user.mention, current=current), colour=support.colours.default))
 
 
 def setup(bot):

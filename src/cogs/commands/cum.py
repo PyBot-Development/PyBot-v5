@@ -21,14 +21,15 @@ class cum(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="Sussy Baka")
+    @commands.command(description="commands.cum.description")
     async def cum(self, ctx, user: discord.User=None):
         async with ctx.typing():
+            lang = support.getLanguageFileG(ctx.guild)
             if user is None:
                 user = ctx.message.author
             img = await support.processing.overlay(user.display_avatar, f"{support.path}/data/resources/templates/cum_template.png", ctx.message.author.id)
             file = discord.File(img)
-            await ctx.send(embed=discord.Embed(description="Cummies Uwu.", color=support.colours.default).set_image(url=f"attachment://{ctx.message.author.id}.png"), file=file)
+            await ctx.send(embed=discord.Embed(description=lang["returnSuccess"], color=support.colours.default).set_image(url=f"attachment://{ctx.message.author.id}.png"), file=file)
             os.remove(img)
 
 

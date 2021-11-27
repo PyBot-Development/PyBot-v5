@@ -18,20 +18,21 @@ class data(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command(description="Shows user data")
+    @commands.command(description="commands.data.description")
     async def data(self, ctx, user: discord.User):
         async with ctx.typing():
+            lang = support.getLanguageFileG(ctx.guild)
             data = await support.globalData.getUser(user)
-            await ctx.reply(embed=discord.Embed(description=f"""
-ID: `{data[0]}`
-Name: `{data[1]}`
-Balance: `{data[2]}`
-Admin: `{data[4]}`
-Banned: `{data[3]}`
-Ban Reason: `{data[5]}`
-Ban Date: `{data[6]}`
-Ban Duration: `{data[7]}`
-""", colour=support.colours.default))
+            await ctx.reply(embed=discord.Embed(description=lang["commands"]["data"]["returnSuccess"].format(
+                id=data[0],
+                name=data[1],
+                balance=data[2],
+                admin=data[4],
+                banned=data[3],
+                reason=data[5],
+                date=data[6],
+                duration=data[7]
+            ), colour=support.colours.default))
 
 def setup(bot):
     bot.add_cog(data(bot))
