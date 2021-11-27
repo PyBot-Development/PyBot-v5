@@ -254,4 +254,7 @@ def convertToBitcoin(amount, currency):
     converted = amount / float(bitcoins[currency]["24h"])
     return converted
 
+def getPrefix(ctx):
+    return "!"
+
 globalData = database(path=f"{path}/data/database.db")

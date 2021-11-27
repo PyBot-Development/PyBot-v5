@@ -59,12 +59,18 @@ class createButtons(discord.ui.View):
 
     @discord.ui.button(label="Hit", style=discord.ButtonStyle.grey)
     async def hit(self, button: discord.ui.Button, interaction: discord.Interaction):
+        if interaction.user.id != self.author.id:
+            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            return
         card = random.choice(cards)
         self.userCards.append(card)
         await self.updateCards(interaction)
 
     @discord.ui.button(label="Stand", style=discord.ButtonStyle.grey)
     async def stand(self, button: discord.ui.Button, interaction: discord.Interaction):
+        if interaction.user.id != self.author.id:
+            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            return
         while self.dealerValue <= 16:
             self.dealerCards.append(random.choice(cards))
             self.dealerDeck, self.dealerValue = await self.renderCards(self.dealerCards)
@@ -117,6 +123,9 @@ Dealers Deck: {self.dealerDeck}
 
     @discord.ui.button(label="Resign", style=discord.ButtonStyle.red)
     async def resign(self, button: discord.ui.Button, interaction: discord.Interaction):
+        if interaction.user.id != self.author.id:
+            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            return
         await self.on_timeout()
         self.stop()
 
