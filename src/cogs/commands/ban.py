@@ -20,11 +20,12 @@ class ban(commands.Cog):
         self.client = client
 
     @checks.admin()
-    @commands.command(description="Bans a fucking retard")
+    @commands.command(description="commands.ban.description")
     async def ban(self, ctx, user: discord.User, *, reason):
+        lang = support.getLanguageFileG(ctx.guild)
         async with ctx.typing():
             await support.globalData.banUser(user, reason, datetime.utcnow(), ctx.message.author)
-            await ctx.reply(embed=discord.Embed(description=f"🔨 Banned {user.mention}, reason: `{reason}`.", colour=support.colours.default))
+            await ctx.reply(embed=discord.Embed(description=lang["commands"]["ban"]["returnSuccess"].format(user=user.mention, reason=reason), colour=support.colours.default))
 
 def setup(bot):
     bot.add_cog(ban(bot))

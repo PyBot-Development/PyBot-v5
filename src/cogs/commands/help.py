@@ -16,15 +16,22 @@ from discord.ext.commands import cooldown, BucketType, CommandNotFound
 from cogs import checks
 
 class HelpButtons(discord.ui.View):
-    def __init__(self, client, author):
+    def __init__(self, client, author, guild):
         super().__init__(timeout=20)
         self.client = client
         self.page = 0
         self.author = author
         self.message = None
 
+        if guild is not None:
+            language = support.getLanguage(guild)
+        else:
+            language = "en.json"
+
+        self.lang = support.getLanguageFile(language)
+
         commands = ''.join(
-            f"{support.prefix}{command}\n​   `{command.description}`\n" for command in client.commands).splitlines()
+            f"{support.prefix}{command}\n​   `{support.getDescription(language, str(command))}`\n" for command in client.commands).splitlines()
         self.commands = []
         n = 10
         for index in range(0, len(commands), n):
@@ -47,14 +54,14 @@ class HelpButtons(discord.ui.View):
         self, button: discord.ui.Button, interaction: discord.Interaction
     ):
         if interaction.user.id != self.author.id:
-            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            await interaction.response.send_message(self.lang["notYourMenu"], ephemeral=True)
             return
 
         self.page = 0
         await interaction.response.edit_message(embed=discord.Embed(
-            title="Help",
+            title=self.lang["help"],
             description=f"""
-[Website](https://py-bot.cf/) | [Commands](https://py-bot.cf/commands) | [PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
+[{self.lang["website"]}](https://py-bot.cf/) | [{self.lang["command"]}](https://py-bot.cf/commands) | [{self.lang["discord"]}](https://discord.gg/dfKMTx9Eea)
 
 {self.commands[self.page]}""",
             color=support.colours.default
@@ -65,13 +72,13 @@ class HelpButtons(discord.ui.View):
         self, button: discord.ui.Button, interaction: discord.Interaction
     ):
         if interaction.user.id != self.author.id:
-            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            await interaction.response.send_message(self.lang["notYourMenu"], ephemeral=True)
             return
         self.page -= 1 if self.page > 0 else 0
         await interaction.response.edit_message(embed=discord.Embed(
-            title="Help",
+            title=self.lang["help"],
             description=f"""
-[Website](https://py-bot.cf/) | [Commands](https://py-bot.cf/commands) | [PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
+[{self.lang["website"]}](https://py-bot.cf/) | [{self.lang["command"]}](https://py-bot.cf/commands) | [{self.lang["discord"]}](https://discord.gg/dfKMTx9Eea)
 
 {self.commands[self.page]}""",
             color=support.colours.default
@@ -80,7 +87,7 @@ class HelpButtons(discord.ui.View):
     @discord.ui.button(label="⬜", style=discord.ButtonStyle.grey)
     async def stop_button(self, button: discord.ui.Button, interaction: discord.Interaction):
         if interaction.user.id != self.author.id:
-            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            await interaction.response.send_message(self.lang["notYourMenu"], ephemeral=True)
             return
         self.back.disabled = True
         self.stop_button.disabled = True
@@ -96,14 +103,14 @@ class HelpButtons(discord.ui.View):
         self, button: discord.ui.Button, interaction: discord.Interaction
     ):
         if interaction.user.id != self.author.id:
-            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            await interaction.response.send_message(self.lang["notYourMenu"], ephemeral=True)
             return
         if self.page < self.maxPages:
             self.page += 1
         await interaction.response.edit_message(embed=discord.Embed(
-            title="Help",
+            title=self.lang["help"],
             description=f"""
-[Website](https://py-bot.cf/) | [Commands](https://py-bot.cf/commands) | [PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
+[{self.lang["website"]}](https://py-bot.cf/) | [{self.lang["command"]}](https://py-bot.cf/commands) | [{self.lang["discord"]}](https://discord.gg/dfKMTx9Eea)
 
 {self.commands[self.page]}""",
             color=support.colours.default
@@ -114,13 +121,13 @@ class HelpButtons(discord.ui.View):
         self, button: discord.ui.Button, interaction: discord.Interaction
     ):
         if interaction.user.id != self.author.id:
-            await interaction.response.send_message("Hmm.. I don't think that menu belongs to you.", ephemeral=True)
+            await interaction.response.send_message(self.lang["notYourMenu"], ephemeral=True)
             return
         self.page = self.maxPages
         await interaction.response.edit_message(embed=discord.Embed(
-            title="Help",
+            title=self.lang["help"],
             description=f"""
-[Website](https://py-bot.cf/) | [Commands](https://py-bot.cf/commands) | [PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
+[{self.lang["website"]}](https://py-bot.cf/) | [{self.lang["command"]}](https://py-bot.cf/commands) | [{self.lang["discord"]}](https://discord.gg/dfKMTx9Eea)
 
 {self.commands[self.page]}""",
             color=support.colours.default
@@ -131,16 +138,19 @@ class HelpButtons(discord.ui.View):
 class help(commands.Cog):
     def __init__(self, client):
         self.client = client
-
+        
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(aliases=["?"], description="Help Command")
+    @commands.command(aliases=["?"], description="commands.help.description")
     async def help(self, ctx, *, command=None):
-        view = HelpButtons(self.client, ctx.message.author)
+        view = HelpButtons(self.client, ctx.message.author, ctx.guild)
+
+        lang = view.lang
+
         message = await ctx.send(embed=discord.Embed(
-            title="Help",
+            title=lang["help"],
             description=f"""
-[Website](https://py-bot.cf/) | [Commands](https://py-bot.cf/commands) | [PyBot's Discord Server](https://discord.gg/dfKMTx9Eea)
+[{lang["website"]}](https://py-bot.cf/) | [{lang["command"]}](https://py-bot.cf/commands) | [{lang["discord"]}](https://discord.gg/dfKMTx9Eea)
 
 {view.commands[0]}""",
             color=support.colours.default

@@ -60,6 +60,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
 
     @classmethod
     async def from_url(cls, ctx, url, *, loop=None, stream=False):
+        lang = support.getLanguageFileG(ctx.guild)
         loop = loop or asyncio.get_event_loop()
         data = await loop.run_in_executor(None, lambda: ytdl.extract_info(url, download=not stream))
         if 'entries' in data:
@@ -67,7 +68,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
             data = data['entries'][0]
         filename = data['url'] if stream else ytdl.prepare_filename(data)
         await ctx.send(embed=discord.Embed(
-            description=f'Added `{data["title"]}` to queue.', color=support.colours.default
+            description=lang["commands"]["play"]["returnSuccess"].format(title=data["title"]), color=support.colours.default
         ), delete_after=10)
         return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
 
@@ -83,9 +84,10 @@ class MusicPlayer:
         self.np = None  # Now playing message
         self.volume = .5
         self.current = None
-        ctx.bot.loop.create_task(self.player_loop())
+        ctx.bot.loop.create_task(self.player_loop(ctx))
 
-    async def player_loop(self):
+    async def player_loop(self, ctx):
+        lang = support.getLanguageFileG(ctx.guild)
         await self.bot.wait_until_ready()
         while not self.bot.is_closed():
             self.next.clear()
@@ -100,7 +102,7 @@ class MusicPlayer:
                 except Exception as e:
                     await self._channel.send(
                         embed=discord.Embed(
-                            description='There was an error processing your song. Try Again',
+                            description=lang["errors"]["songProcessing"],
                             color=support.colours.default,
                         )
                     )
@@ -112,7 +114,7 @@ class MusicPlayer:
             self._guild.voice_client.play(
                 source, after=lambda _: self.bot.loop.call_soon_threadsafe(self.next.set))
             self.np = await self._channel.send(embed=discord.Embed(
-                description=f'Now Playing: `{source.title}`', color=support.colours.default
+                description=lang["commands"]["now_playing"]["returnSuccess"].format(source.title), color=support.colours.default
             ))
             await self.next.wait()
             source.cleanup()
@@ -151,7 +153,7 @@ class Music(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="Plays Music in current Voice Channel", name="play")
+    @commands.command(description="commands.play.description", name="play")
     async def play_music(self, ctx, *, url):
         async with ctx.typing():
             vc = ctx.voice_client
@@ -170,12 +172,13 @@ class Music(commands.Cog):
     #         print(queue)
     #         await ctx.send(queue)
     @checks.default()
-    @client.slash_command(description="Plays Music in current Voice Channel")
+    @client.slash_command(description="commands.play.description")
     async def play(
         self,
         ctx,
         name: Option(str, "Url/Name"),
     ):
+        lang = support.getLanguageFileG(ctx.guild)
         await ctx.response.send_message(embed=discord.Embed(description="Playing...", color=support.colours.default), ephemeral=True)
         async with ctx.typing():
             voice_channel = ctx.author.voice.channel
@@ -187,20 +190,21 @@ class Music(commands.Cog):
             
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(aliases=['np', 'current', 'currentsong', 'playing'], description="Sends currently playing song")
+    @commands.command(aliases=['np', 'current', 'currentsong', 'playing'], description="commands.now_playing.description")
     async def now_playing(self, ctx):
+        lang = support.getLanguageFileG(ctx.guild)
         vc = ctx.voice_client
         if not vc or not vc.is_connected():
             return await ctx.send(
                 embed=discord.Embed(
-                    description='Im Not Playing Anything!', color=support.colours.default
+                    description=lang["commands"]["now_playing"]["notPlayingAnything"], color=support.colours.default
                 ), delete_after=10, )
 
         player = self.get_player(ctx)
         if not player.current:
             return await ctx.send(
                 embed=discord.Embed(
-                    description='Im Not Playing Anything!', color=support.colours.default
+                    description=lang["commands"]["now_playing"]["notPlayingAnything"], color=support.colours.default
                 ), delete_after=10, )
 
         try:
@@ -209,18 +213,19 @@ class Music(commands.Cog):
             pass
 
         player.np = await ctx.send(embed=discord.Embed(
-            description=f"Now Playing: {vc.source.title}",
+            description=lang["commands"]["now_playing"]["returnSuccess"].format(vc.source.title),
             color=support.colours.default
         ))
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="Skips current song")
+    @commands.command(description="commands.skip.description")
     async def skip(self, ctx):
+        lang = support.getLanguageFileG(ctx.guild)
         vc = ctx.voice_client
         if not vc or not vc.is_connected():
             return await ctx.send(
                 embed=discord.Embed(
-                    description='Im Not Playing Anything!', color=support.colours.default
+                    description=lang["commands"]["now_playing"]["notPlayingAnything"], color=support.colours.default
                 ), delete_after=10, )
         if vc.is_paused():
             pass
@@ -228,23 +233,24 @@ class Music(commands.Cog):
             return
         vc.stop()
         await ctx.send(embed=discord.Embed(
-            description=f'{ctx.author} Skipped Current Song!', color=support.colours.default
+            description=lang["commands"]["skip"]["returnSuccess"].format(user=ctx.author), color=support.colours.default
         ))
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(aliases=['vol'], description="Sets Music volume")
+    @commands.command(aliases=['vol'], description="commands.volume.description")
     async def volume(self, ctx, *, vol: float):
+        lang = support.getLanguageFileG(ctx.guild)
         vc = ctx.voice_client
         if not vc or not vc.is_connected():
             return await ctx.send(
                 embed=discord.Embed(
-                    description='Im Not Playing Anything!', color=support.colours.default
+                    description=lang["commands"]["now_playing"]["notPlayingAnything"], color=support.colours.default
                 ), delete_after=10, )
 
-        if not 0 < vol < 101:
+        if not 0 <= vol < 101:
             return await ctx.send(
                 embed=discord.Embed(
-                    description='Choose Value between 0.00/100.00',
+                    description=lang["commands"]["volume"]["badValue"],
                     color=support.colours.default,
                 ), delete_after=10, )
 
@@ -253,30 +259,32 @@ class Music(commands.Cog):
             vc.source.volume = vol / 100
         player.volume = vol / 100
         await ctx.send(embed=discord.Embed(
-            description=f'{ctx.author} Changed Volume to `{vol}%`', color=support.colours.default
+            description=lang["commands"]["volume"]["returnSuccess"].format(user=ctx.author, vol=vol), color=support.colours.default
         ))
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="Stops playing music")
+    @commands.command(description="commands.stop.description")
     async def stop(self, ctx):
+        lang = support.getLanguageFileG(ctx.guild)
         vc = ctx.voice_client
-
         if not vc or not vc.is_connected():
             return await ctx.send(
                 embed=discord.Embed(
-                    description='Im Not Playing Anything!', color=support.colours.default
+                    description=lang["commands"]["now_playing"]["notPlayingAnything"], color=support.colours.default
                 ), delete_after=10, )
         await self.cleanup(ctx.guild)
+
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(aliases=['join'], description="Connects to current voice channel")
+    @commands.command(aliases=['join'], description="commands.connect.description")
     async def connect(self, ctx, *, channel: discord.VoiceChannel = None):
+        lang = support.getLanguageFileG(ctx.guild)
         if not channel:
             try:
                 channel = ctx.author.voice.channel
             except AttributeError:
                 raise InvalidVoiceChannel(
-                    'No channel to join. Please either specify a valid channel or join one.')
+                    lang["errors"]["InvalidVoiceChannel"])
         vc = ctx.voice_client
         if vc:
             if vc.channel.id == channel.id:
@@ -285,15 +293,15 @@ class Music(commands.Cog):
                 await vc.move_to(channel)
             except asyncio.TimeoutError:
                 raise VoiceConnectionError(
-                    f'Moving to channel: <{channel}> timed out.')
+                    lang["commands"]["connect"]["timedout"].format(channel=channel))
         else:
             try:
                 await channel.connect()
             except asyncio.TimeoutError:
                 raise VoiceConnectionError(
-                    f'Connecting to channel: <{channel}> timed out.')
+                    lang["commands"]["connect"]["timedout"].format(channel=channel))
         await ctx.send(embed=discord.Embed(
-            description=f'Connected to `{channel}`.', color=support.colours.default
+            description=lang["commands"]["connect"]["returnSuccess"].format(channel=channel), color=support.colours.default
         ), delete_after=10)
 
 

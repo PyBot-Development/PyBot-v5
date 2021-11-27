@@ -27,9 +27,9 @@ class iq(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="Calculates your IQ")
+    @commands.command(description="commands.iq.description")
     async def iq(self, ctx, *, user: discord.User = None):
-
+        lang = support.getLanguageFileG(ctx.guild)
         iq_size = self.get_number()
         if user is None:
             user = ctx.message.author
@@ -39,7 +39,10 @@ class iq(commands.Cog):
             int((iq_size/4.2)*2.55), int((iq_size/4.2)*2.51), int((iq_size/4.2)*1.91))
         colour = int(colour_hex, 16)
         embed = discord.Embed(
-            description=f"{user.mention} IQ is {iq_size:.2f}.", color=colour)
+            description=lang["commands"]["iq"]["returnSuccess"].format(
+                user=user.mention,
+                iq=f"{iq_size:.2f}"
+            ), color=colour)
         await ctx.send(embed=embed)
 
 

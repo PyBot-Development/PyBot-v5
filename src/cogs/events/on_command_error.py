@@ -24,12 +24,14 @@ class on_command_error(commands.Cog):
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
+        lang = support.getLanguageFileG(ctx.guild)
+
         time = datetime.datetime.utcnow()
         time = f"{time.hour:02d}:{time.minute:02d}:{time.second:02d}.{time.microsecond:02d}"
 
         if isinstance(error, commands.CommandOnCooldown):
             await ctx.send(embed=discord.Embed(
-                description=f"🕰️ That command is ratelimited, try again in {datetime.timedelta(seconds=error.retry_after)}.",
+                description=lang["errors"]["commandOnCooldown"].format(time=datetime.timedelta(seconds=error.retry_after)),
                 color=support.colours.red
             ),
                 delete_after=10)
@@ -39,7 +41,7 @@ class on_command_error(commands.Cog):
         elif isinstance(error, CommandNotFound):
             cmd = str(ctx.message.content).split(" ")[0]
             await ctx.send(embed=discord.Embed(
-                description=f"<:QuestionMark:885978535670464533> Command `{cmd}` not found.",
+                description=lang["errors"]["commandNotFound"].format(cmd=cmd),
                 color=support.colours.red
             ),
                 delete_after=10)
@@ -49,8 +51,7 @@ class on_command_error(commands.Cog):
                     commands.MissingPermissions)
         ):
             await ctx.send(embed=discord.Embed(
-                description=f"<:QuestionMark:885978535670464533> {error}".capitalize(
-                ),
+                description=lang["errors"]["missingRequiredArgument"].capitalize(),
                 color=support.colours.red
             ),
                 delete_after=10)

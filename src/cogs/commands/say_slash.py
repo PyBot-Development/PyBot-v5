@@ -20,14 +20,14 @@ class hello(commands.Cog):
     def __init__(self, client):
         self.client = client
     @checks.default()
-    @client.slash_command(description="Says something using bot")
+    @client.slash_command(description="commands.say.description")
     async def say(
         self,
         ctx,
         arg: Option(str, "What do you want me to say?"),
     ):
         await ctx.send(f"​{arg}".replace("@everyone", "@​everyone").replace("@here", "@​here"))
-
+        
 
 def setup(bot):
     bot.add_cog(hello(bot))

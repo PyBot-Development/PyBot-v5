@@ -20,10 +20,12 @@ genius = lyricsgenius.Genius("yGRPyGYBY3sCM_baVIGA4pBPLAg-_5EDRnOW5MqYMAjjq7rwFe
 
 
 class showLyrics(discord.ui.View):
-    def __init__(self, song):
+    def __init__(self, song, guild):
         super().__init__(timeout=420)
         self.message = None
         self.song = song
+        lang = support.getLanguageFileG(guild)
+
     async def on_timeout(self) -> None:
         self.show.disabled = True
         await self.message.edit(view=self)
@@ -51,15 +53,19 @@ class lyrics(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="Sends song lyrics")
+    @commands.command(description="commands.lyrics.description")
     async def lyrics(self, ctx, *, name):
+        
         song = genius.search_song(name)
         buttons = showLyrics(song)
+
+        lang = support.getLanguageFileG(ctx.guild)
+        
         #with open(f"{support.path}/data/temp/lyrics.txt", "w+") as file:
         #    file.write(song.lyrics)
         #await ctx.response.send_message(embed=discord.Embed(description=song.lyrics, color=support.colours.default), ephemeral=True)
         message = await ctx.send(embed=discord.Embed(
-            description=f"Click button to show `{song.title} - {song.artist}` lyrics", color=support.colours.default), view=buttons)
+            description=lang["commands"]["lyrics"]["returnSuccess"].format(title=song.title, artist=song.artist), color=support.colours.default), view=buttons)
         buttons.message = message
         #await ctx.send(file=discord.File(f"{support.path}/data/temp/lyrics.txt") embed=discord.Embed())
         #os.remove(f"{support.path}/data/temp/lyrics.txt")

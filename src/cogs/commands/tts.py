@@ -20,17 +20,18 @@ class tts(commands.Cog):
         self.client = client
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="Text to speech")
+    @commands.command(description="commands.tts.description")
     async def tts(self, ctx, *, text):
         async with ctx.typing():
+            lang = support.getLanguageFileG(ctx.guild)
             max = 1000
             if len(str(text)) > max:
-                await ctx.send(embed=discord.Embed(description=f"Max Characters is {max}", color=support.colours.default))
+                await ctx.send(embed=discord.Embed(description=lang["commands"]["tts"]["maxLenght"].format(max=max), color=support.colours.default))
                 return
             text = text.split("-l")
             text.append("en")
             file = await support.processing.tts(f"{text[0]}", f"{text[1]}".replace(" ", ""))
-            await ctx.send(file=discord.File(file), content="Text To Speech")
+            await ctx.send(file=discord.File(file), content=lang["commands"]["tts"]["returnSuccess"])
             os.remove(file)
 
 

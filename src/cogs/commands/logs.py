@@ -19,8 +19,9 @@ class logs(commands.Cog):
         self.client = client
 
     @checks.default()
+    @checks.admin()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(aliases=["log"], description="Sends bot logs")
+    @commands.command(aliases=["log"], description="commands.logs.description")
     async def logs(self, ctx):
         await ctx.send(file=discord.File(f"{support.path}/logs/{support.startup_date}.log"))
 

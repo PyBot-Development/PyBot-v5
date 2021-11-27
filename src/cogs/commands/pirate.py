@@ -21,15 +21,16 @@ class pirate(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="Makes a Pirate")
+    @commands.command(description="commands.pirate.description")
     async def pirate(self, ctx, user: discord.User=None):
         async with ctx.typing():
+            lang = support.getLanguageFileG(ctx.guild)
             if user is None:
                 user = ctx.message.author
 
             img = await support.processing.overlay_position(user.display_avatar, f"{support.path}/data/resources/templates/pirate.png", (110, 80), (105, 105), ctx.message.author.id, (320, 374))
             file = discord.File(img)
-            await ctx.send(embed=discord.Embed(description=f"{user.display_name} The Pirate 🏴‍☠️.", color=support.colours.default).set_image(url=f"attachment://{ctx.message.author.id}.png"), file=file)
+            await ctx.send(embed=discord.Embed(description=lang["commands"]["pirate"]["returnSuccess"].format(user=user.display_name), color=support.colours.default).set_image(url=f"attachment://{ctx.message.author.id}.png"), file=file)
             os.remove(img)
 
 

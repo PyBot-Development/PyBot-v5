@@ -1,0 +1,229 @@
+{   
+    "name": "English",
+    "commands": {
+        "alt": {
+            "description": "Gives you random alt",
+            "returnSuccess": ""
+        },
+        "ascii": {
+            "description": "Sends ASCII from Text",
+            "returnSuccess": ""
+        },
+        "balance": {
+            "description": "Shows user's money",
+            "returnSuccess": "{user}'s balance is `{current}`$"
+        },
+        "ban": {
+            "description": "Bans a fucking retard",
+            "returnSuccess": "🔨 Banned {user}, reason: `{reason}`."
+        },
+        "unban": {
+            "description": "Unbans user",
+            "returnSuccess": "🔨 Unbanned {user}."
+        },
+        "blackjack": {
+            "description": "Blackjack",
+            "returnSuccess": "",
+            "notEnoughMoney": "You don't have enough money",
+            "tooLowBet": "Minimum bet value is `1`$.",
+
+            "menu": "Black Jack\nYour Deck: {userDeck}\n`(Value: {userValue})`\n\nDealers Deck: {dealerCards}, ?.\n`(Value: {dealerValue})`\n",
+            "lost": "You lost `{value}`$",
+            "won": "You won `{value}`$",
+            "tie": "Tie! Money has been given back"
+        },
+        "can": {
+            "description": "Generates Can",
+            "returnSuccess": "Can.",
+            "maxLenght": "Text and Bottom Text max lenght is 20."
+        },
+        "check": {
+            "description": "Checks minecraft alt",
+            "returnSuccess": ""
+        },
+        "cum": {
+            "description": "Just check it out :trollface:",
+            "returnSuccess": "Cummies Uwu."
+        },
+        "data": {
+            "description": "Shows user data",
+            "returnSuccess": "ID: `{id}`\nName: `{name}`\nBalance: `{balance}`\nAdmin: `{admin}`\nBanned: `{banned}`\nBan Reason: `{reason}`\nBan Date: `{date}`\nBan Duration: `{duration}`"
+        },
+        "deop": {
+            "description": "Deops user",
+            "returnSuccess": "🔨 Deopped {user}."
+        },
+        "op": {
+            "description": "Ops user",
+            "returnSuccess": "🔨 Opped {user}."
+        },
+        "dm": {
+            "description": "DMs user",
+            "returnSuccess": "DMed {user}: `{message}`."
+        },
+        "doom": {
+            "description": "Makes Doom slayer",
+            "returnSuccess": "{user} The Doom Slayer."
+        },
+        "embed": {
+            "description": "Creates Embed Message",
+            "returnSuccess": ""
+        },
+        "give_money": {
+            "description": "Gives Money",
+            "returnSuccess": ""
+        },
+        "help": {
+            "description": "Help Command",
+            "returnSuccess": ""
+        },
+        "hex": {
+            "description": "Displays Hex Colour",
+            "returnSuccess": "Colour: #{colour}",
+            "notValidHex": "Hex code is invalid."
+        },
+        "idea": {
+            "description": "Sends bot idea giv ideas plz",
+            "returnSuccess": "Your idea was sent."
+        },
+        "info": {
+            "description": "Sends Info About Bot",
+            "returnSuccess": "Current Version: {version}\nV5 Creation Date: <t:1633946400:D>\n\nAuthor: {author}\nPrefix: {prefix}\nOnline For: {onlineFor}\nServers: {servers}\n\nCopyright: {copyright}\nLicense: {license}\n\nCommands Count: {commandsCount}"
+        },
+        "iq": {
+            "description": "Calculates your IQ",
+            "returnSuccess": "{user} IQ is {iq}."
+        },
+        "kill": {
+            "description": "Kills Someone",
+            "returnSuccess": ""
+        },
+        "leaderboard": {
+            "description": "Shows user money leaderboard",
+            "returnSuccess": ""
+        },
+        "logs": {
+            "description": "Sends commands logs",
+            "returnSuccess": ""
+        },
+        "lyrics": {
+            "description": "Sends song lyrics",
+            "returnSuccess": "Click button to show `{title} - {artist}` lyrics"
+        },
+        "meme": {
+            "description": "Sends random meme",
+            "returnSuccess": ""
+        },
+        "play": {
+            "description": "Plays Music in current Voice Channel",
+            "returnSuccess": "Added `{title}` to queue."
+        },
+        "now_playing": {
+            "description": "Sends currently playing song",
+            "returnSuccess": "Now Playing: `{title}`.",
+            "notPlayingAnything": "Im not playing anything."
+        },
+        "skip": {
+            "description": "Skips current song",
+            "returnSuccess": "{user} Skipped Current Song!"
+        },
+        "volume": {
+            "description": "Sets Music volume",
+            "returnSuccess": "{user} Changed volume to `{vol}`%",
+            "badValue": "Choose Value between 0.00/100.00"
+        },
+        "stop": {
+            "description": "Stops playing music",
+            "returnSuccess": ""
+        },
+        "connect": {
+            "description": "Connects to current voice channel",
+            "returnSuccess": "Connected to <{channel}>",
+            "timedout": "Connecting to <{channel}> timed out."
+        },
+        "nick": {
+            "description": "Changes bot Nickname",
+            "returnSuccess": "Changed nick to `{nick}`"
+        },
+        "pay": {
+            "description": "Pays User",
+            "returnSuccess": "You gave {user} `{value}`$. Your balance is now `{yourbalance}`$, and theirs is `{theirbalance}$`.",
+            "notEnoughMoney": "You don't have enough money"
+        },
+        "pirate": {
+            "description": "Makes a Pirate",
+            "returnSuccess": "{user} The Pirate 🏴‍☠️."
+        },
+        "pp": {
+            "description": "Calculates PP size",
+            "returnSuccess": "{user} PP size is {ppsize}cm/{inchsize}inch."
+        },
+        "rate": {
+            "description": "Rates stuff",
+            "returnSuccess1": "You're {picked_random}% {rate_thing}.",
+            "returnSuccess2": "{user} is {picked_random}% {rate_thing}."
+        },
+        "say": {
+            "description": "Sends text message as bot",
+            "returnSuccess": ""
+        },
+        "set_money": {
+            "description": "Sets user money",
+            "returnSuccess": ""
+        },
+        "tts": {
+            "description": "Text To Speech",
+            "returnSuccess": "Text to Speech",
+            "maxLenght": "Max lenght is {max}."
+        },
+        "whois": {
+            "description": "Shows user info",
+            "returnSuccess": "User: {mention}\nID: `{id}`\nCreated at: `{created_at}`\nStatus: `{status}`\nBot: `{bot}`\n\nJoined at: `{joined_at}`\nNick: `{nick}`\nBoosting since: `{premium_since}`\n\nRoles:\n{roles}"
+        },
+        "setLanguage": {
+            "description": "Sets language",
+            "returnSuccess": "Language is now {lang}",
+            "notFound": "Language {lang} is not supported yet."
+        },
+        "work": {
+            "description": "Gives you moni uwu",
+            "messages": [
+                "Your mom gave you `{ammount}`$",
+                "You work very hard and you get `{ammount}`$",
+                "You sold your virginity and got `{ammount}`$",
+                "You fucked your mom `{ammount}`$",
+                "You got your unemployment benefit +`{ammount}`$",
+                "Stonks `{ammount}`$",
+                "Your mom's girlfriend gave you `{ammount}`$",
+                "Virginity reward `{ammount}`$",
+                "You sold you cock and balls for `{ammount}`$",
+                "Hot milfs in your area gave you `{ammount}`$",
+                "You're 10M user visiting this site! Congratulations on your `{ammount}`$!",
+                "You Never gave up, Never let down, Never ran around and desert you, Never made you cry, Never said goodbye, Never told a lie and hurt you! `{ammount}`$",
+                "Umm.. You got `{ammount}`$ for.. ✈️🗼🗼 HOW IS THAT LEGAL?! WTF",
+                "You came and found `{ammount}`$",
+                "You found `{bitcoin}` bitcoins! (`{ammount}$`)"
+            ],
+            "returnSuccess": ""
+        },
+        "yt": {
+            "description": "Searches YouTube",
+            "returnSuccess": ""
+        }
+    },
+    "errors": {
+        "commandOnCooldown": "🕰️ That command is ratelimited, try again in {time}.",
+        "commandNotFound": "<:QuestionMark:885978535670464533> Command `{cmd}` not found.",
+        "missingRequiredArgument": "<:QuestionMark:885978535670464533> Missing Required Argument.",
+        "songProcessing": "There was an error processing your song.",
+        "invalidVoiceChat": "No channel to join. Please either specify a valid channel or join one."
+    },
+    "help": "Help",
+    "website": "Website",
+    "command": "Command List",
+    "discord": "Discord Server",
+    "notYourMenu": "Hmm.. I don't think that menu belongs to you.",
+    "info": "Info",
+    "page": "Page",
+    "leaderboard": "Leaderboard"
+}

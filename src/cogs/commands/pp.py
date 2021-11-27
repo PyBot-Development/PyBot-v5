@@ -21,8 +21,10 @@ class pp(commands.Cog):
         self.client = client
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(aliases=["dick", "penis", "cock"], description="Calculates pp size")
+    @commands.command(aliases=["dick", "penis", "cock"], description="commands.pp.description")
     async def pp(self, ctx, *, user: discord.User = None):
+        lang = support.getLanguageFileG(ctx.guild)
+        
         if user is None:
             user = ctx.message.author
         ids = [609551301730369547, 818236132578820126, 484170415720235009,
@@ -40,10 +42,10 @@ class pp(commands.Cog):
         colour = int(colour_hex, 16)
         try:
             embed = discord.Embed(
-                description=f"{user} pp size is {ppsize:.2f}cm/{ppsize_inch:.2f}inch.", color=colour)
+                description=lang["commands"]["pp"]["returnSuccess"].format(user=user, ppsize=f"{ppsize:.2f}", inchsize=f"{ppsize_inch:.2f}"), color=colour)
         except:
             embed = discord.Embed(
-                description=f"{user} pp size is {ppsize}cm/{ppsize_inch}inch.", color=colour)
+                description=lang["commands"]["pp"]["returnSuccess"].format(user=user, ppsize=f"{ppsize}", inchsize=f"{ppsize_inch}"), color=colour)
         await ctx.send(embed=embed)
 
 

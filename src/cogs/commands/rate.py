@@ -20,8 +20,9 @@ class rate(commands.Cog):
         self.client = client
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(aliases=['r', 'meter'], description="rates stuff")
+    @commands.command(aliases=['r', 'meter'], description="commands.rate.description")
     async def rate(self, ctx, user, *, rest_of_the_text=""):
+        lang = support.getLanguageFileG(ctx.guild)
         async with ctx.typing():
             picked_random = random.randint(0, 100)
             thestuff = {
@@ -36,22 +37,19 @@ class rate(commands.Cog):
                 rest_of_the_text = f"{rest_of_the_text}<a:uwu:870669804233707580>"
             try:
                 user = await commands.UserConverter().convert(ctx, user)
-                msg = f"{user} is {picked_random}% {rest_of_the_text}."
+                msg = lang["commands"]["rate"]["returnSuccess2"].format(picked_random=picked_random, rate_thing=rest_of_the_text, user=user)
                 colour_hex = thestuff.get(rest_of_the_text.lower(), '%02x%02x%02x' % (
                     int(picked_random*1.55), int(picked_random*2.55), int(picked_random*1.33)))
             except:
                 if user.startswith("@$"):
                     colour_hex = thestuff.get(rest_of_the_text.lower(), '%02x%02x%02x' % (
                         int(picked_random*1.55), int(picked_random*2.55), int(picked_random*1.33)))
-                    msg = f"{user[2:]} is {picked_random}% {rest_of_the_text}."
-                elif rest_of_the_text == "":
-                    colour_hex = thestuff.get(user.lower(), '%02x%02x%02x' % (
-                        int(picked_random*1.55), int(picked_random*2.55), int(picked_random*1.33)))
-                    msg = f"You're {picked_random}% {user}{rest_of_the_text}."
+                    msg = lang["commands"]["rate"]["returnSuccess2"].format(picked_random=picked_random, rate_thing=rest_of_the_text, user=user[2:])
                 else:
                     colour_hex = thestuff.get(user.lower(), '%02x%02x%02x' % (
                         int(picked_random*1.55), int(picked_random*2.55), int(picked_random*1.33)))
-                    msg = f"You're {picked_random}% {user} {rest_of_the_text}."
+                    msg = lang["commands"]["rate"]["returnSuccess1"].format(picked_random=picked_random, rate_thing=f"{user}{rest_of_the_text}")
+                    
             colour = int(colour_hex, 16)
             embed = discord.Embed(title=msg, color=colour)
             await ctx.send(embed=embed)

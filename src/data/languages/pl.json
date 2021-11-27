@@ -1,0 +1,229 @@
+{
+    "name": "Polski",
+    "commands": {
+        "alt": {
+            "description": "Daje ci losowy alt",
+            "returnSuccess": ""
+        },
+        "ascii": {
+            "description": "Wysyła ASCII z textu",
+            "returnSuccess": ""
+        },
+        "balance": {
+            "description": "Pokazuje pieniądze użytkownika",
+            "returnSuccess": "Saldo konta {user} to `{current}`$"
+        },
+        "ban": {
+            "description": "Banuje użytkownika",
+            "returnSuccess": "🔨 Zbanowano {user}, za: `{reason}`."
+        },
+        "unban": {
+            "description": "Odbanowywuje użytkownika",
+            "returnSuccess": "🔨 Odbanowano {user}."
+        },
+        "blackjack": {
+            "description": "Blackjack",
+            "returnSuccess": "",
+            "notEnoughMoney": "Nie masz tyle kasy",
+            "tooLowBet": "Minimalny zakład to `1`$.",
+
+            "menu": "Black Jack\nTwoja Talia: {userDeck}\n`(Wartość: {userValue})`\n\nTalia Bota: {dealerCards}, ?.\n`(Wartość: {dealerValue})`\n",
+            "lost": "Przegrałeś `{value}`$",
+            "won": "Wygrałeś `{value}`$",
+            "tie": "Remis. Pieniądze zostały zwrócone"
+        },
+        "can": {
+            "description": "Tworzy puszkę",
+            "returnSuccess": "Puszka.",
+            "maxLenght": "Maksymalna długość tekstu to 20."
+        },
+        "check": {
+            "description": "Sprawdza Alta",
+            "returnSuccess": ""
+        },
+        "cum": {
+            "description": "Sprawdź <:Trolled:895658757294530600>",
+            "returnSuccess": "Uwu."
+        },
+        "data": {
+            "description": "Pokazuje dane użytkownika",
+            "returnSuccess": "ID: `{id}`\nNazwa: `{name}`\nSaldo: `{balance}`\nAdmin: `{admin}`\nZbanowany: `{banned}`\nZbanowano za: `{reason}`\nData Zbanowania: `{date}`\nDługość Bana: `{duration}`"
+        },
+        "deop": {
+            "description": "Deopuje użytkownika",
+            "returnSuccess": "🔨 Zdeopowano {user}."
+        },
+        "op": {
+            "description": "Opuje użytkownika",
+            "returnSuccess": "🔨 Zopowano {user}."
+        },
+        "dm": {
+            "description": "Wysyła prywantą wiadomość użytkownikowi",
+            "returnSuccess": "Wysłano prywatną wiadomość do {user}: `{message}`."
+        },
+        "doom": {
+            "description": "Robi Doom slayer",
+            "returnSuccess": "{user} aka. Doom Slayer"
+        },
+        "embed": {
+            "description": "Tworzy wiadomość embed",
+            "returnSuccess": ""
+        },
+        "give_money": {
+            "description": "Daje kase",
+            "returnSuccess": ""
+        },
+        "help": {
+            "description": "Lista komend",
+            "returnSuccess": ""
+        },
+        "hex": {
+            "description": "Pokazuje kolor",
+            "returnSuccess": "Kolor: #{colour}",
+            "notValidHex": "Nieprawidłowy kod Hex."
+        },
+        "idea": {
+            "description": "Umożliwia danie pomysłu co dodać do bota",
+            "returnSuccess": "Twój pomysł został wysłany."
+        },
+        "info": {
+            "description": "Wysyła informacje o bocie",
+            "returnSuccess": "Wersja: {version}\nStworzenie Wersji V5: <t:1633946400:D>\n\nAutor: {author}\nPrefix: {prefix}\nOnline przez: {onlineFor}\nLiczba Serwerów: {servers}\n\nCopyright: {copyright}\nLicencja: {license}\n\nLiczba Komend: {commandsCount}"
+        },
+        "iq": {
+            "description": "Liczy twoje IQ",
+            "returnSuccess": "IQ {user} to {iq}"
+        },
+        "kill": {
+            "description": "Zabija użytkownika",
+            "returnSuccess": ""
+        },
+        "leaderboard": {
+            "description": "Pokazuje TOP pieniędzy",
+            "returnSuccess": ""
+        },
+        "logs": {
+            "description": "Wysyła logi",
+            "returnSuccess": ""
+        },
+        "lyrics": {
+            "description": "Wysyła tekst do piosenki",
+            "returnSuccess": "Kliknij przycisk aby pokazać tekst `{title} - {artist}`"
+        },
+        "meme": {
+            "description": "Wysyła losowego mema",
+            "returnSuccess": ""
+        },
+        "play": {
+            "description": "Puszca muzykę na czacie głosowym",
+            "returnSuccess": ""
+        },
+        "now_playing": {
+            "description": "Wysyła nazwę muzyki która teraz gra",
+            "returnSuccess": "Granie Teraz: `{title}`.",
+            "notPlayingAnything": "Nie gram teraz nic."
+        },
+        "skip": {
+            "description": "Pomija muzykę która teraz gra",
+            "returnSuccess": "{user} pominął obecną piosenke."
+        },
+        "volume": {
+            "description": "Ustawia głośność",
+            "returnSuccess": "{user} Zmienił głośność na `{vol}`%",
+            "badValue": "Wybierz głośność pomiędzy 0.00 a 100.00."
+        },
+        "stop": {
+            "description": "Przestaje grać muzyke",
+            "returnSuccess": ""
+        },
+        "connect": {
+            "description": "Dołącza do kanału głosowego w którym teraz jesteś",
+            "returnSuccess": "Dołączono do <{channel}>",
+            "timedout": "Nie udało się dołączyć do <{channel}>"
+        },
+        "nick": {
+            "description": "Zmienia nickname bota",
+            "returnSuccess": "Zmieniono nick na `{nick}`"
+        },
+        "pay": {
+            "description": "Przelewa pieniądze",
+            "returnSuccess": "",
+            "notEnoughMoney": "Nie masz tyle kasy"
+        },
+        "pirate": {
+            "description": "Tworzy pirata",
+            "returnSuccess": "{user} Pirat 🏴‍☠️."
+        },
+        "pp": {
+            "description": "Sprawdza długość twojego.. no",
+            "returnSuccess": "Wielkość {user} to {ppsize}cm/{inchsize}inch."
+        },
+        "rate": {
+            "description": "Takie tam coś lol",
+            "returnSuccess1": "Jesteś w {picked_random}% {rate_thing}.",
+            "returnSuccess2": "{user} jest w {picked_random}% {rate_thing}."
+        },
+        "say": {
+            "description": "Wysyła wiadomość",
+            "returnSuccess": ""
+        },
+        "set_money": {
+            "description": "Ustawia pieniądze",
+            "returnSuccess": ""
+        },
+        "tts": {
+            "description": "Tekst -> Audio",
+            "returnSuccess": "Zamieniono tekst na mowę",
+            "maxLenght": "Maksymalna długość tekstu to {max}."
+        },
+        "whois": {
+            "description": "Pokazuje info użytkownika",
+            "returnSuccess": "Użytkownik: {mention}\nID: `{id}`\nStworzono: `{created_at}`\nStatus: `{status}`\nBot: `{bot}`\n\nDołączył: `{joined_at}`\nNick: `{nick}`\nBoostuje od: `{premium_since}`\n\nRole:\n{roles}"
+        },
+        "setLanguage": {
+            "description": "Ustawia język",
+            "returnSuccess": "Ustawiono język na {lang}",
+            "notFound": "Język {lang} nie jest jeszcze dodany."
+        },
+        "work": {
+            "description": "Daje ci kase",
+            "messages": [
+                "Twoja stara dała ci `{ammount}`$",
+                "Cięzko pracujesz i zarabiasz `{ammount}`$",
+                "Sprzedałaś/eś swoje dziewicto za `{ammount}`$",
+                "Tu była wiadomość która nie brzmi dobrze po polsku `{ammount}`$",
+                "Zasiłek bezroboczy +`{ammount}`$",
+                "Stonks `{ammount}`$",
+                "Dostałaś/eś `{ammount}`$ od dziewczyny twojej mamy",
+                "Tak `{ammount}`$",
+                "Sprzedałeś swojego penisa `{ammount}`$",
+                "Gorące mamuśki z twojej okolicy dały ci `{ammount}`$",
+                "Ty być 100 milion użytkownik ta strona. twoja nagroda być `{ammount}`$!",
+                "You Never gave up, Never let down, Never ran around and desert you, Never made you cry, Never said goodbye, Never told a lie and hurt you! `{ammount}`$",
+                "Yyy.. Dostałaś/eś `{ammount}`$ za.. ✈️🗼🗼... Co?",
+                "Znalazłaś/eś `{ammount}`$",
+                "Znalazłaś/eś `{bitcoin}` bitcoinów! (`{ammount}$`)"
+            ],
+            "returnSuccess": ""
+        },
+        "yt": {
+            "description": "Wyszukuje na youtube",
+            "returnSuccess": ""
+        }
+    },
+    "errors": {
+        "commandOnCooldown": "🕰️ Nie możesz użyć teraz tej komendy spróboj ponownie za {time}.",
+        "commandNotFound": "<:QuestionMark:885978535670464533> Ta komenda nie istnieje.",
+        "missingRequiredArgument": "<:QuestionMark:885978535670464533> Brakuje wymaganego argumentu.",
+        "songProcessing": "Pojawił się błąd podczas przetwarzania twojej piosenki.",
+        "invalidVoiceChat": "Nie jesteś w żadnym voice chacie. Dołącz do jednego albo specyfikuj jego nazwę."
+    },
+    "help": "Pomoc",
+    "website": "Strona",
+    "command": "Lista Komend",
+    "discord": "Serwer Discord",
+    "notYourMenu": "Hmm... To menu nie należy do ciebie.",
+    "info": "Info",
+    "page": "Strona",
+    "leaderboard": "Top Pieniędzy"
+}
