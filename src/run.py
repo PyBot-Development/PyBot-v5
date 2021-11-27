@@ -14,7 +14,7 @@ __title__ = 'Pybot V5'
 __author__ = 'M2rsho'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2021-2021 M2rsho'
-__version__ = '1.4.0'
+__version__ = '1.4.1'
 
 from discord.ext import commands
 import discord
@@ -29,7 +29,8 @@ prefix = support.config.get("prefix")
 activity = discord.Game(name=f"{prefix}help, Version: {__version__}")
 
 client = commands.Bot(command_prefix=commands.when_mentioned_or(
-    prefix), case_insensitive=True, activity=activity)
+    "!"), case_insensitive=True, activity=activity)
+#    support.GetPrefix), case_insensitive=True, activity=activity)
 
 
 client.remove_command('help')
