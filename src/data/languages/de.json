@@ -1,10 +1,10 @@
 {   
-    "name": "German (by <@903014691406774275> & <@424598691542990858>)",
+    "name": "German (by <@903014691406774275>)",
     "version": "1.0.0",
     "for_version": "1.5.2",
     "commands": {
         "alt": {
-            "description": "Gibt dir einen zufälligen alt",
+            "description": "Gibt dir einen zufälligen Alt",
             "returnSuccess": ""
         },
         "ascii": {
@@ -29,7 +29,7 @@
             "notEnoughMoney": "Du hast nicht genug Geld",
             "tooLowBet": "Der Mindesteinsatzwert beträgt `1`$.",
 
-            "menu": "Black Jack\nDein Deck: {userDeck}\n`(Wert: {userValue})`\n\nHändlers Deck: {dealerCards}.\n`(Wert: {dealerValue})`\n",
+            "menu": "Black Jack\nDein Deck: {userDeck}\n`(Wert: {userValue})`\n\nDealers Deck: {dealerCards}.\n`(Wert: {dealerValue})`\n",
             "lost": "Du hast `{value}`$ verloren",
             "won": "Du hast `{value}`$ gewonnen",
             "tie": "Gleichstand! Dein Geld wurde dir zurückgegeben"
@@ -40,7 +40,7 @@
             "maxLenght": "Die maximale Länge von Text und unterem Text beträgt 20."
         },
         "check": {
-            "description": "Überprüft Minecraft alt",
+            "description": "Überprüft Minecraft Alt",
             "returnSuccess": ""
         },
         "cum": {
@@ -60,8 +60,8 @@
             "returnSuccess": "🔨 Op-ed {user}."
         },
         "dm": {
-            "description": "DMs Benutzer",
-            "returnSuccess": "DMed {user}: `{message}`."
+            "description": "Sendet Benutzern eine Nachricht",
+            "returnSuccess": "Hat {user}: `{message}` gesendet."
         },
         "doom": {
             "description": "Macht Doom Slayer",
@@ -85,7 +85,7 @@
             "notValidHex": "Hex-Code ist ungültig."
         },
         "idea": {
-            "description": "Sendet Bot-Ideen gebe Ideen bitte",
+            "description": "Sendet Bot-Ideen bitte",
             "returnSuccess": "Deine Idee wurde gesendet."
         },
         "info": {
@@ -110,7 +110,7 @@
         },
         "lyrics": {
             "description": "Sendet Songtexte",
-            "returnSuccess": "Klicken Sie auf die Schaltfläche zum Anzeigen `{title} - {artist}` Songtext"
+            "returnSuccess": "Klicke auf die Schaltfläche zum Anzeigen `{title} - {artist}` Songtext"
         },
         "meme": {
             "description": "Sendet einen zufälligen meme",
@@ -140,8 +140,8 @@
         },
         "connect": {
             "description": "Verbindet sich mit dem aktuellen Sprachkanal",
-            "returnSuccess": "Verbunden zu {channel}",
-            "timedout": "Zeitüberschreitung beim Verbinden mit {channel}."
+            "returnSuccess": "Verbunden zu <{channel}>",
+            "timedout": "Zeitüberschreitung beim Verbinden mit <{channel}>."
         },
         "nick": {
             "description": "Ändert den Spitznamen des Bots",
@@ -184,7 +184,7 @@
         },
         "setLanguage": {
             "description": "Legt die Sprache fest",
-            "returnSuccess": "Sprache ist nun {lang}",
+            "returnSuccess": "Die Sprache ist nun {lang}",
             "notFound": "Die Sprache {lang} wird noch nicht unterstützt."
         },
         "languages": {
@@ -204,7 +204,7 @@
                 "Jungfräulichkeitsbelohnung `{ammount}`$",
                 "Du hast dir Schwanz und Eier verkauft für `{ammount}`$",
                 "Heiße Milfs in deiner Nähe gaben dir `{ammount}`$",
-                "Sie sind 10 Millionen Benutzer, die diese Website besuchen! Glückwunsch zu deinen `{ammount}`$!",
+                "Du bist der 10-Millionste Benutzer, der diese Website besuchen! Glückwunsch zu deinen `{ammount}`$!",
                 "You Never gave up, Never let down, Never ran around and desert you, Never made you cry, Never said goodbye, Never told a lie and hurt you! `{ammount}`$",
                 "Ähm.. Du bekamst `{ammount}`$ für.. ✈️🗼🗼 WIE IST DAS LEGAL?! WTF",
                 "Du bist gekommen und hast gefunden `{ammount}`$",
@@ -218,11 +218,11 @@
         }
     },
     "errors": {
-        "commandOnCooldown": "🕰️ Dieser Befehl ist ratenbegrenzt, versuchen Sie es erneut in {time}.",
+        "commandOnCooldown": "🕰️ Dieser Befehl ist ratenbegrenzt, versuche es erneut in {time}.",
         "commandNotFound": "<:QuestionMark:885978535670464533> Befehl `{cmd}` nicht gefunden.",
         "missingRequiredArgument": "<:QuestionMark:885978535670464533> Erforderliches Argument fehlt.",
         "songProcessing": "Beim Verarbeiten deines Songs ist ein Fehler aufgetreten.",
-        "invalidVoiceChat": "Kein Kanal zum beitreten. Bitte entweder einen gültigen Kanal angeben oder einem beitreten."
+        "invalidVoiceChat": "Kein Kanal zum beitreten. Bitte gebe entweder einen gültigen Kanal an oder trete einem bei."
     },
     "help": "Hilfe",
     "website": "Website",
