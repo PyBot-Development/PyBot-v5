@@ -21,8 +21,16 @@ class pay(commands.Cog):
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="commands.pay.description")
-    async def pay(self, ctx, user: discord.User, value: int):
+    async def pay(self, ctx, user: discord.User, value):
         lang = support.getLanguageFileG(ctx.guild)
+        try:
+            value = float(value)
+        except:
+            raise(ValueError(lang["errors"]["notANumber"]))
+        
+        if value <= 0:
+            raise(ValueError(lang["errors"]["valueMustBeMoreThan0"]))
+
         if await support.globalData.getBalance(ctx.message.author) < value:
             await ctx.send(embed=discord.Embed(lang["commands"]["pay"]["notEnoughMoney"], colour=support.colours.red))
             return
@@ -30,7 +38,7 @@ class pay(commands.Cog):
         await support.globalData.addBalance(user, value)
         await ctx.send(embed=discord.Embed(description=lang["commands"]["pay"]["returnSuccess"].format(
             user=user.mention,
-            vaule=value,
+            value=value,
             yourbalance=await support.globalData.getBalance(ctx.message.author),
             theirbalance=await support.globalData.getBalance(user)
         ), colour=support.colours.default))

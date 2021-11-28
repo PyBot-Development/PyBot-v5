@@ -222,7 +222,9 @@
         "commandNotFound": "<:QuestionMark:885978535670464533> Command `{cmd}` not found.",
         "missingRequiredArgument": "<:QuestionMark:885978535670464533> Missing Required Argument.",
         "songProcessing": "There was an error processing your song.",
-        "invalidVoiceChat": "No channel to join. Please either specify a valid channel or join one."
+        "invalidVoiceChat": "No channel to join. Please either specify a valid channel or join one.",
+        "valueMustBeMoreThan0": "Value must be more than 0",
+        "notANumber": "Value is not a number"
     },
     "help": "Help",
     "website": "Website",
