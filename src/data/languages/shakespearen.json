@@ -1,0 +1,229 @@
+{   
+    "name": "English",
+    "commands": {
+        "alt": {
+            "description": "Gives thee by fate alt",
+            "returnSuccess": ""
+        },
+        "ascii": {
+            "description": "Sends ASCII from Text",
+            "returnSuccess": ""
+        },
+        "balance": {
+            "description": "Shows us'r's wage",
+            "returnSuccess": "{user}'s balanceth is `{current}`$"
+        },
+        "ban": {
+            "description": "Bans a fucking retard",
+            "returnSuccess": "🔨 Bann'd {user}, reasoneth: `{reason}`."
+        },
+        "unban": {
+            "description": "Unbans us'r",
+            "returnSuccess": "🔨 Unbann'd {user}."
+        },
+        "blackjack": {
+            "description": "Blackjack",
+            "returnSuccess": "",
+            "notEnoughMoney": "Thee has't not enow wage",
+            "tooLowBet": "Minimum did bet value is `1`$",
+
+            "menu": "Black Jack\nThy deck: {userDeck}\n`(Value: {userValue})`\n\nDealeth'rs deck Deck: {dealerCards}.\n`(Value: {dealerValue})`\n",
+            "lost": "Thee hath lost `{value}`$",
+            "won": "Thee wonneth `{value}`$",
+            "tie": "Tieth! wage hast been given backeth"
+        },
+        "can": {
+            "description": "Gen'rates soup can",
+            "returnSuccess": "Can.",
+            "maxLenght": "Text and bottom text max lenght is 20"
+        },
+        "check": {
+            "description": "Checks minecraft alt",
+            "returnSuccess": ""
+        },
+        "cum": {
+            "description": "Just checketh t out <:Trolled:895658757294530600>",
+            "returnSuccess": "Cummies Uwu."
+        },
+        "data": {
+            "description": "Shows us'r data",
+            "returnSuccess": "ID: `{id}`\nNameth: `{name}`\nBalanceth: `{balance}`\nAdmin: `{admin}`\nBann'd: `{banned}`\nBaneth reasoneth: `{reason}`\nBaneth date: `{date}`\nBaneth duration: `{duration}`"
+        },
+        "deop": {
+            "description": "Deops us'r",
+            "returnSuccess": "🔨 Deopp'd {user}."
+        },
+        "op": {
+            "description": "Ops us'r",
+            "returnSuccess": "🔨 Opp'd {user}."
+        },
+        "dm": {
+            "description": "Dms us'r",
+            "returnSuccess": "Dm'd {user}: `{message}`."
+        },
+        "doom": {
+            "description": "Maketh doom slayeth'r",
+            "returnSuccess": "{user} The doom slayeth'r."
+        },
+        "embed": {
+            "description": "Creates emb'd message",
+            "returnSuccess": ""
+        },
+        "give_money": {
+            "description": "Gives wage",
+            "returnSuccess": ""
+        },
+        "help": {
+            "description": "Holp commandeth",
+            "returnSuccess": ""
+        },
+        "hex": {
+            "description": "Displays hex col'r",
+            "returnSuccess": "col'r: #{colour}",
+            "notValidHex": "Hex code is invalid."
+        },
+        "idea": {
+            "description": "Sends bot idea giveth ideas prithee",
+            "returnSuccess": "Thy idea wast hath sent."
+        },
+        "info": {
+            "description": "Sends info about bot",
+            "returnSuccess": "Current v'rsion: {version}\nV5 creation date: <t:1633946400:D>\n\nAuth'r: {author}\nPrefix: {prefix}\nOnline f'r: {onlineFor}\nS'rv'rs: {servers}\n\nCopyright: {copyright}\nLicenseth: {license}\n\nHests counteth: {commandsCount}"
+        },
+        "iq": {
+            "description": "Calculates thy IQ",
+            "returnSuccess": "{user} IQ is {iq}."
+        },
+        "kill": {
+            "description": "Murd'rs someone",
+            "returnSuccess": ""
+        },
+        "leaderboard": {
+            "description": "Shows us'r wage leadeth'rboard",
+            "returnSuccess": ""
+        },
+        "logs": {
+            "description": "Sends hests logs",
+            "returnSuccess": ""
+        },
+        "lyrics": {
+            "description": "Sends song lyrics",
+            "returnSuccess": "Click button to showeth `{title} - {artist}` lyrics"
+        },
+        "meme": {
+            "description": "Sends by fate meme",
+            "returnSuccess": ""
+        },
+        "play": {
+            "description": "Plays Music in current Voice Channel",
+            "returnSuccess": "Did add `{title}` to queueth."
+        },
+        "now_playing": {
+            "description": "Sends currently playing song",
+            "returnSuccess": "Anon playing: `{title}`.",
+            "notPlayingAnything": "Im not playing aught."
+        },
+        "skip": {
+            "description": "Skips current song",
+            "returnSuccess": "{user} Skipp'd current song!"
+        },
+        "volume": {
+            "description": "Sets Music volume",
+            "returnSuccess": "{user} Hath changed volume to `{vol}`%",
+            "badValue": "Chooseth value between 0. 00/100. 00"
+        },
+        "stop": {
+            "description": "Stops playing music",
+            "returnSuccess": ""
+        },
+        "connect": {
+            "description": "Connects to current voice channel",
+            "returnSuccess": "Did connect to <{channel}>",
+            "timedout": "Connecting to <{channel}> tim'd out."
+        },
+        "nick": {
+            "description": "Changes bot nickname",
+            "returnSuccess": "Hath changed nick to `{nick}`"
+        },
+        "pay": {
+            "description": "Pays us'r",
+            "returnSuccess": "Thee gaveth {user} `{value}`$. Thy balanceth is anon `{yourbalance}`$, and theirs is `{theirbalance}$`.",
+            "notEnoughMoney": "Thee has't not enow wage"
+        },
+        "pirate": {
+            "description": "Maketh a pirate",
+            "returnSuccess": "{user} The pirate 🏴‍☠️."
+        },
+        "pp": {
+            "description": "Calculates penis size",
+            "returnSuccess": "{user} Penis size is {ppsize}cm/{inchsize}inch."
+        },
+        "rate": {
+            "description": "Rates stuffeth",
+            "returnSuccess1": "Thou art {picked_random}% {rate_thing}.",
+            "returnSuccess2": "{user} is {picked_random}% {rate_thing}."
+        },
+        "say": {
+            "description": "Sends text message as bot",
+            "returnSuccess": ""
+        },
+        "set_money": {
+            "description": "Sets us'r wage",
+            "returnSuccess": ""
+        },
+        "tts": {
+            "description": "Text To Speech",
+            "returnSuccess": "Text to Speech",
+            "maxLenght": "Max lenght is {max}."
+        },
+        "whois": {
+            "description": "Shows us'r info",
+            "returnSuccess": "Us'r: {mention}\nID: `{id}`\nDid create at: `{created_at}`\nStatus: `{status}`\nBot: `{bot}`\n\nDid join at: `{joined_at}`\nNick: `{nick}`\nBoosting since: `{premium_since}`\n\nRoles:\n{roles}"
+        },
+        "setLanguage": {
+            "description": "Sets language",
+            "returnSuccess": "Language is anon {lang}",
+            "notFound": "Language {lang} is not supp'rt'd yet."
+        },
+        "work": {
+            "description": "Gives thee wage UwU",
+            "messages": [
+                "your mother gaveth thee `{ammount}`$",
+                "you w'rk v'ry hard and thee receiveth `{ammount}`$",
+                "you did sell thy maidenhead and did get `{ammount}`$",
+                "you fuck'd thy mother `{ammount}`$",
+                "you did get thy unemployment benefit +`{ammount}`$",
+                "stonks `{ammount}`$",
+                "your mother's girlfriend gaveth thee `{ammount}`$",
+                "virginity reward `{ammount}`$",
+                "you did sell thee cock and balls f'r `{ammount}`$",
+                "hot milfs in thy area gaveth thee `{ammount}`$",
+                "you're 10m us'r visiting this site! congratulations on thy `{ammount}`$!",
+                "you nev'r gaveth up, nev'r alloweth down, nev'r ranneth 'round and des'rt thee, nev'r madeth thee caterwauling, nev'r hath said goodbye, nev'r toldeth a forswear and did hurt thee! `{ammount}`$",
+                "umm.  Thee did get `{ammount}`$ f'r.  ✈️🗼🗼 how is yond legal?! fie",
+                "you cameth and hath found `{ammount}`$",
+                "you hath found `{bitcoin}` bitcoins! (`{ammount}$`)"
+            ],
+            "returnSuccess": ""
+        },
+        "yt": {
+            "description": "Searches YouTube",
+            "returnSuccess": ""
+        }
+    },
+    "errors": {
+        "commandOnCooldown": "🕰️ Yond commandeth is ratelimited, tryeth again in {time}.",
+        "commandNotFound": "<:QuestionMark:885978535670464533> Commandeth `{cmd}` not hath found",
+        "missingRequiredArgument": "<:QuestionMark:885978535670464533> Missing requir'd argument.",
+        "songProcessing": "Th're wast an 'rr'r processing thy song",
+        "invalidVoiceChat": "Nay channel to joineth.  Prithee eith'r specifyeth a valid channel 'r joineth one"
+    },
+    "help": "Holp",
+    "website": "Website",
+    "command": "Commandeth listeth",
+    "discord": "Disc'rd s'rv'r",
+    "notYourMenu": "Hmm.  I bethink not yond menu belongs to thee",
+    "info": "Info",
+    "page": "Page",
+    "leaderboard": "Leadeth'rboard"
+}
