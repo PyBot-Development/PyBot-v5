@@ -36,7 +36,7 @@ class info(commands.Cog):
                 version=__version__,
                 author=author.mention,
                 prefix=support.prefix,
-                onlineFor=onlineFor,
+                onlineFor=timedelta(seconds=math.floor(onlineFor)),
                 servers=len(self.client.guilds),
                 license=__license__,
                 copyright=__copyright__,

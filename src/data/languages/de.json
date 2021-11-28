@@ -1,5 +1,5 @@
 {   
-    "name": "German (by <@903014691406774275>)",
+    "name": "German (by <@903014691406774275> & <@424598691542990858>)",
     "version": "1.0.0",
     "for_version": "1.5.2",
     "commands": {
@@ -26,7 +26,7 @@
         "blackjack": {
             "description": "Blackjack",
             "returnSuccess": "",
-            "notEnoughMoney": "Do hast nicht genug Geld",
+            "notEnoughMoney": "Du hast nicht genug Geld",
             "tooLowBet": "Der Mindesteinsatzwert beträgt `1`$.",
 
             "menu": "Black Jack\nDein Deck: {userDeck}\n`(Wert: {userValue})`\n\nHändlers Deck: {dealerCards}.\n`(Wert: {dealerValue})`\n",
