@@ -22,6 +22,7 @@ class leaderboardButtons(discord.ui.View):
         self.message = None
 
         self.lang = support.getLanguageFileG(guild)
+
         users = support.globalData.getAllUsers_sync()
         users = sorted(users, key=lambda user: user[2], reverse=True)
         lboard = [f"{users.index(user)+1}. <@{user[0]}>: {user[2]}$" for user in users]
@@ -55,7 +56,7 @@ class leaderboardButtons(discord.ui.View):
         await interaction.response.edit_message(embed=discord.Embed(
             title=self.lang["leaderboard"],
             description=f"""
-[{self.lang['website']}](https://py-bot.cf/) | [{self.lang['commands']}](https://py-bot.cf/commands) | [{self.lang['discord']}](https://discord.gg/dfKMTx9Eea)
+[{self.lang['website']}](https://py-bot.cf/) | [{self.lang['command']}](https://py-bot.cf/commands) | [{self.lang['discord']}](https://discord.gg/dfKMTx9Eea)
 
 {self.commands[self.page]}""",
             color=support.colours.default
@@ -72,7 +73,7 @@ class leaderboardButtons(discord.ui.View):
         await interaction.response.edit_message(embed=discord.Embed(
             title=self.lang["leaderboard"],
             description=f"""
-[{self.lang['website']}](https://py-bot.cf/) | [{self.lang['commands']}](https://py-bot.cf/commands) | [{self.lang['discord']}](https://discord.gg/dfKMTx9Eea)
+[{self.lang['website']}](https://py-bot.cf/) | [{self.lang['command']}](https://py-bot.cf/commands) | [{self.lang['discord']}](https://discord.gg/dfKMTx9Eea)
 
 {self.commands[self.page]}""",
             color=support.colours.default
@@ -104,7 +105,7 @@ class leaderboardButtons(discord.ui.View):
         await interaction.response.edit_message(embed=discord.Embed(
             title=self.lang["leaderboard"],
             description=f"""
-[{self.lang['website']}](https://py-bot.cf/) | [{self.lang['commands']}](https://py-bot.cf/commands) | [{self.lang['discord']}](https://discord.gg/dfKMTx9Eea)
+[{self.lang['website']}](https://py-bot.cf/) | [{self.lang['command']}](https://py-bot.cf/commands) | [{self.lang['discord']}](https://discord.gg/dfKMTx9Eea)
 
 {self.commands[self.page]}""",
             color=support.colours.default
@@ -121,7 +122,7 @@ class leaderboardButtons(discord.ui.View):
         await interaction.response.edit_message(embed=discord.Embed(
             title=self.lang["leaderboard"],
             description=f"""
-[{self.lang['website']}](https://py-bot.cf/) | [{self.lang['commands']}](https://py-bot.cf/commands) | [{self.lang['discord']}](https://discord.gg/dfKMTx9Eea)
+[{self.lang['website']}](https://py-bot.cf/) | [{self.lang['command']}](https://py-bot.cf/commands) | [{self.lang['discord']}](https://discord.gg/dfKMTx9Eea)
 
 {self.commands[self.page]}""",
             color=support.colours.default
@@ -140,27 +141,27 @@ class leaderboard(commands.Cog):
         users = sorted(users, key=lambda user: user[2], reverse=True)
         lboard = [f"{users.index(user)+1}. <@{user[0]}>: {user[2]}$" for user in users]
 
-        self.commands = []
+        commands = []
         n = 10
         for index in range(0, len(lboard), n):
             page = ''.join(f"{item}\n" for item in lboard[index: index + n])
-            self.commands.append(page)
+            commands.append(page)
 
-        self.maxPages = int(len(self.commands)) - 1
-        self.page = 0
+        maxPages = int(len(commands)) - 1
+        page = 0
 
         view = leaderboardButtons(self.client, ctx.message.author, ctx.guild)
 
         lang = view.lang
-    
-        message=await ctx.send(embed=discord.Embed(
-            title=self.lang["leaderboard"],
-            description=f"""
-[{lang["website"]}](https://py-bot.cf/) | [{lang["commands"]}](https://py-bot.cf/commands) | [{lang["discord"]}](https://discord.gg/dfKMTx9Eea)
 
-{self.commands[self.page]}""",
+        message=await ctx.send(embed=discord.Embed(
+            title=lang["leaderboard"],
+            description=f"""
+[{lang["website"]}](https://py-bot.cf/) | [{lang["command"]}](https://py-bot.cf/commands) | [{lang["discord"]}](https://discord.gg/dfKMTx9Eea)
+
+{commands[page]}""",
             color=support.colours.default
-        ).set_footer(text=f'{lang["page"]}: {self.page+1}/{self.maxPages+1}'), view=view)
+        ).set_footer(text=f'{lang["page"]}: {page+1}/{maxPages+1}'), view=view)
         view.message=message
 
 
