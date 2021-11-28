@@ -19,6 +19,7 @@ from cogs import checks
 class hello(commands.Cog):
     def __init__(self, client):
         self.client = client
+        
     @checks.default()
     @client.slash_command(description="commands.say.description")
     async def say(

@@ -18,6 +18,7 @@ class data(commands.Cog):
     def __init__(self, client):
         self.client = client
 
+    @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="commands.data.description")
     async def data(self, ctx, user: discord.User):
         async with ctx.typing():

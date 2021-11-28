@@ -19,6 +19,7 @@ class unban(commands.Cog):
         self.client = client
 
     @checks.admin()
+    @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="commands.unban.description")
     async def unban(self, ctx, user: discord.User):
         async with ctx.typing():

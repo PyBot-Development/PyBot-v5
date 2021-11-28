@@ -20,6 +20,7 @@ class ban(commands.Cog):
         self.client = client
 
     @checks.admin()
+    @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="commands.ban.description")
     async def ban(self, ctx, user: discord.User, *, reason):
         lang = support.getLanguageFileG(ctx.guild)

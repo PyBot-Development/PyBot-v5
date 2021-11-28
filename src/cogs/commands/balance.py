@@ -20,6 +20,7 @@ class balance(commands.Cog):
         self.client = client
 
     @checks.default()
+    @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="commands.balance.description", aliases=["bal"])
     async def balance(self, ctx, user: discord.User = None):
         lang = support.getLanguageFileG(ctx.guild)
