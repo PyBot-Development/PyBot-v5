@@ -14,7 +14,7 @@ __title__ = 'Pybot V5'
 __author__ = 'M2rsho'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2021-2021 M2rsho'
-__version__ = '1.5.5'
+__version__ = '1.6.0'
 
 from discord.ext import commands
 import discord
@@ -29,7 +29,7 @@ prefix = support.config.get("prefix")
 activity = discord.Game(name=f"{prefix}help, Version: {__version__}")
 
 client = commands.Bot(command_prefix=commands.when_mentioned_or(
-    "!"), case_insensitive=True, activity=activity)
+    "b!"), case_insensitive=True, activity=activity)
 #    support.GetPrefix), case_insensitive=True, activity=activity)
 
 
