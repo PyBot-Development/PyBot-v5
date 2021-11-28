@@ -222,7 +222,9 @@
         "commandNotFound": "<:QuestionMark:885978535670464533> commando `{cmd}` no encontrado.",
         "missingRequiredArgument": "<:QuestionMark:885978535670464533> Faltan argumentos requeridos.",
         "songProcessing": "Hubo un error procesando tu cancion.",
-        "invalidVoiceChat": "No hay canal para unir, especifica uno."
+        "invalidVoiceChat": "No hay canal para unir, especifica uno.",
+        "valueMustBeMoreThan0": "Value must be more than 0",
+        "notANumber": "Value is not a number"
     },
     "help": "Ayuda",
     "website": "Sitio",

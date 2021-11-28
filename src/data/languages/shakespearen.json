@@ -222,7 +222,9 @@
         "commandNotFound": "<:QuestionMark:885978535670464533> Commandeth `{cmd}` not hath found",
         "missingRequiredArgument": "<:QuestionMark:885978535670464533> Missing requir'd argument.",
         "songProcessing": "Th're wast an 'rr'r processing thy song",
-        "invalidVoiceChat": "Nay channel to joineth.  Prithee eith'r specifyeth a valid channel 'r joineth one"
+        "invalidVoiceChat": "Nay channel to joineth.  Prithee eith'r specifyeth a valid channel 'r joineth one",
+        "valueMustBeMoreThan0": "Value wilt beest m're than 0",
+        "notANumber": "Value is not a numb'r"
     },
     "help": "Holp",
     "website": "Website",

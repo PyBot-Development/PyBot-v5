@@ -222,7 +222,9 @@
         "commandNotFound": "<:QuestionMark:885978535670464533> Ta komenda nie istnieje.",
         "missingRequiredArgument": "<:QuestionMark:885978535670464533> Brakuje wymaganego argumentu.",
         "songProcessing": "Pojawił się błąd podczas przetwarzania twojej piosenki.",
-        "invalidVoiceChat": "Nie jesteś w żadnym voice chacie. Dołącz do jednego albo specyfikuj jego nazwę."
+        "invalidVoiceChat": "Nie jesteś w żadnym voice chacie. Dołącz do jednego albo specyfikuj jego nazwę.",
+        "valueMustBeMoreThan0": "Wratość musi być większa niż 0",
+        "notANumber": "Wartość nie jest liczbą"
     },
     "help": "Pomoc",
     "website": "Strona",

@@ -222,7 +222,9 @@
         "commandNotFound": "<:QuestionMark:885978535670464533> Befehl `{cmd}` nicht gefunden.",
         "missingRequiredArgument": "<:QuestionMark:885978535670464533> Erforderliches Argument fehlt.",
         "songProcessing": "Beim Verarbeiten deines Songs ist ein Fehler aufgetreten.",
-        "invalidVoiceChat": "Kein Kanal zum beitreten. Bitte gebe entweder einen gültigen Kanal an oder trete einem bei."
+        "invalidVoiceChat": "Kein Kanal zum beitreten. Bitte gebe entweder einen gültigen Kanal an oder trete einem bei.",
+        "valueMustBeMoreThan0": "Value must be more than 0",
+        "notANumber": "Value is not a number"
     },
     "help": "Hilfe",
     "website": "Website",
