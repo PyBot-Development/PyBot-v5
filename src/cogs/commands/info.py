@@ -39,6 +39,7 @@ class info(commands.Cog):
                 onlineFor=onlineFor,
                 servers=len(self.client.guilds),
                 license=__license__,
+                copyright=__copyright__,
                 commandsCount=len(self.client.commands)
             ), colour=support.colours.default))
 
