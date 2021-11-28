@@ -1,7 +1,7 @@
 {   
     "name": "Spanish (by <@601103738924695582>)",
     "version": "1.0.0",
-    "for_version": "1.5.2",
+    "for_version": "1.5.5",
     "commands": {
         "alt": {
             "description": "Te da una cuenta de Minecraft",
@@ -223,8 +223,8 @@
         "missingRequiredArgument": "<:QuestionMark:885978535670464533> Faltan argumentos requeridos.",
         "songProcessing": "Hubo un error procesando tu cancion.",
         "invalidVoiceChat": "No hay canal para unir, especifica uno.",
-        "valueMustBeMoreThan0": "Value must be more than 0",
-        "notANumber": "Value is not a number"
+        "valueMustBeMoreThan0": "El valor debe ser mayor que 0",
+        "notANumber": "El valor no es un número"
     },
     "help": "Ayuda",
     "website": "Sitio",

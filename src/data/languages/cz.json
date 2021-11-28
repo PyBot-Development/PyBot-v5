@@ -1,7 +1,7 @@
 {   
     "name": "Czech (by <@503629068319588407>)",
     "version": "1.0.0",
-    "for_version": "1.5.2",
+    "for_version": "1.5.5",
     "commands": {
         "alt": {
             "description": "Dá ti náhodnej alt",
@@ -223,8 +223,8 @@
         "missingRequiredArgument": "<:QuestionMark:885978535670464533> nenalezen správný argument.",
         "songProcessing": "Zpěvák asi onemocněl, píseň bohužel neuslyšíš",
         "invalidVoiceChat": "Nenalezen channel k připojení. Specifikuj funkční channel pro připojení.",
-        "valueMustBeMoreThan0": "Value must be more than 0",
-        "notANumber": "Value is not a number"
+        "valueMustBeMoreThan0": "Hodnota musí být větší než 0",
+        "notANumber": "Hodnota není číslo"
     },
     "help": "Pomoc",
     "website": "Webová stránka",
