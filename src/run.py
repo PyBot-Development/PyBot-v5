@@ -29,7 +29,7 @@ prefix = support.config.get("prefix")
 activity = discord.Game(name=f"{prefix}help, Version: {__version__}")
 
 client = commands.Bot(command_prefix=commands.when_mentioned_or(
-    "b!"), case_insensitive=True, activity=activity)
+    "!"), case_insensitive=True, activity=activity)
 #    support.GetPrefix), case_insensitive=True, activity=activity)
 
 
