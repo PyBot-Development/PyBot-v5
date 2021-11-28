@@ -1,7 +1,7 @@
 {   
     "name": "Spanish (by <@601103738924695582>)",
     "version": "1.0.0",
-    "for_version": "1.5.0",
+    "for_version": "1.5.2",
     "commands": {
         "alt": {
             "description": "Te da una cuenta de Minecraft",
@@ -140,8 +140,8 @@
         },
         "connect": {
             "description": "Se conecta en canal actual",
-            "returnSuccess": "Me conectado a <{channel}>",
-            "timedout": "La coneccion a <{channel}> ha expirado."
+            "returnSuccess": "Me conectado a {channel}",
+            "timedout": "La coneccion a {channel} ha expirado."
         },
         "nick": {
             "description": "Canbia en nombre del bot",
@@ -188,8 +188,8 @@
             "notFound": "{lang} todavia no es soportado."
         },
         "languages": {
-            "description": "Shows available languages",
-            "returnSuccess": "Language list"
+            "description": "Enseña lenguajes disponibles",
+            "returnSuccess": "Lista de lenguajes"
         },
         "work": {
             "description": "Te da dinero uwu",
