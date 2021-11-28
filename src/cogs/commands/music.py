@@ -114,7 +114,7 @@ class MusicPlayer:
             self._guild.voice_client.play(
                 source, after=lambda _: self.bot.loop.call_soon_threadsafe(self.next.set))
             self.np = await self._channel.send(embed=discord.Embed(
-                description=lang["commands"]["now_playing"]["returnSuccess"].format(source.title), color=support.colours.default
+                description=lang["commands"]["now_playing"]["returnSuccess"].format(title=source.title), color=support.colours.default
             ))
             await self.next.wait()
             source.cleanup()
@@ -213,7 +213,7 @@ class Music(commands.Cog):
             pass
 
         player.np = await ctx.send(embed=discord.Embed(
-            description=lang["commands"]["now_playing"]["returnSuccess"].format(vc.source.title),
+            description=lang["commands"]["now_playing"]["returnSuccess"].format(title=vc.source.title),
             color=support.colours.default
         ))
     @checks.default()
@@ -293,15 +293,15 @@ class Music(commands.Cog):
                 await vc.move_to(channel)
             except asyncio.TimeoutError:
                 raise VoiceConnectionError(
-                    lang["commands"]["connect"]["timedout"].format(channel=channel))
+                    lang["commands"]["connect"]["timedout"].format(channel=channel.mention))
         else:
             try:
                 await channel.connect()
             except asyncio.TimeoutError:
                 raise VoiceConnectionError(
-                    lang["commands"]["connect"]["timedout"].format(channel=channel))
+                    lang["commands"]["connect"]["timedout"].format(channel=channel.mention))
         await ctx.send(embed=discord.Embed(
-            description=lang["commands"]["connect"]["returnSuccess"].format(channel=channel), color=support.colours.default
+            description=lang["commands"]["connect"]["returnSuccess"].format(channel=channel.mention), color=support.colours.default
         ), delete_after=10)
 
 
