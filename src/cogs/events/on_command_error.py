@@ -53,9 +53,7 @@ class on_command_error(commands.Cog):
                 delete_after=10)
 
         elif isinstance(
-            error, (commands.MissingRequiredArgument,
-                    commands.MissingPermissions)
-        ):
+            error, commands.MissingRequiredArgument):
             await ctx.send(embed=discord.Embed(
                 description=lang["errors"]["missingRequiredArgument"].capitalize(),
                 color=support.colours.red
