@@ -19,6 +19,7 @@ class op(commands.Cog):
         self.client = client
 
     @checks.admin()
+    @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="commands.op.description")
     async def op(self, ctx, user: discord.User):
         async with ctx.typing():

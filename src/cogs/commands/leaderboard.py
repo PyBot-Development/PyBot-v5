@@ -12,7 +12,7 @@ from discord.ext import commands
 import discord
 import support
 from cogs import checks
-
+from discord.ext.commands import cooldown, BucketType
 class leaderboardButtons(discord.ui.View):
     def __init__(self, client, author, guild):
         super().__init__(timeout=20)
@@ -132,6 +132,7 @@ class leaderboard(commands.Cog):
         self.client = client
 
     @checks.default()
+    @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="commands.leaderboard.descriptions", aliases=["lb"])
     async def leaderboard(self, ctx):
 

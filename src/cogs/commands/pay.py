@@ -13,13 +13,13 @@ import discord
 from discord.ext.commands.core import is_owner
 import support
 from discord.ext.commands import cooldown, BucketType
-
+from cogs import checks
 
 class pay(commands.Cog):
     def __init__(self, client):
         self.client = client
-
-    @is_owner()
+    @checks.default()
+    @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="commands.pay.description")
     async def pay(self, ctx, user: discord.User, value: int):
         lang = support.getLanguageFileG(ctx.guild)

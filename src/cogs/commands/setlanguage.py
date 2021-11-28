@@ -18,6 +18,7 @@ class setLanguage(commands.Cog):
     def __init__(self, client):
         self.client = client
 
+    @cooldown(1, support.cooldown, BucketType.user)
     @commands.has_permissions(administrator=True)
     @commands.command(description="commands.setLanguage.description", aliases=["language", "set_language"])
     async def setLanguage(self, ctx, language):

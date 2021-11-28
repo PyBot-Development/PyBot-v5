@@ -1,0 +1,235 @@
+{   
+    "name": "Czech (by <@503629068319588407>)",
+    "version": "1.0.0",
+    "for_version": "1.5.0",
+    "commands": {
+        "alt": {
+            "description": "Dá ti náhodnej alt",
+            "returnSuccess": ""
+        },
+        "ascii": {
+            "description": "Pošle ASCII z textu",
+            "returnSuccess": ""
+        },
+        "balance": {
+            "description": "Ukáže prachy uživatele",
+            "returnSuccess": "{user} má {current}`$"
+        },
+        "ban": {
+            "description": "Zabanuje uplný retardy",
+            "returnSuccess": "🔨 Zabanován {user}, důvod: `{reason}`."
+        },
+        "unban": {
+            "description": "Odbanovává",
+            "returnSuccess": "🔨 Unbanned {user}."
+        },
+        "blackjack": {
+            "description": "Blackjack",
+            "returnSuccess": "",
+            "notEnoughMoney": "Nemáš dost peněz",
+            "tooLowBet": "Minimální částka je `1`$.",
+
+            "menu": "Black Jack\nYour Deck: {userDeck}\n`(Value: {userValue})`\n\nDealers Deck: {dealerCards}.\n`(Value: {dealerValue})`\n",
+            "lost": "Prohrál si `{value}`$",
+            "won": "Vyhrál jsi `{value}`$",
+            "tie": "Remíza! Tvoje prachy se ti vrátí zpátky!"
+        },
+        "can": {
+            "description": "Generuje plechovku",
+            "returnSuccess": "Plechovka.",
+            "maxLenght": "Maximální délka spodního a horního textů je 20."
+        },
+        "check": {
+            "description": "Ukáže minecraft alt",
+            "returnSuccess": ""
+        },
+        "cum": {
+            "description": "Zkus to :trollface:",
+            "returnSuccess": "{user} je mrdka Uwu."
+        },
+        "data": {
+            "description": "Zobrazí data o uživateli",
+            "returnSuccess": "ID: `{id}`\nJméno: `{name}`\nPrachy: `{balance}$`\nAdmin: `{admin}`\nZabanován: `{banned}`\nDůvod banu: `{reason}`\nČas banu: `{date}`\nBude zabanován do: `{duration}`"
+        },
+        "deop": {
+            "description": "Odebere OP",
+            "returnSuccess": "🔨 OP bylo odebráno uživeteli{user}."
+        },
+        "op": {
+            "description": "Uživatelé s OP",
+            "returnSuccess": "🔨 Bylo dáno OP uživateli {user}."
+        },
+        "dm": {
+            "description": "Vzkazuje zprávu přes DM ",
+            "returnSuccess": " {user}: `{message}`."
+        },
+        "doom": {
+            "description": "Udědělá z uživatele Doom vraha",
+            "returnSuccess": "{user} je ted Doom vrah."
+        },
+        "embed": {
+            "description": "Stvoří vloženou zprávu",
+            "returnSuccess": ""
+        },
+        "give_money": {
+            "description": "Dá peníze",
+            "returnSuccess": ""
+        },
+        "help": {
+            "description": "Pomůže v nesnázích",
+            "returnSuccess": ""
+        },
+        "hex": {
+            "description": "Ukáže Hex barev",
+            "returnSuccess": "Barva: #{colour}",
+            "notValidHex": "Hex kód je neplatný."
+        },
+        "idea": {
+            "description": "Pošle botovi nápad (Pište v angličtině)",
+            "returnSuccess": "Tvůj nápad byl přijat"
+        },
+        "info": {
+            "description": "Pošle info o botovi",
+            "returnSuccess": "Aktuální verze: {version}\nV5 počátek: <t:1633946400:D>\n\nAutor: {author}\nPrefix: {prefix}\nOnline na: {onlineFor}\nServery: {servers}\n\nAutorská práva: {copyright}\nLicence: {license}\n\nCommands Počet: {commandsCount}"
+        },
+        "iq": {
+            "description": "Vypočítá ti IQ",
+            "returnSuccess": "{user} IQ je {iq}."
+        },
+        "kill": {
+            "description": "Někoho zabije",
+            "returnSuccess": ""
+        },
+        "leaderboard": {
+            "description": "Ukáže tabulku zbohatlíků",
+            "returnSuccess": ""
+        },
+        "logs": {
+            "description": "Pošle commands logs",
+            "returnSuccess": ""
+        },
+        "lyrics": {
+            "description": "pošle text písně",
+            "returnSuccess": "Klikni na tlačítko pro zobrazení `{title} - {artist}` lyrics"
+        },
+        "meme": {
+            "description": "Pošle náhodný mím",
+            "returnSuccess": ""
+        },
+        "play": {
+            "description": "Zahraje písničku v aktuálním vojs čenlu",
+            "returnSuccess": "Added `{title}` to queue."
+        },
+        "now_playing": {
+            "description": "Pošle píseň co právě hraje",
+            "returnSuccess": "Teď hraje: `{title}`.",
+            "notPlayingAnything": "Jsem zticha"
+        },
+        "skip": {
+            "description": "Přeskočí aktuální píseň",
+            "returnSuccess": "{user} přeskočil aktuální písničku!"
+        },
+        "volume": {
+            "description": "Nastaví hlasitost rádia",
+            "returnSuccess": "{user} změnil hlasitost na `{vol}`%",
+            "badValue": "Zvolte hodnotu mezi 0.00/100.00"
+        },
+        "stop": {
+            "description": "Přestane hrát",
+            "returnSuccess": ""
+        },
+        "connect": {
+            "description": "Připojí se do aktuálního vajs čenlu",
+            "returnSuccess": "Připojil se do <{channel}>",
+            "timedout": "Čekal dlouho na připojení do <{channel}>, nevyšlo to."
+        },
+        "nick": {
+            "description": "Změňí botovu přezdívku",
+            "returnSuccess": "Přezdívka změněna na `{nick}`"
+        },
+        "pay": {
+            "description": "Zaplatí hráči",
+            "returnSuccess": "Dal jsi {user} `{value}`$. V kasičce máš `{yourbalance}`$, a on má `{theirbalance}$`.",
+            "notEnoughMoney": "You don't have enough money"
+        },
+        "pirate": {
+            "description": "Stvoří piráta",
+            "returnSuccess": "{user} je teď Pirát 🏴‍☠️."
+        },
+        "pp": {
+            "description": "Vypočítá velikost PP ",
+            "returnSuccess": "{user} ho má dlouhý {ppsize}cm/{inchsize}inch."
+        },
+        "rate": {
+            "description": "Hodnotí věci",
+            "returnSuccess1": "Jsi {picked_random}% {rate_thing}.",
+            "returnSuccess2": "{user} je {picked_random}% {rate_thing}."
+        },
+        "say": {
+            "description": "Říkej věci jako bot",
+            "returnSuccess": ""
+        },
+        "set_money": {
+            "description": "Nastavuje prachy uživateli",
+            "returnSuccess": ""
+        },
+        "tts": {
+            "description": "Text na Hlas",
+            "returnSuccess": "Text na Hlas",
+            "maxLenght": "macimální délka je {max}."
+        },
+        "whois": {
+            "description": "Ukáže info o uživateli",
+            "returnSuccess": "Uživatel: {mention}\nID: `{id}`\nZaloženo: `{created_at}`\nStatus: `{status}`\nBot: `{bot}`\n\npřipojeno: `{joined_at}`\nPřezdívka: `{nick}`\nBoostuje od: `{premium_since}`\n\nRole:\n{roles}"
+        },
+        "setLanguage": {
+            "description": "Nastavuje jazyk",
+            "returnSuccess": "Jazyk je teď {lang}",
+            "notFound": "Jazyk {lang} není ještě podporován."
+        },
+        "languages": {
+            "description": "Zobrazuje dostupné jazyky",
+            "returnSuccess": "Seznam jazyků"
+        },
+        "work": {
+            "description": "Dá ti peníze uwu",
+            "messages": [
+                "Tvoje máma ti dala `{ammount}`$",
+                "Pracoval si velmi tvrdě a dostal si `{ammount}`$",
+                "Prodal/a si tvoje panictví a získal/a si`{ammount}`$",
+                "omrdal si tvojí mámu za `{ammount}`$",
+                "Dávka pro nezaměstnané ti vynesla +`{ammount}`$",
+                "Stonks `{ammount}`$",
+                "AKmarádka tvojí mámy ti dala `{ammount}`$",
+                "Odměna za ztratu panictví`{ammount}`$",
+                "Prodal si svoje pohlavní orgány za `{ammount}`$",
+                "Sexy MILF z tvého okolí ti dala `{ammount}`$",
+                "Jsi 10 milióntý návštěvník na této stránce! Gratuluj, dostáváš `{ammount}`$!",
+                "Nikdy to nevzdávej, Nikdy neklesej na dno, Nic tě nesmí nerozbrečet, Nikdy neříkej zdařbůh, Nikdy nelži, Nikdy neubližuj! `{ammount}`$",
+                "Ha, máš `{ammount}`$ za.. ✈️🗼🗼 JE TO VŮBEC LEGÁLNÍ?! WTF",
+                "Přišel si a našel si `{ammount}`$",
+                "Oh, co to je ? Je to `{bitcoin}` bitcoinů! (`{ammount}$`)"
+            ],
+            "returnSuccess": ""
+        },
+        "yt": {
+            "description": "Najde na YouTube",
+            "returnSuccess": ""
+        }
+    },
+    "errors": {
+        "commandOnCooldown": "🕰️ Tento command je časově omezen, zkus to za {time}.",
+        "commandNotFound": "<:QuestionMark:885978535670464533> Command `{cmd}` nenalezen.",
+        "missingRequiredArgument": "<:QuestionMark:885978535670464533> nenalezen správný argument.",
+        "songProcessing": "Zpěvák asi onemocněl, píseň bohužel neuslyšíš",
+        "invalidVoiceChat": "Nenalezen channel k připojení. Specifikuj funkční channel pro připojení."
+    },
+    "help": "Help",
+    "website": "Website",
+    "command": "Command List",
+    "discord": "Discord Server",
+    "notYourMenu": "Hmm..  Nemyslím si, že ti tohle menu patří.",
+    "info": "Info",
+    "page": "Page",
+    "leaderboard": "Leaderboard"
+}

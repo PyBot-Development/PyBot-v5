@@ -169,6 +169,7 @@ class blackjack(commands.Cog):
         self.client = client
         
     @checks.default()
+    @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="commands.blackjack.description", aliases=["bj"])
     async def blackjack(self, ctx, bet):
         current = await support.globalData.getBalance(ctx.message.author)

@@ -16,6 +16,7 @@ import support
 from discord.ext.commands import CommandNotFound
 from colorama import *
 import datetime
+from cogs import checks
 
 class on_command_error(commands.Cog):
     def __init__(self, bot):
@@ -35,9 +36,14 @@ class on_command_error(commands.Cog):
                 color=support.colours.red
             ),
                 delete_after=10)
-        elif isinstance(error, commands.CheckFailure):
-            pass
-        
+
+        elif isinstance(error, (checks.NoPermissions, checks.UserBanned)):
+            await ctx.send(embed=discord.Embed(
+                description=f"{str(error).capitalize()}",
+                color=support.colours.yellow
+            ),
+                delete_after=10)
+
         elif isinstance(error, CommandNotFound):
             cmd = str(ctx.message.content).split(" ")[0]
             await ctx.send(embed=discord.Embed(

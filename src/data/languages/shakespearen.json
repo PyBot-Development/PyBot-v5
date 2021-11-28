@@ -1,5 +1,7 @@
 {   
-    "name": "English",
+    "name": "Shakespearen English (by <@846298981797724161>)",
+    "version": "1.0.0",
+    "for_version": "1.5.0",
     "commands": {
         "alt": {
             "description": "Gives thee by fate alt",
@@ -184,6 +186,10 @@
             "description": "Sets language",
             "returnSuccess": "Language is anon {lang}",
             "notFound": "Language {lang} is not supp'rt'd yet."
+        },
+        "languages": {
+            "description": "Shows available languages",
+            "returnSuccess": "Language listeth"
         },
         "work": {
             "description": "Gives thee wage UwU",

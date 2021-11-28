@@ -1,5 +1,7 @@
 {
-    "name": "Polski",
+    "name": "Polski (by <@846298981797724161>)",
+    "version": "1.0.0",
+    "for_version": "1.5.0",
     "commands": {
         "alt": {
             "description": "Daje ci losowy alt",
@@ -184,6 +186,10 @@
             "description": "Ustawia język",
             "returnSuccess": "Ustawiono język na {lang}",
             "notFound": "Język {lang} nie jest jeszcze dodany."
+        },
+        "languages": {
+            "description": "Pokazuje listę języków",
+            "returnSuccess": "Lista języków"
         },
         "work": {
             "description": "Daje ci kase",
