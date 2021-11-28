@@ -32,7 +32,7 @@ class info(commands.Cog):
             support.startup_timestamp
         await ctx.send(embed=discord.Embed(
             title=f'{__title__} {lang["info"]}',
-            description='[{lang["discord"]}](https://discord.gg/dfKMTx9Eea)\n\n' + lang["commands"]["info"]["returnSuccess"].format(
+            description=f'[{lang["discord"]}](https://discord.gg/dfKMTx9Eea)\n\n' + lang["commands"]["info"]["returnSuccess"].format(
                 version=__version__,
                 author=author.mention,
                 prefix=support.prefix,
