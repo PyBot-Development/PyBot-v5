@@ -57,7 +57,7 @@ class lyrics(commands.Cog):
     async def lyrics(self, ctx, *, name):
         
         song = genius.search_song(name)
-        buttons = showLyrics(song)
+        buttons = showLyrics(song, ctx.guild)
 
         lang = support.getLanguageFileG(ctx.guild)
         
