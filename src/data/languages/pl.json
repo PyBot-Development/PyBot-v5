@@ -1,7 +1,7 @@
 {
     "name": "Polski (by <@846298981797724161>)",
     "version": "1.0.0",
-    "for_version": "1.5.2",
+    "for_version": "1.5.5",
     "commands": {
         "alt": {
             "description": "Daje ci losowy alt",
