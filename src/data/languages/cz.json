@@ -180,7 +180,7 @@
         },
         "whois": {
             "description": "Ukáže info o uživateli",
-            "returnSuccess": "Uživatel: {mention}\nID: `{id}`\nZaloženo: `{created_at}`\nStatus: `{status}`\nBot: `{bot}`\n\npřipojeno: `{joined_at}`\nPřezdívka: `{nick}`\nBoostuje od: `{premium_since}`\n\nRole:\n{roles}"
+            "returnSuccess": "Uživatel: {mention}\nID: `{id}`\nZaloženo: `{created_at}`\nStatus: `{status}`\nBot: `{bot}`\n\nPřipojeno: `{joined_at}`\nPřezdívka: `{nick}`\nBoostuje od: `{premium_since}`\n\nRole:\n{roles}"
         },
         "setLanguage": {
             "description": "Nastavuje jazyk",
@@ -224,12 +224,12 @@
         "songProcessing": "Zpěvák asi onemocněl, píseň bohužel neuslyšíš",
         "invalidVoiceChat": "Nenalezen channel k připojení. Specifikuj funkční channel pro připojení."
     },
-    "help": "Help",
-    "website": "Website",
-    "command": "Command List",
+    "help": "Pomoc",
+    "website": "Webová stránka",
+    "command": "Seznam příkazů",
     "discord": "Discord Server",
     "notYourMenu": "Hmm..  Nemyslím si, že ti tohle menu patří.",
     "info": "Info",
-    "page": "Page",
-    "leaderboard": "Leaderboard"
+    "page": "Strana",
+    "leaderboard": "Žebříček"
 }
