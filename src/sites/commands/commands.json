@@ -73,6 +73,12 @@
             "aliases": "None."
         },
         {
+            "label": "Data",
+            "description": "Shows user data",
+            "usage": "data <User>",
+            "aliases": "None."
+        },
+        {
             "label": "DM",
             "description": "DMs User",
             "usage": "dm <User> <Message>",
@@ -113,6 +119,18 @@
             "description": "Adds blood to users avatar",
             "usage": "kill <User: Optional>",
             "aliases": "Murder, Blood."
+        },
+        {
+            "label": "Languages",
+            "description": "Shows available Languages",
+            "usage": "languages",
+            "aliases": "None."
+        },
+        {
+            "label": "Lyrics",
+            "description": "Shows song lyrics",
+            "usage": "lyrics <Song>",
+            "aliases": "None."
         },
         {
             "label": "Meme",
@@ -169,6 +187,12 @@
             "aliases": "None."
         },
         {
+            "label": "Pay",
+            "description": "Pays user",
+            "usage": "pay <user> <money>",
+            "aliases": "None."
+        },
+        {
             "label": "Pirate",
             "description": "Makes user a pirate",
             "usage": "pirate <User: Optional>",
@@ -191,6 +215,12 @@
             "description": "Says something using bot account",
             "usage": "say <Text>",
             "aliases": "Tell, Sudo."
+        },
+        {
+            "label": "SetLanguage",
+            "description": "Sets guild language <Requires Administrator Permissions>",
+            "usage": "setlanguage <language code>",
+            "aliases": "Language Set_language."
         },
         {
             "label": "TTS",
@@ -235,6 +265,31 @@
             "aliases": "None."
         }
     ],
-    "admin": [],
+    "admin": [
+        {
+            "label": "Deop",
+            "description": "Deops user",
+            "usage": "deop <User>",
+            "aliases": "None."
+        },
+        {
+            "label": "Op",
+            "description": "Ops user",
+            "usage": "op <User>",
+            "aliases": "None."
+        },
+        {
+            "label": "Ban",
+            "description": "Bans user from using bot globaly",
+            "usage": "ban <User> <Reason>",
+            "aliases": "None."
+        },
+        {
+            "label": "Unban",
+            "description": "Unbans user from using bot",
+            "usage": "unban <User>",
+            "aliases": "None."
+        }
+    ],
     "new": []
 }

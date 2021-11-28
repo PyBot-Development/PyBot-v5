@@ -51,6 +51,31 @@ function Commands() {
         </Collapsible>
       </div>)
   }
+
+  const opCommandsDiv = []
+  for (const item in commands.admin) {
+    newState[commands.admin[item].label] = false
+    opCommandsDiv.push(
+      <div id={commands.admin[item].label} key={commands.admin[item].label} >
+        <Collapsible
+          triggerTagName="div"
+          transitionTime={200}
+          trigger={commands.admin[item].label}
+          open={openValue[commands.admin[item].label]}
+        >
+
+          <h4 className="description">{commands.admin[item].description}</h4>
+
+          <p className="usage">Usage</p>
+          <pre className="pre">{commands.admin[item].usage}</pre>
+
+          <p className="aliases">Aliases</p>
+          <pre className="pre">{commands.admin[item].aliases}</pre>
+
+        </Collapsible>
+      </div>)
+  }
+
   return (
     <div className="container" style={{ minHeight: "80vh", paddingTop: "15px" }}>
       <div className="search-text">
@@ -68,15 +93,24 @@ function Commands() {
 
           disablePortal
           id="search"
-          options={commands.all}
+          options={commands.all.concat(commands.admin)}
           sx={{ width: 300, color: "#E0C097" }}
           renderInput={(params) => <TextField {...params} label="Search" />}
         />
         </ThemeProvider>
       </div>
+
       <div style={{ paddingTop: "25px" }}>
         {commandsDiv}
       </div>
+
+      <h2 style={{ textAlign: "center", fontWeight: "200" }}>
+          Op Commands (Require OP permissions)
+      </h2>
+      <div style={{ paddingTop: "25px" }}>
+        {opCommandsDiv}
+      </div>
+
     </div>
   );
 }
