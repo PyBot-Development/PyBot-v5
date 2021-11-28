@@ -239,30 +239,6 @@
             "description": "Searches YouTube",
             "usage": "yt <Text>",
             "aliases": "Video, Youtube."
-        },
-        {
-            "label": "Ban",
-            "description": "Bans retard from using the bot",
-            "usage": "ban <User> <Reason>",
-            "aliases": "None."
-        },
-        {
-            "label": "Unban",
-            "description": "Removes ban from user",
-            "usage": "unban <User>",
-            "aliases": "None."
-        },
-        {
-            "label": "Op",
-            "description": "Allows user to use admin commands",
-            "usage": "op <User>",
-            "aliases": "None."
-        },
-        {
-            "label": "Deop",
-            "description": "Removes user admin commands perms",
-            "usage": "deop <User>",
-            "aliases": "None."
         }
     ],
     "admin": [
@@ -280,7 +256,7 @@
         },
         {
             "label": "Ban",
-            "description": "Bans user from using bot globaly",
+            "description": "Bans user from using bot globally",
             "usage": "ban <User> <Reason>",
             "aliases": "None."
         },
