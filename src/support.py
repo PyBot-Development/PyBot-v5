@@ -271,9 +271,11 @@ class database:
         guild = self.getGuildSync(guild)
         return guild[3]
 
-    def setPrefix(self, guild):
-        guild = self.getGuildSync(guild)
-        return guild[3]
+    def setPrefix(self, guild, prefix):
+        self.getGuildSync(guild)
+        self.cur.execute(f'''UPDATE guilds SET prefix=? WHERE id={guild.id}''', (prefix, ))
+        self.con.commit()
+        return self.getGuildSync(guild)[3]
 
     async def setLanguage(self, guild, language):
         await self.getGuild(guild)
