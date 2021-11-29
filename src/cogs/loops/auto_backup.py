@@ -1,31 +1,32 @@
 """
-Loop Template
+Database Auto Backup
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This is a template for loops
+Because people are gay
 
 :copyright: (c) 2021 M2rsho
 :license: MIT, see LICENSE for more details.
 """
 
 from discord.ext import commands, tasks
-
+from shutil import copyfile
+import support
+from datetime import datetime
 
 class auto_backup(commands.Cog):
     def __init__(self, client):
         self.client = client
-        self.loop_test.start()
+        self.auto_backup.start()
 
-    @tasks.loop(hours=10)
+    @tasks.loop(hours=1)
     async def auto_backup(self):
-        # Do Stuff Here
-        pass
+        copyfile(f"{support.path}/data/database.db", f"{support.path}/data/DataBackups/{datetime.utcnow()}.db") 
 
     @auto_backup.before_loop
-    async def auto_backup(self):
+    async def before_loop_auto_backup(self):
         await self.client.wait_until_ready()
 
 
 def setup(client):
-    #client.add_cog(auto_backup(client))
+    client.add_cog(auto_backup(client))
     pass
