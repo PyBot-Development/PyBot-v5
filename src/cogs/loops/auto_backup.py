@@ -18,7 +18,7 @@ class auto_backup(commands.Cog):
         self.client = client
         self.auto_backup.start()
 
-    @tasks.loop(hours=1)
+    @tasks.loop(minutes=30)
     async def auto_backup(self):
         copyfile(f"{support.path}/data/database.db", f"{support.path}/data/DataBackups/{datetime.utcnow()}.db") 
 
