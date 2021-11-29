@@ -24,6 +24,7 @@ class prefix(commands.Cog):
     async def prefix(self, ctx, prefix):
         lang=support.getLanguageFileG(ctx.guild)
         prefix=prefix[0:6]
+        prefix=support.globalData.setPrefix(ctx.guild, prefix)
         await ctx.send(embed=discord.Embed(description=lang["commands"]["prefix"]["returnSuccess"].format(prefix=prefix), color=support.colours.default))
 def setup(bot):
     bot.add_cog(prefix(bot))
