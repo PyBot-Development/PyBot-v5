@@ -18,6 +18,7 @@ from cogs import checks
 class pay(commands.Cog):
     def __init__(self, client):
         self.client = client
+        
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="commands.pay.description")
