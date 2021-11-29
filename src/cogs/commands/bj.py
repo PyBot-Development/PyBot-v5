@@ -67,7 +67,20 @@ class createButtons(discord.ui.View):
         card = random.choice(cards)
         self.userCards.append(card)
         await self.updateCards(interaction)
-
+        if self.dealerValue != 21 and len(self.userCards) >= 5:
+            await interaction.response.edit_message(
+                content=self.lang["commands"]["blackjack"]["won"].format(value=str(ceil(self.bet))),
+                embed=discord.Embed(
+                description=self.lang["commands"]["blackjack"]["menu"].format(
+                userDeck=str(self.userDeck),
+                userValue=str(self.userValue),
+                dealerCards=str(self.dealerDeck),
+                dealerValue=str(self.dealerValue)
+            ),
+            colour=support.colours.green))
+            await support.globalData.addBalance(self.author, self.bet+ceil(self.bet))
+            await self.on_timeout()
+            self.stop()
     @discord.ui.button(label="Stand", style=discord.ButtonStyle.grey)
     async def stand(self, button: discord.ui.Button, interaction: discord.Interaction):
         if interaction.user.id != self.author.id:
@@ -79,7 +92,7 @@ class createButtons(discord.ui.View):
 
         if self.dealerValue > 21:
             await interaction.response.edit_message(
-                content=self.lang["commands"]["blackjack"]["won"].format(value=str(ceil(self.bet/2))),
+                content=self.lang["commands"]["blackjack"]["won"].format(value=str(ceil(self.bet))),
                 embed=discord.Embed(
                 description=self.lang["commands"]["blackjack"]["menu"].format(
                 userDeck=str(self.userDeck),
@@ -88,7 +101,7 @@ class createButtons(discord.ui.View):
                 dealerValue=str(self.dealerValue)
             ),
             colour=support.colours.green))
-            await support.globalData.addBalance(self.author, self.bet+ceil(self.bet/2))
+            await support.globalData.addBalance(self.author, self.bet+ceil(self.bet))
         elif self.dealerValue == self.userValue:
             await interaction.response.edit_message(
                 content=self.lang["commands"]["blackjack"]["tie"],
@@ -114,7 +127,7 @@ class createButtons(discord.ui.View):
             colour=support.colours.red))
         elif self.dealerValue < self.userValue:
             await interaction.response.edit_message(
-                content=self.lang["commands"]["blackjack"]["won"].format(value=str(ceil(self.bet/2))),
+                content=self.lang["commands"]["blackjack"]["won"].format(value=str(ceil(self.bet))),
                 embed=discord.Embed(
                 description=self.lang["commands"]["blackjack"]["menu"].format(
                 userDeck=str(self.userDeck),
@@ -123,7 +136,7 @@ class createButtons(discord.ui.View):
                 dealerValue=str(self.dealerValue)
             ),
             colour=support.colours.green))
-            await support.globalData.addBalance(self.author, self.bet+ceil(self.bet/2))
+            await support.globalData.addBalance(self.author, self.bet+ceil(self.bet))
         await self.on_timeout()
         self.stop()
 
