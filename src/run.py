@@ -14,7 +14,7 @@ __title__ = 'Pybot V5'
 __author__ = 'M2rsho'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2021-2021 M2rsho'
-__version__ = '1.6.0'
+__version__ = '1.6.1'
 
 from discord.ext import commands
 import discord
@@ -28,8 +28,7 @@ from cogs.checks import *
 prefix = support.config.get("prefix")
 activity = discord.Game(name=f"{prefix}help, Version: {__version__}")
 
-client = commands.Bot(command_prefix=commands.when_mentioned_or(
-    "!"), case_insensitive=True, activity=activity)
+client = commands.Bot(command_prefix=support.getPrefix, case_insensitive=True, activity=activity)
 #    support.GetPrefix), case_insensitive=True, activity=activity)
 
 
@@ -50,7 +49,7 @@ if __name__ == "__main__":
 
     @client.before_invoke
     async def common(ctx):
-        support.log(datetime.utcnow(), "COMMAND", f"{ctx.author}", ctx.command)
+        support.log(datetime.utcnow(), "COMMAND", f"{ctx.author}", ctx.message.content)
         
     loadCog("events")
     loadCog("commands")

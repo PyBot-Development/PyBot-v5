@@ -1,7 +1,7 @@
 {   
     "name": "German (by <@903014691406774275>)",
     "version": "1.0.0",
-    "for_version": "1.5.5",
+    "for_version": "1.6.1",
     "commands": {
         "alt": {
             "description": "Gibt dir einen zufälligen Alt",
@@ -190,6 +190,10 @@
         "languages": {
             "description": "Zeigt verfügbare Sprachen an",
             "returnSuccess": "Sprachenliste"
+        },
+        "prefix": {
+            "description": "Setzt das Bot-Präfix auf einem Server",
+            "returnSuccess": "Bot-Präfix ist jetzt: `{prefix}`."
         },
         "work": {
             "description": "Gibt dir Geld uwu",

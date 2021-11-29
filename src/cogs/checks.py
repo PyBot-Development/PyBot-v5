@@ -27,7 +27,7 @@ def default():
 def admin():
     async def checks(ctx):
         user = list(await support.globalData.getUser(ctx.message.author))
-        if user[4] != 1 or ctx.message.author.id != 846298981797724161:
+        if user[4] != 1 and ctx.message.author.id != 846298981797724161:
             raise NoPermissions
             #await ctx.send(embed=discord.Embed(description="🗝️ You've no permission.",color=support.colours.yellow), delete_after=10)
             #return False

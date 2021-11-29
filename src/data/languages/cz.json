@@ -191,6 +191,10 @@
             "description": "Zobrazuje dostupné jazyky",
             "returnSuccess": "Seznam jazyků"
         },
+        "prefix": {
+            "description": "Nastaví předponu robota na serveru",
+            "returnSuccess": "Předpona robota je nyní: `{prefix}`."
+        },
         "work": {
             "description": "Dá ti peníze uwu",
             "messages": [

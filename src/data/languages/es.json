@@ -144,7 +144,7 @@
             "timedout": "La coneccion a {channel} ha expirado."
         },
         "nick": {
-            "description": "Canbia en nombre del bot",
+            "description": "Cambia be el nombre del bot",
             "returnSuccess": "Nombre cambiado a `{nick}`"
         },
         "pay": {
@@ -190,6 +190,10 @@
         "languages": {
             "description": "Enseña lenguajes disponibles",
             "returnSuccess": "Lista de lenguajes"
+        },
+        "prefix": {
+            "description": "Establece el prefijo del bot en un servidor",
+            "returnSuccess": "El prefijo del bot es ahora:` {prefix} `."
         },
         "work": {
             "description": "Te da dinero uwu",
