@@ -33,7 +33,7 @@ class pay(commands.Cog):
             raise(ValueError(lang["errors"]["valueMustBeMoreThan0"]))
 
         if await support.globalData.getBalance(ctx.message.author) < value:
-            await ctx.send(embed=discord.Embed(lang["commands"]["pay"]["notEnoughMoney"], colour=support.colours.red))
+            await ctx.send(embed=discord.Embed(description=lang["commands"]["pay"]["notEnoughMoney"], colour=support.colours.red))
             return
         await support.globalData.removebalance(ctx.message.author, value)
         await support.globalData.addBalance(user, value)
