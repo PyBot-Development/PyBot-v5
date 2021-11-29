@@ -1,7 +1,7 @@
 {   
     "name": "Shakespearen English (by <@846298981797724161>)",
     "version": "1.0.0",
-    "for_version": "1.5.5",
+    "for_version": "1.6.1",
     "commands": {
         "alt": {
             "description": "Gives thee by fate alt",
@@ -190,6 +190,10 @@
         "languages": {
             "description": "Shows available languages",
             "returnSuccess": "Language listeth"
+        },
+        "prefix": {
+            "description": "Sets bot prefix on a s'rv'r",
+            "returnSuccess": "Bot prefix is anon: `{prefix}`."
         },
         "work": {
             "description": "Gives thee wage UwU",

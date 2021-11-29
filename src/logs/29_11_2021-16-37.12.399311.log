@@ -1,0 +1,57 @@
+16:37:12 [INFO] Cog loaded: on_command_error
+16:37:12 [INFO] Cog loaded: on_ready
+16:37:12 [INFO] Cog loaded: pirate
+16:37:12 [INFO] Cog loaded: meme
+16:37:12 [INFO] Cog loaded: iq
+16:37:12 [INFO] Cog loaded: bj
+16:37:12 [INFO] Cog loaded: doom
+16:37:12 [INFO] Cog loaded: kill
+16:37:12 [INFO] Cog loaded: embed_slash
+16:37:12 [INFO] Cog loaded: cum
+16:37:12 [INFO] Cog loaded: embed
+16:37:12 [INFO] Cog loaded: music
+16:37:12 [INFO] Cog loaded: tts
+16:37:12 [INFO] Cog loaded: unban
+16:37:12 [INFO] Cog loaded: pp
+16:37:12 [INFO] Cog loaded: dm
+16:37:12 [INFO] Cog loaded: leaderboard
+16:37:12 [INFO] Cog loaded: rate
+16:37:12 [INFO] Cog loaded: ban
+16:37:12 [INFO] Cog loaded: can
+16:37:12 [INFO] Cog loaded: help
+16:37:12 [INFO] Cog loaded: rate_slash
+16:37:12 [INFO] Cog loaded: languages
+16:37:12 [INFO] Cog loaded: work
+16:37:12 [INFO] Cog loaded: check
+16:37:12 [INFO] Cog loaded: idea
+16:37:12 [INFO] Cog loaded: check_slash
+16:37:12 [INFO] Cog loaded: op
+16:37:12 [INFO] Cog loaded: alt
+16:37:12 [INFO] Cog loaded: ascii
+16:37:12 [INFO] Cog loaded: give_money
+16:37:12 [INFO] Cog loaded: lyrics
+16:37:12 [INFO] Cog loaded: setlanguage
+16:37:12 [INFO] Cog loaded: pay
+16:37:12 [INFO] Cog loaded: info
+16:37:12 [INFO] Cog loaded: balance
+16:37:12 [INFO] Cog loaded: nick
+16:37:12 [INFO] Cog loaded: hex
+16:37:12 [INFO] Cog loaded: whois
+16:37:12 [INFO] Cog loaded: set_money
+16:37:12 [INFO] Cog loaded: say_slash
+16:37:12 [INFO] Cog loaded: data
+16:37:12 [INFO] Cog loaded: logs
+16:37:12 [INFO] Cog loaded: say
+16:37:12 [INFO] Cog loaded: deop
+16:37:12 [INFO] Cog loaded: yt
+16:37:12 [INFO] Cog loaded: prefix
+16:37:12 [INFO] Cog loaded: loop_template
+16:37:15 [INFO] Startup: Pybot#9863 is online!
+16:37:19 [INFO] Smau#1438: !say QuestionMark Httpexception: 400 bad request (error code: 50007): cannot send messages to this user
+16:37:25 [ERROR] DivineEssentia#7124: 🗝️ You've no permission.
+16:37:36 [INFO] DivineEssentia#7124: !data <@459554887316013067>
+16:37:36 [INFO] M2rsh#6595: !op <@!459554887316013067>
+16:37:46 [ERROR] Dom.#0926: user is a required argument that is missing.
+16:37:50 [ERROR] Dom.#0926: user is a required argument that is missing.
+16:37:53 [ERROR] Dom.#0926: user is a required argument that is missing.
+16:37:56 [ERROR] Smau#1438: Command "a" is not found

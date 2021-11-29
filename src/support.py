@@ -267,6 +267,14 @@ class database:
         guild = self.getGuildSync(guild)
         return guild[2]
 
+    def getPrefix(self, guild):
+        guild = self.getGuildSync(guild)
+        return guild[3]
+
+    def setPrefix(self, guild):
+        guild = self.getGuildSync(guild)
+        return guild[3]
+
     async def setLanguage(self, guild, language):
         await self.getGuild(guild)
         self.cur.execute(f'''UPDATE guilds SET language=? WHERE id={guild.id}''', (language, ))
@@ -281,9 +289,10 @@ def convertToBitcoin(amount, currency):
     converted = amount / float(bitcoins[currency]["24h"])
     return converted
 
-def getPrefix(ctx):
-    return "!"
-
+def getPrefix(client, ctx):
+    if config.get("debug") is True:
+       return "b!"
+    return globalData.getPrefix(ctx.guild)
 
 def getLanguage(guild):
     return globalData.getLanguage(guild)
