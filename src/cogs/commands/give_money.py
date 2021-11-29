@@ -22,9 +22,17 @@ class give_money(commands.Cog):
     #@is_owner()
     @checks.admin()
     @commands.command(description="commands.give_money.description", aliases=["give"])
-    async def give_money(self, ctx, user: discord.User, value: int):
-        await support.globalData.addBalance(user, value)
-        await ctx.send(embed=discord.Embed(description=f"Added `{value}`$ to {user.mention} balance. Now their balance is `{await support.globalData.getBalance(user)}`$", colour=support.colours.default))
+    async def give_money(self, ctx, user, value: int):
+        try:
+            user = await commands.UserConverter().convert(ctx, user)
+            await support.globalData.addBalance(user, value)
+            await ctx.send(embed=discord.Embed(description=f"Added `{value}`$ to {user.mention} balance. Now their balance is `{await support.globalData.getBalance(user)}`$", colour=support.colours.default))
+        except:
+            if user.lower()=="everyone":
+                await support.globalData.addEveryoneBalance(value)
+                await ctx.send(embed=discord.Embed(description=f"Added `{value}`$ to Everyone's balance.", colour=support.colours.default))
+            else:
+                raise commands.UserNotFound(user)
 
 def setup(bot):
     bot.add_cog(give_money(bot))

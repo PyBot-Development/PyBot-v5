@@ -210,6 +210,14 @@ class database:
         self.cur.execute(f'''UPDATE users SET balance={balance} WHERE id={user.id}''')
         self.con.commit()
 
+    async def addEveryoneBalance(self, balance: int):
+        self.cur.execute(f'''UPDATE users SET balance=balance+{balance}''')
+        self.con.commit()
+        
+    async def setEveryoneBalance(self, balance: int):
+        self.cur.execute(f'''UPDATE users SET balance={balance}''')
+        self.con.commit()
+
     async def removebalance(self, user, balance: int):
         balance = await self.getBalance(user) - balance
         self.cur.execute(f'''UPDATE users SET balance={balance} WHERE id={user.id}''')
