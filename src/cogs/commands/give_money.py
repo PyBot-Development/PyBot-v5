@@ -13,13 +13,14 @@ import discord
 from discord.ext.commands.core import is_owner
 import support
 from discord.ext.commands import cooldown, BucketType
-
+from cogs import checks
 
 class give_money(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @is_owner()
+    #@is_owner()
+    @checks.admin()
     @commands.command(description="commands.give_money.description", aliases=["give"])
     async def give_money(self, ctx, user: discord.User, value: int):
         await support.globalData.addBalance(user, value)
