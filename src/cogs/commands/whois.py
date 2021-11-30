@@ -30,7 +30,7 @@ class whois(commands.Cog):
             roles = "".join(f"{i.mention} " for i in user.roles[1:])
         fetched = await self.client.fetch_user(user.id)
         embed = discord.Embed(title=f"{user}",
-                               description=lang["commands"]["whois"]["returnSuccess"].format(user=user.mention, id=user.id, created_at=user.created_at, status=user.status, bot=user.bot, joined_at=user.joined_at, nick=user.nick, premium_since=user.premium_since, roles=roles), color=user.color)
+                               description=lang["commands"]["whois"]["returnSuccess"].format(mention=user.mention, id=user.id, created_at=user.created_at, status=user.status, bot=user.bot, joined_at=user.joined_at, nick=user.nick, premium_since=user.premium_since, roles=roles), color=user.color)
         embed.set_thumbnail(url=user.display_avatar)
 
         if fetched.banner != None:
