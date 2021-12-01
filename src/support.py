@@ -279,8 +279,11 @@ class database:
             return 'en.json'
 
     def getPrefix(self, guild):
-        guild = self.getGuildSync(guild)
-        return guild[3]
+        try:
+            guild = self.getGuildSync(guild)
+            return guild[3]
+        except:
+            return '!'
 
     def setPrefix(self, guild, prefix):
         self.getGuildSync(guild)
@@ -326,25 +329,33 @@ def convertToBitcoin(amount, currency):
     return converted
 
 def getPrefix(client, ctx):
-    if config.get("debug") is True:
-       return "b!"
-    return globalData.getPrefix(ctx.guild)
+    try:
+        if config.get("debug") is True:
+            return "b!"
+        return globalData.getPrefix(ctx.guild)
+    except:
+        return '!'
 
 def getLanguage(guild):
-    return globalData.getLanguage(guild)
+    try:
+        return globalData.getLanguage(guild)
+    except:
+        return 'en.json'
 
 def getLanguageFile(language):
-    with open(f"{path}/data/languages/{language}") as lang:
-        data = json.load(lang)
-    return data
+    try:
+        with open(f"{path}/data/languages/{language}") as lang:
+            data = json.load(lang)
+        return data
+    except:
+        return 'en.json'
 
 def getLanguageFileG(guild):
-    if guild is not None:
+    try:
         language = getLanguage(guild)
-    else:
-        language = "en.json"
-
-    return getLanguageFile(language)
+        return getLanguageFile(language)
+    except:
+        return 'en.json'
 
 
 def getDescription(language, command):
