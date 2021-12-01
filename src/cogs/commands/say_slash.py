@@ -27,7 +27,7 @@ class hello(commands.Cog):
         ctx,
         arg: Option(str, "What do you want me to say?"),
     ):
-        await ctx.send(f"​{arg}".replace("@everyone", "@​everyone").replace("@here", "@​here"))
+        await ctx.send(f"​{arg}".replace("@", "@ "))
         
 
 def setup(bot):
