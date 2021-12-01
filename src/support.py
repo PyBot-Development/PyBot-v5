@@ -184,13 +184,13 @@ class database:
         self.con = sqlite3.connect(path)
         self.cur = self.con.cursor()
 
-        self.cur.execute('''CREATE TABLE IF NOT EXISTS users (id integer, username text, balance integer, banned integer, admin integer, reason text, banned_by text, date text, duration integer)''')
+        self.cur.execute('''CREATE TABLE IF NOT EXISTS users (id integer, username text, balance integer, banned integer, admin integer, reason text, banned_by text, date text, duration integer, socialCredit integer)''')
         self.cur.execute('''CREATE TABLE IF NOT EXISTS guilds (id integer, name text, language text, prefix text)''')
 
     async def getUser(self, user):
         u = self.cur.execute(f'''SELECT * FROM users WHERE id={user.id}''').fetchone()
         if u is None:
-            self.cur.execute(f'INSERT INTO users VALUES (?, ?, 10000, 0, 0, "None", "None", "None", 0)', (user.id, str(user), ))
+            self.cur.execute(f'INSERT INTO users VALUES (?, ?, 10000, 0, 0, "None", "None", "None", 0, 1000)', (user.id, str(user), ))
             self.con.commit()
         return self.cur.execute(f'''SELECT * FROM users WHERE id="{user.id}"''').fetchone()
 
@@ -272,8 +272,11 @@ class database:
         return self.cur.execute(f'''SELECT * FROM guilds WHERE id="{guild.id}"''').fetchone()
 
     def getLanguage(self, guild):
-        guild = self.getGuildSync(guild)
-        return guild[2]
+        try:
+            guild = self.getGuildSync(guild)
+            return guild[2]
+        except:
+            return 'en.json'
 
     def getPrefix(self, guild):
         guild = self.getGuildSync(guild)
@@ -288,6 +291,29 @@ class database:
     async def setLanguage(self, guild, language):
         await self.getGuild(guild)
         self.cur.execute(f'''UPDATE guilds SET language=? WHERE id={guild.id}''', (language, ))
+        self.con.commit()
+
+    async def setSocialCredit(self, user, credit: int):
+        await self.getUser(user)
+        self.cur.execute(f'''UPDATE users SET socialCredit={credit} WHERE id={user.id}''')
+        self.con.commit()
+
+    async def addSocialCredit(self, user, credit: int):
+        await self.getUser(user)
+        self.cur.execute(f'''UPDATE users SET socialCredit=socialCredit+{credit} WHERE id={user.id}''')
+        self.con.commit()
+
+    async def addEveryoneSocialCredit(self, credit: int):
+        self.cur.execute(f'''UPDATE users SET socialCredit=socialCredit+{credit}''')
+        self.con.commit()
+        
+    async def setEveryoneSocialCredit(self, credit: int):
+        self.cur.execute(f'''UPDATE users SET socialCredit={credit}''')
+        self.con.commit()
+
+    async def removeSocialCredit(self, user, credit: int):
+        await self.getUser(user)
+        self.cur.execute(f'''UPDATE users SET socialCredit=socialCredit-{credit} WHERE id={user.id}''')
         self.con.commit()
 
 globalData = database(path=f"{path}/data/database.db")
