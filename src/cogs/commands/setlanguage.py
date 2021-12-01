@@ -10,6 +10,7 @@ Gives moni
 
 from discord.ext import commands
 import discord
+from discord.ext.commands.core import guild_only
 import support
 from discord.ext.commands import cooldown, BucketType
 
@@ -20,6 +21,7 @@ class setLanguage(commands.Cog):
 
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.has_permissions(administrator=True)
+    @guild_only()
     @commands.command(description="commands.setLanguage.description", aliases=["language", "set_language", "lang"])
     async def setLanguage(self, ctx, language):
 
