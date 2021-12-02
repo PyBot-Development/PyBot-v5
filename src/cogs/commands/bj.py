@@ -69,7 +69,7 @@ class createButtons(discord.ui.View):
         await self.updateCards(interaction)
         if self.dealerValue != 21 and len(self.userCards) >= 5:
             await interaction.response.edit_message(
-                content=self.lang["commands"]["blackjack"]["won"].format(value=str(ceil(self.bet))),
+                content=self.lang["commands"]["blackjack"]["won"].format(value=str(ceil(self.bet*(support.globalData.getSocialCreditSync(interaction.user)/1000)))),
                 embed=discord.Embed(
                 description=self.lang["commands"]["blackjack"]["menu"].format(
                 userDeck=str(self.userDeck),
@@ -92,7 +92,7 @@ class createButtons(discord.ui.View):
 
         if self.dealerValue > 21:
             await interaction.response.edit_message(
-                content=self.lang["commands"]["blackjack"]["won"].format(value=str(ceil(self.bet))),
+                content=self.lang["commands"]["blackjack"]["won"].format(value=str(ceil(self.bet*(support.globalData.getSocialCreditSync(interaction.user)/1000)))),
                 embed=discord.Embed(
                 description=self.lang["commands"]["blackjack"]["menu"].format(
                 userDeck=str(self.userDeck),
@@ -112,7 +112,7 @@ class createButtons(discord.ui.View):
                 dealerCards=str(self.dealerDeck),
                 dealerValue=str(self.dealerValue)
             ),
-            colour=support.colours.default))
+            colour=support.colours.yellow))
             await support.globalData.addBalance(self.author, self.bet)
         elif self.dealerValue > self.userValue:
             await interaction.response.edit_message(
@@ -127,7 +127,7 @@ class createButtons(discord.ui.View):
             colour=support.colours.red))
         elif self.dealerValue < self.userValue:
             await interaction.response.edit_message(
-                content=self.lang["commands"]["blackjack"]["won"].format(value=str(ceil(self.bet))),
+                content=self.lang["commands"]["blackjack"]["won"].format(value=str(ceil(self.bet*(support.globalData.getSocialCreditSync(interaction.user)/1000)))),
                 embed=discord.Embed(
                 description=self.lang["commands"]["blackjack"]["menu"].format(
                 userDeck=str(self.userDeck),
@@ -168,7 +168,7 @@ class createButtons(discord.ui.View):
                 description=self.lang["commands"]["blackjack"]["menu"].format(
                 userDeck=str(self.userDeck),
                 userValue=str(self.userValue),
-                dealerCards=str(self.dealerCards[0][0]), 
+                dealerCards=str(self.dealerCards[0][0]+', ?'), 
                 dealerValue=str(self.dealerCards[0][1])
             ),
             colour=support.colours.default))
@@ -214,7 +214,7 @@ class blackjack(commands.Cog):
                 description=lang["commands"]["blackjack"]["menu"].format(
                 userDeck=str(view.userDeck),
                 userValue=str(view.userValue),
-                dealerCards=str(view.dealerCards[0][0]), 
+                dealerCards=str(view.dealerCards[0][0]+ ', ?'), 
                 dealerValue=str(view.dealerCards[0][1])
             ),
             colour=support.colours.default

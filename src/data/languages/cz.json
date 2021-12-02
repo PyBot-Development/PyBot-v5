@@ -195,6 +195,10 @@
             "description": "Nastaví předponu robota na serveru",
             "returnSuccess": "Předpona robota je nyní: `{prefix}`."
         },
+        "bot": {
+            "description": "Nastavení robota",
+            "returnSuccess": ""
+        },
         "work": {
             "description": "Dá ti peníze uwu",
             "messages": [

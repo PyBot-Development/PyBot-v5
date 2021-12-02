@@ -1,7 +1,7 @@
 {   
     "name": "English (by <@846298981797724161>)",
     "version": "1.0.0",
-    "for_version": "1.6.1",
+    "for_version": "1.7.0",
     "commands": {
         "alt": {
             "description": "Gives you random alt",
@@ -194,6 +194,10 @@
         "prefix": {
             "description": "Sets bot prefix on a server",
             "returnSuccess": "Bot prefix is now: `{prefix}`."
+        },
+        "bot": {
+            "description": "Bot Settings",
+            "returnSuccess": ""
         },
         "work": {
             "description": "Gives you moni uwu",

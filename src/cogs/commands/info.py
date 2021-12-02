@@ -35,7 +35,7 @@ class info(commands.Cog):
             description=f'[{lang["discord"]}](https://discord.gg/dfKMTx9Eea)\n\n' + lang["commands"]["info"]["returnSuccess"].format(
                 version=__version__,
                 author=author.mention,
-                prefix=support.prefix,
+                prefix=support.globalData.getPrefix(ctx.guild),
                 onlineFor=timedelta(seconds=math.floor(onlineFor)),
                 servers=len(self.client.guilds),
                 license=__license__,

@@ -14,7 +14,7 @@ __title__ = 'Pybot V5'
 __author__ = 'M2rsho'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2021-2021 M2rsho'
-__version__ = '1.6.2'
+__version__ = '1.7.0'
 
 from discord.ext import commands
 import discord
@@ -26,10 +26,9 @@ from colorama import *
 from cogs.checks import *
 
 prefix = support.config.get("prefix")
-activity = discord.Game(name=f"{prefix}help, Version: {__version__}")
 
-client = commands.Bot(command_prefix=support.getPrefix, case_insensitive=True, activity=activity)
-#    support.GetPrefix), case_insensitive=True, activity=activity)
+client = commands.Bot(command_prefix=support.getPrefix, case_insensitive=True, owner_ids=[471269649296916481, 846298981797724161, 760602301790158868, 484170415720235009])
+client.activity = discord.Game(name=f"on {len(client.guilds)} Servers, Version: {__version__}")
 
 client.remove_command('help')
 
@@ -42,6 +41,7 @@ def loadCog(path, folder=True):
                             "Cog loaded", f"{filename[:-3]}")
     else:
         client.load_extension(f'cogs.{path}')
+        return "Loaded extension"
 
 if __name__ == "__main__":
 
