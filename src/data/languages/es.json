@@ -1,7 +1,7 @@
 {   
     "name": "Spanish (by <@601103738924695582>)",
     "version": "1.0.0",
-    "for_version": "1.5.5",
+    "for_version": "1.7.0",
     "commands": {
         "alt": {
             "description": "Te da una cuenta de Minecraft",
@@ -194,6 +194,10 @@
         "prefix": {
             "description": "Establece el prefijo del bot en un servidor",
             "returnSuccess": "El prefijo del bot es ahora:` {prefix} `."
+        },
+        "bot": {
+            "description": "Configuración del bot",
+            "returnSuccess": ""
         },
         "work": {
             "description": "Te da dinero uwu",

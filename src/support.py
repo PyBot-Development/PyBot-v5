@@ -63,6 +63,7 @@ class colours:
     red = 0xff7777
     green = 0x77dd77
     yellow = 0xeb9226
+
 class processing:
     async def GENERATE_CAN(name, text, bottom_text=""):
         if len(text) > 90 or len(bottom_text) > 90:
@@ -125,7 +126,50 @@ class processing:
 
         img.save(f"{path}/data/temp/{user_id}.png")
         return(f"{path}/data/temp/{user_id}.png")
-        
+    
+    async def generate_social_credit(value, user_id):
+        if value > 0:
+            value = str(value)
+            img = Image.open(f"{path}/data/resources/templates/socialcredit/10.jpg").resize((287, 175), Image.ANTIALIAS).convert("RGBA")
+            font = ImageFont.truetype(f"{path}/data/resources/fonts/NotoSansJP-Medium.otf", 35)
+            draw = ImageDraw.Draw(img)
+            w, h = draw.textsize(value, font=font)
+            draw.text(((220-w)/2, 50-(h/2)), value, (255, 255, 255), font=font)
+            img.save(f"{path}/data/temp/{user_id}.png")
+            return(f"{path}/data/temp/{user_id}.png")
+
+        elif -15 < value <= 0:
+            value = str(value)
+            img = Image.open(f"{path}/data/resources/templates/socialcredit/-15.jpg").resize((287, 175), Image.ANTIALIAS).convert("RGBA")
+            font = ImageFont.truetype(f"{path}/data/resources/fonts/NotoSansJP-Medium.otf", 50)
+            draw = ImageDraw.Draw(img)
+            w, h = draw.textsize(value, font=font)
+            draw.text(((220-w)/2, 50-(h/2)), value, (255, 255, 255), font=font)
+            img.save(f"{path}/data/temp/{user_id}.png")
+            return(f"{path}/data/temp/{user_id}.png")
+
+        elif -30 <= value <= -15:
+            value = str(value)
+            img = Image.open(f"{path}/data/resources/templates/socialcredit/-30.jpg").resize((287, 175), Image.ANTIALIAS).convert("RGBA")
+            font = ImageFont.truetype(f"{path}/data/resources/fonts/NotoSansJP-Medium.otf", 50)
+            draw = ImageDraw.Draw(img)
+            w, h = draw.textsize(value, font=font)
+            draw.text(((220-w)/2, 50-(h/2)), value, (255, 255, 255), font=font)
+            img.save(f"{path}/data/temp/{user_id}.png")
+            return(f"{path}/data/temp/{user_id}.png")
+            
+        else:
+            value = str(value)
+            img = Image.open(f"{path}/data/resources/templates/socialcredit/-100.jpg").resize((287, 175), Image.ANTIALIAS).convert("RGBA")
+            font = ImageFont.truetype(f"{path}/data/resources/fonts/NotoSansJP-Medium.otf", 50)
+            draw = ImageDraw.Draw(img)
+            w, h = draw.textsize(value, font=font)
+            draw.text(((220-w)/2, 50-(h/2)), value, (255, 255, 255), font=font)
+            img.save(f"{path}/data/temp/{user_id}.png")
+            return(f"{path}/data/temp/{user_id}.png")
+
+
+
 from requests import Session
 import json
 
@@ -188,6 +232,13 @@ class database:
         self.cur.execute('''CREATE TABLE IF NOT EXISTS guilds (id integer, name text, language text, prefix text)''')
 
     async def getUser(self, user):
+        u = self.cur.execute(f'''SELECT * FROM users WHERE id={user.id}''').fetchone()
+        if u is None:
+            self.cur.execute(f'INSERT INTO users VALUES (?, ?, 10000, 0, 0, "None", "None", "None", 0, 1000)', (user.id, str(user), ))
+            self.con.commit()
+        return self.cur.execute(f'''SELECT * FROM users WHERE id="{user.id}"''').fetchone()
+
+    def getUserSync(self, user):
         u = self.cur.execute(f'''SELECT * FROM users WHERE id={user.id}''').fetchone()
         if u is None:
             self.cur.execute(f'INSERT INTO users VALUES (?, ?, 10000, 0, 0, "None", "None", "None", 0, 1000)', (user.id, str(user), ))
@@ -297,27 +348,54 @@ class database:
         self.con.commit()
 
     async def setSocialCredit(self, user, credit: int):
+        if credit < 0:
+            credit = 0
         await self.getUser(user)
         self.cur.execute(f'''UPDATE users SET socialCredit={credit} WHERE id={user.id}''')
         self.con.commit()
+        return credit
 
     async def addSocialCredit(self, user, credit: int):
-        await self.getUser(user)
-        self.cur.execute(f'''UPDATE users SET socialCredit=socialCredit+{credit} WHERE id={user.id}''')
-        self.con.commit()
+
+        if await self.getSocialCredit(user) + credit <= 0:
+            self.cur.execute(f'''UPDATE users SET socialCredit=0 WHERE id={user.id}''')
+            self.con.commit()
+        elif await self.getSocialCredit(user) + credit >= 2000:
+            self.cur.execute(f'''UPDATE users SET socialCredit=2000 WHERE id={user.id}''')
+            self.con.commit()
+        else:
+            self.cur.execute(f'''UPDATE users SET socialCredit=socialCredit+{credit} WHERE id={user.id}''')
+            self.con.commit()
 
     async def addEveryoneSocialCredit(self, credit: int):
+        if credit < 0:
+            credit = 0
         self.cur.execute(f'''UPDATE users SET socialCredit=socialCredit+{credit}''')
         self.con.commit()
-        
+        return credit
+
     async def setEveryoneSocialCredit(self, credit: int):
+        if credit < 0:
+            credit = 0
         self.cur.execute(f'''UPDATE users SET socialCredit={credit}''')
         self.con.commit()
+        return credit
 
     async def removeSocialCredit(self, user, credit: int):
+        if credit < 0:
+            credit = 0
         await self.getUser(user)
         self.cur.execute(f'''UPDATE users SET socialCredit=socialCredit-{credit} WHERE id={user.id}''')
         self.con.commit()
+        return credit
+    
+    async def getSocialCredit(self, user):
+        credit = (await self.getUser(user))[9]
+        return credit
+
+    def getSocialCreditSync(self, user):
+        credit = (self.getUserSync(user))[9]
+        return credit 
 
 globalData = database(path=f"{path}/data/database.db")
 languages = [item for item in os.listdir(f"{path}/data/languages/")]
@@ -331,10 +409,10 @@ def convertToBitcoin(amount, currency):
 def getPrefix(client, ctx):
     try:
         if config.get("debug") is True:
-            return "b!"
-        return globalData.getPrefix(ctx.guild)
+            return ["b!", f'<@{client.user.id}> ', f'<@!{client.user.id}> ']
+        return [globalData.getPrefix(ctx.guild), f'<@{client.user.id}> ', f'<@!{client.user.id}> ']
     except:
-        return '!'
+        return ['!', f'<@{client.user.id}> ', f'<@!{client.user.id}> ']
 
 def getLanguage(guild):
     try:
@@ -359,7 +437,9 @@ def getLanguageFileG(guild):
 
 
 def getDescription(language, command):
-    with open(f"{path}/data/languages/{language}") as lang:
-        data = json.load(lang)
-    return data["commands"][command]["description"]
-    
+    try:
+        with open(f"{path}/data/languages/{language}") as lang:
+            data = json.load(lang)
+        return data["commands"][command]["description"]
+    except:
+        return '🔴 Description Not Found'
