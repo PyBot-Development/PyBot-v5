@@ -26,6 +26,21 @@ class on_message(commands.Cog):
             'super idol': 15,
             'nothing happened on 1989': 100,
             'only one child': 30,
+            'only have one child': 30,
+            'superidol is good': 15,
+            'superidol is shit': -50,
+            'superidol is bad': -50,
+            'superidol good': 15,
+            'superidol shit': -50,
+            'superidol bad': -50,
+            'bing chilling': 5,
+            'any dupes': -500,
+            'give dupes': -500,
+            'send dupes': -500,
+            'send dupe': -500,
+            'free taiwian': -30,
+            'taiwan is a country': -50,
+            'taiwan is not a country': 50,
             'social credit hack!11!1!1!!!!111!1!!!!!!1!!!!11!1!': 1500
         }
         
