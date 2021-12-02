@@ -19,8 +19,8 @@ class give_money(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @is_owner()
-    #@checks.admin()
+    #@is_owner()
+    @checks.admin()
     @commands.command(description="commands.give_money.description", aliases=["give"])
     async def give_money(self, ctx, user, value: int):
         try:
