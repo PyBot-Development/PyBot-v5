@@ -41,31 +41,34 @@ class on_message(commands.Cog):
             'free taiwian': -30,
             'taiwan is a country': -50,
             'taiwan is not a country': 50,
+            'winnie-the-pooh': -50,
+            'winnie the pooh': -50,
+            'john xina': 10,
             'social credit hack!11!1!1!!!!111!1!!!!!!1!!!!11!1!': 1500
         }
     
     @commands.Cog.listener()
     async def on_message(self, message):
-        def check(m):
-            return (m.author == message.author
-                and (cs in m.content for cs in self.censorshit)
-                and (datetime.now(timezone.utc)-m.created_at).seconds <= 2)
-
-        if not message.author.bot:
-            if not len(list(filter(lambda m: check(m), self.client.cached_messages))) <= 2:
-                return
+        #def check(m):
+        #    return (m.author == message.author
+        #        and (cs in m.content for cs in self.censorshit)
+        #        and (datetime.now(timezone.utc)-m.created_at).seconds <= 2)
+        #
+        #if not message.author.bot:
+        #   if not len(list(filter(lambda m: check(m), self.client.cached_messages))) <= 2:
+        #        return
 
             for cs in self.censorshit:
                 if cs in message.content.lower():
                     await support.globalData.addSocialCredit(message.author, self.censorshit[cs])
                     file = await support.processing.generate_social_credit(self.censorshit[cs], message.author.id) 
-                    await message.reply(
+                    channel = await message.author.create_dm()
+                    await channel.send(
                         embed=discord.Embed(
-                            description=f"{self.censorshit[cs]} Social Credit. Your Social Credit is now `{await support.globalData.getSocialCredit(message.author)}`",
+                            description=f"[Jump To Message]({message.jump_url})\n.{self.censorshit[cs]} Social Credit. Your Social Credit is now `{await support.globalData.getSocialCredit(message.author)}`",
                             colour=support.colours.red)
                             .set_image(url=f"attachment://{message.author.id}.png"),
-                        file=discord.File(file),
-                        delete_after=10)
+                        file=discord.File(file))
                     try:
                         os.remove(file)
                     except:
