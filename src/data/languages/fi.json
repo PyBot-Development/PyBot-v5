@@ -1,4 +1,3 @@
-
 {   
     "name": "Finnish (by <@140779964256485378>)",
     "version": "1.0.0",
@@ -98,8 +97,8 @@
             "returnSuccess": "{user} ÄO on {iq}."
         },
         "kill": {
-            "description": "Tappaa jonkun",
- 
+            "description": "Tappaa jonkun"
+        },
         "leaderboard": {
             "description": "Shows user money leaderboard",
             "returnSuccess": ""
@@ -242,5 +241,4 @@
     "info": "Info",
     "page": "Page",
     "leaderboard": "Leaderboard"
-    }
 }
