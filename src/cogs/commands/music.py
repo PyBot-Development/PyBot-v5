@@ -68,7 +68,9 @@ class YTDLSource(discord.PCMVolumeTransformer):
             data = data['entries'][0]
         filename = data['url'] if stream else ytdl.prepare_filename(data)
         await ctx.send(embed=discord.Embed(
-            description=lang["commands"]["play"]["returnSuccess"].format(title=data["title"]), color=support.colours.default
+            description=lang["commands"]["play"]["returnSuccess"]
+            .format(title=data["title"]),
+            color=support.colours.default
         ), delete_after=10)
         return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
 
