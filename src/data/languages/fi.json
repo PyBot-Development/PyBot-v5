@@ -1,0 +1,245 @@
+
+{   
+    "name": "Finnish (by <@140779964256485378>)",
+    "version": "1.0.0",
+    "for_version": "1.7.0",
+    "commands": {
+        "alt": {
+            "description": "Antaa satunnaisen käyttäjän",
+            "returnSuccess": ""
+        },
+        "ascii": {
+            "description": "Muuttaa tekstin ASCII muotoon",
+            "returnSuccess": ""
+        },
+        "balance": {
+            "description": "Näyttää käyttäjän katteen",
+            "returnSuccess": "{user}'s balance is `{current}`$"
+        },
+        "ban": {
+            "description": "Antaa porttikiellon retulle",
+            "returnSuccess": "🔨 Banned {user}, reason: `{reason}`."
+        },
+        "unban": {
+            "description": "Poistaa porttikiellon",
+            "returnSuccess": "🔨 Unbanned {user}."
+        },
+        "blackjack": {
+            "description": "Blackjack",
+            "returnSuccess": "",
+            "notEnoughMoney": "Sinulla ei ole tarpeeksi rahaa",
+            "tooLowBet": "Minimi panos on `1`$.",
+
+            "menu": "Black Jack\nYour Deck: {userDeck}\n`(Value: {userValue})`\n\nDealers Deck: {dealerCards}.\n`(Value: {dealerValue})`\n",
+            "lost": "Hävisit `{value}`$",
+            "won": "Voitit `{value}`$",
+            "tie": "Tasatulos! Rahasi on palautettu"
+        },
+        "can": {
+            "description": "Luo purkin",
+            "returnSuccess": "Purkki.",
+            "maxLenght": "Ylä- ja alatekstin maksimi pituus on 20."
+        },
+        "check": {
+            "description": "Tarkistaa minecraft käyttäjän",
+            "returnSuccess": ""
+        },
+        "cum": {
+            "description": "Tsiigaa vaan <:Trolled:895658757294530600>",
+            "returnSuccess": "Cummies Uwu."
+        },
+        "data": {
+            "description": "Näyttää käyttäjän tiedot",
+            "returnSuccess": "ID: `{id}`\nName: `{name}`\nBalance: `{balance}`\nAdmin: `{admin}`\nBanned: `{banned}`\nBan Reason: `{reason}`\nBan Date: `{date}`\nBan Duration: `{duration}`"
+        },
+        "deop": {
+            "description": "Deoppaa käyttäjän",
+            "returnSuccess": "🔨 Deopped {user}."
+        },
+        "op": {
+            "description": "Antaa OP:n käyttäjälle",
+            "returnSuccess": "🔨 Opped {user}."
+        },
+        "dm": {
+            "description": "Lähettää yksityisviestin käyttäjälle",
+            "returnSuccess": "Lähetti yksityisviestin {user}: `{message}`."
+        },
+        "doom": {
+            "description": "Luo Doom slayer ",
+            "returnSuccess": "{user} The Doom Slayer."
+        },
+        "embed": {
+            "description": "Luo Embed viestin",
+            "returnSuccess": ""
+        },
+        "give_money": {
+            "description": "Antaa rahaa",
+            "returnSuccess": ""
+        },
+        "help": {
+            "description": "Apua komento",
+            "returnSuccess": ""
+        },
+        "hex": {
+            "description": "Näyttää Hex värin",
+            "returnSuccess": "Väri: #{colour}",
+            "notValidHex": "Hex koodia ei löytynyt."
+        },
+        "idea": {
+            "description": "Lähetä ideoita botin kehittämiseen",
+            "returnSuccess": "Ideasi lähetettiin."
+        },
+        "info": {
+            "description": "Lähettää infoa botista",
+            "returnSuccess": "Nykyinen versio: {version}\nV5 Luomis päivä: <t:1633946400:D>\n\nAuthor: {author}\nPrefix: {prefix}\nOnline For: {onlineFor}\nServers: {servers}\n\nCopyright: {copyright}\nLicense: {license}\n\nCommands Count: {commandsCount}"
+        },
+        "iq": {
+            "description": "Laskee ÄO:si",
+            "returnSuccess": "{user} ÄO on {iq}."
+        },
+        "kill": {
+            "description": "Tappaa jonkun",
+ 
+"leaderboard": {
+            "description": "Shows user money leaderboard",
+            "returnSuccess": ""
+        },
+        "logs": {
+            "description": "Lähettää komentojen lokin",
+            "returnSuccess": ""
+        },
+        "lyrics": {
+            "description": "Lähettää laulun sanat",
+            "returnSuccess": "Paina näppäintä avataksesi `{title} - {artist}` lyrics"
+        },
+        "meme": {
+            "description": "Lähetä satunnainen meemi",
+            "returnSuccess": ""
+        },
+        "play": {
+            "description": "Soita musiikkia nykyisessä puhekanavalla",
+            "returnSuccess": "Lisättiin `{title}` jonoon."
+        },
+        "now_playing": {
+            "description": "Lähettää tällä hetkellä soivan biisin",
+            "returnSuccess": "Tällä hetkellä soi: `{title}`.",
+            "notPlayingAnything": "En soita mitään."
+        },
+        "skip": {
+            "description": "Skipattiin nykyinen biisi",
+            "returnSuccess": "{user} Skippasi nykyisen biisin!"
+        },
+        "volume": {
+            "description": "Säätää äänenvoimakkuutta",
+            "returnSuccess": "{user} Säädettiin äänenvoimaakkuutta `{vol}`%",
+            "badValue": "Valitse arvo 0.00/100.00"
+        },
+        "stop": {
+            "description": "Lopeta musiikin soittamisen",
+            "returnSuccess": ""
+        },
+        "connect": {
+            "description": "Yhdistää nykyiselle puhekanavalle",
+            "returnSuccess": "Yhdistettiin {channel}",
+            "timedout": "Yhdistäminen {channel} kesti liian kauan."
+        },
+        "nick": {
+            "description": "Vaihtaa botin nimimerkkiä",
+            "returnSuccess": "Vaihdettiin nimimerkkiä nimerkkiin `{nick}`"
+        },
+        "pay": {
+            "description": "Maksa käyttäjälle",
+            "returnSuccess": "Maksoit {user} `{value}`$. Sinun katteesi on `{yourbalance}`$, ja heidän on `{theirbalance}$`.",
+            "notEnoughMoney": "Sinulla ei ole tarpeeksi rahaa"
+        },
+        "pirate": {
+            "description": "Luo merirosvon",
+            "returnSuccess": "{user} Merirosvo 🏴‍☠️."
+        },
+        "pp": {
+            "description": "Laskee peeniksen koon",
+            "returnSuccess": "{user} Peeniksen koko on {ppsize}cm/{inchsize}inch."
+        },
+        "rate": {
+            "description": "Arvostelee asioita",
+            "returnSuccess1": "Olet {picked_random}% {rate_thing}.",
+            "returnSuccess2": "{user} on {picked_random}% {rate_thing}."
+        },
+        "say": {
+            "description": "Lähettää tekstin bottina",
+            "returnSuccess": ""
+        },
+        "set_money": {
+            "description": "Asettaa botin katteen",
+            "returnSuccess": ""
+        },
+        "tts": {
+            "description": "Text To Speech",
+            "returnSuccess": "Text to Speech",
+            "maxLenght": "Maksimi pituus on  {max}."
+        },
+        "whois": {
+            "description": "Näyttää käyttäjän infot",
+            "returnSuccess": "User: {mention}\nID: `{id}`\nCreated at: `{created_at}`\nStatus: `{status}`\nBot: `{bot}`\n\nJoined at: `{joined_at}`\nNick: `{nick}`\nBoosting since: `{premium_since}`\n\nRoles:\n{roles}"
+        },
+        "setLanguage": {
+            "description": "Asettaa kielen",
+            "returnSuccess": "Kieli on nyytten {lang}",
+            "notFound": "Kielitä {lang} ei tueta vielä."
+        },
+        "languages": {
+            "description": "Näyttää mahdollisten kielien listan",
+            "returnSuccess": "Kielten lista"
+        },
+        "prefix": {
+            "description": "Asettaa botin prefiksin",
+            "returnSuccess": "Botin prefiksi on: `{prefix}`."
+        },
+        "bot": {
+            "description": "Botin asetukset",
+            "returnSuccess": ""
+        },
+        "work": {
+            "description": "Antaa sulle rahas uwu",
+            "messages": [
+                "Äitis antoi sulle `{ammount}`$",
+                "Teit kovasti töitä saadaksesi `{ammount}`$",
+                "Myit neitsyytesi, josta sait`{ammount}`$",
+                "Painoit äitiäs, josta sait `{ammount}`$",
+                "Sait kelan tukia+`{ammount}`$",
+                "Stonks `{ammount}`$",
+                "Äitis tyttöystävä antoi`{ammount}`$",
+                "Neitsyys palkintosi `{ammount}`$",
+                "Myit munas ja pippelin, josta sait`{ammount}`$",
+                "Kuumat äidit, joita haluisit painaa antoi`{ammount}`$",
+                "Olet kymmenes miljoona käyttäjä. Voitit `{ammount}`$!",
+                "Never gonna give you up, Never gonna let you down, Never gonna run around and desert you `{ammount}`$",
+                "Ööö... Sait `{ammount}`$ tekemällä ✈️🗼🗼 ",
+                "Tulit ja löysit`{ammount}`$",
+                "Löysit `{bitcoin}` bitcoinia!(`{ammount}$`)"
+            ],
+            "returnSuccess": ""
+        },
+        "yt": {
+            "description": "Etsii youtubesta",
+            "returnSuccess": ""
+        }
+    },
+    "errors": {
+        "commandOnCooldown": "🕰️ Komento on tauolla, koita {time} päästä.",
+        "commandNotFound": "<:QuestionMark:885978535670464533> Komentoa `{cmd}` ei löytynyt.",
+        "missingRequiredArgument": "<:QuestionMark:885978535670464533> Tarvittava tieto puuttuu.",
+        "songProcessing": "Tuli virhe vastaan soittaessasi biisiä.",
+        "invalidVoiceChat": "Ei kanavaa löydettävissä. Tarkista, että olet puhekanavalla.",
+        "valueMustBeMoreThan0": "Arvon pitää olla yli 0",
+        "notANumber": "Arvo ei ole numero"
+    },
+    "help": "Help",
+    "website": "Website",
+    "command": "Command List",
+    "discord": "Discord Server",
+    "notYourMenu": "Hmm.. I don't think that menu belongs to you.",
+    "info": "Info",
+    "page": "Page",
+    "leaderboard": "Leaderboard"
+}
