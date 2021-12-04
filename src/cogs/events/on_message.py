@@ -65,7 +65,7 @@ class on_message(commands.Cog):
                     channel = await message.author.create_dm()
                     await channel.send(
                         embed=discord.Embed(
-                            description=f"[Jump To Message]({message.jump_url})\n.{self.censorshit[cs]} Social Credit. Your Social Credit is now `{await support.globalData.getSocialCredit(message.author)}`",
+                            description=f"[Jump To Message]({message.jump_url}).\n{self.censorshit[cs]} Social Credit. Your Social Credit is now `{await support.globalData.getSocialCredit(message.author)}`",
                             colour=support.colours.red)
                             .set_image(url=f"attachment://{message.author.id}.png"),
                         file=discord.File(file))
