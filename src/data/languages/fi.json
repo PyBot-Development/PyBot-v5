@@ -100,7 +100,7 @@
         "kill": {
             "description": "Tappaa jonkun",
  
-"leaderboard": {
+        "leaderboard": {
             "description": "Shows user money leaderboard",
             "returnSuccess": ""
         },
@@ -242,4 +242,5 @@
     "info": "Info",
     "page": "Page",
     "leaderboard": "Leaderboard"
+    }
 }
