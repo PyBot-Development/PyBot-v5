@@ -11,7 +11,7 @@ Runs code when bot is ready
 
 from discord.ext import commands
 import support
-from datetime import datetime   
+from datetime import datetime, timezone 
 import discord
 from run import __version__
 import json
@@ -43,21 +43,33 @@ class on_message(commands.Cog):
             'taiwan is not a country': 50,
             'social credit hack!11!1!1!!!!111!1!!!!!!1!!!!11!1!': 1500
         }
-        
+    
     @commands.Cog.listener()
     async def on_message(self, message):
-        for cs in self.censorshit:
-            if cs in message.content.lower():
-                await support.globalData.addSocialCredit(message.author, self.censorshit[cs])
-                file = await support.processing.generate_social_credit(self.censorshit[cs], message.author.id) 
-                await message.reply(
-                    embed=discord.Embed(
-                        description=f"{self.censorshit[cs]} Social Credit. Your Social Credit is now `{await support.globalData.getSocialCredit(message.author)}`",
-                        colour=support.colours.red)
-                         .set_image(url=f"attachment://{message.author.id}.png"),
-                    file=discord.File(file),
-                    delete_after=30)
-                os.remove(file)
+        def check(m):
+            return (m.author == message.author
+                and (cs in m.content for cs in self.censorshit)
+                and (datetime.now(timezone.utc)-m.created_at).seconds <= 2)
+
+        if not message.author.bot:
+            if not len(list(filter(lambda m: check(m), self.client.cached_messages))) <= 2:
+                return
+
+            for cs in self.censorshit:
+                if cs in message.content.lower():
+                    await support.globalData.addSocialCredit(message.author, self.censorshit[cs])
+                    file = await support.processing.generate_social_credit(self.censorshit[cs], message.author.id) 
+                    await message.reply(
+                        embed=discord.Embed(
+                            description=f"{self.censorshit[cs]} Social Credit. Your Social Credit is now `{await support.globalData.getSocialCredit(message.author)}`",
+                            colour=support.colours.red)
+                            .set_image(url=f"attachment://{message.author.id}.png"),
+                        file=discord.File(file),
+                        delete_after=10)
+                    try:
+                        os.remove(file)
+                    except:
+                        pass
                 
 def setup(client):
     client.add_cog(on_message(client))

@@ -36,7 +36,7 @@
         },
         "can": {
             "description": "Erzeugt eine Dose",
-            "returnSuccess": "Can.",
+            "returnSuccess": "Dose.",
             "maxLenght": "Die maximale Länge von Text und unterem Text beträgt 20."
         },
         "check": {
@@ -64,15 +64,15 @@
             "returnSuccess": "Hat {user}: `{message}` gesendet."
         },
         "doom": {
-            "description": "Macht Doom Slayer",
-            "returnSuccess": "{user} Der Doom Slayer."
+            "description": "Macht Benutzer Doom Slayer",
+            "returnSuccess": "{user} der Doom Slayer."
         },
         "embed": {
             "description": "Erstellt eine Einbettungsnachricht",
             "returnSuccess": ""
         },
         "give_money": {
-            "description": "Gibt Geld",
+            "description": "Gibt jemandem Geld",
             "returnSuccess": ""
         },
         "help": {
@@ -145,7 +145,7 @@
         },
         "nick": {
             "description": "Ändert den Spitznamen des Bots",
-            "returnSuccess": "Spitzname geändert in `{nick}`"
+            "returnSuccess": "Spitzname geändert zu `{nick}`"
         },
         "pay": {
             "description": "Zahlt Benutzer",
@@ -153,8 +153,8 @@
             "notEnoughMoney": "Du hast nicht genug Geld"
         },
         "pirate": {
-            "description": "Macht einen Piraten",
-            "returnSuccess": "{user} Der Pirat 🏴‍☠️."
+            "description": "Macht Benutzer einen Piraten",
+            "returnSuccess": "{user} der Pirat 🏴‍☠️."
         },
         "pp": {
             "description": "Berechnet die Penis-Größe",
@@ -162,7 +162,7 @@
         },
         "rate": {
             "description": "Bewertet Sachen",
-            "returnSuccess1": "Es ist {picked_random}% {rate_thing}.",
+            "returnSuccess1": "Du bist {picked_random}% {rate_thing}.",
             "returnSuccess2": "{user} ist {picked_random}% {rate_thing}."
         },
         "say": {
@@ -176,7 +176,7 @@
         "tts": {
             "description": "Text zu Sprache",
             "returnSuccess": "Text zu Sprache",
-            "maxLenght": "Maximale Länge ist {max}."
+            "maxLenght": "Die maximale Länge ist {max}."
         },
         "whois": {
             "description": "Zeigt Benutzerinformationen an",
@@ -192,7 +192,7 @@
             "returnSuccess": "Sprachenliste"
         },
         "prefix": {
-            "description": "Setzt das Bot-Präfix auf einem Server",
+            "description": "Setzt den Bot-Präfix auf einem Server",
             "returnSuccess": "Bot-Präfix ist jetzt: `{prefix}`."
         },
         "bot": {
@@ -210,9 +210,9 @@
                 "Stonks `{ammount}`$",
                 "Die Freundin deiner Mutter hat dir geschenkt `{ammount}`$",
                 "Jungfräulichkeitsbelohnung `{ammount}`$",
-                "Du hast dir Schwanz und Eier verkauft für `{ammount}`$",
+                "Du hast deinen Schwanz und Eier verkauft für `{ammount}`$",
                 "Heiße Milfs in deiner Nähe gaben dir `{ammount}`$",
-                "Du bist der 10-Millionste Benutzer, der diese Website besuchen! Glückwunsch zu deinen `{ammount}`$!",
+                "Du bist der 10-Millionste Benutzer, der diese Website besucht! Glückwunsch zu deinen `{ammount}`$!",
                 "You Never gave up, Never let down, Never ran around and desert you, Never made you cry, Never said goodbye, Never told a lie and hurt you! `{ammount}`$",
                 "Ähm.. Du bekamst `{ammount}`$ für.. ✈️🗼🗼 WIE IST DAS LEGAL?! WTF",
                 "Du bist gekommen und hast gefunden `{ammount}`$",
@@ -229,16 +229,16 @@
         "commandOnCooldown": "🕰️ Dieser Befehl ist ratenbegrenzt, versuche es erneut in {time}.",
         "commandNotFound": "<:QuestionMark:885978535670464533> Befehl `{cmd}` nicht gefunden.",
         "missingRequiredArgument": "<:QuestionMark:885978535670464533> Erforderliches Argument fehlt.",
-        "songProcessing": "Beim Verarbeiten deines Songs ist ein Fehler aufgetreten.",
+        "songProcessing": "Beim Verarbeiten des Songs ist ein Fehler aufgetreten.",
         "invalidVoiceChat": "Kein Kanal zum beitreten. Bitte gebe entweder einen gültigen Kanal an oder trete einem bei.",
-        "valueMustBeMoreThan0": "Wert muss größer als 0 . sein",
-        "notANumber": "Wert ist keine Zahl"
+        "valueMustBeMoreThan0": "Der Wert muss größer als 0 sein.",
+        "notANumber": "Der Wert ist keine Zahl"
     },
     "help": "Hilfe",
     "website": "Website",
     "command": "Befehlsliste",
     "discord": "Discord Server",
-    "notYourMenu": "Hmm.. Ich glaube nicht, dass das Menü dir gehört.",
+    "notYourMenu": "Hmm.. Ich glaube nicht, dass dieses Menü zu dir gehört.",
     "info": "Info",
     "page": "Seite",
     "leaderboard": "Bestenliste"
