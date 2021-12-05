@@ -19,7 +19,7 @@ class alt(commands.Cog):
         self.client = client
 
     @checks.default()
-    @cooldown(1, 300, BucketType.user)
+    @cooldown(1, 1800, BucketType.user)
     @commands.command(description="commands.alt.description")
     async def alt(self, ctx):
         async with ctx.typing():
