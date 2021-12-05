@@ -9,6 +9,6 @@ serverSettings:
   port: 80
   https:
     use: True
-    privateKeyPath:
+    privateKeyPath: Null
     certificatePath:
     caPath:
