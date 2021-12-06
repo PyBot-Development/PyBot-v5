@@ -67,20 +67,6 @@ class createButtons(discord.ui.View):
         card = random.choice(cards)
         self.userCards.append(card)
         await self.updateCards(interaction)
-        if self.dealerValue != 21 and len(self.userCards) >= 5:
-            await interaction.response.edit_message(
-                content=self.lang["commands"]["blackjack"]["won"].format(value=str(ceil(self.bet*(support.globalData.getSocialCreditSync(interaction.user)/1000)))),
-                embed=discord.Embed(
-                description=self.lang["commands"]["blackjack"]["menu"].format(
-                userDeck=str(self.userDeck),
-                userValue=str(self.userValue),
-                dealerCards=str(self.dealerDeck),
-                dealerValue=str(self.dealerValue)
-            ),
-            colour=support.colours.green))
-            await support.globalData.addBalance(self.author, self.bet+ceil(self.bet))
-            await self.on_timeout()
-            self.stop()
     @discord.ui.button(label="Stand", style=discord.ButtonStyle.grey)
     async def stand(self, button: discord.ui.Button, interaction: discord.Interaction):
         if interaction.user.id != self.author.id:
@@ -157,10 +143,24 @@ class createButtons(discord.ui.View):
                 description=self.lang["commands"]["blackjack"]["menu"].format(
                 userDeck=str(self.userDeck),
                 userValue=str(self.userValue),
-                dealerCards=str(self.dealerCards[0][0]), 
-                dealerValue=str(self.dealerCards[0][1])
+                dealerCards=str(self.dealerDeck), 
+                dealerValue=str(self.dealerValue)
             ),
             colour=support.colours.red))
+            await self.on_timeout()
+            self.stop()
+        elif self.dealerValue < 21 and len(self.userCards) >= 5:
+            await interaction.response.edit_message(
+                content=self.lang["commands"]["blackjack"]["won"].format(value=str(ceil(self.bet*(support.globalData.getSocialCreditSync(interaction.user)/1000)))),
+                embed=discord.Embed(
+                description=self.lang["commands"]["blackjack"]["menu"].format(
+                userDeck=str(self.userDeck),
+                userValue=str(self.userValue),
+                dealerCards=str(self.dealerDeck),
+                dealerValue=str(self.dealerValue)
+            ),
+            colour=support.colours.green))
+            await support.globalData.addBalance(self.author, self.bet+ceil(self.bet))
             await self.on_timeout()
             self.stop()
         else:
