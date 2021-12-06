@@ -24,6 +24,7 @@ import support
 from datetime import datetime
 from colorama import *
 from cogs.checks import *
+import server
 
 prefix = support.config.get("prefix")
 
@@ -55,6 +56,8 @@ if __name__ == "__main__":
     loadCog("events")
     loadCog("commands")
     loadCog("loops")
-    
     print("")
+    if support.config.get("serverSettings")["run"]:
+        server = server.server()
+        server.app.run(debug=False, port=support.config.get("serverSettings")["port"], use_reloader=False, threaded=True)
     client.run(support.config.get("token"))

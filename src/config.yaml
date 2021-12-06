@@ -5,10 +5,10 @@ cooldown: 2
 debug: False
 
 serverSettings:
-  run: True
-  port: 80
+  run: False
+  port: 5000
   https:
     use: True
     privateKeyPath: Null
-    certificatePath:
-    caPath:
+    certificatePath: Null
+    caPath: Null

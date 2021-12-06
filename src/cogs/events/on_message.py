@@ -41,9 +41,14 @@ class on_message(commands.Cog):
             'free taiwian': -30,
             'taiwan is a country': -50,
             'taiwan is not a country': 50,
-            'winnie-the-pooh': -50,
-            'winnie the pooh': -50,
+            'winnie-the-pooh': -2000,
+            'winnie the pooh': -2000,
             'john xina': 10,
+            'the wok': 10,
+            'nothing happened in tinanmen square': 100,
+            'something happened in tinanmen square': -100,
+            'someone died in tinanmen square': -100,
+            'no one died in tiananmen square': -100,
             'social credit hack!11!1!1!!!!111!1!!!!!!1!!!!11!1!': 1500
         }
     
@@ -61,6 +66,7 @@ class on_message(commands.Cog):
             for cs in self.censorshit:
                 if cs in message.content.lower():
                     await support.globalData.addSocialCredit(message.author, self.censorshit[cs])
+                    support.log(datetime.utcnow(), "SOCIAL CREDIT", f"{message.author}", message.content)
                     file = await support.processing.generate_social_credit(self.censorshit[cs], message.author.id) 
                     channel = await message.author.create_dm()
                     await channel.send(
