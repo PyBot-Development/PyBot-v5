@@ -33,9 +33,8 @@ class on_message(commands.Cog):
         #if not message.author.bot:
         #   if not len(list(filter(lambda m: check(m), self.client.cached_messages))) <= 2:
         #        return
-
             for cs in self.censorshit:
-                if cs in message.content.lower():
+                if cs.lower() in message.content.lower():
                     await support.globalData.addSocialCredit(message.author, self.censorshit[cs])
                     support.log(datetime.utcnow(), "SOCIAL CREDIT", f"{message.author}", message.content)
                     file = await support.processing.generate_social_credit(self.censorshit[cs], message.author.id) 
