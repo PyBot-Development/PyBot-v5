@@ -64,7 +64,7 @@ class lyrics(commands.Cog):
         #with open(f"{support.path}/data/temp/lyrics.txt", "w+") as file:
         #    file.write(song.lyrics)
         #await ctx.response.send_message(embed=discord.Embed(description=song.lyrics, color=support.colours.default), ephemeral=True)
-        message = await ctx.send(embed=discord.Embed(
+        message = await ctx.reply(mention_author=False, embed=discord.Embed(
             description=lang["commands"]["lyrics"]["returnSuccess"].format(title=song.title, artist=song.artist), color=support.colours.default), view=buttons)
         buttons.message = message
         #await ctx.send(file=discord.File(f"{support.path}/data/temp/lyrics.txt") embed=discord.Embed())

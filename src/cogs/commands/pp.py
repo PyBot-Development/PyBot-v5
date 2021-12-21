@@ -47,7 +47,7 @@ class pp(commands.Cog):
         except:
             embed = discord.Embed(
                 description=lang["commands"]["pp"]["returnSuccess"].format(user=user, ppsize=f"{ppsize}", inchsize=f"{ppsize_inch}"), color=colour)
-        await ctx.send(embed=embed)
+        await ctx.reply(mention_author=False, embed=embed)
 
 
 def setup(bot):

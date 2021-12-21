@@ -16,6 +16,8 @@ class NoPermissions(commands.CommandError):
 
 def default():
     async def checks(ctx):
+        if support.config.get("debug") and ctx.guild.id != 885976189049651200:
+            return
         user = list(await support.globalData.getUser(ctx.author))
         if user[3] != 0:
             raise UserBanned

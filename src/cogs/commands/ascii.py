@@ -26,7 +26,7 @@ class ascii(commands.Cog):
         arg = arg.split("--font ")
         arg.append("big")
         result = pyfiglet.figlet_format(arg[0], font=arg[1])
-        await ctx.send(f"```{result}```")
+        await ctx.reply(mention_author=False, content=f"```{result}```")
 
 
 def setup(bot):

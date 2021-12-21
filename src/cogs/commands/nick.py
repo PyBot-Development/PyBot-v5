@@ -24,7 +24,7 @@ class command(commands.Cog, name="nick"):
     async def nick(self, ctx, *, nick=None):
         lang = support.getLanguageFileG(ctx.guild)
         await ctx.message.guild.me.edit(nick=nick)
-        await ctx.send(embed=discord.Embed(description=lang["commands"]["nick"]["returnSuccess"].format(nick=nick), color=support.colours.default), delete_after=10)
+        await ctx.reply(mention_author=False, embed=discord.Embed(description=lang["commands"]["nick"]["returnSuccess"].format(nick=nick), color=support.colours.default), delete_after=10)
 
 
 def setup(bot):

@@ -154,7 +154,7 @@ class leaderboard(commands.Cog):
 
         lang = view.lang
 
-        message=await ctx.send(embed=discord.Embed(
+        message=await ctx.reply(mention_author=False, embed=discord.Embed(
             title=lang["leaderboard"],
             description=f"""
 [{lang["website"]}](https://py-bot.cf/) | [{lang["command"]}](https://py-bot.cf/commands) | [{lang["discord"]}](https://discord.gg/dfKMTx9Eea)

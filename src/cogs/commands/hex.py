@@ -32,7 +32,7 @@ class hex(commands.Cog):
         try:
             colour_send = colour.replace("#", "")
         except:
-            await ctx.send(lang["commands"]["hex"]["notValidHex"], delete_after=10)
+            await ctx.reply(mention_author=False, content=lang["commands"]["hex"]["notValidHex"], delete_after=10)
             return
         if len(colour_send) < 6:
             num = 6 - len(colour_send)
@@ -52,9 +52,9 @@ class hex(commands.Cog):
                     embed = discord.Embed(
                         title=lang["commands"]["hex"]["returnSuccess"].format(colour=colour), description=f"RGB: {rgb}", color=colour_int)
                     embed.set_thumbnail(url="attachment://colour.png")
-                    await ctx.send(embed=embed, file=file)
+                    await ctx.reply(mention_author=False, embed=embed, file=file)
                 else:
-                    await ctx.send(lang["commands"]["hex"]["notValidHex"], delete_after=10)
+                    await ctx.reply(mention_author=False, content=lang["commands"]["hex"]["notValidHex"], delete_after=10)
                 await session.close()
 
 

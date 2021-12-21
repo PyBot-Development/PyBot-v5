@@ -30,7 +30,7 @@ class info(commands.Cog):
         author = await self.client.fetch_user(846298981797724161)
         onlineFor = int(datetime.utcnow().timestamp()) - \
             support.startup_timestamp
-        await ctx.send(embed=discord.Embed(
+        await ctx.reply(mention_author=False, embed=discord.Embed(
             title=f'{__title__} {lang["info"]}',
             description=f'[{lang["discord"]}](https://discord.gg/dfKMTx9Eea)\n\n' + lang["commands"]["info"]["returnSuccess"].format(
                 version=__version__,

@@ -28,9 +28,9 @@ class setLanguage(commands.Cog):
         if language+'.json' in support.languages:
             await support.globalData.setLanguage(ctx.guild, f"{language}.json")
             lang=support.getLanguageFileG(ctx.guild)
-            await ctx.send(embed=discord.Embed(description=lang["commands"]["setLanguage"]["returnSuccess"].format(lang=lang["name"]), color=support.colours.default))
+            await ctx.reply(mention_author=False, embed=discord.Embed(description=lang["commands"]["setLanguage"]["returnSuccess"].format(lang=lang["name"]), color=support.colours.default))
         else:
             lang=support.getLanguageFileG(ctx.guild)
-            await ctx.send(embed=discord.Embed(description=lang["commands"]["setLanguage"]["notFound"].format(lang=language), color=support.colours.default))
+            await ctx.reply(mention_author=False, embed=discord.Embed(description=lang["commands"]["setLanguage"]["notFound"].format(lang=language), color=support.colours.default))
 def setup(bot):
     bot.add_cog(setLanguage(bot))

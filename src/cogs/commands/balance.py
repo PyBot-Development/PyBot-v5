@@ -27,7 +27,7 @@ class balance(commands.Cog):
         if user is None:
             user = ctx.message.author
         current = await support.globalData.getBalance(user)
-        await ctx.send(embed=discord.Embed(description=lang["commands"]["balance"]["returnSuccess"].format(user=user.mention, current=current), colour=support.colours.default))
+        await ctx.reply(mention_author=False, embed=discord.Embed(description=lang["commands"]["balance"]["returnSuccess"].format(user=user.mention, current=current), colour=support.colours.default))
 
 
 def setup(bot):

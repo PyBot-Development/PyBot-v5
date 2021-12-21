@@ -26,11 +26,11 @@ class give_money(commands.Cog):
         try:
             user = await commands.UserConverter().convert(ctx, user)
             await support.globalData.addBalance(user, value)
-            await ctx.send(embed=discord.Embed(description=f"Added `{value}`$ to {user.mention} balance. Now their balance is `{await support.globalData.getBalance(user)}`$", colour=support.colours.default))
+            await ctx.reply(mention_author=False, embed=discord.Embed(description=f"Added `{value}`$ to {user.mention} balance. Now their balance is `{await support.globalData.getBalance(user)}`$", colour=support.colours.default))
         except:
             if user.lower()=="everyone":
                 await support.globalData.addEveryoneBalance(value)
-                await ctx.send(embed=discord.Embed(description=f"Added `{value}`$ to Everyone's balance.", colour=support.colours.default))
+                await ctx.reply(mention_author=False, embed=discord.Embed(description=f"Added `{value}`$ to Everyone's balance.", colour=support.colours.default))
             else:
                 raise commands.UserNotFound(user)
 

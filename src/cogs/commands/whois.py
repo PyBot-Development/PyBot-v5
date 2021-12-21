@@ -35,7 +35,7 @@ class whois(commands.Cog):
 
         if fetched.banner != None:
             embed.set_image(url=fetched.banner)
-        await ctx.send(embed=embed)
+        await ctx.reply(mention_author=False, embed=embed)
 
 
 def setup(bot):

@@ -14,7 +14,7 @@ __title__ = 'Pybot V5'
 __author__ = 'M2rsho'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2021-2021 M2rsho'
-__version__ = '1.7.1'
+__version__ = '1.7.2'
 
 from discord.ext import commands
 import discord
@@ -29,7 +29,8 @@ import server
 prefix = support.config.get("prefix")
 
 client = commands.Bot(command_prefix=support.getPrefix, case_insensitive=True, owner_ids=[471269649296916481, 846298981797724161, 760602301790158868, 484170415720235009, 459554887316013067])
-client.activity = discord.Game(name=f"on {len(client.guilds)} Servers, Version: {__version__}")
+if not support.config.get("debug"):
+    client.activity = discord.Game(name=f"on [LOADING] Servers, Version: {__version__}")
 
 client.remove_command('help')
 

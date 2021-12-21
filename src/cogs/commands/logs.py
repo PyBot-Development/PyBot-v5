@@ -23,7 +23,7 @@ class logs(commands.Cog):
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(aliases=["log"], description="commands.logs.description")
     async def logs(self, ctx):
-        await ctx.send(file=discord.File(f"{support.path}/logs/{support.startup_date}.log"))
+        await ctx.reply(mention_author=False, file=discord.File(f"{support.path}/logs/{support.startup_date}.log"))
 
 
 def setup(bot):

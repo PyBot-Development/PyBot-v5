@@ -16,6 +16,7 @@ import support
 from run import client
 from cogs import checks
 
+
 class hello(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -28,6 +29,7 @@ class hello(commands.Cog):
         arg: Option(str, "What do you want me to say?"),
     ):
         await ctx.send(f"​{arg}".replace("@", "@ "))
+        await ctx.response.send_message("Message was sent.", ephemeral=True)
         
 
 def setup(bot):

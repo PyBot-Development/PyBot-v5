@@ -29,7 +29,7 @@ class can(commands.Cog):
             if not img:
                 raise commands.BadArgument(lang["commands"]["can"]["maxLenght"])
             file = discord.File(img)
-            await ctx.send(embed=discord.Embed(description=lang["commands"]["can"]["returnSuccess"], color=support.colours.default).set_image(url=f"attachment://{ctx.message.author.id}.png"), file=file)
+            await ctx.reply(mention_author=False, embed=discord.Embed(description=lang["commands"]["can"]["returnSuccess"], color=support.colours.default).set_image(url=f"attachment://{ctx.message.author.id}.png"), file=file)
             os.remove(img)
 
 

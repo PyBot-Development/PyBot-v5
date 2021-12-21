@@ -43,7 +43,7 @@ class iq(commands.Cog):
                 user=user.mention,
                 iq=f"{iq_size:.2f}"
             ), color=colour)
-        await ctx.send(embed=embed)
+        await ctx.reply(mention_author=False, embed=embed)
 
 
 def setup(bot):

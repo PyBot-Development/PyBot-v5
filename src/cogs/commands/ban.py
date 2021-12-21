@@ -26,7 +26,7 @@ class ban(commands.Cog):
         lang = support.getLanguageFileG(ctx.guild)
         async with ctx.typing():
             await support.globalData.banUser(user, reason, datetime.utcnow(), ctx.message.author)
-            await ctx.reply(embed=discord.Embed(description=lang["commands"]["ban"]["returnSuccess"].format(user=user.mention, reason=reason), colour=support.colours.default))
+            await ctx.reply(mention_author=False, embed=discord.Embed(description=lang["commands"]["ban"]["returnSuccess"].format(user=user.mention, reason=reason), colour=support.colours.default))
 
 def setup(bot):
     bot.add_cog(ban(bot))

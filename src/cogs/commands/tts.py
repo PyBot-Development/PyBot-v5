@@ -32,7 +32,7 @@ class tts(commands.Cog):
             text = text.split("-l")
             text.append("en")
             file = await support.processing.tts(f"{text[0]}", f"{text[1]}".replace(" ", ""))
-            await ctx.send(file=discord.File(file), content=lang["commands"]["tts"]["returnSuccess"])
+            await ctx.reply(mention_author=False, file=discord.File(file), content=lang["commands"]["tts"]["returnSuccess"])
             os.remove(file)
 
 
