@@ -29,7 +29,7 @@ class languages(commands.Cog):
                 language = json.load(file)
                 languages.append(f"`{i[:-5]}` - {language['name']}")
         
-        await ctx.send(embed=discord.Embed(title=lang["commands"]["languages"]["returnSuccess"], description=''.join(f"{i}\n" for i in languages),color=support.colours.default))
+        await ctx.reply(mention_author=False, embed=discord.Embed(title=lang["commands"]["languages"]["returnSuccess"], description=''.join(f"{i}\n" for i in languages),color=support.colours.default))
         
 def setup(bot):
     bot.add_cog(languages(bot))

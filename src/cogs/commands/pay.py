@@ -37,7 +37,7 @@ class pay(commands.Cog):
             return
         await support.globalData.removebalance(ctx.message.author, value)
         await support.globalData.addBalance(user, value)
-        await ctx.send(embed=discord.Embed(description=lang["commands"]["pay"]["returnSuccess"].format(
+        await ctx.reply(mention_author=False, embed=discord.Embed(description=lang["commands"]["pay"]["returnSuccess"].format(
             user=user.mention,
             value=value,
             yourbalance=await support.globalData.getBalance(ctx.message.author),

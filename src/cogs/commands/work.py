@@ -25,14 +25,18 @@ class work(commands.Cog):
     @cooldown(1, 3600, BucketType.user)
     @commands.command(description="commands.work.description")
     async def work(self, ctx):
-        lang = support.getLanguageFileG(ctx.guild)
+        support.getLanguageFileG(ctx.guild)
         money = random.randint(2000, 20000)
         texts = support.getLanguageFile(support.getLanguage(ctx.guild))
         texts = texts["commands"]["work"]["messages"]
-        await support.globalData.addBalance(ctx.message.author, money)
-        await ctx.send(embed=discord.Embed(
-            description=random.choice(texts).format(ammount=money, bitcoin=support.convertToBitcoin(money, "USD")),
-            colour=support.colours.default))
+        bonus = (money * (await support.globalData.getSocialCredit(ctx.message.author)/1000)) - money
+        await support.globalData.addBalance(ctx.message.author, money+(bonus if await support.globalData.getSocialCredit(ctx.message.author) >= 1000 else 0))
+
+        await ctx.reply(mention_author=False, embed=discord.Embed(
+            description=random.choice(texts)
+            .format(ammount=money, bitcoin=support.convertToBitcoin(money, "USD")),
+            colour=support.colours.default)
+            .set_footer(text=(f"{bonus}$. Social Credit Bonus | {money+bonus}$ in total." if await support.globalData.getSocialCredit(ctx.message.author) >= 1000 else '')))
 
 def setup(bot):
     bot.add_cog(work(bot))

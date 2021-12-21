@@ -67,7 +67,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
             # take first item from a playlist
             data = data['entries'][0]
         filename = data['url'] if stream else ytdl.prepare_filename(data)
-        await ctx.send(embed=discord.Embed(
+        await ctx.reply(mention_author=False, embed=discord.Embed(
             description=lang["commands"]["play"]["returnSuccess"]
             .format(title=data["title"]),
             color=support.colours.default
@@ -197,14 +197,14 @@ class Music(commands.Cog):
         lang = support.getLanguageFileG(ctx.guild)
         vc = ctx.voice_client
         if not vc or not vc.is_connected():
-            return await ctx.send(
+            return await ctx.reply(mention_author=False, 
                 embed=discord.Embed(
                     description=lang["commands"]["now_playing"]["notPlayingAnything"], color=support.colours.default
                 ), delete_after=10, )
 
         player = self.get_player(ctx)
         if not player.current:
-            return await ctx.send(
+            return await ctx.reply(mention_author=False, 
                 embed=discord.Embed(
                     description=lang["commands"]["now_playing"]["notPlayingAnything"], color=support.colours.default
                 ), delete_after=10, )
@@ -214,7 +214,7 @@ class Music(commands.Cog):
         except discord.HTTPException:
             pass
 
-        player.np = await ctx.send(embed=discord.Embed(
+        player.np = await ctx.reply(mention_author=False, embed=discord.Embed(
             description=lang["commands"]["now_playing"]["returnSuccess"].format(title=vc.source.title),
             color=support.colours.default
         ))
@@ -225,7 +225,7 @@ class Music(commands.Cog):
         lang = support.getLanguageFileG(ctx.guild)
         vc = ctx.voice_client
         if not vc or not vc.is_connected():
-            return await ctx.send(
+            return await ctx.reply(mention_author=False, 
                 embed=discord.Embed(
                     description=lang["commands"]["now_playing"]["notPlayingAnything"], color=support.colours.default
                 ), delete_after=10, )
@@ -234,7 +234,7 @@ class Music(commands.Cog):
         elif not vc.is_playing():
             return
         vc.stop()
-        await ctx.send(embed=discord.Embed(
+        await ctx.reply(mention_author=False, embed=discord.Embed(
             description=lang["commands"]["skip"]["returnSuccess"].format(user=ctx.author), color=support.colours.default
         ))
     @checks.default()
@@ -244,13 +244,13 @@ class Music(commands.Cog):
         lang = support.getLanguageFileG(ctx.guild)
         vc = ctx.voice_client
         if not vc or not vc.is_connected():
-            return await ctx.send(
+            return await ctx.reply(mention_author=False, 
                 embed=discord.Embed(
                     description=lang["commands"]["now_playing"]["notPlayingAnything"], color=support.colours.default
                 ), delete_after=10, )
 
         if not 0 <= vol < 101:
-            return await ctx.send(
+            return await ctx.reply(mention_author=False, 
                 embed=discord.Embed(
                     description=lang["commands"]["volume"]["badValue"],
                     color=support.colours.default,
@@ -260,7 +260,7 @@ class Music(commands.Cog):
         if vc.source:
             vc.source.volume = vol / 100
         player.volume = vol / 100
-        await ctx.send(embed=discord.Embed(
+        await ctx.reply(mention_author=False, embed=discord.Embed(
             description=lang["commands"]["volume"]["returnSuccess"].format(user=ctx.author, vol=vol), color=support.colours.default
         ))
     @checks.default()
@@ -270,7 +270,7 @@ class Music(commands.Cog):
         lang = support.getLanguageFileG(ctx.guild)
         vc = ctx.voice_client
         if not vc or not vc.is_connected():
-            return await ctx.send(
+            return await ctx.reply(mention_author=False, 
                 embed=discord.Embed(
                     description=lang["commands"]["now_playing"]["notPlayingAnything"], color=support.colours.default
                 ), delete_after=10, )
@@ -302,7 +302,7 @@ class Music(commands.Cog):
             except asyncio.TimeoutError:
                 raise VoiceConnectionError(
                     lang["commands"]["connect"]["timedout"].format(channel=channel.mention))
-        await ctx.send(embed=discord.Embed(
+        await ctx.reply(mention_author=False, embed=discord.Embed(
             description=lang["commands"]["connect"]["returnSuccess"].format(channel=channel.mention), color=support.colours.default
         ), delete_after=10)
 

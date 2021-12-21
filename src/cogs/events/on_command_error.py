@@ -31,14 +31,14 @@ class on_command_error(commands.Cog):
         time = f"{time.hour:02d}:{time.minute:02d}:{time.second:02d}.{time.microsecond:02d}"
 
         if isinstance(error, commands.CommandOnCooldown):
-            await ctx.send(embed=discord.Embed(
+            await ctx.reply(mention_author=False, embed=discord.Embed(
                 description=lang["errors"]["commandOnCooldown"].format(time=datetime.timedelta(seconds=error.retry_after)),
                 color=support.colours.red
             ),
                 delete_after=10)
 
         elif isinstance(error, (checks.NoPermissions, checks.UserBanned)):
-            await ctx.send(embed=discord.Embed(
+            await ctx.reply(mention_author=False, embed=discord.Embed(
                 description=f"{str(error).capitalize()}",
                 color=support.colours.yellow
             ),
@@ -46,7 +46,7 @@ class on_command_error(commands.Cog):
 
         elif isinstance(error, CommandNotFound):
             cmd = str(ctx.message.content).split(" ")[0]
-            await ctx.send(embed=discord.Embed(
+            await ctx.reply(mention_author=False, embed=discord.Embed(
                 description=lang["errors"]["commandNotFound"].format(cmd=cmd),
                 color=support.colours.red
             ),
@@ -54,7 +54,7 @@ class on_command_error(commands.Cog):
 
         elif isinstance(
             error, commands.MissingRequiredArgument):
-            await ctx.send(embed=discord.Embed(
+            await ctx.reply(mention_author=False, embed=discord.Embed(
                 description=lang["errors"]["missingRequiredArgument"].capitalize(),
                 color=support.colours.red
             ),
@@ -62,7 +62,7 @@ class on_command_error(commands.Cog):
         else:
             error_ = str(error)[29:] if str(error).lower().startswith(
                 "command") else str(error)  # Removes: "Command Invoked Error"
-            await ctx.send(embed=discord.Embed(
+            await ctx.reply(mention_author=False, embed=discord.Embed(
                 description=f"<:QuestionMark:885978535670464533> {str(error_).capitalize()}",
                 color=support.colours.red
             ),

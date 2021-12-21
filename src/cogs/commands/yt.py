@@ -30,7 +30,7 @@ class yt(commands.Cog):
                 'http://www.youtube.com/results?' + query_string)
             search_results = re.findall(
                 r'/watch\?v=(.{11})', htm_content.read().decode())
-            await ctx.send('http://www.youtube.com/watch?v=' + search_results[random.randint(0, 10)])
+            await ctx.reply(mention_author=False, content='http://www.youtube.com/watch?v=' + search_results[random.randint(0, 10)])
 
 
 def setup(bot):

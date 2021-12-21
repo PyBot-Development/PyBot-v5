@@ -23,5 +23,6 @@ class on_ready(commands.Cog):
         support.log(datetime.utcnow(), "INFO", "Startup",
                     f"{self.client.user} is online!")
         await self.client.change_presence(activity=discord.Game(name=f"on {len(self.client.guilds)} Servers, Version: {__version__}"))
+        
 def setup(client):
     client.add_cog(on_ready(client))

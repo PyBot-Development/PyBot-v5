@@ -52,7 +52,7 @@ class rate(commands.Cog):
                     
             colour = int(colour_hex, 16)
             embed = discord.Embed(title=msg, color=colour)
-            await ctx.send(embed=embed)
+            await ctx.reply(mention_author=False, embed=embed)
 
 
 def setup(bot):

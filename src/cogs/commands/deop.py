@@ -26,7 +26,7 @@ class deop(commands.Cog):
         async with ctx.typing():
             lang = support.getLanguageFileG(ctx.guild)
             await support.globalData.deopUser(user)
-            await ctx.reply(embed=discord.Embed(description=lang["commands"]["deop"]["returnSuccess"].format(user=user.mention), colour=support.colours.default))
+            await ctx.reply(mention_author=False, embed=discord.Embed(description=lang["commands"]["deop"]["returnSuccess"].format(user=user.mention), colour=support.colours.default))
 
 def setup(bot):
     bot.add_cog(deop(bot))

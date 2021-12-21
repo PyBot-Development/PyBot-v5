@@ -57,7 +57,7 @@ class rate_slash(commands.Cog):
 
             colour = int(colour_hex, 16)
             embed = discord.Embed(title=msg, color=colour)
-            await ctx.respond(embed=embed)
+            await ctx.respond(mention_author=False, embed=embed)
 
 
 def setup(bot):

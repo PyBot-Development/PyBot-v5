@@ -39,10 +39,10 @@ class meme(commands.Cog):
                 f"https://meme-api.herokuapp.com/gimme/{topic}").text)
 
             if meme["nsfw"]:
-                await ctx.send(embed=discord.Embed(description="🔞 Subreddit is 18+", color=support.colours.red), delete_after=10)
+                await ctx.reply(mention_author=False, embed=discord.Embed(description="🔞 Subreddit is 18+", color=support.colours.red), delete_after=10)
                 return
 
-            await ctx.send(embed=discord.Embed(
+            await ctx.reply(mention_author=False, embed=discord.Embed(
                 title=f'''{meme["title"]}''',
                 url=meme["postLink"],
                 description=f"""

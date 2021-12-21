@@ -21,16 +21,6 @@
     "superidol shit": -50,
     "superidol bad": -50,
     "bing chilling": 5,
-    "any dupes": -500,
-    "give dupes": -500,
-    "send dupes": -500,
-    "laowhy": -2000,
-    "1.18 dupe": -2000,
-    "any working": -2000,
-    "working dupe": -2000,
-    "dupe works": -2000,
-    "dupe working": -2000,
-    "loverfella": -2000,
     "taiwan is a country": -50,
     "taiwan is not a country": 50,
     "winnie-the-pooh": -2000,
@@ -41,5 +31,5 @@
     "nothing happened in tinanmen square": 100,
     "something happened in tinanmen square": -100,
     "someone died in tinanmen square": -100,
-    "no one died in tiananmen square": -100
+    "no one died in tiananmen square": 100
 }

@@ -39,7 +39,7 @@ class idea(commands.Cog):
             description=Text,
             color=support.colours.default
         ).set_author(name=ctx.message.author, icon_url=ctx.message.author.avatar))
-        await ctx.send(embed=discord.Embed(
+        await ctx.reply(mention_author=False, embed=discord.Embed(
             description=lang["commands"]["idea"]["returnSuccess"],
             color=support.colours.default
         ))

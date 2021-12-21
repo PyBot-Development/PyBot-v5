@@ -28,7 +28,7 @@ class kill(commands.Cog):
                 user = ctx.message.author
             img = await support.processing.overlay(user.display_avatar, f"{support.path}/data/resources/templates/blood_template.png", ctx.message.author.id)
             file = discord.File(img)
-            await ctx.send(embed=discord.Embed(description="🔪", color=support.colours.red).set_image(url=f"attachment://{ctx.message.author.id}.png"), file=file)
+            await ctx.reply(mention_author=False, embed=discord.Embed(description="🔪", color=support.colours.red).set_image(url=f"attachment://{ctx.message.author.id}.png"), file=file)
             os.remove(img)
 
 

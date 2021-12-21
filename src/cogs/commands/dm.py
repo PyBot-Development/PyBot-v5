@@ -26,7 +26,7 @@ class dm(commands.Cog):
         user = await commands.UserConverter().convert(ctx, user)
         channel = await user.create_dm()
         await channel.send(message)
-        await ctx.send(embed=discord.Embed(description=lang["commands"]["dm"]["returnSuccess"].format(message=message, user=user.mention), color=support.colours.default), delete_after=10)
+        await ctx.reply(mention_author=False, embed=discord.Embed(description=lang["commands"]["dm"]["returnSuccess"].format(message=message, user=user.mention), color=support.colours.default), delete_after=10)
 
 
 def setup(bot):

@@ -24,7 +24,7 @@ class data(commands.Cog):
         async with ctx.typing():
             lang = support.getLanguageFileG(ctx.guild)
             data = await support.globalData.getUser(user)
-            await ctx.reply(embed=discord.Embed(description=lang["commands"]["data"]["returnSuccess"].format(
+            await ctx.reply(mention_author=False, embed=discord.Embed(description=lang["commands"]["data"]["returnSuccess"].format(
                 id=data[0],
                 name=data[1],
                 balance=data[2],

@@ -24,7 +24,7 @@ class check(commands.Cog):
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="commands.check.description")
     async def check(self, ctx, *, combo):
-        await ctx.send(embed=discord.Embed(description=support.check(combo).result, color=support.colours.default))
+        await ctx.reply(mention_author=False, embed=discord.Embed(description=support.check(combo).result, color=support.colours.default))
 
 def setup(bot):
     bot.add_cog(check(bot))

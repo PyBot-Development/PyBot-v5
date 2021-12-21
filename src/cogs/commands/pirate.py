@@ -30,7 +30,7 @@ class pirate(commands.Cog):
 
             img = await support.processing.overlay_position(user.display_avatar, f"{support.path}/data/resources/templates/pirate.png", (110, 80), (105, 105), ctx.message.author.id, (320, 374))
             file = discord.File(img)
-            await ctx.send(embed=discord.Embed(description=lang["commands"]["pirate"]["returnSuccess"].format(user=user.display_name), color=support.colours.default).set_image(url=f"attachment://{ctx.message.author.id}.png"), file=file)
+            await ctx.reply(mention_author=False, embed=discord.Embed(description=lang["commands"]["pirate"]["returnSuccess"].format(user=user.display_name), color=support.colours.default).set_image(url=f"attachment://{ctx.message.author.id}.png"), file=file)
             os.remove(img)
 
 

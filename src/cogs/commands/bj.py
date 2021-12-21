@@ -210,7 +210,7 @@ class blackjack(commands.Cog):
         view.userDeck, view.userValue = await view.renderCards(userCards)
         view.dealerDeck, view.dealerValue = await view.renderCards(dealerCards)
 
-        message = await ctx.send(embed=discord.Embed(
+        message = await ctx.reply(mention_author=False, embed=discord.Embed(
                 description=lang["commands"]["blackjack"]["menu"].format(
                 userDeck=str(view.userDeck),
                 userValue=str(view.userValue),
