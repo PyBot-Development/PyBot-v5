@@ -31,5 +31,6 @@
     "nothing happened in tinanmen square": 100,
     "something happened in tinanmen square": -100,
     "someone died in tinanmen square": -100,
-    "no one died in tiananmen square": 100
+    "no one died in tiananmen square": 100,
+    "taiwan? you mean china": 100000
 }
