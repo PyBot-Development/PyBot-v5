@@ -13,7 +13,7 @@ Discord Bot
 __title__ = 'Pybot V5'
 __author__ = 'M2rsho'
 __license__ = 'MIT'
-__copyright__ = 'Copyright 2021-2021 M2rsho'
+__copyright__ = 'Copyright 2021-2022 M2rsho'
 __version__ = '1.7.2'
 
 from discord.ext import commands
