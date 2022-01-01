@@ -10,7 +10,7 @@ Plays Music
 
 import asyncio
 import discord
-import youtube_dl
+import yt-dlp as youtube_dl
 from async_timeout import timeout
 from discord.ext import commands
 import support
@@ -26,7 +26,7 @@ ytdl_format_options = {
     'restrictfilenames': True,
     'noplaylist': True,
     'nocheckcertificate': True,
-    'ignoreerrors': True,
+    'ignoreerrors': False,
     'logtostderr': False,
     'quiet': True,
     'no_warnings': True,
