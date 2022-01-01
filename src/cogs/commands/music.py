@@ -67,7 +67,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
             # take first item from a playlist
             data = data['entries'][0]
         filename = data['url'] if stream else ytdl.prepare_filename(data)
-        await ctx.reply(mention_author=False, embed=discord.Embed(
+        await ctx.send(mention_author=False, embed=discord.Embed(
             description=lang["commands"]["play"]["returnSuccess"]
             .format(title=data["title"]),
             color=support.colours.default
@@ -84,7 +84,7 @@ class MusicPlayer:
         self.queue = asyncio.Queue()
         self.next = asyncio.Event()
         self.np = None  # Now playing message
-        self.volume = .5
+        self.volume = 1
         self.current = None
         ctx.bot.loop.create_task(self.player_loop(ctx))
 
