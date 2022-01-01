@@ -10,7 +10,7 @@ Plays Music
 
 import asyncio
 import discord
-import yt-dlp as youtube_dl
+import yt_dlp as youtube_dl
 from async_timeout import timeout
 from discord.ext import commands
 import support
