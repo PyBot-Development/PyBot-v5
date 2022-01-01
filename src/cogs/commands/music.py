@@ -197,8 +197,6 @@ class Music(commands.Cog):
                     await player.queue.put(source)
             except asyncio.TimeoutError:
                 raise commands.TimeoutError("Command timed out.")
-            source = await YTDLSource.from_url(ctx, name, loop=self.bot.loop, stream=True)
-            await player.queue.put(source)
             
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
