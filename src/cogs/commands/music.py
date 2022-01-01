@@ -163,10 +163,10 @@ class Music(commands.Cog):
                 await ctx.invoke(self.connect)
             player = self.get_player(ctx)
             try:
-                source = await YTDLSource.from_url(ctx, url, loop=self.bot.loop, stream=True)
-                await player.queue.put(source)
-            except:
-                await ctx.send("Unknown error occured", delete_after=10)
+                async with timeout(10):
+                    source = await self.queue.get()
+            except asyncio.TimeoutError:
+                raise commands.TimeoutError("Command timed out.")
 
     # @cooldown(1, support.cooldown, BucketType.user)
     # @commands.command(description="Plays Music in current Voice Channel")
@@ -190,6 +190,11 @@ class Music(commands.Cog):
             if ctx.voice_client is None:
                 vc = await voice_channel.connect()
             player = self.get_player(ctx)
+            try:
+                async with timeout(10):
+                    source = await self.queue.get()
+            except asyncio.TimeoutError:
+                raise commands.TimeoutError("Command timed out.")
             source = await YTDLSource.from_url(ctx, name, loop=self.bot.loop, stream=True)
             await player.queue.put(source)
             
