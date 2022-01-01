@@ -165,7 +165,7 @@ class Music(commands.Cog):
             try:
                 async with timeout(10):
                     source = await YTDLSource.from_url(ctx, url, loop=self.bot.loop, stream=True)
-                    await player.queue.put(source4)
+                    await player.queue.put(source)
             except asyncio.TimeoutError:
                 raise commands.TimeoutError("Command timed out.")
 
