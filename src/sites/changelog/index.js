@@ -10,7 +10,7 @@ function Changelog() {
       </h1>
 
       <p>
-        cummies uwu
+        Under Construction
       </p>
     </div>
   );
