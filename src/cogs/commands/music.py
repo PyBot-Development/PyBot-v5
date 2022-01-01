@@ -162,8 +162,11 @@ class Music(commands.Cog):
             if not vc:
                 await ctx.invoke(self.connect)
             player = self.get_player(ctx)
-            source = await YTDLSource.from_url(ctx, url, loop=self.bot.loop, stream=True)
-            await player.queue.put(source)
+            try:
+                source = await YTDLSource.from_url(ctx, url, loop=self.bot.loop, stream=True)
+                await player.queue.put(source)
+            except:
+                await ctx.send("Unknown error occured", delete_after=10)
 
     # @cooldown(1, support.cooldown, BucketType.user)
     # @commands.command(description="Plays Music in current Voice Channel")
