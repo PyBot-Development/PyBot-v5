@@ -10,7 +10,7 @@ function About() {
       </h1>
 
       <p>
-        Daddy
+        Under Construction
       </p>
     </div>
   );
