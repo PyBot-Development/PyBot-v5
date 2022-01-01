@@ -60,7 +60,7 @@ class Header extends react.Component {
                   {this.createEntry("about", "🤔 About", "/about")}
                   {this.createEntry("changelog", "🖨️ Changelog", "/changelog")}
                   {this.createEntry("commands", "💾 Commands", "/commands")}
-                  {this.createEntry("add", "ℹ️ How to?", "/add")}
+                  {this.createEntry("add", "➕ Add", "/add")}
 
 
                 </div>
