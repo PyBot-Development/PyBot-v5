@@ -164,7 +164,8 @@ class Music(commands.Cog):
             player = self.get_player(ctx)
             try:
                 async with timeout(10):
-                    source = await self.queue.get()
+                    source = await YTDLSource.from_url(ctx, url, loop=self.bot.loop, stream=True)
+                    await player.queue.put(source4]])
             except asyncio.TimeoutError:
                 raise commands.TimeoutError("Command timed out.")
 
@@ -192,7 +193,8 @@ class Music(commands.Cog):
             player = self.get_player(ctx)
             try:
                 async with timeout(10):
-                    source = await self.queue.get()
+                    source = await YTDLSource.from_url(ctx, url, loop=self.bot.loop, stream=True)
+                    await player.queue.put(source)
             except asyncio.TimeoutError:
                 raise commands.TimeoutError("Command timed out.")
             source = await YTDLSource.from_url(ctx, name, loop=self.bot.loop, stream=True)
