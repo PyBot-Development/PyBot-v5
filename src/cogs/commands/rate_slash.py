@@ -53,7 +53,7 @@ class rate_slash(commands.Cog):
                 picked_random=randomNumber, rate_thing=f"{(rest if rest != None else '')}{(addition if addition != None else '')}", user=user)
 
             colour = int(ColourHex, 16)
-            await ctx.respond(mention_author=False, embed=discord.Embed(description=msg, color=colour))
+            await ctx.respond(embed=discord.Embed(description=msg, color=colour))
 
 
 def setup(bot):
