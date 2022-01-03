@@ -14,6 +14,8 @@ import support
 from discord.ext.commands import cooldown, BucketType
 import os
 from cogs import checks
+import asyncio
+from async_timeout import timeout
 
 class tts(commands.Cog):
     def __init__(self, client):
@@ -31,7 +33,11 @@ class tts(commands.Cog):
                 return
             text = text.split("-l")
             text.append("en")
-            file = await support.processing.tts(f"{text[0]}", f"{text[1]}".replace(" ", ""))
+            try:
+                async with timeout(5):
+                    file = await support.processing.tts(f"{text[0]}", f"{text[1]}".replace(" ", ""))
+            except asyncio.TimeoutError:
+                raise TimeoutError("Command Timed out.")
             await ctx.reply(mention_author=False, file=discord.File(file), content=lang["commands"]["tts"]["returnSuccess"])
             os.remove(file)
 
