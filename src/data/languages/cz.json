@@ -49,7 +49,7 @@
         },
         "data": {
             "description": "Zobrazí data o uživateli",
-            "returnSuccess": "ID: `{id}`\nJméno: `{name}`\nPrachy: `{balance}$`\nAdmin: `{admin}`\nZabanován: `{banned}`\nDůvod banu: `{reason}`\nČas banu: `{date}`\nBude zabanován do: `{duration}`"
+            "returnSuccess": "ID: `{id}`\nJméno: `{name}`\nPrachy: `{balance}$`\nAdmin: `{admin}`\nZabanován: `{banned}`\nZakázal: {by}\nDůvod banu: `{reason}`\nČas banu: `{date}`\nBude zabanován do: `{duration}`"
         },
         "deop": {
             "description": "Odebere OP",

@@ -49,7 +49,7 @@
         },
         "data": {
             "description": "Näyttää käyttäjän tiedot",
-            "returnSuccess": "ID: `{id}`\nName: `{name}`\nBalance: `{balance}`\nAdmin: `{admin}`\nBanned: `{banned}`\nBan Reason: `{reason}`\nBan Date: `{date}`\nBan Duration: `{duration}`"
+            "returnSuccess": "ID: `{id}`\nNimi: `{name}`\nSaldo: `{balance}`\nAdmin: `{admin}`\nKielletty: `{banned}`\nKiellon syy: `{reason}`\nKielletty: {by}\nKieltopäivämäärä: `{date}`\nKiellon kesto: `{duration}`"
         },
         "deop": {
             "description": "Deoppaa käyttäjän",

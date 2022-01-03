@@ -49,7 +49,7 @@
         },
         "data": {
             "description": "Shows us'r data",
-            "returnSuccess": "ID: `{id}`\nNameth: `{name}`\nBalanceth: `{balance}`\nAdmin: `{admin}`\nBann'd: `{banned}`\nBaneth reasoneth: `{reason}`\nBaneth date: `{date}`\nBaneth duration: `{duration}`"
+            "returnSuccess": "ID: `{id}`\nNameth: `{name}`\nBalanceth: `{balance}`\nAdmin: `{admin}`\nBann'd: `{banned}`\nBaneth reasoneth: `{reason}`\nBann'd by: {by}\nBaneth date: `{date}`\nBaneth duration: `{duration}`"
         },
         "deop": {
             "description": "Deops us'r",

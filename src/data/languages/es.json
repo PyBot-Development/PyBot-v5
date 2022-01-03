@@ -49,7 +49,7 @@
         },
         "data": {
             "description": "Informacion de usuario",
-            "returnSuccess": "ID: `{id}`\nNombre: `{name}`\nDinero: `{balance}`\nAdmin: `{admin}`\nExpulsado: `{banned}`\nRason de expulso: `{reason}`\nFecha de expulso: `{date}`\nDuracion de expulso: `{duration}`"
+            "returnSuccess": "ID: `{id}`\nNombre: `{name}`\nDinero: `{balance}`\nAdmin: `{admin}`\nExpulsado: `{banned}`\nRason de expulso: `{reason}`\nProhibido por: {by}\nFecha de expulso: `{date}`\nDuracion de expulso: `{duration}`"
         },
         "deop": {
             "description": "Remueve op de usuario",
