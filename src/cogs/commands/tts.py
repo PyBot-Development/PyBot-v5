@@ -34,7 +34,7 @@ class tts(commands.Cog):
             text = text.split("-l")
             text.append("en")
             try:
-                async with timeout(5):
+                async with timeout(2):
                     file = await support.processing.tts(f"{text[0]}", f"{text[1]}".replace(" ", ""))
             except asyncio.TimeoutError:
                 raise TimeoutError("Command Timed out.")
