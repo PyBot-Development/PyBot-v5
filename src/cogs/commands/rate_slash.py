@@ -42,7 +42,7 @@ class rate_slash(commands.Cog):
             words = {
                 "gay": await self.convertToHex(num=randomNumber, rgb=[255, 105, 180], textAddition="🏳️‍🌈"),
                 "black": await self.convertToHex(num=randomNumber, 	rgb=[232, 190, 172], invert=True),
-                "furry": await self.convertToHex(num=randomNumber, rgb=[191, 111, 252], textAddition="<a:uwu:870669804233707580>"),
+                "furry": await self.convertToHex(num=randomNumber, rgb=[191, 111, 252], textAddition="<:furryowo:927510365133221929>"),
                 "cum": await self.convertToHex(num=randomNumber, rgb=[255, 255, 255])
             }
 
