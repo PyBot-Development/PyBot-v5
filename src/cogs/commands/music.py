@@ -20,8 +20,6 @@ from run import client
 from discord.commands import Option
 from cogs import checks
 import datetime
-import locale
-locale.setlocale(locale.LC_ALL, 'en_US')
 
 ytdl_format_options = {
     'format': 'bestaudio/best',
@@ -64,8 +62,8 @@ class YTDLSource(discord.PCMVolumeTransformer):
         self.uploader = data.get('uploader')
         self.uploader_url = data.get('uploader_url')
         self.duration = data.get('duration')
-        self.views = locale.format( "%d", data.get('view_count'), grouping=True)
-        self.likes = locale.format( "%d", data.get('like_count'), grouping=True)
+        self.views = f"{data.get('view_count'):,}"
+        self.likes = f"{data.get('like_count'):,}"
         self.original_url = data.get('original_url')
         self.date = data.get('upload_date')
         self.date = datetime.datetime.strptime(self.date, "%Y%m%d")
@@ -86,8 +84,8 @@ class YTDLSource(discord.PCMVolumeTransformer):
                 color=support.colours.default,
                 description=f"""
 Duration: {datetime.timedelta(seconds=data.get('duration'))}
-Views: {locale.format( "%d", data.get('view_count'), grouping=True)}
-Likes: {locale.format( "%d", data.get('like_count'), grouping=True)}
+Views: {data.get('view_count'):,}
+Likes: {data.get('like_count'):,}
 Upload Date: {date.year} {date.strftime("%B")} {date.day}
                 """
             ).set_thumbnail(url=data.get('thumbnail')).set_author(name=data.get('uploader'), url=data.get('uploader_url')), delete_after=10)
