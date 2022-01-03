@@ -13,6 +13,7 @@ import discord
 import support
 from cogs import checks
 from discord.ext.commands import cooldown, BucketType
+
 class leaderboardButtons(discord.ui.View):
     def __init__(self, client, author, guild):
         super().__init__(timeout=20)
