@@ -46,7 +46,7 @@ class rate_slash(commands.Cog):
                 "cum": await self.convertToHex(num=randomNumber, rgb=[255, 255, 255])
             }
 
-            user = ctx.message.author if user is None else user
+            user = ctx.author if user is None else user
 
             ColourHex, addition = words.get(rest.lower(), await self.convertToHex(num=randomNumber, rgb=[155, 255, 133]))
             msg = lang["commands"]["rate"]["returnSuccess"].format(
