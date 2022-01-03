@@ -51,6 +51,8 @@ class VoiceConnectionError(commands.CommandError):
 class InvalidVoiceChannel(VoiceConnectionError):
     """Exception for cases of invalid Voice Channels."""
 
+class EmptyQueue(commands.CommandError):
+    """Because queue was empty"""
 
 class queueButtons(discord.ui.View):
     def __init__(self, client, author, guild, queue):
@@ -313,6 +315,8 @@ class Music(commands.Cog):
         async with ctx.typing():
             player = self.get_player(ctx)
             source = player.queue
+            if list(source._queue) == []:
+                raise EmptyQueue("Queue is empty")
             view = queueButtons(self.bot, ctx.author, ctx.guild, source._queue)
             lang = view.lang
             message=await ctx.reply(mention_author=False, embed=discord.Embed(
