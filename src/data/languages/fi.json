@@ -161,8 +161,7 @@
         },
         "rate": {
             "description": "Arvostelee asioita",
-            "returnSuccess1": "Olet {picked_random}% {rate_thing}.",
-            "returnSuccess2": "{user} on {picked_random}% {rate_thing}."
+            "returnSuccess": "{user} on {picked_random}% {rate_thing}."
         },
         "say": {
             "description": "Lähettää tekstin bottina",

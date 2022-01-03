@@ -15,44 +15,48 @@ import support
 import random
 from cogs import checks
 
+
 class rate(commands.Cog):
     def __init__(self, client):
         self.client = client
+
+    async def convertToHex(self, num: int, rgb: list, invert: bool = False, textAddition: str = "") -> tuple:
+        if invert:
+            return ('%02x%02x%02x' % (int(rgb[0]-num*(rgb[0]/100)), int(rgb[1]-num*(rgb[1]/100)), int(rgb[2]-num*(rgb[2]/100))),
+                (textAddition if num >= 50 else ""))
+        else:
+            return ('%02x%02x%02x' % (int(num*(rgb[0]/100)), int(num*(rgb[1]/100)), int(num*(rgb[2]/100))),
+                (textAddition if num >= 50 else ""))
+    
+
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(aliases=['r', 'meter'], description="commands.rate.description")
-    async def rate(self, ctx, user, *, rest_of_the_text=""):
+    async def rate(self, ctx, user, *, rest=None):
         lang = support.getLanguageFileG(ctx.guild)
         async with ctx.typing():
-            picked_random = random.randint(0, 100)
-            thestuff = {
-                "gay":   '%02x%02x%02x' % (int(picked_random*random.uniform(0, 2.55)), int(picked_random*random.uniform(0, 2.55)), int(picked_random*random.uniform(0, 2.55))),
-                "black": '%02x%02x%02x' % (int(253-(picked_random*2.53)),              int(231-(picked_random*2.31)),              int(214-(picked_random*2.14))),
-                "furry": '%02x%02x%02x' % (int(picked_random*1.67),                    int(picked_random*1.99),                    int(picked_random*2.3)),
-                "cum":   '%02x%02x%02x' % (int(picked_random*2.55),                    int(picked_random*2.55),                    int(picked_random*2.55)),
+
+            randomNumber = int(random.randint(0, 100))
+
+
+            words = {
+                "gay": await self.convertToHex(num=randomNumber, rgb=[255, 105, 180], textAddition="🏳️‍🌈"),
+                "black": await self.convertToHex(num=randomNumber, 	rgb=[232, 190, 172], invert=True),
+                "furry": await self.convertToHex(num=randomNumber, rgb=[191, 111, 252], textAddition="<a:uwu:870669804233707580>"),
+                "cum": await self.convertToHex(num=randomNumber, rgb=[255, 255, 255])
             }
-            if(picked_random > 50 and user.lower() == "gay" or picked_random > 50 and rest_of_the_text.lower() == "gay"):
-                rest_of_the_text = rest_of_the_text+"🏳️‍🌈"
-            elif(picked_random > 50 and user.lower() == "furry" or picked_random > 50 and rest_of_the_text.lower() == "furry"):
-                rest_of_the_text = f"{rest_of_the_text}<a:uwu:870669804233707580>"
+
             try:
                 user = await commands.UserConverter().convert(ctx, user)
-                msg = lang["commands"]["rate"]["returnSuccess2"].format(picked_random=picked_random, rate_thing=rest_of_the_text, user=user)
-                colour_hex = thestuff.get(rest_of_the_text.lower(), '%02x%02x%02x' % (
-                    int(picked_random*1.55), int(picked_random*2.55), int(picked_random*1.33)))
-            except:
-                if user.startswith("@$"):
-                    colour_hex = thestuff.get(rest_of_the_text.lower(), '%02x%02x%02x' % (
-                        int(picked_random*1.55), int(picked_random*2.55), int(picked_random*1.33)))
-                    msg = lang["commands"]["rate"]["returnSuccess2"].format(picked_random=picked_random, rate_thing=rest_of_the_text, user=user[2:])
-                else:
-                    colour_hex = thestuff.get(user.lower(), '%02x%02x%02x' % (
-                        int(picked_random*1.55), int(picked_random*2.55), int(picked_random*1.33)))
-                    msg = lang["commands"]["rate"]["returnSuccess1"].format(picked_random=picked_random, rate_thing=f"{user}{rest_of_the_text}")
-                    
-            colour = int(colour_hex, 16)
-            embed = discord.Embed(title=msg, color=colour)
-            await ctx.reply(mention_author=False, embed=embed)
+                ColourHex, addition = words.get(rest.lower(), await self.convertToHex(num=randomNumber, rgb=[155, 255, 133]))
+                msg = lang["commands"]["rate"]["returnSuccess"].format(
+                    picked_random=randomNumber, rate_thing=f"{(rest if rest != None else '')}{(addition if addition != None else '')}", user=user)
+            except commands.errors.UserNotFound:
+                ColourHex, addition = words.get(user.lower(), await self.convertToHex(num=randomNumber, rgb=[155, 255, 133]))
+                msg = lang["commands"]["rate"]["returnSuccess"].format(
+                    picked_random=randomNumber, rate_thing=f"{user} {(rest if rest != None else '')}{(addition if addition != None else '')}", user=ctx.message.author)
+            colour = int(ColourHex, 16)
+            await ctx.reply(mention_author=False, embed=discord.Embed(description=msg, color=colour))
 
 
 def setup(bot):
