@@ -49,7 +49,7 @@
         },
         "data": {
             "description": "Shows user data",
-            "returnSuccess": "ID: `{id}`\nName: `{name}`\nBalance: `{balance}`\nAdmin: `{admin}`\nBanned: `{banned}`\nBan Reason: `{reason}`\nBan Date: `{date}`\nBan Duration: `{duration}`"
+            "returnSuccess": "ID: `{id}`\nName: `{name}`\nBalance: `{balance}`\nAdmin: `{admin}`\nBanned: `{banned}`\nBan Reason: `{reason}`\nBanned By: {by}\nBan Date: `{date}`\nBan Duration: `{duration}`"
         },
         "deop": {
             "description": "Deops user",

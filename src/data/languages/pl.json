@@ -49,7 +49,7 @@
         },
         "data": {
             "description": "Pokazuje dane użytkownika",
-            "returnSuccess": "ID: `{id}`\nNazwa: `{name}`\nSaldo: `{balance}`\nAdmin: `{admin}`\nZbanowany: `{banned}`\nZbanowano za: `{reason}`\nData Zbanowania: `{date}`\nDługość Bana: `{duration}`"
+            "returnSuccess": "ID: `{id}`\nNazwa: `{name}`\nSaldo: `{balance}`\nAdmin: `{admin}`\nZbanowany: `{banned}`\nZbanowano za: `{reason}`\nZbanował: {by}\nData Zbanowania: `{date}`\nDługość Bana: `{duration}`"
         },
         "deop": {
             "description": "Deopuje użytkownika",

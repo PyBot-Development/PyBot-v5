@@ -20,8 +20,10 @@ class data(commands.Cog):
 
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="commands.data.description")
-    async def data(self, ctx, user: discord.User):
+    async def data(self, ctx, user: discord.User=None):
         async with ctx.typing():
+            if user is None:
+                user=ctx.message.author
             lang = support.getLanguageFileG(ctx.guild)
             data = await support.globalData.getUser(user)
             await ctx.reply(mention_author=False, embed=discord.Embed(description=lang["commands"]["data"]["returnSuccess"].format(
@@ -31,8 +33,9 @@ class data(commands.Cog):
                 admin=data[4],
                 banned=data[3],
                 reason=data[5],
-                date=data[6],
-                duration=data[7]
+                by=data[6],
+                date=data[7],
+                duration="Permanent"
             ), colour=support.colours.default))
 
 def setup(bot):

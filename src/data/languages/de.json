@@ -49,7 +49,7 @@
         },
         "data": {
             "description": "Zeigt Benutzerdaten",
-            "returnSuccess": "ID: `{id}`\nName: `{name}`\nGeldstand: `{balance}`\nAdmin: `{admin}`\nGebannt: `{banned}`\nBan Grund: `{reason}`\nBann-Datum: `{date}`\nBann-Dauer: `{duration}`"
+            "returnSuccess": "ID: `{id}`\nName: `{name}`\nGeldstand: `{balance}`\nAdmin: `{admin}`\nGebannt: `{banned}`\nBan Grund: `{reason}`\nGebannt von: {by}\nBann-Datum: `{date}`\nBann-Dauer: `{duration}`"
         },
         "deop": {
             "description": "De-ops Benutzer",

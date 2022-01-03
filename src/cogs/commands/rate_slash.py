@@ -34,7 +34,7 @@ class rate_slash(commands.Cog):
     async def rate(self, ctx,
                    rest: Option(str, "Rate What?"),
                    user: Option(str, "User or Thing to rate",
-                                required=False) = "",
+                                required=False) = None,
                    ):
         async with ctx.typing():
             lang = support.getLanguageFileG(ctx.guild)
@@ -51,15 +51,11 @@ class rate_slash(commands.Cog):
                 "cum": await self.convertToHex(num=randomNumber, rgb=[255, 255, 255])
             }
 
-            try:
-                user = await commands.UserConverter().convert(ctx, user)
-                ColourHex, addition = words.get(rest.lower(), await self.convertToHex(num=randomNumber, rgb=[155, 255, 133]))
-                msg = lang["commands"]["rate"]["returnSuccess"].format(
-                    picked_random=randomNumber, rate_thing=f"{(rest if rest != None else '')}{(addition if addition != None else '')}", user=user)
-            except commands.errors.UserNotFound:
-                ColourHex, addition = words.get(user.lower(), await self.convertToHex(num=randomNumber, rgb=[155, 255, 133]))
-                msg = lang["commands"]["rate"]["returnSuccess"].format(
-                    picked_random=randomNumber, rate_thing=f"{user} {(rest if rest != None else '')}{(addition if addition != None else '')}", user=ctx.message.author)
+            user = ctx.message.author if user is None else user
+
+            ColourHex, addition = words.get(rest.lower(), await self.convertToHex(num=randomNumber, rgb=[155, 255, 133]))
+            msg = lang["commands"]["rate"]["returnSuccess"].format(
+                picked_random=randomNumber, rate_thing=f"{(rest if rest != None else '')}{(addition if addition != None else '')}", user=user)
 
             colour = int(ColourHex, 16)
             await ctx.respond(mention_author=False, embed=discord.Embed(description=msg, color=colour))
