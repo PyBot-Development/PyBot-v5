@@ -38,12 +38,7 @@ class rate_slash(commands.Cog):
                    ):
         async with ctx.typing():
             lang = support.getLanguageFileG(ctx.guild)
-
             randomNumber = int(random.randint(0, 100))
-
-            msg = lang["commands"]["rate"]["returnSuccess2"].format(
-                picked_random=randomNumber, rate_thing=rest, user=user)
-
             words = {
                 "gay": await self.convertToHex(num=randomNumber, rgb=[255, 105, 180], textAddition="🏳️‍🌈"),
                 "black": await self.convertToHex(num=randomNumber, 	rgb=[232, 190, 172], invert=True),
