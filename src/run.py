@@ -50,9 +50,9 @@ if __name__ == "__main__":
     @client.before_invoke
     async def common(ctx):
         try:
-            support.log(datetime.utcnow(), "COMMAND", f"{ctx.author}", ctx.message.content)
+            support.log(datetime.utcnow(), "COMMAND", f"{str(ctx.author)}", ctx.message.content)
         except:
-            support.log(datetime.utcnow(), "SLASH COMMAND", f"{ctx.author}", ctx.command)
+            support.log(datetime.utcnow(), "SLASH COMMAND", f"{str(ctx.author)}", ctx.command)
         
     loadCog("events")
     loadCog("commands")

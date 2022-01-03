@@ -90,7 +90,7 @@ Views: {locale.format( "%d", data.get('view_count'), grouping=True)}
 Likes: {locale.format( "%d", data.get('like_count'), grouping=True)}
 Upload Date: {date.year} {date.strftime("%B")} {date.day}
                 """
-            ).set_thumbnail(url=data.get('thumbnail')).set_author(name=data.get('uploader'), url=data.get('uploader_url')))
+            ).set_thumbnail(url=data.get('thumbnail')).set_author(name=data.get('uploader'), url=data.get('uploader_url')), delete_after=10)
         return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
 
 
