@@ -52,8 +52,121 @@ class InvalidVoiceChannel(VoiceConnectionError):
     """Exception for cases of invalid Voice Channels."""
 
 
+class queueButtons(discord.ui.View):
+    def __init__(self, client, author, guild, queue):
+        super().__init__(timeout=20)
+        self.client = client
+        self.page = 0
+        self.author = author
+        self.message = None
+
+        self.lang = support.getLanguageFileG(guild)
+        
+        titles = [f"{queue.index(item)+1}. [{item.title}]({item.original_url})" for item in queue]
+
+        self.queue = []
+        n = 10
+        for index in range(0, len(titles), n):
+            page = ''.join(f"{item}\n" for item in titles[index: index + n])
+            self.queue.append(page)
+
+        self.maxPages = int(len(queue)) - 1
+
+    async def on_timeout(self) -> None:
+        self.back.disabled = True
+        self.stop_button.disabled = True
+        self.forward.disabled = True
+        self.home.disabled=True
+        self.end.disabled=True
+        await self.message.edit(view=self)
+        return await super().on_timeout()
+
+    @discord.ui.button(label="<<", style=discord.ButtonStyle.grey)
+    async def home(
+        self, button: discord.ui.Button, interaction: discord.Interaction
+    ):
+        if interaction.user.id != self.author.id:
+            await interaction.response.send_message(self.lang["notYourMenu"], ephemeral=True)
+            return
+
+        self.page = 0
+        await interaction.response.edit_message(embed=discord.Embed(
+            title="Queue",
+            description=f"""
+[{self.lang['website']}](https://py-bot.cf/) | [{self.lang['command']}](https://py-bot.cf/commands) | [{self.lang['discord']}](https://discord.gg/dfKMTx9Eea)
+
+{self.queue[self.page]}""",
+            color=support.colours.default
+        ).set_footer(text=f"{self.lang['page']}: {self.page+1}/{self.maxPages+1}"))
+
+    @discord.ui.button(label="<", style=discord.ButtonStyle.grey)
+    async def back(
+        self, button: discord.ui.Button, interaction: discord.Interaction
+    ):
+        if interaction.user.id != self.author.id:
+            await interaction.response.send_message(self.lang["notYourMenu"], ephemeral=True)
+            return
+        self.page -= 1 if self.page > 0 else 0
+        await interaction.response.edit_message(embed=discord.Embed(
+            title="Queue",
+            description=f"""
+[{self.lang['website']}](https://py-bot.cf/) | [{self.lang['command']}](https://py-bot.cf/commands) | [{self.lang['discord']}](https://discord.gg/dfKMTx9Eea)
+
+{self.queue[self.page]}""",
+            color=support.colours.default
+        ).set_footer(text=f"{self.lang['page']}: {self.page+1}/{self.maxPages+1}"))
+
+    @discord.ui.button(label="⬜", style=discord.ButtonStyle.grey)
+    async def stop_button(self, button: discord.ui.Button, interaction: discord.Interaction):
+        if interaction.user.id != self.author.id:
+            await interaction.response.send_message(self.lang["notYourMenu"], ephemeral=True)
+            return
+        self.back.disabled = True
+        self.stop_button.disabled = True
+        self.forward.disabled = True
+        self.home.disabled=True
+        self.end.disabled=True
+        await interaction.response.edit_message(view=self)
+
+        self.stop()
+
+    @discord.ui.button(label=">", style=discord.ButtonStyle.grey)
+    async def forward(
+        self, button: discord.ui.Button, interaction: discord.Interaction
+    ):
+        if interaction.user.id != self.author.id:
+            await interaction.response.send_message(self.lang["notYourMenu"], ephemeral=True)
+            return
+        if self.page < self.maxPages:
+            self.page += 1
+        await interaction.response.edit_message(embed=discord.Embed(
+            title="Queue",
+            description=f"""
+[{self.lang['website']}](https://py-bot.cf/) | [{self.lang['command']}](https://py-bot.cf/commands) | [{self.lang['discord']}](https://discord.gg/dfKMTx9Eea)
+
+{self.queue[self.page]}""",
+            color=support.colours.default
+        ).set_footer(text=f"{self.lang['page']}: {self.page+1}/{self.maxPages+1}"))
+
+    @discord.ui.button(label=">>", style=discord.ButtonStyle.grey)
+    async def end(
+        self, button: discord.ui.Button, interaction: discord.Interaction
+    ):
+        if interaction.user.id != self.author.id:
+            await interaction.response.send_message(self.lang["notYourMenu"], ephemeral=True)
+            return
+        self.page = self.maxPages
+        await interaction.response.edit_message(embed=discord.Embed(
+            title="Queue",
+            description=f"""
+[{self.lang['website']}](https://py-bot.cf/) | [{self.lang['command']}](https://py-bot.cf/commands) | [{self.lang['discord']}](https://discord.gg/dfKMTx9Eea)
+
+{self.queue[self.page]}""",
+            color=support.colours.default
+        ).set_footer(text=f"{self.lang['page']}: {self.page+1}/{self.maxPages+1}"))
+
 class YTDLSource(discord.PCMVolumeTransformer):
-    def __init__(self, source, *, data, volume=.5):
+    def __init__(self, source, *, data, volume=1):
         super().__init__(source, volume)
         self.data = data
         self.title = data.get('title')
@@ -88,7 +201,7 @@ Views: {data.get('view_count'):,}
 Likes: {data.get('like_count'):,}
 Upload Date: {date.year} {date.strftime("%B")} {date.day}
                 """
-            ).set_thumbnail(url=data.get('thumbnail')).set_author(name=data.get('uploader'), url=data.get('uploader_url')), delete_after=10)
+            ).set_thumbnail(url=data.get('thumbnail')).set_author(name=data.get('uploader'), url=data.get('uploader_url')), delete_after=30)
         return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
 
 
@@ -194,14 +307,25 @@ class Music(commands.Cog):
             except asyncio.TimeoutError:
                 raise commands.TimeoutError("Command timed out.")
 
-    # @cooldown(1, support.cooldown, BucketType.user)
-    # @commands.command(description="Plays Music in current Voice Channel")
-    # async def queue(self, ctx):
-    #     async with ctx.typing():
-    #         player = self.get_player(ctx)
-    #         queue = await player.queue.get()
-    #         print(queue)
-    #         await ctx.send(queue)
+    @cooldown(1, support.cooldown, BucketType.user)
+    @commands.command(description="commands.next.description")
+    async def queue(self, ctx):
+        async with ctx.typing():
+            player = self.get_player(ctx)
+            source = player.queue
+            view = queueButtons(self.bot, ctx.author, ctx.guild, source._queue)
+            lang = view.lang
+            message=await ctx.reply(mention_author=False, embed=discord.Embed(
+            title="Queue",
+            description=f"""
+[{lang["website"]}](https://py-bot.cf/) | [{lang["command"]}](https://py-bot.cf/commands) | [{lang["discord"]}](https://discord.gg/dfKMTx9Eea)
+
+{view.queue[view.page]}""",
+            color=support.colours.default
+        ).set_footer(text=f'{lang["page"]}: {view.page+1}/{view.maxPages+1}'), view=view)
+            view.message=message
+
+            
     @checks.default()
     @client.slash_command(description="commands.play.description")
     async def play(
