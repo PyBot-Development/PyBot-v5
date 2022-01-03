@@ -80,7 +80,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
         filename = data['url'] if stream else ytdl.prepare_filename(data)
         date = data.get('upload_date')
         date = datetime.datetime.strptime(date, "%Y%m%d")
-        await ctx.reply(mention_author=False, embed=discord.Embed(
+        await ctx.send(mention_author=False, embed=discord.Embed(
                 title=lang["commands"]["play"]["returnSuccess"].format(title=data.get('title')),
                 url=data.get('original_url'),
                 color=support.colours.default,
