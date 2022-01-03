@@ -162,8 +162,7 @@
         },
         "rate": {
             "description": "Rates stuffeth",
-            "returnSuccess1": "Thou art {picked_random}% {rate_thing}.",
-            "returnSuccess2": "{user} is {picked_random}% {rate_thing}."
+            "returnSuccess": "{user} is {picked_random}% {rate_thing}."
         },
         "say": {
             "description": "Sends text message as bot",

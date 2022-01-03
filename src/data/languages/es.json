@@ -162,8 +162,7 @@
         },
         "rate": {
             "description": "Calafica algo",
-            "returnSuccess1": "Eres {picked_random}% {rate_thing}.",
-            "returnSuccess2": "{user} es {picked_random}% {rate_thing}."
+            "returnSuccess": "{user} es {picked_random}% {rate_thing}."
         },
         "say": {
             "description": "Haz el bot mandar un mensaje",
