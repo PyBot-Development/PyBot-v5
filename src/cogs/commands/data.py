@@ -35,7 +35,7 @@ class data(commands.Cog):
                 reason=data[5],
                 by=data[6],
                 date=data[7],
-                duration="Permanent"
+                duration="None"
             ), colour=support.colours.default))
 
 def setup(bot):

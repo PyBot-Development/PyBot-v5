@@ -19,6 +19,9 @@ youtube_dl.utils.bug_reports_message = lambda: ''
 from run import client
 from discord.commands import Option
 from cogs import checks
+import datetime
+import locale
+locale.setlocale(locale.LC_ALL, 'en_US')
 
 ytdl_format_options = {
     'format': 'bestaudio/best',
@@ -57,7 +60,15 @@ class YTDLSource(discord.PCMVolumeTransformer):
         self.data = data
         self.title = data.get('title')
         self.url = data.get('url')
-
+        self.thumbnail = data.get('thumbnail')
+        self.uploader = data.get('uploader')
+        self.uploader_url = data.get('uploader_url')
+        self.duration = data.get('duration')
+        self.views = locale.format( "%d", data.get('view_count'), grouping=True)
+        self.likes = locale.format( "%d", data.get('like_count'), grouping=True)
+        self.original_url = data.get('original_url')
+        self.date = data.get('upload_date')
+        self.date = datetime.datetime.strptime(self.date, "%Y%m%d")
     @classmethod
     async def from_url(cls, ctx, url, *, loop=None, stream=False):
         lang = support.getLanguageFileG(ctx.guild)
@@ -67,11 +78,19 @@ class YTDLSource(discord.PCMVolumeTransformer):
             # take first item from a playlist
             data = data['entries'][0]
         filename = data['url'] if stream else ytdl.prepare_filename(data)
-        await ctx.send(mention_author=False, embed=discord.Embed(
-            description=lang["commands"]["play"]["returnSuccess"]
-            .format(title=data["title"]),
-            color=support.colours.default
-        ), delete_after=10)
+        date = data.get('upload_date')
+        date = datetime.datetime.strptime(date, "%Y%m%d")
+        await ctx.reply(mention_author=False, embed=discord.Embed(
+                title=lang["commands"]["play"]["returnSuccess"].format(title=data.get('title')),
+                url=data.get('original_url'),
+                color=support.colours.default,
+                description=f"""
+Duration: {datetime.timedelta(seconds=data.get('duration'))}
+Views: {locale.format( "%d", data.get('view_count'), grouping=True)}
+Likes: {locale.format( "%d", data.get('like_count'), grouping=True)}
+Upload Date: {date.year} {date.strftime("%B")} {date.day}
+                """
+            ).set_thumbnail(url=data.get('thumbnail')).set_author(name=data.get('uploader'), url=data.get('uploader_url')))
         return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
 
 
@@ -116,8 +135,16 @@ class MusicPlayer:
             self._guild.voice_client.play(
                 source, after=lambda _: self.bot.loop.call_soon_threadsafe(self.next.set))
             self.np = await self._channel.send(embed=discord.Embed(
-                description=lang["commands"]["now_playing"]["returnSuccess"].format(title=source.title), color=support.colours.default
-            ))
+                title=lang["commands"]["now_playing"]["returnSuccess"].format(title=source.title),
+                url=source.original_url,
+                color=support.colours.default,
+                description=f"""
+Duration: {datetime.timedelta(seconds=source.duration)}
+Views: {source.views}
+Likes: {source.likes}
+Upload Date: {source.date.year} {source.date.strftime("%B")} {source.date.day}
+                """
+            ).set_thumbnail(url=source.thumbnail).set_author(name=source.uploader, url=source.uploader_url))
             await self.next.wait()
             source.cleanup()
             self.current = None
@@ -189,7 +216,7 @@ class Music(commands.Cog):
         async with ctx.typing():
             voice_channel = ctx.author.voice.channel
             if ctx.voice_client is None:
-                vc = await voice_channel.connect()
+                await voice_channel.connect()
             player = self.get_player(ctx)
             try:
                 async with timeout(10):
