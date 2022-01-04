@@ -24,6 +24,7 @@ import requests
 from io import BytesIO
 import os
 from pathlib import Path
+from werkzeug.utils import secure_filename
 
 time = datetime.utcnow()
 startup_date = f"{time.day}_{time.month}_{time.year}-{time.hour:02d}-{time.minute:02d}.{time.second:02d}.{time.microsecond:03d}"
@@ -423,8 +424,8 @@ def getLanguage(guild):
         return 'en.json'
 
 def getLanguageFile(language):
-    if Path(f"{path}/data/languages/{language}").exists():
-        with open(f"{path}/data/languages/{language}") as lang:
+    if Path(f"{path}/data/languages/{secure_filename(language)}").exists():
+        with open(f"{path}/data/languages/{secure_filename(language)}") as lang:
             data = json.load(lang)
         return data
     else:
