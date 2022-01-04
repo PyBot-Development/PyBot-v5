@@ -45,7 +45,7 @@ ffmpeg_options = {
 ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
 
 class queueButtons(discord.ui.View):
-    def __init__(self, client, author, guild, queue):
+    def __init__(self, client, author, guild, queue, playing):
         super().__init__(timeout=20)
         self.client = client
         self.page = 0
@@ -53,8 +53,8 @@ class queueButtons(discord.ui.View):
         self.message = None
 
         self.lang = support.getLanguageFileG(guild)
-        
         titles = [f"{queue.index(item)+1}. [{item.title}]({item.original_url})" for item in queue]
+        titles.insert(0, f"Now Playing [{playing.title}]({playing.original_url})\n")
 
         self.queue = []
         n = 10
@@ -288,6 +288,8 @@ class Music(commands.Cog):
     @commands.command(description="commands.play.description", name="play")
     async def play_music(self, ctx, *, url):
         async with ctx.typing():
+            if not ctx.author.voice:
+                raise errors.NotInVoiceChannel()
             vc = ctx.voice_client
             if not vc:
                 await ctx.invoke(self.connect)
@@ -305,9 +307,9 @@ class Music(commands.Cog):
         async with ctx.typing():
             player = self.get_player(ctx)
             source = player.queue
-            if list(source._queue) == []:
+            if list(source._queue) == [] and player.current == None:
                 raise errors.EmptyQueue("Queue is empty")
-            view = queueButtons(self.bot, ctx.author, ctx.guild, source._queue)
+            view = queueButtons(self.bot, ctx.author, ctx.guild, source._queue, player.current)
             lang = view.lang
             message=await ctx.reply(mention_author=False, embed=discord.Embed(
             title="Queue",
@@ -327,6 +329,8 @@ class Music(commands.Cog):
         ctx,
         name: Option(str, "Url/Name"),
     ):
+        if not ctx.author.voice:
+            raise errors.NotInVoiceChannel()
         lang = support.getLanguageFileG(ctx.guild)
         await ctx.response.send_message(embed=discord.Embed(description="Playing...", color=support.colours.default), ephemeral=True)
         async with ctx.typing():
@@ -347,6 +351,7 @@ class Music(commands.Cog):
     async def now_playing(self, ctx):
         lang = support.getLanguageFileG(ctx.guild)
         vc = ctx.voice_client
+
         if not vc or not vc.is_connected():
             return await ctx.reply(mention_author=False, 
                 embed=discord.Embed(
@@ -364,7 +369,7 @@ class Music(commands.Cog):
             await player.np.delete()
         except discord.HTTPException:
             pass
-
+        
         player.np = await ctx.reply(mention_author=False, embed=discord.Embed(
             description=lang["commands"]["now_playing"]["returnSuccess"].format(title=vc.source.title),
             color=support.colours.default
@@ -373,6 +378,8 @@ class Music(commands.Cog):
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="commands.skip.description")
     async def skip(self, ctx):
+        if not ctx.author.voice:
+            raise errors.NotInVoiceChannel()
         lang = support.getLanguageFileG(ctx.guild)
         vc = ctx.voice_client
         if not vc or not vc.is_connected():
@@ -392,6 +399,9 @@ class Music(commands.Cog):
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(aliases=['vol'], description="commands.volume.description")
     async def volume(self, ctx, *, vol: float):
+        if not ctx.author.voice:
+            raise errors.NotInVoiceChannel()
+
         lang = support.getLanguageFileG(ctx.guild)
         vc = ctx.voice_client
         if not vc or not vc.is_connected():
@@ -418,6 +428,8 @@ class Music(commands.Cog):
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="commands.stop.description")
     async def stop(self, ctx):
+        if not ctx.author.voice:
+            raise errors.NotInVoiceChannel()
         lang = support.getLanguageFileG(ctx.guild)
         vc = ctx.voice_client
         if not vc or not vc.is_connected():

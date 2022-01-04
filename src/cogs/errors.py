@@ -4,6 +4,7 @@ from inspect import Parameter
 __all__ = (
     'VoiceConnectionError',
     'InvalidVoiceChannel',
+    'NotInVoiceChannel',
     'EmptyQueue'
 )
 
@@ -13,8 +14,15 @@ class VoiceConnectionError(commands.CommandError):
 class InvalidVoiceChannel(VoiceConnectionError):
     """Exception for cases of invalid Voice Channels."""
 
+class NotInVoiceChannel(VoiceConnectionError):
+    """So people cant skip when not in vc cuz gay"""
+    def __init__(self) -> None:
+        super().__init__("You have to be in Voice Channel to use this command.")
+
 class EmptyQueue(commands.CommandError):
     """Because queue was empty"""
+
+
 
 class MissingRequiredArgument(commands.UserInputError):
     """Exception raised when parsing a command and a parameter
