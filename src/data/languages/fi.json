@@ -29,7 +29,7 @@
             "notEnoughMoney": "Sinulla ei ole tarpeeksi rahaa",
             "tooLowBet": "Minimi panos on `1`$.",
 
-            "menu": "Black Jack\nYour Deck: {userDeck}\n`(Value: {userValue})`\n\nDealers Deck: {dealerCards}.\n`(Value: {dealerValue})`\n",
+            "menu": "Black Jack\nYour Deck: {userDeck}\n`(Value: {userValue})`\n\nDealers Deck: {dealerCards}\n`(Value: {dealerValue})`\n",
             "lost": "Hävisit `{value}`$",
             "won": "Voitit `{value}`$",
             "tie": "Tasatulos! Rahasi on palautettu"

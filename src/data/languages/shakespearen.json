@@ -29,7 +29,7 @@
             "notEnoughMoney": "Thee has't not enow wage",
             "tooLowBet": "Minimum did bet value is `1`$",
 
-            "menu": "Black Jack\nThy deck: {userDeck}\n`(Value: {userValue})`\n\nDealeth'rs deck Deck: {dealerCards}.\n`(Value: {dealerValue})`\n",
+            "menu": "Black Jack\nThy deck: {userDeck}\n`(Value: {userValue})`\n\nDealeth'rs deck Deck: {dealerCards}\n`(Value: {dealerValue})`\n",
             "lost": "Thee hath lost `{value}`$",
             "won": "Thee wonneth `{value}`$",
             "tie": "Tieth! wage hast been given backeth"

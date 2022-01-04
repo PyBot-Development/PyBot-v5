@@ -29,7 +29,7 @@
             "notEnoughMoney": "Nie masz tyle kasy",
             "tooLowBet": "Minimalny zakład to `1`$.",
 
-            "menu": "Black Jack\nTwoja Talia: {userDeck}\n`(Wartość: {userValue})`\n\nTalia Bota: {dealerCards}.\n`(Wartość: {dealerValue})`\n",
+            "menu": "Black Jack\nTwoja Talia: {userDeck}\n`(Wartość: {userValue})`\n\nTalia Bota: {dealerCards}\n`(Wartość: {dealerValue})`\n",
             "lost": "Przegrałeś `{value}`$",
             "won": "Wygrałeś `{value}`$",
             "tie": "Remis. Pieniądze zostały zwrócone"

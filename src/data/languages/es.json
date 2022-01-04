@@ -29,7 +29,7 @@
             "notEnoughMoney": "You don't have enough money",
             "tooLowBet": "Minimum bet value is `1`$.",
 
-            "menu": "Black Jack\nYour Deck: {userDeck}\n`(Value: {userValue})`\n\nDealers Deck: {dealerCards}.\n`(Value: {dealerValue})`\n",
+            "menu": "Black Jack\nYour Deck: {userDeck}\n`(Value: {userValue})`\n\nDealers Deck: {dealerCards}\n`(Value: {dealerValue})`\n",
             "lost": "You lost `{value}`$",
             "won": "You won `{value}`$",
             "tie": "Tie! Money has been given back"
