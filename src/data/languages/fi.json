@@ -182,8 +182,8 @@
         },
         "setLanguage": {
             "description": "Asettaa kielen",
-            "returnSuccess": "Kieli on nyytten {lang}",
-            "notFound": "Kielitä {lang} ei tueta vielä."
+            "returnSuccess": "Kieli on nyytten `{lang}`",
+            "notFound": "Kielitä `{lang}` ei tueta vielä."
         },
         "languages": {
             "description": "Näyttää mahdollisten kielien listan",

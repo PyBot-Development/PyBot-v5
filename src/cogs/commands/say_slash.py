@@ -28,7 +28,7 @@ class hello(commands.Cog):
         ctx,
         arg: Option(str, "What do you want me to say?"),
     ):
-        await ctx.send(f"​{arg}".replace("@", "@ "))
+        await ctx.send(f"\u200b{arg}".replace("@", "@\u200b"))
         await ctx.response.send_message("Message was sent.", ephemeral=True)
         
 

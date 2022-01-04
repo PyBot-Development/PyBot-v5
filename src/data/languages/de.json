@@ -183,8 +183,8 @@
         },
         "setLanguage": {
             "description": "Legt die Sprache fest",
-            "returnSuccess": "Die Sprache ist nun {lang}",
-            "notFound": "Die Sprache {lang} wird noch nicht unterstützt."
+            "returnSuccess": "Die Sprache ist nun `{lang}`",
+            "notFound": "Die Sprache `{lang}` wird noch nicht unterstützt."
         },
         "languages": {
             "description": "Zeigt verfügbare Sprachen an",

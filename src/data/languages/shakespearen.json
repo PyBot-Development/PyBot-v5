@@ -183,8 +183,8 @@
         },
         "setLanguage": {
             "description": "Sets language",
-            "returnSuccess": "Language is anon {lang}",
-            "notFound": "Language {lang} is not supp'rt'd yet."
+            "returnSuccess": "Language is anon `{lang}`",
+            "notFound": "Language `{lang}` is not supp'rt'd yet."
         },
         "languages": {
             "description": "Shows available languages",

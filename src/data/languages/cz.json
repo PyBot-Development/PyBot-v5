@@ -183,8 +183,8 @@
         },
         "setLanguage": {
             "description": "Nastavuje jazyk",
-            "returnSuccess": "Jazyk je teď {lang}",
-            "notFound": "Jazyk {lang} není ještě podporován."
+            "returnSuccess": "Jazyk je teď `{lang}`",
+            "notFound": "Jazyk `{lang}` není ještě podporován."
         },
         "languages": {
             "description": "Zobrazuje dostupné jazyky",

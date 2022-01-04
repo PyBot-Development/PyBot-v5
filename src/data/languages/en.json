@@ -183,8 +183,8 @@
         },
         "setLanguage": {
             "description": "Sets language",
-            "returnSuccess": "Language is now {lang}",
-            "notFound": "Language {lang} is not supported yet."
+            "returnSuccess": "Language is now `{lang}`",
+            "notFound": "Language `{lang}` is not supported yet."
         },
         "languages": {
             "description": "Shows available languages",

@@ -29,4 +29,4 @@ class server(threading.Thread):
 
 
     if __name__ == "__main__":
-        app.run(debug=True)
+        app.run(debug=support.config.get("debug"))

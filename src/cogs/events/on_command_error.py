@@ -32,14 +32,14 @@ class on_command_error(commands.Cog):
 
         if isinstance(error, commands.CommandOnCooldown):
             await ctx.reply(mention_author=False, embed=discord.Embed(
-                description=lang["errors"]["commandOnCooldown"].format(time=datetime.timedelta(seconds=error.retry_after)),
+                description=str(lang["errors"]["commandOnCooldown"].format(time=datetime.timedelta(seconds=error.retry_after))).title(),
                 color=support.colours.red
             ),
                 delete_after=10)
 
         elif isinstance(error, (checks.NoPermissions, checks.UserBanned)):
             await ctx.reply(mention_author=False, embed=discord.Embed(
-                description=f"{str(error).capitalize()}",
+                description=str(error).title(),
                 color=support.colours.yellow
             ),
                 delete_after=10)
@@ -47,7 +47,7 @@ class on_command_error(commands.Cog):
         elif isinstance(error, CommandNotFound):
             cmd = str(ctx.message.content).split(" ")[0]
             await ctx.reply(mention_author=False, embed=discord.Embed(
-                description=lang["errors"]["commandNotFound"].format(cmd=cmd),
+                description=str(lang["errors"]["commandNotFound"].format(cmd=cmd)).title(),
                 color=support.colours.red
             ),
                 delete_after=10)
@@ -55,7 +55,7 @@ class on_command_error(commands.Cog):
         elif isinstance(
             error, commands.MissingRequiredArgument):
             await ctx.reply(mention_author=False, embed=discord.Embed(
-                description=lang["errors"]["missingRequiredArgument"].capitalize(),
+                description=lang["errors"]["missingRequiredArgument"].title(),
                 color=support.colours.red
             ),
                 delete_after=10)
@@ -63,7 +63,8 @@ class on_command_error(commands.Cog):
             error_ = str(error)[29:] if str(error).lower().startswith(
                 "command") else str(error)  # Removes: "Command Invoked Error"
             await ctx.reply(mention_author=False, embed=discord.Embed(
-                description=f"<:QuestionMark:885978535670464533> {str(error_).capitalize()}",
+                description=f"<:QuestionMark:885978535670464533> {str(error_).title()}"
+                .replace("Valueerror: ", ""),
                 color=support.colours.red
             ),
                 delete_after=10)
