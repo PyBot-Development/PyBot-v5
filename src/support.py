@@ -23,6 +23,7 @@ from datetime import datetime
 import requests
 from io import BytesIO
 import os
+from pathlib import Path
 
 time = datetime.utcnow()
 startup_date = f"{time.day}_{time.month}_{time.year}-{time.hour:02d}-{time.minute:02d}.{time.second:02d}.{time.microsecond:03d}"
@@ -43,7 +44,7 @@ with open(f"{path}/data/alts.txt") as file:
 async def getAlt():
     return choice(alts)
 
-
+debug = not config.get("debug")
 def log(date, type, arg1, arg2):
     time = f"{date.hour:02d}:{date.minute:02d}:{date.second:02d}"
     if type == "COMMAND":
@@ -53,9 +54,10 @@ def log(date, type, arg1, arg2):
         print(
             f"""{Back.BLACK}{Fore.LIGHTYELLOW_EX}{time}{Style.RESET_ALL} [{Fore.LIGHTGREEN_EX}{type}{Style.RESET_ALL}] {Fore.LIGHTYELLOW_EX}{arg1}{Style.RESET_ALL}: {Fore.LIGHTGREEN_EX}{arg2}{Style.RESET_ALL}""")
 
-    with open(f"{path}/logs/{startup_date}.log", "a+") as file:
-        type = type if type != "COMMAND" else "INFO"
-        file.write(f"{time} [{type}] {arg1}: {arg2}\n")
+    if debug:
+        with open(f"{path}/logs/{startup_date}.log", "a+") as file:
+            type = type if type != "COMMAND" else "INFO"
+            file.write(f"{time} [{type}] {arg1}: {arg2}\n")
 
 
 class colours:
@@ -232,18 +234,18 @@ class database:
         self.cur.execute('''CREATE TABLE IF NOT EXISTS guilds (id integer, name text, language text, prefix text)''')
 
     async def getUser(self, user):
-        u = self.cur.execute(f'''SELECT * FROM users WHERE id={user.id}''').fetchone()
+        u = self.cur.execute(f'''SELECT * FROM users WHERE id=?''', (user.id, )).fetchone()
         if u is None:
             self.cur.execute(f'INSERT INTO users VALUES (?, ?, 10000, 0, 0, "None", "None", "None", 0, 1000)', (user.id, str(user), ))
             self.con.commit()
-        return self.cur.execute(f'''SELECT * FROM users WHERE id="{user.id}"''').fetchone()
+        return self.cur.execute(f'''SELECT * FROM users WHERE id=?''', (user.id, )).fetchone()
 
     def getUserSync(self, user):
-        u = self.cur.execute(f'''SELECT * FROM users WHERE id={user.id}''').fetchone()
+        u = self.cur.execute(f'''SELECT * FROM users WHERE id=?''', (user.id, )).fetchone()
         if u is None:
             self.cur.execute(f'INSERT INTO users VALUES (?, ?, 10000, 0, 0, "None", "None", "None", 0, 1000)', (user.id, str(user), ))
             self.con.commit()
-        return self.cur.execute(f'''SELECT * FROM users WHERE id="{user.id}"''').fetchone()
+        return self.cur.execute(f'''SELECT * FROM users WHERE id=?''', (user.id, )).fetchone()
 
     async def getAllUsers(self):
         return self.cur.execute(f'''SELECT * FROM users''').fetchall()
@@ -253,25 +255,25 @@ class database:
         
     async def setBalance(self, user, balance: int):
         await self.getUser(user)
-        self.cur.execute(f'''UPDATE users SET balance={balance} WHERE id={user.id}''')
+        self.cur.execute(f'''UPDATE users SET balance=? WHERE id=?''', (balance, user.id))
         self.con.commit()
 
     async def addBalance(self, user, balance: int):
         balance = await self.getBalance(user) + balance
-        self.cur.execute(f'''UPDATE users SET balance={balance} WHERE id={user.id}''')
+        self.cur.execute(f'''UPDATE users SET balance=? WHERE id=?''', (balance, user.id))
         self.con.commit()
 
     async def addEveryoneBalance(self, balance: int):
-        self.cur.execute(f'''UPDATE users SET balance=balance+{balance}''')
+        self.cur.execute(f'''UPDATE users SET balance=balance+?''', (balance, ))
         self.con.commit()
         
     async def setEveryoneBalance(self, balance: int):
-        self.cur.execute(f'''UPDATE users SET balance={balance}''')
+        self.cur.execute(f'''UPDATE users SET balance=?''', (balance, ))
         self.con.commit()
 
     async def removebalance(self, user, balance: int):
         balance = await self.getBalance(user) - balance
-        self.cur.execute(f'''UPDATE users SET balance={balance} WHERE id={user.id}''')
+        self.cur.execute(f'''UPDATE users SET balance=? WHERE id=?''', (balance, user.id))
         self.con.commit()
 
     async def getBalance(self, user):
@@ -280,22 +282,22 @@ class database:
 
     async def banUser(self, user , reason, date, author):
         await self.getUser(user)
-        self.cur.execute(f'''UPDATE users SET banned=1, reason=?, date=?, banned_by=? WHERE id={user.id}''', (str(reason), str(date), str(author)))
+        self.cur.execute(f'''UPDATE users SET banned=1, reason=?, date=?, banned_by=? WHERE id=?''', (str(reason), str(date), str(author), user.id))
         self.con.commit()
 
     async def unbanUser(self, user):
         await self.getUser(user)
-        self.cur.execute(f'''UPDATE users SET banned=0, reason="None", date="None", banned_by="None" WHERE id={user.id}''')
+        self.cur.execute(f'''UPDATE users SET banned=0, reason="None", date="None", banned_by="None" WHERE id=?''', (user.id,))
         self.con.commit()
 
     async def opUser(self, user):
         await self.getUser(user)
-        self.cur.execute(f'''UPDATE users SET admin=1 WHERE id={user.id}''')
+        self.cur.execute(f'''UPDATE users SET admin=1 WHERE id=?''', (user.id,))
         self.con.commit()
 
     async def deopUser(self, user):
         await self.getUser(user)
-        self.cur.execute(f'''UPDATE users SET admin=0 WHERE id={user.id}''')
+        self.cur.execute(f'''UPDATE users SET admin=0 WHERE id=?''', (user.id,))
         self.con.commit()
 
     async def getBanned(self):
@@ -309,18 +311,18 @@ class database:
         return ops
 
     async def getGuild(self, guild):
-        u = self.cur.execute(f'''SELECT * FROM guilds WHERE id={guild.id}''').fetchone()
+        u = self.cur.execute(f'''SELECT * FROM guilds WHERE id=?''', (guild.id, )).fetchone()
         if u is None:
             self.cur.execute(f'INSERT INTO guilds VALUES (?, ?, "en.json", "!")', (guild.id, str(guild), ))
             self.con.commit()
-        return self.cur.execute(f'''SELECT * FROM guilds WHERE id="{guild.id}"''').fetchone()
+        return self.cur.execute(f'''SELECT * FROM guilds WHERE id=?''', (guild.id, )).fetchone()
     
     def getGuildSync(self, guild):
-        u = self.cur.execute(f'''SELECT * FROM guilds WHERE id={guild.id}''').fetchone()
+        u = self.cur.execute(f'''SELECT * FROM guilds WHERE id=?''', (guild.id, )).fetchone()
         if u is None:
             self.cur.execute(f'INSERT INTO guilds VALUES (?, ?, "en.json", "!")', (guild.id, str(guild), ))
             self.con.commit()
-        return self.cur.execute(f'''SELECT * FROM guilds WHERE id="{guild.id}"''').fetchone()
+        return self.cur.execute(f'''SELECT * FROM guilds WHERE id=?''', (guild.id, )).fetchone()
 
     def getLanguage(self, guild):
         try:
@@ -338,46 +340,46 @@ class database:
 
     def setPrefix(self, guild, prefix):
         self.getGuildSync(guild)
-        self.cur.execute(f'''UPDATE guilds SET prefix=? WHERE id={guild.id}''', (prefix, ))
+        self.cur.execute(f'''UPDATE guilds SET prefix=? WHERE id=?''', (prefix, guild.id))
         self.con.commit()
         return self.getGuildSync(guild)[3]
 
     async def setLanguage(self, guild, language):
         await self.getGuild(guild)
-        self.cur.execute(f'''UPDATE guilds SET language=? WHERE id={guild.id}''', (language, ))
+        self.cur.execute(f'''UPDATE guilds SET language=? WHERE id=?''', (language, guild.id))
         self.con.commit()
 
     async def setSocialCredit(self, user, credit: int):
         if credit < 0:
             credit = 0
         await self.getUser(user)
-        self.cur.execute(f'''UPDATE users SET socialCredit={credit} WHERE id={user.id}''')
+        self.cur.execute(f'''UPDATE users SET socialCredit=? WHERE id=?''', (credit, user.id))
         self.con.commit()
         return credit
 
     async def addSocialCredit(self, user, credit: int):
 
         if await self.getSocialCredit(user) + credit <= 0:
-            self.cur.execute(f'''UPDATE users SET socialCredit=0 WHERE id={user.id}''')
+            self.cur.execute(f'''UPDATE users SET socialCredit=0 WHERE id=?''', (user.id, ))
             self.con.commit()
         elif await self.getSocialCredit(user) + credit >= 2000:
-            self.cur.execute(f'''UPDATE users SET socialCredit=2000 WHERE id={user.id}''')
+            self.cur.execute(f'''UPDATE users SET socialCredit=2000 WHERE id=?''', (user.id, ))
             self.con.commit()
         else:
-            self.cur.execute(f'''UPDATE users SET socialCredit=socialCredit+{credit} WHERE id={user.id}''')
+            self.cur.execute(f'''UPDATE users SET socialCredit=socialCredit+? WHERE id=?''', (credit, user.id, ))
             self.con.commit()
 
     async def addEveryoneSocialCredit(self, credit: int):
         if credit < 0:
             credit = 0
-        self.cur.execute(f'''UPDATE users SET socialCredit=socialCredit+{credit}''')
+        self.cur.execute(f'''UPDATE users SET socialCredit=socialCredit+credit''', (credit, ))
         self.con.commit()
         return credit
 
     async def setEveryoneSocialCredit(self, credit: int):
         if credit < 0:
             credit = 0
-        self.cur.execute(f'''UPDATE users SET socialCredit={credit}''')
+        self.cur.execute(f'''UPDATE users SET socialCredit=?''', (credit, ))
         self.con.commit()
         return credit
 
@@ -385,7 +387,7 @@ class database:
         if credit < 0:
             credit = 0
         await self.getUser(user)
-        self.cur.execute(f'''UPDATE users SET socialCredit=socialCredit-{credit} WHERE id={user.id}''')
+        self.cur.execute(f'''UPDATE users SET socialCredit=socialCredit-? WHERE id=?''', (credit, user.id))
         self.con.commit()
         return credit
     
@@ -421,11 +423,11 @@ def getLanguage(guild):
         return 'en.json'
 
 def getLanguageFile(language):
-    try:
+    if Path(f"{path}/data/languages/{language}").exists():
         with open(f"{path}/data/languages/{language}") as lang:
             data = json.load(lang)
         return data
-    except:
+    else:
         return 'en.json'
 
 def getLanguageFileG(guild):

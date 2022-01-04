@@ -21,7 +21,7 @@ class say(commands.Cog):
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(aliases=["tell", "sudo"], description="commands.say.description")
     async def say(self, ctx, *, arg):
-        await ctx.send(f"​{arg}".replace("@", "@ "))
+        await ctx.send(f"\u200b{arg}".replace("@", "@\u200b"))
 
 
 def setup(bot):

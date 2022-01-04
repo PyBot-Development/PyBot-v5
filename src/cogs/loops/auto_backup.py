@@ -20,6 +20,8 @@ class auto_backup(commands.Cog):
 
     @tasks.loop(minutes=30)
     async def auto_backup(self):
+        if support.config.get("debug"):
+            return
         copyfile(f"{support.path}/data/database.db", f"{support.path}/data/DataBackups/{datetime.utcnow()}.db") 
 
     @auto_backup.before_loop

@@ -60,5 +60,5 @@ if __name__ == "__main__":
     print("")
     if support.config.get("serverSettings")["run"]:
         server = server.server()
-        server.app.run(debug=False, port=support.config.get("serverSettings")["port"], use_reloader=False, threaded=True)
+        server.app.run(debug=support.config.get("debug"), port=support.config.get("serverSettings")["port"], use_reloader=False, threaded=True)
     client.run(support.config.get("token"))

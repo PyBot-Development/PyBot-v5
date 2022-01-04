@@ -20,6 +20,7 @@ from run import client
 from discord.commands import Option
 from cogs import checks
 import datetime
+from cogs import errors
 
 ytdl_format_options = {
     'format': 'bestaudio/best',
@@ -42,17 +43,6 @@ ffmpeg_options = {
 }
 
 ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
-
-
-class VoiceConnectionError(commands.CommandError):
-    """Custom Exception class for connection errors."""
-
-
-class InvalidVoiceChannel(VoiceConnectionError):
-    """Exception for cases of invalid Voice Channels."""
-
-class EmptyQueue(commands.CommandError):
-    """Because queue was empty"""
 
 class queueButtons(discord.ui.View):
     def __init__(self, client, author, guild, queue):
@@ -316,7 +306,7 @@ class Music(commands.Cog):
             player = self.get_player(ctx)
             source = player.queue
             if list(source._queue) == []:
-                raise EmptyQueue("Queue is empty")
+                raise errors.EmptyQueue("Queue is empty")
             view = queueButtons(self.bot, ctx.author, ctx.guild, source._queue)
             lang = view.lang
             message=await ctx.reply(mention_author=False, embed=discord.Embed(
@@ -446,7 +436,7 @@ class Music(commands.Cog):
             try:
                 channel = ctx.author.voice.channel
             except AttributeError:
-                raise InvalidVoiceChannel(
+                raise errors.InvalidVoiceChannel(
                     lang["errors"]["InvalidVoiceChannel"])
         vc = ctx.voice_client
         if vc:
@@ -455,13 +445,13 @@ class Music(commands.Cog):
             try:
                 await vc.move_to(channel)
             except asyncio.TimeoutError:
-                raise VoiceConnectionError(
+                raise errors.VoiceConnectionError(
                     lang["commands"]["connect"]["timedout"].format(channel=channel.mention))
         else:
             try:
                 await channel.connect()
             except asyncio.TimeoutError:
-                raise VoiceConnectionError(
+                raise errors.VoiceConnectionError(
                     lang["commands"]["connect"]["timedout"].format(channel=channel.mention))
         await ctx.reply(mention_author=False, embed=discord.Embed(
             description=lang["commands"]["connect"]["returnSuccess"].format(channel=channel.mention), color=support.colours.default

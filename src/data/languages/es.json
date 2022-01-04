@@ -183,8 +183,8 @@
         },
         "setLanguage": {
             "description": "Canbia en lenguaje",
-            "returnSuccess": "Lenguaje ahora es {lang}",
-            "notFound": "{lang} todavia no es soportado."
+            "returnSuccess": "Lenguaje ahora es `{lang}`",
+            "notFound": "`{lang}` todavia no es soportado."
         },
         "languages": {
             "description": "Enseña lenguajes disponibles",

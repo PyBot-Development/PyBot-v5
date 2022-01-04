@@ -183,8 +183,8 @@
         },
         "setLanguage": {
             "description": "Ustawia język",
-            "returnSuccess": "Ustawiono język na {lang}",
-            "notFound": "Język {lang} nie jest jeszcze dodany."
+            "returnSuccess": "Ustawiono język na `{lang}`",
+            "notFound": "Język `{lang}` nie jest jeszcze dodany."
         },
         "languages": {
             "description": "Pokazuje listę języków",
