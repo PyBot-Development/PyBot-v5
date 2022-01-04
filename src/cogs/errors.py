@@ -22,7 +22,8 @@ class NotInVoiceChannel(VoiceConnectionError):
 class EmptyQueue(commands.CommandError):
     """Because queue was empty"""
 
-
+class UnknownError(commands.CommandError):
+    """I dunno something went wrong"""
 
 class MissingRequiredArgument(commands.UserInputError):
     """Exception raised when parsing a command and a parameter

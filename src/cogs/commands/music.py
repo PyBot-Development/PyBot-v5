@@ -235,8 +235,12 @@ class MusicPlayer:
 
             source.volume = self.volume
             self.current = source
-            self._guild.voice_client.play(
-                source, after=lambda _: self.bot.loop.call_soon_threadsafe(self.next.set))
+            try:
+                self._guild.voice_client.play(
+                    source, after=lambda _: self.bot.loop.call_soon_threadsafe(self.next.set))
+            except:
+                self.destroy(self._guild)
+                raise errors.UnknownError("Unknown Error Occured")
             self.np = await self._channel.send(embed=discord.Embed(
                 title=lang["commands"]["now_playing"]["returnSuccess"].format(title=source.title),
                 url=source.original_url,
