@@ -8,7 +8,13 @@ Plays Music
 
 """
 
+from cogs import errors
+import datetime
+from cogs import checks
+from discord.commands import Option
+from run import client
 import asyncio
+from sqlite3.dbapi2 import Error
 import discord
 import yt_dlp as youtube_dl
 from async_timeout import timeout
@@ -16,11 +22,6 @@ from discord.ext import commands
 import support
 from discord.ext.commands import cooldown, BucketType
 youtube_dl.utils.bug_reports_message = lambda: ''
-from run import client
-from discord.commands import Option
-from cogs import checks
-import datetime
-from cogs import errors
 
 ytdl_format_options = {
     'format': 'bestaudio/best',
@@ -44,6 +45,7 @@ ffmpeg_options = {
 
 ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
 
+
 class queueButtons(discord.ui.View):
     def __init__(self, client, author, guild, queue, playing):
         super().__init__(timeout=20)
@@ -53,8 +55,10 @@ class queueButtons(discord.ui.View):
         self.message = None
 
         self.lang = support.getLanguageFileG(guild)
-        titles = [f"{queue.index(item)+1}. [{item.title}]({item.original_url})" for item in queue]
-        titles.insert(0, f"Now Playing [{playing.title}]({playing.original_url})\n")
+        titles = [
+            f"{queue.index(item)+1}. [{item.title}]({item.original_url})" for item in queue]
+        titles.insert(
+            0, f"Now Playing [{playing.title}]({playing.original_url})\n")
 
         self.queue = []
         n = 10
@@ -68,8 +72,8 @@ class queueButtons(discord.ui.View):
         self.back.disabled = True
         self.stop_button.disabled = True
         self.forward.disabled = True
-        self.home.disabled=True
-        self.end.disabled=True
+        self.home.disabled = True
+        self.end.disabled = True
         await self.message.edit(view=self)
         return await super().on_timeout()
 
@@ -116,8 +120,8 @@ class queueButtons(discord.ui.View):
         self.back.disabled = True
         self.stop_button.disabled = True
         self.forward.disabled = True
-        self.home.disabled=True
-        self.end.disabled=True
+        self.home.disabled = True
+        self.end.disabled = True
         await interaction.response.edit_message(view=self)
 
         self.stop()
@@ -157,21 +161,44 @@ class queueButtons(discord.ui.View):
             color=support.colours.default
         ).set_footer(text=f"{self.lang['page']}: {self.page+1}/{self.maxPages+1}"))
 
+
 class YTDLSource(discord.PCMVolumeTransformer):
     def __init__(self, source, *, data, volume=1):
         super().__init__(source, volume)
         self.data = data
         self.title = data.get('title')
         self.url = data.get('url')
-        self.thumbnail = data.get('thumbnail')
-        self.uploader = data.get('uploader')
-        self.uploader_url = data.get('uploader_url')
-        self.duration = data.get('duration')
-        self.views = f"{data.get('view_count'):,}"
-        self.likes = f"{data.get('like_count'):,}"
-        self.original_url = data.get('original_url')
-        self.date = data.get('upload_date')
-        self.date = datetime.datetime.strptime(self.date, "%Y%m%d")
+        self.uploader = data.get('Uploader') or "Unknown"
+        try:
+            self.uploader_url = data.get('uploader_url')
+            if self.uploader_url is None:
+                raise
+        except:
+            self.uploader_url = "https://www.youtube.com/watch?v=xvFZjo5PgG0"
+        try:
+            self.thumbnail = data.get('thumbnail')
+            if self.thumbnail is None:
+                raise
+        except:
+            self.thumbnail = "https://i.ytimg.com/vi_webp/dQw4w9WgXcQ/maxresdefault.webp"
+        self.duration = data.get('duration') or "Unknown"
+        try:
+            self.views = f"{data.get('view_count'):,}"
+        except:
+            self.views = "Unknown"
+        try:
+            self.likes = f"{data.get('like_count'):,}"
+        except:
+            self.likes = "Unknown"
+        self.original_url = data.get('original_url') or "Unknown"
+        self.date = data.get('upload_date') or "Unknown"
+        self.date = datetime.datetime.strptime(
+            self.date, "%Y%m%d") or "Unknown"
+        try:
+            self.timedelta = datetime.timedelta(seconds=data.get('duration'))
+        except:
+            self.timedelta = "Unknown"
+
     @classmethod
     async def from_url(cls, ctx, url, *, loop=None, stream=False):
         lang = support.getLanguageFileG(ctx.guild)
@@ -181,19 +208,50 @@ class YTDLSource(discord.PCMVolumeTransformer):
             # take first item from a playlist
             data = data['entries'][0]
         filename = data['url'] if stream else ytdl.prepare_filename(data)
-        date = data.get('upload_date')
-        date = datetime.datetime.strptime(date, "%Y%m%d")
+        try:
+            date = data.get('upload_date')
+            date = datetime.datetime.strptime(date, "%Y%m%d")
+            date = f'{date.year} {date.strftime("%B")} {date.day}'
+            timedelta = datetime.timedelta(seconds=data.get('duration'))
+        except:
+            date = "Unknown"
+            timedelta = "Unknown"
+        try:
+            views = f"{data.get('view_count'):,}"
+        except:
+            views = "Unknown"
+        try:
+            likes = f"{data.get('like_count'):,}"
+        except:
+            likes = "Unknown"
+        try:
+            uploader = data.get('uploader')
+        except:
+            uploader = "Unknown"
+        try:
+            uploader_url = data.get('uploader_url')
+            if uploader_url is None:
+                raise
+        except:
+            uploader_url = "https://www.youtube.com/watch?v=xvFZjo5PgG0"
+        try:
+            thumbnail = data.get('thumbnail')
+            if thumbnail is None:
+                raise
+        except:
+            thumbnail = "https://i.ytimg.com/vi_webp/dQw4w9WgXcQ/maxresdefault.webp"
         await ctx.send(mention_author=False, embed=discord.Embed(
-                title=lang["commands"]["play"]["returnSuccess"].format(title=data.get('title')),
-                url=data.get('original_url'),
-                color=support.colours.default,
-                description=f"""
-Duration: {datetime.timedelta(seconds=data.get('duration'))}
-Views: {data.get('view_count'):,}
-Likes: {data.get('like_count'):,}
-Upload Date: {date.year} {date.strftime("%B")} {date.day}
+            title=lang["commands"]["play"]["returnSuccess"].format(
+                title=data.get('title')),
+            url=data.get('original_url'),
+            color=support.colours.default,
+            description=f"""
+Duration: {timedelta}
+Views: {views}
+Likes: {likes}
+Upload Date: {date}
                 """
-            ).set_thumbnail(url=data.get('thumbnail')).set_author(name=data.get('uploader'), url=data.get('uploader_url')), delete_after=30)
+        ).set_thumbnail(url=thumbnail).set_author(name=uploader, url=uploader_url), delete_after=30)
         return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
 
 
@@ -242,11 +300,12 @@ class MusicPlayer:
                 self.destroy(self._guild)
                 raise errors.UnknownError("Unknown Error Occured")
             self.np = await self._channel.send(embed=discord.Embed(
-                title=lang["commands"]["now_playing"]["returnSuccess"].format(title=source.title),
+                title=lang["commands"]["now_playing"]["returnSuccess"].format(
+                    title=source.title),
                 url=source.original_url,
                 color=support.colours.default,
                 description=f"""
-Duration: {datetime.timedelta(seconds=source.duration)}
+Duration: {source.timedelta}
 Views: {source.views}
 Likes: {source.likes}
 Upload Date: {source.date.year} {source.date.strftime("%B")} {source.date.day}
@@ -313,19 +372,19 @@ class Music(commands.Cog):
             source = player.queue
             if list(source._queue) == [] and player.current == None:
                 raise errors.EmptyQueue("Queue is empty")
-            view = queueButtons(self.bot, ctx.author, ctx.guild, source._queue, player.current)
+            view = queueButtons(self.bot, ctx.author,
+                                ctx.guild, source._queue, player.current)
             lang = view.lang
-            message=await ctx.reply(mention_author=False, embed=discord.Embed(
-            title="Queue",
-            description=f"""
+            message = await ctx.reply(mention_author=False, embed=discord.Embed(
+                title="Queue",
+                description=f"""
 [{lang["website"]}](https://py-bot.cf/) | [{lang["command"]}](https://py-bot.cf/commands) | [{lang["discord"]}](https://discord.gg/dfKMTx9Eea)
 
 {view.queue[view.page]}""",
-            color=support.colours.default
-        ).set_footer(text=f'{lang["page"]}: {view.page+1}/{view.maxPages+1}'), view=view)
-            view.message=message
+                color=support.colours.default
+            ).set_footer(text=f'{lang["page"]}: {view.page+1}/{view.maxPages+1}'), view=view)
+            view.message = message
 
-            
     @checks.default()
     @client.slash_command(description="commands.play.description")
     async def play(
@@ -348,7 +407,7 @@ class Music(commands.Cog):
                     await player.queue.put(source)
             except asyncio.TimeoutError:
                 raise TimeoutError("Command timed out.")
-            
+
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(aliases=['np', 'current', 'currentsong', 'playing'], description="commands.now_playing.description")
@@ -357,27 +416,29 @@ class Music(commands.Cog):
         vc = ctx.voice_client
 
         if not vc or not vc.is_connected():
-            return await ctx.reply(mention_author=False, 
-                embed=discord.Embed(
-                    description=lang["commands"]["now_playing"]["notPlayingAnything"], color=support.colours.default
-                ), delete_after=10, )
+            return await ctx.reply(mention_author=False,
+                                   embed=discord.Embed(
+                                       description=lang["commands"]["now_playing"]["notPlayingAnything"], color=support.colours.default
+                                   ), delete_after=10, )
 
         player = self.get_player(ctx)
         if not player.current:
-            return await ctx.reply(mention_author=False, 
-                embed=discord.Embed(
-                    description=lang["commands"]["now_playing"]["notPlayingAnything"], color=support.colours.default
-                ), delete_after=10, )
+            return await ctx.reply(mention_author=False,
+                                   embed=discord.Embed(
+                                       description=lang["commands"]["now_playing"]["notPlayingAnything"], color=support.colours.default
+                                   ), delete_after=10, )
 
         try:
             await player.np.delete()
         except discord.HTTPException:
             pass
-        
+
         player.np = await ctx.reply(mention_author=False, embed=discord.Embed(
-            description=lang["commands"]["now_playing"]["returnSuccess"].format(title=vc.source.title),
+            description=lang["commands"]["now_playing"]["returnSuccess"].format(
+                title=vc.source.title),
             color=support.colours.default
         ))
+
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="commands.skip.description")
@@ -387,10 +448,10 @@ class Music(commands.Cog):
         lang = support.getLanguageFileG(ctx.guild)
         vc = ctx.voice_client
         if not vc or not vc.is_connected():
-            return await ctx.reply(mention_author=False, 
-                embed=discord.Embed(
-                    description=lang["commands"]["now_playing"]["notPlayingAnything"], color=support.colours.default
-                ), delete_after=10, )
+            return await ctx.reply(mention_author=False,
+                                   embed=discord.Embed(
+                                       description=lang["commands"]["now_playing"]["notPlayingAnything"], color=support.colours.default
+                                   ), delete_after=10, )
         if vc.is_paused():
             pass
         elif not vc.is_playing():
@@ -399,6 +460,7 @@ class Music(commands.Cog):
         await ctx.reply(mention_author=False, embed=discord.Embed(
             description=lang["commands"]["skip"]["returnSuccess"].format(user=ctx.author), color=support.colours.default
         ))
+
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(aliases=['vol'], description="commands.volume.description")
@@ -409,17 +471,17 @@ class Music(commands.Cog):
         lang = support.getLanguageFileG(ctx.guild)
         vc = ctx.voice_client
         if not vc or not vc.is_connected():
-            return await ctx.reply(mention_author=False, 
-                embed=discord.Embed(
-                    description=lang["commands"]["now_playing"]["notPlayingAnything"], color=support.colours.default
-                ), delete_after=10, )
+            return await ctx.reply(mention_author=False,
+                                   embed=discord.Embed(
+                                       description=lang["commands"]["now_playing"]["notPlayingAnything"], color=support.colours.default
+                                   ), delete_after=10, )
 
         if not 0 <= vol < 101:
-            return await ctx.reply(mention_author=False, 
-                embed=discord.Embed(
-                    description=lang["commands"]["volume"]["badValue"],
-                    color=support.colours.default,
-                ), delete_after=10, )
+            return await ctx.reply(mention_author=False,
+                                   embed=discord.Embed(
+                                       description=lang["commands"]["volume"]["badValue"],
+                                       color=support.colours.default,
+                                   ), delete_after=10, )
 
         player = self.get_player(ctx)
         if vc.source:
@@ -428,6 +490,7 @@ class Music(commands.Cog):
         await ctx.reply(mention_author=False, embed=discord.Embed(
             description=lang["commands"]["volume"]["returnSuccess"].format(user=ctx.author, vol=vol), color=support.colours.default
         ))
+
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(description="commands.stop.description")
@@ -437,10 +500,10 @@ class Music(commands.Cog):
         lang = support.getLanguageFileG(ctx.guild)
         vc = ctx.voice_client
         if not vc or not vc.is_connected():
-            return await ctx.reply(mention_author=False, 
-                embed=discord.Embed(
-                    description=lang["commands"]["now_playing"]["notPlayingAnything"], color=support.colours.default
-                ), delete_after=10, )
+            return await ctx.reply(mention_author=False,
+                                   embed=discord.Embed(
+                                       description=lang["commands"]["now_playing"]["notPlayingAnything"], color=support.colours.default
+                                   ), delete_after=10, )
         await self.cleanup(ctx.guild)
 
     @checks.default()
