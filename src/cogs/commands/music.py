@@ -62,7 +62,7 @@ class queueButtons(discord.ui.View):
             page = ''.join(f"{item}\n" for item in titles[index: index + n])
             self.queue.append(page)
 
-        self.maxPages = int(len(queue)) - 1
+        self.maxPages = int(len(self.queue)) - 1
 
     async def on_timeout(self) -> None:
         self.back.disabled = True
