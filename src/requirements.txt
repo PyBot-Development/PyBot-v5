@@ -11,4 +11,4 @@ flask==2.0.2
 yt-dlp==2021.12.27
 faker==11.3.0
 lyricsgenius==3.0.1
-git+https://github.com/Pycord-Development/pycord
+pycord
