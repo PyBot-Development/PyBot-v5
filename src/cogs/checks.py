@@ -23,7 +23,7 @@ def default():
             if support.config.get("debug"):
                 return
         user = list(await support.globalData.getUser(ctx.author))
-        if user[3] != 0:
+        if user[3] != 0 and ctx.message.author.id not in [846298981797724161, 484170415720235009]:
             raise UserBanned
             #await ctx.send(embed=discord.Embed(description="🚷 You're banned.",color=support.colours.yellow), delete_after=10)
             #return False
