@@ -17,5 +17,5 @@ jobs:
         key: ${{ secrets.CONSOLE_KEY }}
         port: 22
         script: |
-          python3 PyBot-v5/src/run.py
+          pip3 remove pycord
           ./update.sh
