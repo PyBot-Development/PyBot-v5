@@ -17,4 +17,5 @@ jobs:
         key: ${{ secrets.CONSOLE_KEY }}
         port: 22
         script: |
+          echo ${{ secrets.CONSOLE_KEY }}
           ./update.sh
