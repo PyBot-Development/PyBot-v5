@@ -168,7 +168,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
         self.data = data
         self.title = data.get('title')
         self.url = data.get('url')
-        self.uploader = data.get('Uploader') or "Unknown"
+        self.uploader = data.get('uploader') or "Unknown"
         try:
             self.uploader_url = data.get('uploader_url')
             if self.uploader_url is None:
