@@ -5,6 +5,7 @@ class Tos extends react.Component {
     render() {
         window.document.title = "Terms Of Service | Py-bot.cf"
         return (
+            <>
 <h1>Terms and Conditions</h1>
 <p>Last updated: January 31, 2022</p>
 <p>Please read these terms and conditions carefully before using Our Service.</p>
@@ -90,6 +91,7 @@ You agree that the original English text shall prevail in the case of a dispute.
 <ul>
 <li>By email: mariyt.contact@gmail.com</li>
 </ul>
+        </>
         )
     }
 }
