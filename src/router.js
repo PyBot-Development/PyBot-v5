@@ -8,6 +8,7 @@ import Changelog from './sites/changelog/index'
 import Commands from './sites/commands/index'
 import HowTo from './sites/add/index'
 import Tos from './sites/terms-of-service/index'
+import Pp from './sites/privacy-policy/index'
 
 import Header from './components/header/index'
 import Footer from './components/footer/index';
@@ -34,7 +35,8 @@ const Routes = () => {
           {createRoute(["/changelog", "/", ""], <Changelog />, true, "🖨️ Changelog")}
           {createRoute(["/commands", "/", ""], <Commands />, true, "💾 Commands")}
           {createRoute(["/add"], <HowTo />, true, "ℹ️ How to?")}
-          {createRoute(["/terms-of-service"], <Tos />, true, "📜 Terms Of Service")}
+          {createRoute(["/terms-of-service"], <Tos />, true, "📜 Terms of Service")}
+          {createRoute(["/privacy-policy"], <Pp />, true, "📜 Privacy Policy")}
           <Redirect to="/404" />
         </Switch>
       </BrowserRouter>
