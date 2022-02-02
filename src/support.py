@@ -363,7 +363,7 @@ class database:
         if await self.getSocialCredit(user) + credit <= 0:
             self.cur.execute(f'''UPDATE users SET socialCredit=0 WHERE id=?''', (user.id, ))
             self.con.commit()
-        elif await self.getSocialCredit(user) + credit >= 2000:
+        elif await self.getSocialCredit(user) + credit >= 1000000:
             self.cur.execute(f'''UPDATE users SET socialCredit=2000 WHERE id=?''', (user.id, ))
             self.con.commit()
         else:
