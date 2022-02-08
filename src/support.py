@@ -208,22 +208,7 @@ class check():
         if (
             bad in answer.text
             or 'Client sent too many requests too fast.' in answer.text
-        ):￼
-[19:19]
-Jump To Message.
-100000 Social Credit. Your Social Credit is now 302142
-￼
-[19:19]
-Jump To Message.
-100000 Social Credit. Your Social Credit is now 402142
-￼
-[19:19]
-Jump To Message.
-100000 Social Credit. Your Social Credit is now 502142
-￼
-￼
-Message @PyBot
-
+        ):
             return json.loads(answer.text)["errorMessage"]
         ajson = answer.json()
         username = ajson['availableProfiles'][0]['name']
