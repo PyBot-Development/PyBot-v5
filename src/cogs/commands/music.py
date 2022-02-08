@@ -251,7 +251,7 @@ Views: {views}
 Likes: {likes}
 Upload Date: {date}
                 """
-        ).set_thumbnail(url=thumbnail).set_author(name=uploader, url=uploader_url), delete_after=30)
+        ).set_thumbnail(url=thumbnail).set_author(name=uploader, url=uploader_url))
         return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
 
 
