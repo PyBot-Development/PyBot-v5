@@ -135,7 +135,7 @@ class leaderboard(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description=support.getDescription("en.json", "leaderboard"), aliases=["lb"])
+    @commands.command(description=support.getDescription("en.json", "leaderboard", "top"), aliases=["lb"])
     async def leaderboard(self, ctx):
 
         users = support.globalData.getAllUsers_sync()

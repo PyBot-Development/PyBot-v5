@@ -158,6 +158,10 @@ class help(commands.Cog):
         ).set_footer(text=f"Page: 1/{view.maxPages+1}"), view=view)
         view.message = message
 
+class help_slash(commands.Cog):
+    def __init__(self, _client):
+        self.client = _client
+
     @checks.default()
     @commands.slash_command(guild_ids=[885976189049651200])
     async def help(
@@ -181,3 +185,4 @@ class help(commands.Cog):
 
 def setup(client):
     client.add_cog(help(client))
+    client.add_cog(help_slash(client))
