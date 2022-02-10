@@ -21,7 +21,7 @@ class pay(commands.Cog):
         
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.pay.description")
+    @commands.command(description=support.getDescription("en.json", "pay"), aliases=["give"])
     async def pay(self, ctx, user: discord.User, value):
         lang = support.getLanguageFileG(ctx.guild)
         try:

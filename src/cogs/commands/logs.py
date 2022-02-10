@@ -21,7 +21,7 @@ class logs(commands.Cog):
     @checks.default()
     @checks.admin()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(aliases=["log"], description="commands.logs.description")
+    @commands.command(aliases=["log"], description=support.getDescription("en.json", "logs"))
     async def logs(self, ctx):
         await ctx.reply(mention_author=False, file=discord.File(f"{support.path}/logs/{support.startup_date}.log"))
 

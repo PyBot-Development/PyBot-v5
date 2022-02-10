@@ -21,7 +21,7 @@ class deop(commands.Cog):
 
     @checks.admin()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.deop.description")
+    @commands.command(description=support.getDescription("en.json", "deop"))
     async def deop(self, ctx, user: discord.User):
         async with ctx.typing():
             lang = support.getLanguageFileG(ctx.guild)

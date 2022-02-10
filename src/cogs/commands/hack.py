@@ -26,7 +26,7 @@ class hack(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.hack.description")
+    @commands.command(description=support.getDescription("en.json", "hack"))
     async def hack(self, ctx, *, user: discord.Member):
         fake = Faker(['en_US', 'en_GB'])
         

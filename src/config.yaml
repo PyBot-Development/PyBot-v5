@@ -4,11 +4,4 @@ prefix: "!"
 cooldown: 2
 debug: False
 
-serverSettings:
-  run: False
-  port: 5000
-  https:
-    use: True
-    privateKeyPath: Null
-    certificatePath: Null
-    caPath: Null
+lyricsGeniusToken: yGRPyGYBY3sCM_baVIGA4pBPLAg-_5EDRnOW5MqYMAjjq7rwFew40MnPQEmyy7cA

@@ -21,7 +21,7 @@ class ban(commands.Cog):
 
     @checks.admin()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.ban.description")
+    @commands.command(description=support.getDescription("en.json", "ban"))
     async def ban(self, ctx, user: discord.User, *, reason):
         lang = support.getLanguageFileG(ctx.guild)
         async with ctx.typing():

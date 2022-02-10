@@ -21,7 +21,7 @@ class cum(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.cum.description")
+    @commands.command(description=support.getDescription("en.json", "cum"))
     async def cum(self, ctx, user: discord.User=None):
         async with ctx.typing():
             lang = support.getLanguageFileG(ctx.guild)

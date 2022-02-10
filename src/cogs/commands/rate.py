@@ -14,7 +14,7 @@ from discord.ext.commands import cooldown, BucketType
 import support
 import random
 from cogs import checks
-
+from discord.commands import Option
 
 class rate(commands.Cog):
     def __init__(self, client):
@@ -31,7 +31,7 @@ class rate(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(aliases=['r', 'meter'], description="commands.rate.description")
+    @commands.command(aliases=['r', 'meter'], description=support.getDescription("en.json", "rate"))
     async def rate(self, ctx, user, *, rest=None):
         lang = support.getLanguageFileG(ctx.guild)
         async with ctx.typing():
@@ -58,6 +58,31 @@ class rate(commands.Cog):
             colour = int(ColourHex, 16)
             await ctx.reply(mention_author=False, embed=discord.Embed(description=msg, color=colour))
 
+    @checks.default()
+    @commands.slash_command(description=support.getDescription("en.json", "rate"))
+    async def rate(self, ctx,
+                   rest: Option(str, "Rate What?"),
+                   user: Option(str, "User or Thing to rate",
+                                required=False) = None,
+                   ):
+        async with ctx.typing():
+            lang = support.getLanguageFileG(ctx.guild)
+            randomNumber = int(random.randint(0, 100))
+            words = {
+                "gay": await self.convertToHex(num=randomNumber, rgb=[255, 105, 180], textAddition="🏳️‍🌈"),
+                "black": await self.convertToHex(num=randomNumber, 	rgb=[232, 190, 172], invert=True),
+                "furry": await self.convertToHex(num=randomNumber, rgb=[191, 111, 252], textAddition="<:furryowo:927510365133221929>"),
+                "cum": await self.convertToHex(num=randomNumber, rgb=[255, 255, 255])
+            }
+
+            user = ctx.author if user is None else user
+
+            ColourHex, addition = words.get(rest.lower(), await self.convertToHex(num=randomNumber, rgb=[155, 255, 133]))
+            msg = lang["commands"]["rate"]["returnSuccess"].format(
+                picked_random=randomNumber, rate_thing=f"{(rest if rest != None else '')}{(addition if addition != None else '')}", user=user)
+
+            colour = int(ColourHex, 16)
+            await ctx.respond(embed=discord.Embed(description=msg, color=colour))
 
 def setup(bot):
     bot.add_cog(rate(bot))

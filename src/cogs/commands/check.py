@@ -15,6 +15,7 @@ import discord
 import support
 from discord.ext.commands import cooldown, BucketType
 from cogs import checks
+from discord.commands import Option
 
 class check(commands.Cog):
     def __init__(self, client):
@@ -22,9 +23,14 @@ class check(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.check.description")
+    @commands.command(description=support.getDescription("en.json", "check"))
     async def check(self, ctx, *, combo):
         await ctx.reply(mention_author=False, embed=discord.Embed(description=support.check(combo).result, color=support.colours.default))
 
+    @checks.default()
+    @commands.slash_command(description=support.getDescription("en.json", "check"))
+    async def check(self, ctx, combo: Option(str, "Login and Password to account")):
+        await ctx.response.send_message(embed=discord.Embed(description=support.check(combo).result, color=support.colours.default), ephemeral=True)
+        
 def setup(bot):
     bot.add_cog(check(bot))

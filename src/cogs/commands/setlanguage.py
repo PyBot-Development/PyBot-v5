@@ -22,7 +22,7 @@ class setLanguage(commands.Cog):
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.has_permissions(administrator=True)
     @guild_only()
-    @commands.command(description="commands.setLanguage.description", aliases=["language", "set_language", "lang"])
+    @commands.command(description=support.getDescription("en.json", "setLanguage"), aliases=["language", "set_language", "lang"])
     async def setLanguage(self, ctx, language):
 
         if language+'.json' in support.languages:

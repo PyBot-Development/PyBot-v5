@@ -20,7 +20,7 @@ class command(commands.Cog, name="nick"):
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.guild_only()
-    @commands.command(description="commands.nick.description")
+    @commands.command(description=support.getDescription("en.json", "nick"))
     async def nick(self, ctx, *, nick=None):
         lang = support.getLanguageFileG(ctx.guild)
         await ctx.message.guild.me.edit(nick=nick)

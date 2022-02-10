@@ -14,6 +14,7 @@ import discord
 import support
 from discord.ext.commands import cooldown, BucketType, CommandNotFound
 from cogs import checks
+from discord.commands import Option
 
 class HelpButtons(discord.ui.View):
     def __init__(self, client, author, guild):
@@ -136,12 +137,12 @@ class HelpButtons(discord.ui.View):
 
 
 class help(commands.Cog):
-    def __init__(self, client):
-        self.client = client
-        
+    def __init__(self, _client):
+        self.client = _client
+
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(aliases=["?"], description="commands.help.description")
+    @commands.command(aliases=["?"], description=support.getDescription("en.json", "help"))
     async def help(self, ctx, *, command=None):
         view = HelpButtons(self.client, ctx.message.author, ctx.guild)
 
@@ -156,6 +157,27 @@ class help(commands.Cog):
             color=support.colours.default
         ).set_footer(text=f"Page: 1/{view.maxPages+1}"), view=view)
         view.message = message
+
+    @checks.default()
+    @commands.slash_command(guild_ids=[885976189049651200])
+    async def help(
+        self,
+        ctx
+    ):
+        view = HelpButtons(self.client, ctx.message.author, ctx.guild)
+
+        lang = view.lang
+
+        message = await ctx.respond(mention_author=False, embed=discord.Embed(
+            title=lang["help"],
+            description=f"""
+[{lang["website"]}](https://py-bot.cf/) | [{lang["command"]}](https://py-bot.cf/commands) | [{lang["discord"]}](https://discord.gg/dfKMTx9Eea)
+
+{view.commands[0]}""",
+            color=support.colours.default
+        ).set_footer(text=f"Page: 1/{view.maxPages+1}"), view=view)
+        view.message = message
+
 
 def setup(client):
     client.add_cog(help(client))

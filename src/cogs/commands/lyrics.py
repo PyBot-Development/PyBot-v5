@@ -16,7 +16,7 @@ from cogs import checks
 import lyricsgenius
 import os
 
-genius = lyricsgenius.Genius("yGRPyGYBY3sCM_baVIGA4pBPLAg-_5EDRnOW5MqYMAjjq7rwFew40MnPQEmyy7cA", verbose=False)
+genius = lyricsgenius.Genius(support.config.get("lyricsGeniusToken"), verbose=False)
 
 
 class showLyrics(discord.ui.View):
@@ -53,7 +53,7 @@ class lyrics(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.lyrics.description")
+    @commands.command(description=support.getDescription("en.json", "lyrics"))
     async def lyrics(self, ctx, *, name):
         
         song = genius.search_song(name)

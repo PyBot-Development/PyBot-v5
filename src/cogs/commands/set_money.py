@@ -21,7 +21,7 @@ class set_money(commands.Cog):
 
     @is_owner()
     #@checks.admin()
-    @commands.command(description="commands.set_money.description", aliases=["set"])
+    @commands.command(description=support.getDescription("en.json", "set_money"), aliases=["set"])
     async def set_money(self, ctx, user, value: int): 
         try:
             user = await commands.UserConverter().convert(ctx, user)

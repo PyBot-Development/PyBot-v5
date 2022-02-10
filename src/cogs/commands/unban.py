@@ -20,7 +20,7 @@ class unban(commands.Cog):
 
     @checks.admin()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.unban.description")
+    @commands.command(description=support.getDescription("en.json", "unban"))
     async def unban(self, ctx, user: discord.User):
         async with ctx.typing():
             lang = support.getLanguageFileG(ctx.guild)

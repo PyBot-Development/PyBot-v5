@@ -9,18 +9,15 @@ Says something using bot
 """
 
 from discord.ext import commands
-import discord
-from discord.ext.commands import cooldown, BucketType
 from discord.commands import Option
-import support
-from run import client
 from cogs import checks
 
 class hello(commands.Cog):
     def __init__(self, client):
         self.client = client
+
     @checks.default()
-    @client.slash_command(guild_ids=[885976189049651200])
+    @commands.slash_command(guild_ids=[885976189049651200])
     async def hello(
         self,
         ctx,
@@ -32,4 +29,5 @@ class hello(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(hello(bot))
+    # bot.add_cog(hello(bot))
+    pass

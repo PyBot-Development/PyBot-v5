@@ -23,7 +23,7 @@ class tts(commands.Cog):
         
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.tts.description")
+    @commands.command(description=support.getDescription("en.json", "tts"))
     async def tts(self, ctx, *, text):
         async with ctx.typing():
             lang = support.getLanguageFileG(ctx.guild)

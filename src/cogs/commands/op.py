@@ -20,7 +20,7 @@ class op(commands.Cog):
 
     @checks.admin()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.op.description")
+    @commands.command(description=support.getDescription("en.json", "op"))
     async def op(self, ctx, user: discord.User):
         async with ctx.typing():
             lang = support.getLanguageFileG(ctx.guild)

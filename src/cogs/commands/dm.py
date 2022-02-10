@@ -20,7 +20,7 @@ class dm(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.dm.description")
+    @commands.command(description=support.getDescription("en.json", "dm"))
     async def dm(self, ctx, user, *, message):
         lang = support.getLanguageFileG(ctx.guild)
         user = await commands.UserConverter().convert(ctx, user)

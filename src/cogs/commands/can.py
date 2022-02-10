@@ -21,7 +21,7 @@ class can(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.can.description")
+    @commands.command(description=support.getDescription("en.json", "can"))
     async def can(self, ctx, text, bottom_text=""):
         async with ctx.typing():
             lang = support.getLanguageFileG(ctx.guild)
