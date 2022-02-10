@@ -21,7 +21,7 @@ class pirate(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.pirate.description")
+    @commands.command(description=support.getDescription("en.json", "pirate"))
     async def pirate(self, ctx, user: discord.User=None):
         async with ctx.typing():
             lang = support.getLanguageFileG(ctx.guild)

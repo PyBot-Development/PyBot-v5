@@ -264,7 +264,7 @@ class MusicPlayer:
         self.queue = asyncio.Queue()
         self.next = asyncio.Event()
         self.np = None  # Now playing message
-        self.volume = 1
+        self.volume = 0.2
         self.current = None
         ctx.bot.loop.create_task(self.player_loop(ctx))
 
@@ -291,7 +291,7 @@ class MusicPlayer:
 
                     continue
 
-            source.volume = self.volume
+            source.volume = self.volume * 5
             self.current = source
             try:
                 self._guild.voice_client.play(
@@ -348,7 +348,7 @@ class Music(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.play.description", name="play")
+    @commands.command(description=support.getDescription("en.json", "play"), name="play")
     async def play_music(self, ctx, *, url):
         async with ctx.typing():
             if not ctx.author.voice:
@@ -365,7 +365,7 @@ class Music(commands.Cog):
                 raise TimeoutError("Command timed out.")
 
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.next.description")
+    @commands.command(description=support.getDescription("en.json", "queue"))
     async def queue(self, ctx):
         async with ctx.typing():
             player = self.get_player(ctx)
@@ -386,7 +386,7 @@ class Music(commands.Cog):
             view.message = message
 
     @checks.default()
-    @client.slash_command(description="commands.play.description")
+    @client.slash_command(description=support.getDescription("en.json", "play"))
     async def play(
         self,
         ctx,
@@ -410,7 +410,7 @@ class Music(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(aliases=['np', 'current', 'currentsong', 'playing'], description="commands.now_playing.description")
+    @commands.command(aliases=['np', 'current', 'currentsong', 'playing'], description=support.getDescription("en.json", "now_playing"))
     async def now_playing(self, ctx):
         lang = support.getLanguageFileG(ctx.guild)
         vc = ctx.voice_client
@@ -441,7 +441,7 @@ class Music(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.skip.description")
+    @commands.command(description=support.getDescription("en.json", "skip"))
     async def skip(self, ctx):
         if not ctx.author.voice:
             raise errors.NotInVoiceChannel()
@@ -463,7 +463,7 @@ class Music(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(aliases=['vol'], description="commands.volume.description")
+    @commands.command(aliases=['vol'], description=support.getDescription("en.json", "volume"))
     async def volume(self, ctx, *, vol: float):
         if not ctx.author.voice:
             raise errors.NotInVoiceChannel()
@@ -493,7 +493,7 @@ class Music(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.stop.description")
+    @commands.command(description=support.getDescription("en.json", "stop"))
     async def stop(self, ctx):
         if not ctx.author.voice:
             raise errors.NotInVoiceChannel()
@@ -508,7 +508,7 @@ class Music(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(aliases=['join'], description="commands.connect.description")
+    @commands.command(aliases=['join'], description=support.getDescription("en.json", "connect"))
     async def connect(self, ctx, *, channel: discord.VoiceChannel = None):
         lang = support.getLanguageFileG(ctx.guild)
         if not channel:

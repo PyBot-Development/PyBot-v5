@@ -19,7 +19,7 @@ class languages(commands.Cog):
         self.client = client
 
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.languages.description")
+    @commands.command(description=support.getDescription("en.json", "languages"))
     async def languages(self, ctx):
         lang = support.getLanguageFileG(ctx.guild)
         languages = []

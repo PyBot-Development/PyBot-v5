@@ -21,7 +21,7 @@ class doom(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.doom.description", aliases=["doom_slayer"])
+    @commands.command(description=support.getDescription("en.json", "doom"), aliases=["doom_slayer"])
     async def doom(self, ctx, user: discord.User=None):
         async with ctx.typing():
             lang = support.getLanguageFileG(ctx.guild)

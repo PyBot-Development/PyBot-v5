@@ -19,7 +19,7 @@ class data(commands.Cog):
         self.client = client
 
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.data.description")
+    @commands.command(description=support.getDescription("en.json", "data"))
     async def data(self, ctx, user: discord.User=None):
         async with ctx.typing():
             if user is None:

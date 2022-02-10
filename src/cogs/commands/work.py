@@ -23,7 +23,7 @@ class work(commands.Cog):
         self.client = client
     @checks.default()
     @cooldown(1, 3600, BucketType.user)
-    @commands.command(description="commands.work.description")
+    @commands.command(description=support.getDescription("en.json", "work"))
     async def work(self, ctx):
         support.getLanguageFileG(ctx.guild)
         money = random.randint(2000, 20000)

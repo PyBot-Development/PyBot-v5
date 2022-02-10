@@ -15,14 +15,13 @@ import support
 from discord.ext.commands import cooldown, BucketType
 from cogs import checks
 
-class give_money(commands.Cog):
+class add_money(commands.Cog):
     def __init__(self, client):
         self.client = client
 
     @is_owner()
-    #@checks.admin()
-    @commands.command(description="commands.give_money.description", aliases=["give"])
-    async def give_money(self, ctx, user, value: int):
+    @commands.command(description=support.getDescription("en.json", "give"), aliases=["add"])
+    async def add_money(self, ctx, user, value: int):
         try:
             user = await commands.UserConverter().convert(ctx, user)
             await support.globalData.addBalance(user, value)
@@ -35,4 +34,4 @@ class give_money(commands.Cog):
                 raise commands.UserNotFound(user)
 
 def setup(bot):
-    bot.add_cog(give_money(bot))
+    bot.add_cog(add_money(bot))

@@ -20,7 +20,7 @@ class whois(commands.Cog):
     @checks.default()
     @commands.guild_only()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.whois.description")
+    @commands.command(description=support.getDescription("en.json", "whois"))
     async def whois(self, ctx, *, user: discord.Member = None):
         lang = support.getLanguageFileG(ctx.guild)
         if user is None:

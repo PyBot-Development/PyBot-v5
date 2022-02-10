@@ -20,7 +20,7 @@ class prefix(commands.Cog):
 
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.has_permissions(administrator=True)
-    @commands.command(description="commands.prefix.description")
+    @commands.command(description=support.getDescription("en.json", "prefix"))
     async def prefix(self, ctx, prefix):
         lang=support.getLanguageFileG(ctx.guild)
         prefix=prefix[0:6]

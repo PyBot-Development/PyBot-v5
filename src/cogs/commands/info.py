@@ -24,7 +24,7 @@ class info(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.info.description")
+    @commands.command(description=support.getDescription("en.json", "info"))
     async def info(self, ctx):
         lang = support.getLanguageFileG(ctx.guild)
         author = await self.client.fetch_user(846298981797724161)

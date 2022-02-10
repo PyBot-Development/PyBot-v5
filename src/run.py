@@ -14,7 +14,7 @@ __title__ = 'Pybot V5'
 __author__ = 'M2rsho'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2021-2022 M2rsho'
-__version__ = '1.7.5'
+__version__ = '1.8.0'
 
 from discord.ext import commands
 import discord
@@ -24,7 +24,6 @@ import support
 from datetime import datetime
 from colorama import *
 from cogs.checks import *
-import server
 
 prefix = support.config.get("prefix")
 
@@ -58,7 +57,4 @@ if __name__ == "__main__":
     loadCog("commands")
     loadCog("loops")
     print("")
-    if support.config.get("serverSettings")["run"]:
-        server = server.server()
-        server.app.run(debug=support.config.get("debug"), port=support.config.get("serverSettings")["port"], use_reloader=False, threaded=True)
     client.run(support.config.get("token"))

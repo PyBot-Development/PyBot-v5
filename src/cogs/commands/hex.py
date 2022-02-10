@@ -23,7 +23,7 @@ class hex(commands.Cog):
         
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.hex.description")
+    @commands.command(description=support.getDescription("en.json", "hex"))
     async def hex(self, ctx, colour="random"):
         lang = support.getLanguageFileG(ctx.guild)
         if colour == "random":

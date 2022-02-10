@@ -183,7 +183,7 @@ class blackjack(commands.Cog):
         
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.blackjack.description", aliases=["bj"])
+    @commands.command(description=support.getDescription("en.json", "blackjack"), aliases=["bj"])
     async def blackjack(self, ctx, bet):
         current = await support.globalData.getBalance(ctx.message.author)
         lang = support.getLanguageFileG(ctx.guild)

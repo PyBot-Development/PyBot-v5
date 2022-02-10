@@ -30,7 +30,7 @@ class idea(commands.Cog):
 
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(description="commands.idea.description")
+    @commands.command(description=support.getDescription("en.json", "idea"))
     async def idea(self, ctx, *, Text):
         lang = support.getLanguageFileG(ctx.guild)
         await self.get_channel()

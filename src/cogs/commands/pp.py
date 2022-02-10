@@ -21,7 +21,7 @@ class pp(commands.Cog):
         self.client = client
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
-    @commands.command(aliases=["dick", "penis", "cock"], description="commands.pp.description")
+    @commands.command(aliases=["dick", "penis", "cock"], description=support.getDescription("en.json", "pp"))
     async def pp(self, ctx, *, user: discord.User = None):
         lang = support.getLanguageFileG(ctx.guild)
         

@@ -17,10 +17,10 @@ from cogs import checks
 class alt(commands.Cog):
     def __init__(self, client):
         self.client = client
-
+    
     @checks.default()
     @cooldown(1, 1800, BucketType.user)
-    @commands.command(description="commands.alt.description")
+    @commands.command(description=support.getDescription("en.json", "alt"))
     async def alt(self, ctx):
         async with ctx.typing():
             alt = await support.getAlt()
