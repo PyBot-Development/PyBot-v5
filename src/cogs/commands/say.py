@@ -18,11 +18,16 @@ from discord.commands import Option
 class say(commands.Cog):
     def __init__(self, client):
         self.client = client
+
     @checks.default()
     @cooldown(1, support.cooldown, BucketType.user)
     @commands.command(aliases=["tell", "sudo"], description=support.getDescription("en.json", "say"))
     async def say(self, ctx, *, arg):
         await ctx.send(f"\u200b{arg}".replace("@", "@\u200b"))
+
+class say_slash(commands.Cog):
+    def __init__(self, client):
+        self.client = client
 
     @checks.default()
     @commands.slash_command(description=support.getDescription("en.json", "say"))
@@ -36,3 +41,4 @@ class say(commands.Cog):
 
 def setup(bot):
     bot.add_cog(say(bot))
+    bot.add_cog(say_slash(bot))
