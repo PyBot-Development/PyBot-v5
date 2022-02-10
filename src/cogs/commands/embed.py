@@ -44,7 +44,6 @@ class embed(commands.Cog):
         g = round(g * 255)
         b = round(b * 255)
         _colour = discord.Colour.from_rgb(r, g, b)
-        print(_colour)
         await ctx.send(embed=discord.Embed(title=title, description=description, color=_colour))
         await ctx.response.send_message("Embed Was Created", ephemeral=True)
 
