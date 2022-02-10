@@ -7,8 +7,8 @@ pyfiglet==0.8.post1
 pysqlite3==0.4.6
 datetime==4.3
 pynacl==1.4.0
-flask==2.0.2
 yt-dlp==2021.12.27
 faker==11.3.0
 lyricsgenius==3.0.1
+colour==0.1.5
 git+https://github.com/Pycord-Development/pycord
