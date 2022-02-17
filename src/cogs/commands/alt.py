@@ -29,4 +29,5 @@ class alt(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(alt(bot))
+    #bot.add_cog(alt(bot))
+    pass
