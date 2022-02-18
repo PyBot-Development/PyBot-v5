@@ -44,4 +44,5 @@ class botSettings(commands.Cog):
         await ctx.reply(mention_author=False, content=f"Reloaded {cogName}")
 
 def setup(bot):
-    bot.add_cog(botSettings(bot))
+    #bot.add_cog(botSettings(bot))
+    pass
