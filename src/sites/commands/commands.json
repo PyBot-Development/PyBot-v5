@@ -19,12 +19,6 @@
             "aliases": "Log."
         },
         {
-            "label": "Alt",
-            "description": "Gives you random minecraft alt.",
-            "usage": "alt",
-            "aliases": "None."
-        },
-        {
             "label": "Ascii",
             "description": "Converts Text to ASCII",
             "usage": "ascii <Text>",
@@ -58,12 +52,6 @@
             "label": "Can",
             "description": "Can Generator",
             "usage": "can <Text>",
-            "aliases": "None."
-        },
-        {
-            "label": "Check",
-            "description": "Checks minecraft alt",
-            "usage": "check email:password",
             "aliases": "None."
         },
         {
