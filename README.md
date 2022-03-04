@@ -4,3 +4,5 @@
 ![](https://img.shields.io/github/all-contributors/PyBot-Development/PyBot-v5)
 
 hacked by joe!!!!!!!!!111
+
+restart 
