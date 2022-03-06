@@ -29,7 +29,7 @@ class tts(commands.Cog):
             lang = support.getLanguageFileG(ctx.guild)
             max = 1000
             if len(str(text)) > max:
-                await ctx.reply(embed=discord.Embed(description=lang["commands"]["tts"]["maxLenght"].format(max=max), color=support.colours.default))
+                await ctx.reply(mention_author=False, embed=discord.Embed(description=lang["commands"]["tts"]["maxLenght"].format(max=max), color=support.colours.default))
                 return
             text = text.split("-l")
             text.append("en")
@@ -63,7 +63,7 @@ class tts_slash(commands.Cog):
                     file = await support.processing.tts(f"{text[0]}", f"{text[1]}".replace(" ", ""))
             except asyncio.TimeoutError:
                 raise TimeoutError("Command Timed out.")
-            await ctx.respond(mention_author=False, file=discord.File(file), content=lang["commands"]["tts"]["returnSuccess"])
+            await ctx.respond(file=discord.File(file), content=lang["commands"]["tts"]["returnSuccess"])
             os.remove(file)
             
 def setup(bot):
