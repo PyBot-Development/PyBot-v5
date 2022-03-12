@@ -1,7 +1,7 @@
 colorama==0.4.4
 gTTS==2.2.3
 numpy==1.22.0
-Pillow==9.0.0
+Pillow==9.0.1
 PyYAML==6.0
 pyfiglet==0.8.post1
 pysqlite3==0.4.6
