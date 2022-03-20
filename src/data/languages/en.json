@@ -90,7 +90,7 @@
         },
         "info": {
             "description": "Sends Info About Bot",
-            "returnSuccess": "Current Version: {version}\nV5 Creation Date: <t:1633946400:D>\n\nAuthor: {author}\nPrefix: {prefix}\nOnline For: {onlineFor}\nServers: {servers}\n\nCopyright: {copyright}\nLicense: {license}\n\nCommands Count: {commandsCount}"
+            "returnSuccess": "Current Version: {version}\nV5 Creation Date: <t:1633946400:D>\n\nAuthor: {author}\nPrefix: {prefix}\nSince Last Restart: {onlineFor}\nServers: {servers}\n\nCopyright: {copyright}\nLicense: {license}\n\nCommands Count: {commandsCount}"
         },
         "iq": {
             "description": "Calculates your IQ",
